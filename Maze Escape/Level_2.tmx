@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="26" height="5" tilewidth="100" tileheight="100" nextobjectid="27">
+ <tileset firstgid="1" name="Lvl1_fond_smaller" tilewidth="100" tileheight="100">
+  <image source="Lvl1_fond_smaller.png" width="1000" height="400"/>
+ </tileset>
+ <tileset firstgid="41" name="Lvl1_solides_smaller" tilewidth="100" tileheight="100">
+  <image source="Lvl1_solides_smaller.png" width="800" height="400"/>
+ </tileset>
+ <layer name="Fond" width="26" height="5">
+  <data encoding="base64" compression="zlib">
+   eJxjYIAARjTMBMTMQMzCQD3AjWYHiM8DxLxAzAfEklAshcRGF8MmJ4nFHhgG2SMKxGJALA7EElD10kAsA6VBWA6I2aBy7EjmyiGxZbH4Cdk/8kCsAMSKQKxEICzQ3YwLOBLAzkCsQwUMAA/+CYI=
+  </data>
+ </layer>
+ <layer name="Solide" width="26" height="5">
+  <data encoding="base64" compression="zlib">
+   eJzjZmBg4EbDmkCsBcTaQKwDxB4UYF2oGSBz0YEhEBsBsTEQmwCxKRY1ZljEQMAcie1KwB5qApg9TgSwCwP+cHEjIA+zh14AAFj/Ds8=
+  </data>
+ </layer>
+ <objectgroup name="Objets">
+  <object id="14" name="Caisse" type="Caisse" x="1468" y="237.499" width="60" height="60"/>
+  <object id="15" name="uranium" type="Item" x="2335.9" y="240.49" width="29" height="29">
+   <ellipse/>
+  </object>
+  <object id="25" name="endLevelLift" x="2095" y="178" width="105" height="122">
+   <properties>
+    <property name="nextLevel" value="_Level02_v1_100px"/>
+   </properties>
+  </object>
+  <object id="26" name="Start" x="427.212" y="163.151" width="88" height="106"/>
+ </objectgroup>
+</map>

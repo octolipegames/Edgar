@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="8" tilewidth="100" tileheight="100" nextobjectid="25">
+ <tileset firstgid="1" name="_Solide_base_v1_100px" tilewidth="100" tileheight="100">
+  <image source="_Solide_base_v1_100px.png" width="800" height="500"/>
+ </tileset>
+ <tileset firstgid="41" name="_Fond_base_v1" tilewidth="100" tileheight="100">
+  <image source="_Fond_base_v1.png" width="2400" height="400"/>
+ </tileset>
+ <layer name="Fond" width="40" height="8">
+  <data encoding="base64" compression="zlib">
+   eJzt0rsKwjAARuFsLt5ew6G71UE6WC+TVVAQrJfqqiB411Vf2xNIQEJbaAni4A8fZCqHpJ4QwjPIFXKqxdhip85ZZ7bpviJKKKOCaso3nI9zS5EbY4InXjnakvqkKdrw0UEXPfRVj1aHiwaaRp+Nxb2H7NtjhhBzLLDEChHW2GCAAEOMvtSn/5MDjjjhjAuuuOGOh2pxxO/O5l39Z39v1p8Zcg==
+  </data>
+ </layer>
+ <layer name="Solide" width="40" height="8">
+  <data encoding="base64" compression="zlib">
+   eJy9kssKgCAQRbUWUq16t4gg6PX/X9gNRgqZCcPqwME7KHqJlDrRMIKx+gcjZIkEpjC7uY+zvuQnpEKWyGEBS1jRuw1sYUc5BOOsIfS0DgE9pMz1dLOdR8EJzowLudJ8sF32jXP/XT+3CzdzSP8Zp3Se68TtW7RHr7fx+Q4+50Le/9odjroGIA==
+  </data>
+ </layer>
+ <objectgroup name="Objets">
+  <object id="4" name="Start" x="592" y="305" width="44" height="80"/>
+  <object id="6" name="Finish" x="1606" y="459" width="85" height="53">
+   <properties>
+    <property name="nextLevel" value="_Level02_v1_100px"/>
+   </properties>
+  </object>
+  <object id="8" name="Caisse" type="Caisse" x="13" y="308" width="70" height="70"/>
+  <object id="10" name="endLevelCrate" x="1605" y="466" width="86" height="82"/>
+  <object id="12" name="alien1" type="alien" x="730.303" y="357.576" width="54.5455" height="36.3636">
+   <properties>
+    <property name="moveX" value="100"/>
+   </properties>
+  </object>
+  <object id="13" name="alien1" type="alien" x="1143.73" y="348.818" width="80" height="50">
+   <properties>
+    <property name="moveX" value="-30"/>
+   </properties>
+  </object>
+  <object id="14" name="Caisse" type="Caisse" x="2016" y="323" width="70" height="70"/>
+  <object id="15" name="uranium" type="Item" x="2034" y="280" width="29" height="29">
+   <ellipse/>
+  </object>
+  <object id="17" name="sensor" x="183" y="398" width="91" height="6">
+   <properties>
+    <property name="action" value="0"/>
+    <property name="targetNode" value="hammer1"/>
+   </properties>
+  </object>
+  <object id="22" name="hammer" x="454" y="138.94" width="172" height="112.121">
+   <properties>
+    <property name="direction" value="bottom"/>
+    <property name="idleDuration" value="3.5"/>
+    <property name="movement" value="155"/>
+    <property name="nodeName" value="hammer1"/>
+    <property name="waitDuration" value="3"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

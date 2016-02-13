@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="15" height="7" tilewidth="100" tileheight="100" nextobjectid="8">
+ <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
+  <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
+ </tileset>
+ <tileset firstgid="40" name="tuto-03" tilewidth="100" tileheight="100">
+  <image source="decoTuto.png" width="200" height="200"/>
+ </tileset>
+ <tileset firstgid="44" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
+  <image source="../../Maze Escape Production/Maze Escape/ElementsTiles-01-01.png" width="1300" height="300"/>
+ </tileset>
+ <layer name="Fond" width="15" height="7">
+  <data encoding="base64" compression="zlib">
+   eJyTZmBgkKYCliWCjQtrIbE18aiTpJJbyXUnOtaG0hpY/EFNDABm3wtl
+  </data>
+ </layer>
+ <layer name="Solide" width="15" height="7">
+  <data encoding="base64" compression="zlib">
+   eJzjY2Bg4KMAkwpw6eUmQz+x7iLXzfjM5UbC5LqRWAwAl7YDWQ==
+  </data>
+ </layer>
+ <objectgroup name="Objets">
+  <object id="1" name="Start" x="116" y="194" width="88" height="106"/>
+  <object id="2" name="uranium" type="Item" x="1334.5" y="241.5" width="29" height="29">
+   <ellipse/>
+  </object>
+  <object id="3" name="endLevelLift" x="142.5" y="478" width="105" height="122">
+   <properties>
+    <property name="nextLevel" value="_Level02_v1_100px"/>
+   </properties>
+  </object>
+  <object id="4" name="sensor" x="317" y="176" width="93" height="123">
+   <properties>
+    <property name="nodename" value="jump"/>
+   </properties>
+  </object>
+  <object id="5" name="sensor" x="902.5" y="473.5" width="93" height="123">
+   <properties>
+    <property name="nodename" value="goUpstairs"/>
+   </properties>
+  </object>
+  <object id="6" name="sensor" x="113.5" y="176.5" width="93" height="123">
+   <properties>
+    <property name="nodename" value="walk"/>
+   </properties>
+  </object>
+  <object id="7" name="sensor" x="1180.5" y="172.5" width="93" height="123">
+   <properties>
+    <property name="nodename" value="showUranium"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

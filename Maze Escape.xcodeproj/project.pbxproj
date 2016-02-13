@@ -1,0 +1,844 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DA0295E51A0D34B0001BC725 /* masque.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0295E31A0D34B0001BC725 /* masque.png */; };
+		DA0295E61A0D34B0001BC725 /* masque2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0295E41A0D34B0001BC725 /* masque2.png */; };
+		DA03CBCE199F4C4700406720 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBCD199F4C4700406720 /* Foundation.framework */; };
+		DA03CBD0199F4C4700406720 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBCF199F4C4700406720 /* CoreGraphics.framework */; };
+		DA03CBD2199F4C4700406720 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBD1199F4C4700406720 /* UIKit.framework */; };
+		DA03CBD4199F4C4700406720 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBD3199F4C4700406720 /* SpriteKit.framework */; };
+		DA03CBDA199F4C4700406720 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA03CBD8199F4C4700406720 /* InfoPlist.strings */; };
+		DA03CBDC199F4C4700406720 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03CBDB199F4C4700406720 /* main.m */; };
+		DA03CBE0199F4C4700406720 /* plpAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03CBDF199F4C4700406720 /* plpAppDelegate.m */; };
+		DA03CBE3199F4C4700406720 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA03CBE1199F4C4700406720 /* Main_iPhone.storyboard */; };
+		DA03CBE6199F4C4700406720 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA03CBE4199F4C4700406720 /* Main_iPad.storyboard */; };
+		DA03CBE9199F4C4700406720 /* plpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03CBE8199F4C4700406720 /* plpViewController.m */; };
+		DA03CBEC199F4C4700406720 /* plpMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03CBEB199F4C4700406720 /* plpMyScene.m */; };
+		DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA03CBEF199F4C4700406720 /* Images.xcassets */; };
+		DA03CBF7199F4C4700406720 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBF6199F4C4700406720 /* XCTest.framework */; };
+		DA03CBF8199F4C4700406720 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBCD199F4C4700406720 /* Foundation.framework */; };
+		DA03CBF9199F4C4700406720 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBD1199F4C4700406720 /* UIKit.framework */; };
+		DA03CC01199F4C4700406720 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA03CBFF199F4C4700406720 /* InfoPlist.strings */; };
+		DA03CC03199F4C4700406720 /* Maze_EscapeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03CC02199F4C4700406720 /* Maze_EscapeTests.m */; };
+		DA08E0391C234EF7007B42A4 /* Level_4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA08E0371C234EF7007B42A4 /* Level_4.tmx */; };
+		DA08E03A1C234EF7007B42A4 /* Level_6.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA08E0381C234EF7007B42A4 /* Level_6.tmx */; };
+		DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */; };
+		DA1E7C681C120E9200147FA2 /* Level_2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA1E7C671C120E9200147FA2 /* Level_2.tmx */; };
+		DA207D1D1C0F3986002DD3E8 /* icon-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA207D1C1C0F3986002DD3E8 /* icon-01@2x.png */; };
+		DA207D1F1C0F3B10002DD3E8 /* icon-01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */; };
+		DA2311611B812D6800A479C6 /* masque_120.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2311601B812D6800A479C6 /* masque_120.png */; };
+		DA2794621C27666F005C3D06 /* MenuBackground in Resources */ = {isa = PBXBuildFile; fileRef = DA2794611C27666F005C3D06 /* MenuBackground */; };
+		DA35943F1C3428C800AA587D /* Train_chassis_02.png in Resources */ = {isa = PBXBuildFile; fileRef = DA35943E1C3428C800AA587D /* Train_chassis_02.png */; };
+		DA3E6C5B1C5CFC4900FDC7B3 /* decoTuto.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3E6C5A1C5CFC4900FDC7B3 /* decoTuto.png */; };
+		DA3E6C5D1C5CFC5000FDC7B3 /* Level_1_tuto.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA3E6C5C1C5CFC5000FDC7B3 /* Level_1_tuto.tmx */; };
+		DA4A3CC11C622F9A00FAF2AB /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4A3CC01C622F9A00FAF2AB /* menuButton.png */; };
+		DA4A3CC41C62314300FAF2AB /* box-08.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4A3CC21C62314300FAF2AB /* box-08.png */; };
+		DA4A3CC51C62314300FAF2AB /* EdgarFace-02.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4A3CC31C62314300FAF2AB /* EdgarFace-02.png */; };
+		DA4E2C4D1C0CE90000E271AB /* ElementsTiles-01-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4E2C4B1C0CE90000E271AB /* ElementsTiles-01-01.png */; };
+		DA4E2C4E1C0CE90000E271AB /* Level_3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA4E2C4C1C0CE90000E271AB /* Level_3.tmx */; };
+		DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4A191B81133F009507F9 /* plpHero.m */; };
+		DA5C25641C0A19DB00691FA7 /* _trashLevel_2b.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA5C25631C0A19DB00691FA7 /* _trashLevel_2b.tmx */; };
+		DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */ = {isa = PBXBuildFile; fileRef = DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */; };
+		DA5CF4D11B73E907005A5C91 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5CF4D01B73E907005A5C91 /* libz.dylib */; };
+		DA5CF4E11B73EB84005A5C91 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5CF4DC1B73EB6E005A5C91 /* JSTileMap.m */; };
+		DA5CF4E21B73EB8C005A5C91 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */; };
+		DA5EC59A1B77DEAB003A19C5 /* Train-chassis.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5EC5981B77DEAB003A19C5 /* Train-chassis.png */; };
+		DA5EC59B1B77DEAB003A19C5 /* Train-roue.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5EC5991B77DEAB003A19C5 /* Train-roue.png */; };
+		DA60EAA41B7F38E100A3F927 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = DA60EAA31B7F38E100A3F927 /* Sounds */; };
+		DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7485461B86FF5100920C84 /* plpPlatform.m */; };
+		DA8AD82A199F8CD500753F58 /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA8AD829199F8CD500753F58 /* edgar.atlas */; };
+		DA8BA3D31C6149AA00EFD779 /* rayonb.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8BA3D21C6149AA00EFD779 /* rayonb.png */; };
+		DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */ = {isa = PBXBuildFile; fileRef = DA984E361C0B478A00B13A08 /* LaunchScreen960.png */; };
+		DA984E391C0B478F00B13A08 /* LaunchScreen1136.png in Resources */ = {isa = PBXBuildFile; fileRef = DA984E381C0B478F00B13A08 /* LaunchScreen1136.png */; };
+		DA9EEBF51C4AA2F80056D014 /* Level_7.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA9EEBF41C4AA2F80056D014 /* Level_7.tmx */; };
+		DA9EEBF71C4AA32A0056D014 /* elementsFin-02.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9EEBF61C4AA32A0056D014 /* elementsFin-02.png */; };
+		DAAEBA7F1C0F489D00FB0A48 /* ascenseurF-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAEBA7A1C0F489D00FB0A48 /* ascenseurF-01.png */; };
+		DAAEBA801C0F489D00FB0A48 /* ascenseurO-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAEBA7B1C0F489D00FB0A48 /* ascenseurO-01.png */; };
+		DAAEBA811C0F489D00FB0A48 /* elevateur-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAEBA7C1C0F489D00FB0A48 /* elevateur-01.png */; };
+		DAAEBA831C0F489D00FB0A48 /* wagon-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAEBA7E1C0F489D00FB0A48 /* wagon-01.png */; };
+		DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAB5E1411C21DD2800809756 /* edgarsaute.atlas */; };
+		DAB74D3E1C61F31F007D1EE3 /* _trashLevel_3-train.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DAB74D3D1C61F31F007D1EE3 /* _trashLevel_3-train.tmx */; };
+		DABB49501C67EA9100EDFD12 /* Level_5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DABB494F1C67EA9100EDFD12 /* Level_5.tmx */; };
+		DABB49521C67FE1500EDFD12 /* rail_textures.png in Resources */ = {isa = PBXBuildFile; fileRef = DABB49511C67FE1500EDFD12 /* rail_textures.png */; };
+		DAC6A0C71C6A039600A54B86 /* elevateur-02-horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC6A0C61C6A039600A54B86 /* elevateur-02-horizontal.png */; };
+		DAC6A0CB1C6A03B600A54B86 /* ChariotBase.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC6A0C81C6A03B500A54B86 /* ChariotBase.png */; };
+		DAC6A0CC1C6A03B600A54B86 /* ChariotRoue.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC6A0C91C6A03B600A54B86 /* ChariotRoue.png */; };
+		DAC6A0CD1C6A03B600A54B86 /* ChariotSocle.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC6A0CA1C6A03B600A54B86 /* ChariotSocle.png */; };
+		DAC6A0D01C6A042A00A54B86 /* Lvl1_fond_smaller.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC6A0CE1C6A042A00A54B86 /* Lvl1_fond_smaller.png */; };
+		DAC6A0D11C6A042A00A54B86 /* Lvl1_solides_smaller.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC6A0CF1C6A042A00A54B86 /* Lvl1_solides_smaller.png */; };
+		DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAD058511A08288200DAE3E8 /* monstre.atlas */; };
+		DAD236231C2E00020048A2EB /* _trashLevel_2c.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DAD236221C2E00020048A2EB /* _trashLevel_2c.tmx */; };
+		DAD236251C2E02430048A2EB /* _trashLevel_2d.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DAD236241C2E02430048A2EB /* _trashLevel_2d.tmx */; };
+		DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DADBE5191C0A5E9A004469EA /* Media.xcassets */; };
+		DAE67FBE1A0520BC00F6AFDC /* edgarDeFace.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE67FBD1A0520BC00F6AFDC /* edgarDeFace.png */; };
+		DAE713D61C0FA04100ED9139 /* ascenseur-start.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE713D51C0FA04100ED9139 /* ascenseur-start.png */; };
+		DAE713D91C0FA75800ED9139 /* media-repeat-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE713D81C0FA75800ED9139 /* media-repeat-alt.png */; };
+		DAE713DB1C0FA87500ED9139 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE713DA1C0FA87500ED9139 /* Play.png */; };
+		DAE8F7EC1C625B6E00954793 /* pile.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE8F7EB1C625B6E00954793 /* pile.png */; };
+		DAE9259F1C60060900389716 /* UFO1-02.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE9259E1C60060900389716 /* UFO1-02.png */; };
+		DAF2CB141B83B8B000FC7FF1 /* plpTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */; };
+		DAF381B41B9E2E21008B4D5D /* plpItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF381B31B9E2E21008B4D5D /* plpItem.m */; };
+		DAF9D5BB1C5D561A007A1047 /* swipeRight.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF9D5BA1C5D561A007A1047 /* swipeRight.png */; };
+		DAF9D5BD1C5D5B00007A1047 /* swipeJump.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF9D5BC1C5D5B00007A1047 /* swipeJump.png */; };
+		DAF9D5BF1C5D68EF007A1047 /* showUranium.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF9D5BE1C5D68EF007A1047 /* showUranium.png */; };
+		DAFC15461BB840DE00AEB214 /* elements-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFC15441BB840DE00AEB214 /* elements-01.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DA03CBFA199F4C4700406720 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA03CBC2199F4C4700406720 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA03CBC9199F4C4700406720;
+			remoteInfo = "Maze Escape";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DA0295E31A0D34B0001BC725 /* masque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = masque.png; sourceTree = "<group>"; };
+		DA0295E41A0D34B0001BC725 /* masque2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = masque2.png; sourceTree = "<group>"; };
+		DA03CBCA199F4C4700406720 /* Edgar Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Edgar Explorer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA03CBCD199F4C4700406720 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DA03CBCF199F4C4700406720 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DA03CBD1199F4C4700406720 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DA03CBD3199F4C4700406720 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		DA03CBD7199F4C4700406720 /* Maze Escape-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Maze Escape-Info.plist"; sourceTree = "<group>"; };
+		DA03CBD9199F4C4700406720 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DA03CBDB199F4C4700406720 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DA03CBDD199F4C4700406720 /* Maze Escape-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Maze Escape-Prefix.pch"; sourceTree = "<group>"; };
+		DA03CBDE199F4C4700406720 /* plpAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpAppDelegate.h; sourceTree = "<group>"; };
+		DA03CBDF199F4C4700406720 /* plpAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpAppDelegate.m; sourceTree = "<group>"; };
+		DA03CBE2199F4C4700406720 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		DA03CBE5199F4C4700406720 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		DA03CBE7199F4C4700406720 /* plpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpViewController.h; sourceTree = "<group>"; };
+		DA03CBE8199F4C4700406720 /* plpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpViewController.m; sourceTree = "<group>"; };
+		DA03CBEA199F4C4700406720 /* plpMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpMyScene.h; sourceTree = "<group>"; };
+		DA03CBEB199F4C4700406720 /* plpMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpMyScene.m; sourceTree = "<group>"; };
+		DA03CBEF199F4C4700406720 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DA03CBF5199F4C4700406720 /* Maze EscapeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Maze EscapeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA03CBF6199F4C4700406720 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		DA03CBFE199F4C4700406720 /* Maze EscapeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Maze EscapeTests-Info.plist"; sourceTree = "<group>"; };
+		DA03CC00199F4C4700406720 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DA03CC02199F4C4700406720 /* Maze_EscapeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Maze_EscapeTests.m; sourceTree = "<group>"; };
+		DA08E0371C234EF7007B42A4 /* Level_4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_4.tmx; sourceTree = "<group>"; };
+		DA08E0381C234EF7007B42A4 /* Level_6.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_6.tmx; sourceTree = "<group>"; };
+		DA1BE6EE1B81256000DA2E47 /* plpEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpEnemy.h; sourceTree = "<group>"; };
+		DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpEnemy.m; sourceTree = "<group>"; };
+		DA1E7C671C120E9200147FA2 /* Level_2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_2.tmx; sourceTree = "<group>"; };
+		DA207D1C1C0F3986002DD3E8 /* icon-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-01@2x.png"; sourceTree = "<group>"; };
+		DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-01@3x.png"; sourceTree = "<group>"; };
+		DA2311601B812D6800A479C6 /* masque_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = masque_120.png; sourceTree = "<group>"; };
+		DA2794611C27666F005C3D06 /* MenuBackground */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MenuBackground; path = decor/MenuBackground; sourceTree = "<group>"; };
+		DA35943E1C3428C800AA587D /* Train_chassis_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Train_chassis_02.png; sourceTree = "<group>"; };
+		DA3E6C5A1C5CFC4900FDC7B3 /* decoTuto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = decoTuto.png; sourceTree = "<group>"; };
+		DA3E6C5C1C5CFC5000FDC7B3 /* Level_1_tuto.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_1_tuto.tmx; sourceTree = "<group>"; };
+		DA4A3CC01C622F9A00FAF2AB /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
+		DA4A3CC21C62314300FAF2AB /* box-08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-08.png"; sourceTree = "<group>"; };
+		DA4A3CC31C62314300FAF2AB /* EdgarFace-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EdgarFace-02.png"; sourceTree = "<group>"; };
+		DA4E2C4B1C0CE90000E271AB /* ElementsTiles-01-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ElementsTiles-01-01.png"; sourceTree = "<group>"; };
+		DA4E2C4C1C0CE90000E271AB /* Level_3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_3.tmx; sourceTree = "<group>"; };
+		DA5B4A181B81133F009507F9 /* plpHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpHero.h; sourceTree = "<group>"; };
+		DA5B4A191B81133F009507F9 /* plpHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpHero.m; sourceTree = "<group>"; };
+		DA5C25631C0A19DB00691FA7 /* _trashLevel_2b.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = _trashLevel_2b.tmx; sourceTree = "<group>"; };
+		DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JSTileMap; sourceTree = "<group>"; };
+		DA5CF4D01B73E907005A5C91 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		DA5CF4DB1B73EB6E005A5C91 /* JSTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTileMap.h; sourceTree = "<group>"; };
+		DA5CF4DC1B73EB6E005A5C91 /* JSTileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTileMap.m; sourceTree = "<group>"; };
+		DA5CF4DD1B73EB6E005A5C91 /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtility.h; sourceTree = "<group>"; };
+		DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
+		DA5EC5981B77DEAB003A19C5 /* Train-chassis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Train-chassis.png"; sourceTree = "<group>"; };
+		DA5EC5991B77DEAB003A19C5 /* Train-roue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Train-roue.png"; sourceTree = "<group>"; };
+		DA60EAA31B7F38E100A3F927 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		DA7485451B86FF5100920C84 /* plpPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpPlatform.h; sourceTree = "<group>"; };
+		DA7485461B86FF5100920C84 /* plpPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpPlatform.m; sourceTree = "<group>"; };
+		DA8AD829199F8CD500753F58 /* edgar.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgar.atlas; sourceTree = "<group>"; };
+		DA8BA3D21C6149AA00EFD779 /* rayonb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rayonb.png; sourceTree = "<group>"; };
+		DA984E361C0B478A00B13A08 /* LaunchScreen960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen960.png; sourceTree = "<group>"; };
+		DA984E381C0B478F00B13A08 /* LaunchScreen1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen1136.png; sourceTree = "<group>"; };
+		DA9EEBF41C4AA2F80056D014 /* Level_7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_7.tmx; sourceTree = "<group>"; };
+		DA9EEBF61C4AA32A0056D014 /* elementsFin-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "elementsFin-02.png"; sourceTree = "<group>"; };
+		DAAAA5BD1BB15E2700EF9296 /* Maze Escape-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Maze Escape-Bridging-Header.h"; sourceTree = "<group>"; };
+		DAAEBA7A1C0F489D00FB0A48 /* ascenseurF-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ascenseurF-01.png"; sourceTree = "<group>"; };
+		DAAEBA7B1C0F489D00FB0A48 /* ascenseurO-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ascenseurO-01.png"; sourceTree = "<group>"; };
+		DAAEBA7C1C0F489D00FB0A48 /* elevateur-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "elevateur-01.png"; sourceTree = "<group>"; };
+		DAAEBA7E1C0F489D00FB0A48 /* wagon-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wagon-01.png"; sourceTree = "<group>"; };
+		DAB5E1411C21DD2800809756 /* edgarsaute.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgarsaute.atlas; sourceTree = "<group>"; };
+		DAB74D3D1C61F31F007D1EE3 /* _trashLevel_3-train.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "_trashLevel_3-train.tmx"; sourceTree = "<group>"; };
+		DABB494F1C67EA9100EDFD12 /* Level_5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_5.tmx; sourceTree = "<group>"; };
+		DABB49511C67FE1500EDFD12 /* rail_textures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rail_textures.png; sourceTree = "<group>"; };
+		DAC6A0C61C6A039600A54B86 /* elevateur-02-horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "elevateur-02-horizontal.png"; sourceTree = "<group>"; };
+		DAC6A0C81C6A03B500A54B86 /* ChariotBase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChariotBase.png; sourceTree = "<group>"; };
+		DAC6A0C91C6A03B600A54B86 /* ChariotRoue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChariotRoue.png; sourceTree = "<group>"; };
+		DAC6A0CA1C6A03B600A54B86 /* ChariotSocle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ChariotSocle.png; sourceTree = "<group>"; };
+		DAC6A0CE1C6A042A00A54B86 /* Lvl1_fond_smaller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lvl1_fond_smaller.png; sourceTree = "<group>"; };
+		DAC6A0CF1C6A042A00A54B86 /* Lvl1_solides_smaller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lvl1_solides_smaller.png; sourceTree = "<group>"; };
+		DAD058511A08288200DAE3E8 /* monstre.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = monstre.atlas; sourceTree = "<group>"; };
+		DAD236221C2E00020048A2EB /* _trashLevel_2c.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = _trashLevel_2c.tmx; sourceTree = "<group>"; };
+		DAD236241C2E02430048A2EB /* _trashLevel_2d.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = _trashLevel_2d.tmx; sourceTree = "<group>"; };
+		DADBE5191C0A5E9A004469EA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		DAE67FBD1A0520BC00F6AFDC /* edgarDeFace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edgarDeFace.png; sourceTree = "<group>"; };
+		DAE713D51C0FA04100ED9139 /* ascenseur-start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ascenseur-start.png"; sourceTree = "<group>"; };
+		DAE713D81C0FA75800ED9139 /* media-repeat-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media-repeat-alt.png"; sourceTree = "<group>"; };
+		DAE713DA1C0FA87500ED9139 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
+		DAE8F7EB1C625B6E00954793 /* pile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pile.png; sourceTree = "<group>"; };
+		DAE9259E1C60060900389716 /* UFO1-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UFO1-02.png"; sourceTree = "<group>"; };
+		DAF2CB121B83B8B000FC7FF1 /* plpTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpTrain.h; sourceTree = "<group>"; };
+		DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpTrain.m; sourceTree = "<group>"; };
+		DAF381B21B9E2E21008B4D5D /* plpItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpItem.h; sourceTree = "<group>"; };
+		DAF381B31B9E2E21008B4D5D /* plpItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpItem.m; sourceTree = "<group>"; };
+		DAF9D5BA1C5D561A007A1047 /* swipeRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeRight.png; sourceTree = "<group>"; };
+		DAF9D5BC1C5D5B00007A1047 /* swipeJump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeJump.png; sourceTree = "<group>"; };
+		DAF9D5BE1C5D68EF007A1047 /* showUranium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showUranium.png; sourceTree = "<group>"; };
+		DAFC15441BB840DE00AEB214 /* elements-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "elements-01.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DA03CBC7199F4C4700406720 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA5CF4D11B73E907005A5C91 /* libz.dylib in Frameworks */,
+				DA03CBD0199F4C4700406720 /* CoreGraphics.framework in Frameworks */,
+				DA03CBD2199F4C4700406720 /* UIKit.framework in Frameworks */,
+				DA03CBD4199F4C4700406720 /* SpriteKit.framework in Frameworks */,
+				DA03CBCE199F4C4700406720 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA03CBF2199F4C4700406720 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA03CBF7199F4C4700406720 /* XCTest.framework in Frameworks */,
+				DA03CBF9199F4C4700406720 /* UIKit.framework in Frameworks */,
+				DA03CBF8199F4C4700406720 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DA03CBC1199F4C4700406720 = {
+			isa = PBXGroup;
+			children = (
+				DADBE5191C0A5E9A004469EA /* Media.xcassets */,
+				DA03CBD5199F4C4700406720 /* Maze Escape */,
+				DA03CBFC199F4C4700406720 /* Maze EscapeTests */,
+				DA03CBCC199F4C4700406720 /* Frameworks */,
+				DA03CBCB199F4C4700406720 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DA03CBCB199F4C4700406720 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA03CBCA199F4C4700406720 /* Edgar Explorer.app */,
+				DA03CBF5199F4C4700406720 /* Maze EscapeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DA03CBCC199F4C4700406720 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA5CF4D01B73E907005A5C91 /* libz.dylib */,
+				DA03CBCD199F4C4700406720 /* Foundation.framework */,
+				DA03CBCF199F4C4700406720 /* CoreGraphics.framework */,
+				DA03CBD1199F4C4700406720 /* UIKit.framework */,
+				DA03CBD3199F4C4700406720 /* SpriteKit.framework */,
+				DA03CBF6199F4C4700406720 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA03CBD5199F4C4700406720 /* Maze Escape */ = {
+			isa = PBXGroup;
+			children = (
+				DA6940781A0934AD00C47ECF /* decor */,
+				DAD058511A08288200DAE3E8 /* monstre.atlas */,
+				DAE713D71C0FA6D600ED9139 /* UI */,
+				DAAEBA791C0F488A00FB0A48 /* objects */,
+				DAB5E1401C21DC6200809756 /* objects_old */,
+				DA1E7C691C120E9C00147FA2 /* Levels */,
+				DA03CBE1199F4C4700406720 /* Main_iPhone.storyboard */,
+				DA03CBE4199F4C4700406720 /* Main_iPad.storyboard */,
+				DA60EAA31B7F38E100A3F927 /* Sounds */,
+				DA8AD829199F8CD500753F58 /* edgar.atlas */,
+				DAB5E1411C21DD2800809756 /* edgarsaute.atlas */,
+				DA03CBDE199F4C4700406720 /* plpAppDelegate.h */,
+				DA03CBDF199F4C4700406720 /* plpAppDelegate.m */,
+				DA03CBE7199F4C4700406720 /* plpViewController.h */,
+				DA03CBE8199F4C4700406720 /* plpViewController.m */,
+				DA03CBEA199F4C4700406720 /* plpMyScene.h */,
+				DA03CBEB199F4C4700406720 /* plpMyScene.m */,
+				DA1E7C6B1C120ED300147FA2 /* Classes */,
+				DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */,
+				DA03CBEF199F4C4700406720 /* Images.xcassets */,
+				DA03CBD6199F4C4700406720 /* Supporting Files */,
+				DAAAA5BD1BB15E2700EF9296 /* Maze Escape-Bridging-Header.h */,
+			);
+			path = "Maze Escape";
+			sourceTree = "<group>";
+		};
+		DA03CBD6199F4C4700406720 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA03CBD7199F4C4700406720 /* Maze Escape-Info.plist */,
+				DA03CBD8199F4C4700406720 /* InfoPlist.strings */,
+				DA03CBDB199F4C4700406720 /* main.m */,
+				DA03CBDD199F4C4700406720 /* Maze Escape-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA03CBFC199F4C4700406720 /* Maze EscapeTests */ = {
+			isa = PBXGroup;
+			children = (
+				DA03CC02199F4C4700406720 /* Maze_EscapeTests.m */,
+				DA03CBFD199F4C4700406720 /* Supporting Files */,
+			);
+			path = "Maze EscapeTests";
+			sourceTree = "<group>";
+		};
+		DA03CBFD199F4C4700406720 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA03CBFE199F4C4700406720 /* Maze EscapeTests-Info.plist */,
+				DA03CBFF199F4C4700406720 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA1E7C691C120E9C00147FA2 /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				DAB74D3D1C61F31F007D1EE3 /* _trashLevel_3-train.tmx */,
+				DA5C25631C0A19DB00691FA7 /* _trashLevel_2b.tmx */,
+				DAD236221C2E00020048A2EB /* _trashLevel_2c.tmx */,
+				DAD236241C2E02430048A2EB /* _trashLevel_2d.tmx */,
+				DA3E6C5C1C5CFC5000FDC7B3 /* Level_1_tuto.tmx */,
+				DA1E7C671C120E9200147FA2 /* Level_2.tmx */,
+				DA4E2C4C1C0CE90000E271AB /* Level_3.tmx */,
+				DA08E0371C234EF7007B42A4 /* Level_4.tmx */,
+				DABB494F1C67EA9100EDFD12 /* Level_5.tmx */,
+				DA08E0381C234EF7007B42A4 /* Level_6.tmx */,
+				DA9EEBF41C4AA2F80056D014 /* Level_7.tmx */,
+			);
+			name = Levels;
+			sourceTree = "<group>";
+		};
+		DA1E7C6B1C120ED300147FA2 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DAF381B21B9E2E21008B4D5D /* plpItem.h */,
+				DAF381B31B9E2E21008B4D5D /* plpItem.m */,
+				DAF2CB121B83B8B000FC7FF1 /* plpTrain.h */,
+				DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */,
+				DA1BE6EE1B81256000DA2E47 /* plpEnemy.h */,
+				DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */,
+				DA7485451B86FF5100920C84 /* plpPlatform.h */,
+				DA7485461B86FF5100920C84 /* plpPlatform.m */,
+				DA5B4A181B81133F009507F9 /* plpHero.h */,
+				DA5B4A191B81133F009507F9 /* plpHero.m */,
+				DA5CF4DB1B73EB6E005A5C91 /* JSTileMap.h */,
+				DA5CF4DC1B73EB6E005A5C91 /* JSTileMap.m */,
+				DA5CF4DD1B73EB6E005A5C91 /* LFCGzipUtility.h */,
+				DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		DA6940781A0934AD00C47ECF /* decor */ = {
+			isa = PBXGroup;
+			children = (
+				DA0295E31A0D34B0001BC725 /* masque.png */,
+				DA0295E41A0D34B0001BC725 /* masque2.png */,
+				DA2311601B812D6800A479C6 /* masque_120.png */,
+			);
+			path = decor;
+			sourceTree = "<group>";
+		};
+		DAAEBA791C0F488A00FB0A48 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				DAC6A0CE1C6A042A00A54B86 /* Lvl1_fond_smaller.png */,
+				DAC6A0CF1C6A042A00A54B86 /* Lvl1_solides_smaller.png */,
+				DAC6A0C81C6A03B500A54B86 /* ChariotBase.png */,
+				DAC6A0C91C6A03B600A54B86 /* ChariotRoue.png */,
+				DAC6A0CA1C6A03B600A54B86 /* ChariotSocle.png */,
+				DABB49511C67FE1500EDFD12 /* rail_textures.png */,
+				DA4A3CC21C62314300FAF2AB /* box-08.png */,
+				DA4A3CC31C62314300FAF2AB /* EdgarFace-02.png */,
+				DAE67FBD1A0520BC00F6AFDC /* edgarDeFace.png */,
+				DA3E6C5A1C5CFC4900FDC7B3 /* decoTuto.png */,
+				DA4E2C4B1C0CE90000E271AB /* ElementsTiles-01-01.png */,
+				DA9EEBF61C4AA32A0056D014 /* elementsFin-02.png */,
+				DAAEBA7A1C0F489D00FB0A48 /* ascenseurF-01.png */,
+				DAAEBA7B1C0F489D00FB0A48 /* ascenseurO-01.png */,
+				DAAEBA7C1C0F489D00FB0A48 /* elevateur-01.png */,
+				DAC6A0C61C6A039600A54B86 /* elevateur-02-horizontal.png */,
+				DAE8F7EB1C625B6E00954793 /* pile.png */,
+				DAE713D51C0FA04100ED9139 /* ascenseur-start.png */,
+				DAAEBA7E1C0F489D00FB0A48 /* wagon-01.png */,
+				DAE9259E1C60060900389716 /* UFO1-02.png */,
+				DA35943E1C3428C800AA587D /* Train_chassis_02.png */,
+				DA8BA3D21C6149AA00EFD779 /* rayonb.png */,
+			);
+			name = objects;
+			sourceTree = "<group>";
+		};
+		DAB5E1401C21DC6200809756 /* objects_old */ = {
+			isa = PBXGroup;
+			children = (
+				DAFC15441BB840DE00AEB214 /* elements-01.png */,
+				DA5EC5981B77DEAB003A19C5 /* Train-chassis.png */,
+				DA5EC5991B77DEAB003A19C5 /* Train-roue.png */,
+			);
+			name = objects_old;
+			sourceTree = "<group>";
+		};
+		DAE713D71C0FA6D600ED9139 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DA2794611C27666F005C3D06 /* MenuBackground */,
+				DAE713D81C0FA75800ED9139 /* media-repeat-alt.png */,
+				DA4A3CC01C622F9A00FAF2AB /* menuButton.png */,
+				DA984E361C0B478A00B13A08 /* LaunchScreen960.png */,
+				DA984E381C0B478F00B13A08 /* LaunchScreen1136.png */,
+				DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */,
+				DA207D1C1C0F3986002DD3E8 /* icon-01@2x.png */,
+				DAE713DA1C0FA87500ED9139 /* Play.png */,
+				DAF9D5BA1C5D561A007A1047 /* swipeRight.png */,
+				DAF9D5BC1C5D5B00007A1047 /* swipeJump.png */,
+				DAF9D5BE1C5D68EF007A1047 /* showUranium.png */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DA03CBC9199F4C4700406720 /* Maze Escape */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA03CC06199F4C4700406720 /* Build configuration list for PBXNativeTarget "Maze Escape" */;
+			buildPhases = (
+				DA03CBC6199F4C4700406720 /* Sources */,
+				DA03CBC7199F4C4700406720 /* Frameworks */,
+				DA03CBC8199F4C4700406720 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Maze Escape";
+			productName = "Maze Escape";
+			productReference = DA03CBCA199F4C4700406720 /* Edgar Explorer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DA03CBF4199F4C4700406720 /* Maze EscapeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA03CC09199F4C4700406720 /* Build configuration list for PBXNativeTarget "Maze EscapeTests" */;
+			buildPhases = (
+				DA03CBF1199F4C4700406720 /* Sources */,
+				DA03CBF2199F4C4700406720 /* Frameworks */,
+				DA03CBF3199F4C4700406720 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA03CBFB199F4C4700406720 /* PBXTargetDependency */,
+			);
+			name = "Maze EscapeTests";
+			productName = "Maze EscapeTests";
+			productReference = DA03CBF5199F4C4700406720 /* Maze EscapeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA03CBC2199F4C4700406720 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = plp;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Polip;
+				TargetAttributes = {
+					DA03CBC9199F4C4700406720 = {
+						DevelopmentTeam = P9BL4FY42S;
+					};
+					DA03CBF4199F4C4700406720 = {
+						TestTargetID = DA03CBC9199F4C4700406720;
+					};
+				};
+			};
+			buildConfigurationList = DA03CBC5199F4C4700406720 /* Build configuration list for PBXProject "Maze Escape" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DA03CBC1199F4C4700406720;
+			productRefGroup = DA03CBCB199F4C4700406720 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DA03CBC9199F4C4700406720 /* Maze Escape */,
+				DA03CBF4199F4C4700406720 /* Maze EscapeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DA03CBC8199F4C4700406720 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAFC15461BB840DE00AEB214 /* elements-01.png in Resources */,
+				DA35943F1C3428C800AA587D /* Train_chassis_02.png in Resources */,
+				DABB49501C67EA9100EDFD12 /* Level_5.tmx in Resources */,
+				DAC6A0C71C6A039600A54B86 /* elevateur-02-horizontal.png in Resources */,
+				DAAEBA811C0F489D00FB0A48 /* elevateur-01.png in Resources */,
+				DAB74D3E1C61F31F007D1EE3 /* _trashLevel_3-train.tmx in Resources */,
+				DA08E03A1C234EF7007B42A4 /* Level_6.tmx in Resources */,
+				DAC6A0D11C6A042A00A54B86 /* Lvl1_solides_smaller.png in Resources */,
+				DA2311611B812D6800A479C6 /* masque_120.png in Resources */,
+				DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */,
+				DA207D1D1C0F3986002DD3E8 /* icon-01@2x.png in Resources */,
+				DA08E0391C234EF7007B42A4 /* Level_4.tmx in Resources */,
+				DAC6A0D01C6A042A00A54B86 /* Lvl1_fond_smaller.png in Resources */,
+				DAD236251C2E02430048A2EB /* _trashLevel_2d.tmx in Resources */,
+				DA1E7C681C120E9200147FA2 /* Level_2.tmx in Resources */,
+				DA3E6C5D1C5CFC5000FDC7B3 /* Level_1_tuto.tmx in Resources */,
+				DA9EEBF51C4AA2F80056D014 /* Level_7.tmx in Resources */,
+				DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */,
+				DA9EEBF71C4AA32A0056D014 /* elementsFin-02.png in Resources */,
+				DAAEBA7F1C0F489D00FB0A48 /* ascenseurF-01.png in Resources */,
+				DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */,
+				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
+				DA0295E61A0D34B0001BC725 /* masque2.png in Resources */,
+				DA4A3CC51C62314300FAF2AB /* EdgarFace-02.png in Resources */,
+				DA5EC59A1B77DEAB003A19C5 /* Train-chassis.png in Resources */,
+				DAF9D5BD1C5D5B00007A1047 /* swipeJump.png in Resources */,
+				DAE713DB1C0FA87500ED9139 /* Play.png in Resources */,
+				DAE67FBE1A0520BC00F6AFDC /* edgarDeFace.png in Resources */,
+				DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */,
+				DAF9D5BB1C5D561A007A1047 /* swipeRight.png in Resources */,
+				DA4A3CC11C622F9A00FAF2AB /* menuButton.png in Resources */,
+				DA5C25641C0A19DB00691FA7 /* _trashLevel_2b.tmx in Resources */,
+				DA03CBE6199F4C4700406720 /* Main_iPad.storyboard in Resources */,
+				DAC6A0CC1C6A03B600A54B86 /* ChariotRoue.png in Resources */,
+				DA03CBE3199F4C4700406720 /* Main_iPhone.storyboard in Resources */,
+				DA4A3CC41C62314300FAF2AB /* box-08.png in Resources */,
+				DAC6A0CB1C6A03B600A54B86 /* ChariotBase.png in Resources */,
+				DA03CBDA199F4C4700406720 /* InfoPlist.strings in Resources */,
+				DAD236231C2E00020048A2EB /* _trashLevel_2c.tmx in Resources */,
+				DA2794621C27666F005C3D06 /* MenuBackground in Resources */,
+				DA60EAA41B7F38E100A3F927 /* Sounds in Resources */,
+				DAAEBA801C0F489D00FB0A48 /* ascenseurO-01.png in Resources */,
+				DA5EC59B1B77DEAB003A19C5 /* Train-roue.png in Resources */,
+				DA4E2C4E1C0CE90000E271AB /* Level_3.tmx in Resources */,
+				DA3E6C5B1C5CFC4900FDC7B3 /* decoTuto.png in Resources */,
+				DAE713D91C0FA75800ED9139 /* media-repeat-alt.png in Resources */,
+				DA8BA3D31C6149AA00EFD779 /* rayonb.png in Resources */,
+				DAE713D61C0FA04100ED9139 /* ascenseur-start.png in Resources */,
+				DA984E391C0B478F00B13A08 /* LaunchScreen1136.png in Resources */,
+				DAAEBA831C0F489D00FB0A48 /* wagon-01.png in Resources */,
+				DAE9259F1C60060900389716 /* UFO1-02.png in Resources */,
+				DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */,
+				DAF9D5BF1C5D68EF007A1047 /* showUranium.png in Resources */,
+				DA8AD82A199F8CD500753F58 /* edgar.atlas in Resources */,
+				DA4E2C4D1C0CE90000E271AB /* ElementsTiles-01-01.png in Resources */,
+				DAE8F7EC1C625B6E00954793 /* pile.png in Resources */,
+				DA0295E51A0D34B0001BC725 /* masque.png in Resources */,
+				DAC6A0CD1C6A03B600A54B86 /* ChariotSocle.png in Resources */,
+				DA207D1F1C0F3B10002DD3E8 /* icon-01@3x.png in Resources */,
+				DABB49521C67FE1500EDFD12 /* rail_textures.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA03CBF3199F4C4700406720 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA03CC01199F4C4700406720 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DA03CBC6199F4C4700406720 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA5CF4E21B73EB8C005A5C91 /* LFCGzipUtility.m in Sources */,
+				DA5CF4E11B73EB84005A5C91 /* JSTileMap.m in Sources */,
+				DAF381B41B9E2E21008B4D5D /* plpItem.m in Sources */,
+				DA03CBDC199F4C4700406720 /* main.m in Sources */,
+				DA03CBE0199F4C4700406720 /* plpAppDelegate.m in Sources */,
+				DA03CBE9199F4C4700406720 /* plpViewController.m in Sources */,
+				DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */,
+				DAF2CB141B83B8B000FC7FF1 /* plpTrain.m in Sources */,
+				DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */,
+				DA03CBEC199F4C4700406720 /* plpMyScene.m in Sources */,
+				DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA03CBF1199F4C4700406720 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA03CC03199F4C4700406720 /* Maze_EscapeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DA03CBFB199F4C4700406720 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA03CBC9199F4C4700406720 /* Maze Escape */;
+			targetProxy = DA03CBFA199F4C4700406720 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DA03CBD8199F4C4700406720 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA03CBD9199F4C4700406720 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DA03CBE1199F4C4700406720 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA03CBE2199F4C4700406720 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		DA03CBE4199F4C4700406720 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA03CBE5199F4C4700406720 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		DA03CBFF199F4C4700406720 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA03CC00199F4C4700406720 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DA03CC04199F4C4700406720 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DA03CC05199F4C4700406720 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DA03CC07199F4C4700406720 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Maze Escape/Maze Escape-Prefix.pch";
+				INFOPLIST_FILE = "Maze Escape/Maze Escape-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "polip.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "Edgar Explorer";
+				PROVISIONING_PROFILE = "";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Maze Escape/Maze Escape-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DA03CC08199F4C4700406720 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Maze Escape/Maze Escape-Prefix.pch";
+				INFOPLIST_FILE = "Maze Escape/Maze Escape-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "polip.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "Edgar Explorer";
+				PROVISIONING_PROFILE = "";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Maze Escape/Maze Escape-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DA03CC0A199F4C4700406720 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Maze Escape.app/Maze Escape";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Maze Escape/Maze Escape-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Maze EscapeTests/Maze EscapeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		DA03CC0B199F4C4700406720 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Maze Escape.app/Maze Escape";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Maze Escape/Maze Escape-Prefix.pch";
+				INFOPLIST_FILE = "Maze EscapeTests/Maze EscapeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DA03CBC5199F4C4700406720 /* Build configuration list for PBXProject "Maze Escape" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA03CC04199F4C4700406720 /* Debug */,
+				DA03CC05199F4C4700406720 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA03CC06199F4C4700406720 /* Build configuration list for PBXNativeTarget "Maze Escape" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA03CC07199F4C4700406720 /* Debug */,
+				DA03CC08199F4C4700406720 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA03CC09199F4C4700406720 /* Build configuration list for PBXNativeTarget "Maze EscapeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA03CC0A199F4C4700406720 /* Debug */,
+				DA03CC0B199F4C4700406720 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA03CBC2199F4C4700406720 /* Project object */;
+}
