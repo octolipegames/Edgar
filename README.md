@@ -2,6 +2,8 @@
 
 Open-Source iOS game “Edgar The Explorer”.
 
+![iOS icon](/Media.xcassets/AppIcon.appiconset/icon-01%403x.png?raw=true "Edgar The Explorer App Icon")
+
 All assets are now online, except:
 
 – JSTileMap, which you can find here: https://github.com/slycrel/JSTileMap
