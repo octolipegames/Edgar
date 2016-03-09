@@ -48,15 +48,22 @@
                                 </connections>
                             </button>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nMO-WS-ykg">
-                                <rect key="frame" x="159" y="97" width="240" height="144"/>
+                                <rect key="frame" x="159" y="97" width="240" height="512.5"/>
                                 <color key="backgroundColor" red="0.27843137254901962" green="0.18823529411764706" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">CC-BY-NC Polip Games 2016
-Filipe Mathez and Paul Ronga
-Music: polipgames@gmail.com See our source code on: http://github.com/EdgarTheExplorer</string>
+                                <mutableString key="text">Find our source code and assets on: http://github.com/EdgarTheExplorer
+Explanations on Facebook: https://www.facebook.com/edgartheexplorer/
+Contact us at polipgames@gmail.com!
+
+© Filipe Mathez and Paul Ronga 2014-2016
+Music:
+“Juno” by Chronox, CC-BY: http://creativecommons.org/licenses/by/4.0/
+“X Files theme remixed to 8 bit” by arandompersona, CC-BY: http://creativecommons.org/licenses/by/3.0/
+
+Source code: GNU Lesser General Public License 2.1 http://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html
+Images and animations: CC-BY http://creativecommons.org/licenses/by/4.0/</mutableString>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq6-QR-X9y">
                                 <rect key="frame" x="500" y="0.0" width="30" height="30"/>

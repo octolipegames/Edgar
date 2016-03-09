@@ -24,6 +24,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "JSTileMap.h"
+//#import "plpDelegate.h"
 #import "plpHero.h"
 #import "plpEnemy.h"
 #import "plpTrain.h"
@@ -49,7 +50,7 @@ float contextVelocityX;
     JSTileMap *myLevel;
     SKNode *myWorld;
     SKCameraNode *myCamera;
-    BOOL fixedCamera;
+    BOOL freeCamera;
     BOOL waitForTap;
     BOOL moveLeftRequested;
     BOOL moveRightRequested;
@@ -73,8 +74,12 @@ float contextVelocityX;
     SKAction *moveUp;
     SKAction *stoppe;
     CGPoint touchStartPosition;
+    UIView *containerView;
+    UITextView *myTextView;
     BOOL isJumping;
     BOOL ignoreNextTap;
+    double initialTime;
+    double additionalSavedTime;
 }
 
 -(void)loadAssets:(JSTileMap*) tileMap;
@@ -83,7 +88,11 @@ float contextVelocityX;
 -(void)resetEdgar;
 -(void)getsPaused;
 -(void)resumeAfterPause;
-
+-(void)resumeFromLevel:(NSInteger)theLevel;
+-(int)getNextLevelIndex;
+-(void)saveHighScoreForUser:(NSString*)userName;
+-(void)saveInitialTime;
+-(void)saveAdditionalTime;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (strong, nonatomic) SKAction *hopSound;

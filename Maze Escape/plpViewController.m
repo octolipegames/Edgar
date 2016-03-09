@@ -23,6 +23,7 @@
 #import "plpViewController.h"
 #import "plpMyScene.h"
 
+
 @implementation plpViewController
 
 - (void)viewDidLoad
@@ -30,11 +31,9 @@
     /* Animation */
     SKView * skView = (SKView *)self.view;
     NSLog(@"Bounds: %f, %f", skView.bounds.size.width, skView.bounds.size.height);
-//    skView.showsFPS = YES;
-//    [skView setValue:@(YES) forKey:@"_showsCulledNodesInNodeCount"];
     
     [self loadMenuBackgroundWithSize:skView.bounds.size];
-    
+
     myScene = [plpMyScene sceneWithSize:skView.bounds.size];
     myScene.scaleMode = SKSceneScaleModeAspectFill;
     [super viewDidLoad];
@@ -42,7 +41,23 @@
 
 - (void)loadMenuBackgroundWithSize:(CGSize)size
 {
-    CGRect MenuBackgroundFrame = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    float menuWidth = size.width;
+    float menuHeight = size.height;
+    float left = 0;
+    float bottom = 0;
+    if(menuWidth*9 != menuHeight*16)    // We preserve the aspect ratio by cropping the animation
+    {
+        if(menuWidth*9 > menuHeight*16) // -> 4s: 4320 < 5120
+        {
+            menuHeight = menuWidth * 0.5625;
+            bottom = (size.height - menuHeight)/2;
+        }else{
+            menuWidth = menuHeight * 1.77777778;
+            left = (size.width - menuWidth)/2;
+        }
+    }
+    
+    CGRect MenuBackgroundFrame = CGRectMake(left, bottom, menuWidth, menuHeight);
     self.MenuBackground = [[UIImageView alloc] initWithFrame:MenuBackgroundFrame];
 
     self.MenuBackground.animationImages = [NSArray arrayWithObjects:
@@ -74,33 +89,171 @@
     UITapGestureRecognizer *newTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeCredits)];
     [self.MenuBackground setUserInteractionEnabled:YES];
     [self.MenuBackground addGestureRecognizer:newTap];
-    
 }
 
-- (IBAction)playGame:(id)sender {
-    self.playButton.hidden = YES;
+
+
+- (IBAction)presentChoosenScene:(id)sender {
+    UIButton *clicked = (UIButton *) sender;
+    NSInteger choosenLevel = clicked.tag;
+    // We remove the UI
+    
+    UIView *containerView = [clicked superview];
+    
+    [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [containerView removeFromSuperview];
+    
+    [self presentTheScene: choosenLevel];
+}
+
+- (void)presentTheScene: (NSInteger)startLevel
+{
     self.pauseButton.hidden = NO;
     self.suicideButton.hidden = NO;
-    self.creditsButton.hidden = YES;
-    self.creditsText.hidden = YES;
-
+    
     if(self.MenuBackground)
     {
         [self.MenuBackground removeFromSuperview];
         self.MenuBackground = nil;
-        SKView * skView = (SKView *)self.view;
-        [skView presentScene:myScene];
     }
 
-    SKView *spriteView = (SKView *)self.view;
+    NSLog(@"We present the scene…");
+    SKView * spriteView = (SKView *)self.view;
+    [spriteView presentScene:myScene];
 
-    if([spriteView isPaused])
+//    [(plpMyScene*)myScene saveInitialTime]; -> it comes after the tutorial
+
+    if(gamePaused == FALSE && startLevel > 0)
     {
+        [(plpMyScene*)myScene resumeFromLevel:startLevel];
+    }
+    
+    if(gamePaused == TRUE)
+    {
+        NSLog(@"Resume after a pause");
         spriteView.paused = NO;
         [(plpMyScene*)myScene resumeAfterPause];
-        NSLog(@"Retour au jeu depuis le menu");
-    }else{
-        NSLog(@"Non pas aen pause");
+        gamePaused = FALSE;
+    }
+}
+
+- (IBAction)playGame:(id)sender {
+    // this method gets called:
+    // 1) when the user launches the game
+    // 2) when he resumes again after a pause
+    
+    self.playButton.hidden = YES;
+    self.creditsButton.hidden = YES;
+    self.creditsText.hidden = YES;
+
+    
+    // 1) the user launches the game
+    if(gamePaused==FALSE)   // we set up the dialog
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        NSInteger savedLevel = [defaults integerForKey:@"savedLevel"];
+        
+        UIView *containerView = [[UIView alloc] init];
+        containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+        
+        if(savedLevel>0) // dialog: continue or new game
+        {
+            [containerView setFrame: CGRectMake(50, 100, self.view.bounds.size.width-100, self.view.bounds.size.height-200)];
+            
+            UITextView *myTextView = [[UITextView alloc] init];
+            myTextView.text = [NSString stringWithFormat:@"You were at level %li...", (long)savedLevel+1];
+            myTextView.textColor = [UIColor whiteColor];
+            myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+            myTextView.editable = NO;
+            [myTextView setFont:[UIFont fontWithName:@"Gill Sans" size:18]];
+            
+            float outsideMargin = 60;
+            float insideMargin = 30;
+            float buttonsVerticalPosition = containerView.bounds.size.height-50;
+            float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
+            float buttonNewGamePositionX = outsideMargin;
+            float buttonContinuePositionX = buttonWidth + outsideMargin + 2*insideMargin;
+            
+            [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
+            
+            
+            UIButton *myButtonNewGame  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            myButtonNewGame.tag = 0;
+            myButtonNewGame.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+            [myButtonNewGame setBackgroundColor: [UIColor whiteColor]];
+            
+            [myButtonNewGame setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+            [[myButtonNewGame layer] setMasksToBounds:YES];
+            [[myButtonNewGame layer] setCornerRadius:5.0f];
+            
+            [myButtonNewGame setTitle: @"New Game" forState:UIControlStateNormal];
+            [myButtonNewGame addTarget: self
+                                action: @selector(presentChoosenScene:)
+                      forControlEvents: UIControlEventTouchUpInside];
+            
+            UIButton *myButtonContinue  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            myButtonContinue.tag = savedLevel;
+            myButtonContinue.frame      =   CGRectMake(buttonContinuePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+            [myButtonContinue setBackgroundColor: [UIColor whiteColor]];
+            
+            [myButtonContinue setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+            [[myButtonContinue layer] setMasksToBounds:YES];
+            [[myButtonContinue layer] setCornerRadius:5.0f];
+            
+            [myButtonContinue setTitle: @"Resume" forState:UIControlStateNormal];
+            [myButtonContinue addTarget: self
+                                 action: @selector(presentChoosenScene:)
+                       forControlEvents: UIControlEventTouchUpInside];
+            
+            [self.view addSubview: containerView];
+            [containerView addSubview:myTextView];
+            [containerView addSubview:myButtonNewGame];
+            [containerView addSubview:myButtonContinue];
+        }
+        else // introduction dialog
+        {
+            [containerView setFrame: CGRectMake(50, 50, self.view.bounds.size.width-100, self.view.bounds.size.height-100)];
+            
+            UITextView *myTextView = [[UITextView alloc] init];
+            myTextView.text = [NSString stringWithFormat:@"Dear Edgar,\nThank you for enrolling at GreenAlien. Your first task is very simple. You have to inspect an underground laboratory.\nIn each room, you will find a plutonium cell. Collect it to activate the elevator and go the next room.\nFirst, use our training room to prepare your exploration."];
+            myTextView.textColor = [UIColor whiteColor];
+            myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+            myTextView.editable = NO;
+            [myTextView setFont:[UIFont fontWithName:@"Gill Sans" size:18]];
+            
+            float outsideMargin = 60;
+            float insideMargin = 30;
+            float buttonsVerticalPosition = containerView.bounds.size.height-50;
+            float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
+            float buttonNewGamePositionX = containerView.bounds.size.width/2 - buttonWidth/2;
+            
+            [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
+            
+            
+            UIButton *myButtonStartTutorial  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            myButtonStartTutorial.tag = 0;
+            myButtonStartTutorial.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+            [myButtonStartTutorial setBackgroundColor: [UIColor whiteColor]];
+            
+            [myButtonStartTutorial setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+            [[myButtonStartTutorial layer] setMasksToBounds:YES];
+            [[myButtonStartTutorial layer] setCornerRadius:5.0f];
+            
+            [myButtonStartTutorial setTitle: @"Continue" forState:UIControlStateNormal];
+            [myButtonStartTutorial addTarget: self
+                                action: @selector(presentChoosenScene:)
+                      forControlEvents: UIControlEventTouchUpInside];
+            
+            [self.view addSubview: containerView];
+            [containerView addSubview:myTextView];
+            [containerView addSubview:myButtonStartTutorial];
+        }
+
+    }
+    else    // go back after the game was paused, without dialog
+    {
+        [self presentTheScene:0];
     }
 }
 
@@ -110,14 +263,6 @@
     return NO;
 }
 
-/*- (NSUInteger)supportedInterfaceOrientations
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
-    } else {
-        return UIInterfaceOrientationMaskAll;
-    }
-}*/
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
 - (NSUInteger)supportedInterfaceOrientations
 {
@@ -146,6 +291,8 @@
 }
 
 - (IBAction)pauseButtonClicked:(id)sender {
+    gamePaused = TRUE;
+
     SKView *spriteView = (SKView *)self.view;
     if(!spriteView.paused){
         [spriteView setPaused:YES];
@@ -196,6 +343,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     NSLog(@"did enter background");
+    
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -218,7 +366,13 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    NSLog(@"Tout va fermer: terminating...");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    // Here: get current nextLevelIndex
+    [defaults setInteger:2 forKey:@"savedLevel"];
+    [defaults synchronize];
+
+    NSLog(@"Tout va fermer: niveau sauvé, terminating...");
     // Next version: we save the current level index
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }

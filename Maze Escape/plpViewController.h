@@ -24,9 +24,11 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 
+
 @interface plpViewController : UIViewController
 {
     SKScene * myScene;
+    BOOL gamePaused;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
