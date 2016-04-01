@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="17" height="20" tilewidth="100" tileheight="100" nextobjectid="15">
+ <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
+  <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
+ </tileset>
+ <tileset firstgid="40" name="elementsFin-02" tilewidth="100" tileheight="100">
+  <image source="elementsFin-02.png" width="800" height="600"/>
+ </tileset>
+ <layer name="Fond" width="17" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztkD0KgDAMhXsAbyBeQTfd2q0d1Dr4d/+bGCGBGFJEFKcOH68p6ctrvDGmBTrAAw7Voga8q4GG1adOSFTOmtIcqi17VyrQfJ4rCKVcdx5R9Eb0lLk0D/qDZ708hxX7ON9UQntgAEaxFydq2q+WYwYWYGV5grnmkzmIIuGZYkfeeGzI1x5PyR7Z4y+PA0ctObU=
+  </data>
+ </layer>
+ <layer name="Solide" width="17" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAcaKJhLSDWJtEMQzRsBMTGQGwCxKZEmmGJhq2A2BqIbYDYlkgzHNCwExA7A7ELELsSaQYfGt+LSH34zCAH8KGZA2KHE4lxuQPEDyMSU9sMbihbggru4KaCO6gRHsPBHQxofHLMkICyBangDkrSBzom1QwAONM0xw==
+  </data>
+ </layer>
+ <objectgroup name="Objets">
+  <object id="1" name="verticalPlatform" x="298" y="699" width="100" height="299">
+   <properties>
+    <property name="moveUpFirst" value="0"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="2" name="Start" x="110" y="1794" width="88" height="106"/>
+  <object id="3" name="endLevelLiftZZ" x="1370.5" y="1866" width="105" height="122">
+   <properties>
+    <property name="nextLevel" value="_Level02_v1_100px"/>
+   </properties>
+  </object>
+  <object id="4" name="verticalPlatform" x="210" y="985" width="78" height="913.5">
+   <properties>
+    <property name="moveUpFirst" value="0"/>
+    <property name="movementDuration" value="6"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="5" name="sensor" x="508" y="464" width="286" height="276">
+   <properties>
+    <property name="nodename" value="finalAnimationSensor"/>
+   </properties>
+  </object>
+  <object id="8" name="Startzz" x="387" y="540" width="88" height="106"/>
+  <object id="9" name="sensor" x="1085" y="468" width="121" height="272">
+   <properties>
+    <property name="nodename" value="finalAnimationSensor2"/>
+   </properties>
+  </object>
+  <object id="13" name="sensor" x="1074.84" y="414.784" width="31.3592" height="31.3592" rotation="2.51375">
+   <properties>
+    <property name="nodename" value="referencePoint"/>
+   </properties>
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>

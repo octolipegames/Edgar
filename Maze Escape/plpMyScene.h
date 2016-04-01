@@ -79,6 +79,7 @@ float contextVelocityX;
     BOOL isJumping;
     BOOL ignoreNextTap;
     double initialTime;
+    double initialLevelTime;
     double additionalSavedTime;
 }
 
@@ -93,6 +94,7 @@ float contextVelocityX;
 -(void)saveHighScoreForUser:(NSString*)userName;
 -(void)saveInitialTime;
 -(void)saveAdditionalTime;
+-(void)playTune:(NSString*)filename;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (strong, nonatomic) SKAction *hopSound;

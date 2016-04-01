@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="17" height="20" tilewidth="100" tileheight="100" nextobjectid="9">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="17" height="20" tilewidth="100" tileheight="100" nextobjectid="19">
  <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
   <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
  </tileset>
@@ -8,16 +8,71 @@
  </tileset>
  <layer name="Fond" width="17" height="20">
   <data encoding="base64" compression="zlib">
-   eJxzY2BgMANicyB2A2J7KG0Hpd2hYnpArI/EB9H+UOyHhY2NhtkD49sh6ZPGgmH2I7vLHY2GuYuQGX5oav2gZqK7C5sZMD+4IalFdocdWniA9MgCsQwS7Q3EPkDsixYu9mh8WPhic0cwEIcAcSiSe9wZUN2H7g4Y5sFhJi4cDsWUmBEGxdQ2g1Q8asaoGfQyAwBPDTm3
+   eJzNkj0OgCAMhTmANzBeQTfdcINBxcG/+9/EkrRJbaomwuDw5VlCH4+KM8a0QAc4oEe1qB7XaqBhddQZCcq3pnQO1Zb1lQp0Ps/lhVKuN48g9gb0lLk0D7qDY3t5DivmEXsqoQMwApOYSy9qmq+WYwFWYGN5vLnmkzkixY3fEweS4rEjZYIP9yh+5pEyj7/cJcd/of4cHqlvLNc7/epxAubLOOM=
   </data>
  </layer>
  <layer name="Solide" width="17" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYKAcaKJhLSDWJtEMQzRsBMTGQGwCxKZEmmGJhq2A2BqIbYDYlkgzHNCwExA7A7ELELsSaQYfGt+LSH34zCAH8KGZA2KHE4lxuQPEDyMSU9sMbihbggru4KaCO6gRHsPBHQxofHLMkICyBangDkrSBzom1QwAONM0xw==
+   eJxjYKAcaKJhLSDWJtEMQzRsBMTGQGwCxKZEmmGJhq2A2BqIbYDYlkgzHNCwExA7A7ELELsSaQYfGt+LSH34zCAH8KGZA2KHE4lxuQPEDyMS08IMASqYITFI/CI4CPwigMYfqPCA+UOQCu6QoMAMdEyqGQA0+zTO
   </data>
  </layer>
  <objectgroup name="Objets">
-  <object id="1" name="verticalPlatform" x="298" y="699" width="100" height="299">
+  <object id="1" name="verticalPlatform" x="301" y="899.102" width="98" height="297.468">
+   <properties>
+    <property name="moveUpFirst" value="0"/>
+    <property name="movementDuration" value="1.5"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="2" name="Start" x="110" y="1794" width="88" height="106"/>
+  <object id="3" name="endLevelLiftZZ" x="1370.5" y="1866" width="105" height="122">
+   <properties>
+    <property name="nextLevel" value="_Level02_v1_100px"/>
+   </properties>
+  </object>
+  <object id="4" name="verticalPlatform" x="201" y="1600" width="98" height="297.167">
+   <properties>
+    <property name="moveUpFirst" value="0"/>
+    <property name="movementDuration" value="2"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="5" name="sensor" x="508" y="464" width="286" height="276">
+   <properties>
+    <property name="nodename" value="finalAnimationSensor"/>
+   </properties>
+  </object>
+  <object id="8" name="Startzz" x="387" y="540" width="88" height="106"/>
+  <object id="9" name="sensor" x="1085" y="468" width="121" height="272">
+   <properties>
+    <property name="nodename" value="finalAnimationSensor2"/>
+   </properties>
+  </object>
+  <object id="13" name="sensor" x="1074.84" y="414.784" width="31.3592" height="31.3592" rotation="2.51375">
+   <properties>
+    <property name="nodename" value="referencePoint"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="15" name="verticalPlatform" x="301" y="1298.41" width="98" height="396.623">
+   <properties>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="2"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="16" name="verticalPlatform" x="101" y="1000.94" width="98" height="495.779">
+   <properties>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="17" name="verticalPlatform" x="201" y="701" width="98" height="196.762">
    <properties>
     <property name="moveUpFirst" value="0"/>
     <property name="movementDuration" value="3"/>
@@ -25,25 +80,10 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
-  <object id="2" name="Startx" x="110" y="1794" width="88" height="106"/>
-  <object id="3" name="endLevelLift" x="1370.5" y="1866" width="105" height="122">
+  <object id="18" name="alien1" type="alien" x="121.861" y="659.541" width="59.1045" height="36.9403">
    <properties>
-    <property name="nextLevel" value="_Level02_v1_100px"/>
+    <property name="moveX" value="100"/>
    </properties>
   </object>
-  <object id="4" name="verticalPlatform" x="210" y="985" width="78" height="913.5">
-   <properties>
-    <property name="moveUpFirst" value="0"/>
-    <property name="movementDuration" value="6"/>
-    <property name="x_limit" value="802"/>
-    <property name="y_limit" value="430"/>
-   </properties>
-  </object>
-  <object id="5" name="sensor" x="508" y="452" width="286" height="294">
-   <properties>
-    <property name="nodename" value="finalAnimationSensor"/>
-   </properties>
-  </object>
-  <object id="8" name="Start" x="387" y="540" width="88" height="106"/>
  </objectgroup>
 </map>

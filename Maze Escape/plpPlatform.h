@@ -26,10 +26,13 @@
 @interface plpPlatform : SKSpriteNode
 {
     BOOL movingLeft;
+    BOOL firstMovement;
     BOOL heroAbove;
     float initXPosition;
     float initYPosition;
 }
+
+- (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withDuration:(float)duration upToX:(float)x_limit andY:(float)y_limit andIdleDuration:(float)idleDuration;
 
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withDuration:(float)duration upToX:(float)x_limit andY:(float)y_limit;
 

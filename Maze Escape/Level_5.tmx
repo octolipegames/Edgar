@@ -8,12 +8,12 @@
  </tileset>
  <layer name="Fond" width="40" height="6">
   <data encoding="base64" compression="zlib">
-   eJxjYGBgkCYDEwtkoFgWiU0MHxmQ4z4Y5iHBreSC4eY+SSzuk4BiLjq4lxRAj/AbzAAACvYIEg==
+   eJxjYGBgkCYDEwtkoFgWiS2NhS+NxJdBM4NUtyGbyYNmNrFsfHx0Nw4390nS2X2UAFq4j4GK7sMHpHGwieHDAABb6hGm
   </data>
  </layer>
  <layer name="Solide" width="40" height="6">
   <data encoding="base64" compression="zlib">
-   eJzjY2Bg4KMhliATI5tBD6BBJEYG6O7jwmE2LnFi7NaEqiE23LC5j5sE/2GzG2SGKAE7STEXli5g7uMnA8P0EhtXpKY95PCjxH20xgBEehEZ
+   eJzjY2Bg4KMhliATI5tBD6BBAHNj0YPuPi4cZuMSJ8ZuTagaYsIMl/u4ifAfPrtBZogSsJcUc2HpghrpC589yIDUtIccfoMZAwBNqxCi
   </data>
  </layer>
  <objectgroup name="Objets">
@@ -45,7 +45,7 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
-  <object id="13" name="Caisse" type="Caisse" x="319" y="177" width="60" height="60"/>
+  <object id="13" name="semaphore" type="semaphore" x="319" y="177" width="60" height="60"/>
   <object id="14" name="train" type="train" x="2618" y="123" width="60" height="60">
    <ellipse/>
   </object>

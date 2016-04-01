@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Plp View Controller-->
@@ -20,25 +22,26 @@
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="M1-01.png" translatesAutoresizingMaskIntoConstraints="NO" id="ujh-gO-BHA">
                                 <rect key="frame" x="0.0" y="1" width="568" height="319"/>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yo3-0O-95n">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yo3-0O-95n">
                                 <rect key="frame" x="538" y="0.0" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="EvW-0u-5jO"/>
+                                    <constraint firstAttribute="width" constant="30" id="OZA-1m-vBb"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="pZ4-yd-4q1"/>
+                                    <constraint firstAttribute="height" constant="30" id="uIl-Yn-MhU"/>
+                                </constraints>
                                 <state key="normal" title="†" image="media-repeat-alt.png"/>
                                 <connections>
                                     <action selector="suicideButtonClicked:" destination="LVB-YS-i5n" eventType="touchUpInside" id="bby-Td-5Ce"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBq-SW-Aka">
-                                <rect key="frame" x="242" y="8" width="75" height="75"/>
-                                <state key="normal" title="Play" image="Play.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playGame:" destination="LVB-YS-i5n" eventType="touchUpInside" id="0Gb-Yd-QVp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onC-Dn-GGJ">
-                                <rect key="frame" x="247" y="91" width="65" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onC-Dn-GGJ">
+                                <rect key="frame" x="251" y="91" width="65" height="30"/>
                                 <color key="backgroundColor" red="0.25523348272943197" green="0.17362821954383129" blue="0.33683874591503271" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="GL8-H7-j71"/>
+                                    <constraint firstAttribute="width" constant="65" id="mel-Xv-e5Y"/>
+                                </constraints>
                                 <color key="tintColor" red="0.75294117647058822" green="0.71764705882352942" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Credits">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,26 +50,46 @@
                                     <action selector="creditsButtonClicked:" destination="LVB-YS-i5n" eventType="touchUpInside" id="qzq-1q-Vw2"/>
                                 </connections>
                             </button>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nMO-WS-ykg">
-                                <rect key="frame" x="159" y="97" width="240" height="512.5"/>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nMO-WS-ykg">
+                                <rect key="frame" x="164" y="94" width="240" height="206"/>
                                 <color key="backgroundColor" red="0.27843137254901962" green="0.18823529411764706" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">Find our source code and assets on: http://github.com/EdgarTheExplorer
-Explanations on Facebook: https://www.facebook.com/edgartheexplorer/
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nMO-WS-ykg" secondAttribute="height" multiplier="120:103" id="U9d-cl-htn"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Find our source code and assets: github.com/polipgames/Edgar
+Explanations on Facebook: facebook.com/edgartheexplorer/
 Contact us at polipgames@gmail.com!
 
 © Filipe Mathez and Paul Ronga 2014-2016
-Music:
-“Juno” by Chronox, CC-BY: http://creativecommons.org/licenses/by/4.0/
-“X Files theme remixed to 8 bit” by arandompersona, CC-BY: http://creativecommons.org/licenses/by/3.0/
+Special thanks to Aymeric, Justine, Kathryn, Liv and Steeve
+Very special thanks to our mums
 
 Source code: GNU Lesser General Public License 2.1 http://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html
-Images and animations: CC-BY http://creativecommons.org/licenses/by/4.0/</mutableString>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
+Images: CC-BY http://creativecommons.org/licenses/by/4.0/
+
+Music:
+“Juno” by Chronox, CC-BY: http://creativecommons.org/licenses/by/4.0/
+“X Files theme remixed to 8 bit” by arandompersona, CC-BY: http://creativecommons.org/licenses/by/3.0/</string>
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="16" name="GillSans"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq6-QR-X9y">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq6-QR-X9y">
                                 <rect key="frame" x="500" y="0.0" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="EJT-k3-ocW"/>
+                                    <constraint firstAttribute="width" constant="30" id="GHy-ea-Lqs"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="VeL-Jb-gcC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="ZGY-Hf-2HC"/>
+                                </constraints>
                                 <state key="normal" title="Menu" image="menuButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -74,8 +97,34 @@ Images and animations: CC-BY http://creativecommons.org/licenses/by/4.0/</mutabl
                                     <action selector="pauseButtonClicked:" destination="LVB-YS-i5n" eventType="touchUpInside" id="Uck-9C-2gi"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBq-SW-Aka">
+                                <rect key="frame" x="247" y="8" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="2Qy-DI-oUw"/>
+                                    <constraint firstAttribute="height" constant="75" id="m2d-Gb-4P7"/>
+                                </constraints>
+                                <state key="normal" title="Play" image="Play.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playGame:" destination="LVB-YS-i5n" eventType="touchUpInside" id="0Gb-Yd-QVp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="yo3-0O-95n" secondAttribute="trailing" constant="-20" id="9vI-lf-tr2"/>
+                            <constraint firstItem="onC-Dn-GGJ" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="B3m-xH-vje"/>
+                            <constraint firstItem="nMO-WS-ykg" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="94" id="BzJ-xz-5lO"/>
+                            <constraint firstItem="yo3-0O-95n" firstAttribute="leading" secondItem="aq6-QR-X9y" secondAttribute="trailing" constant="8" id="E9p-wE-48V"/>
+                            <constraint firstItem="yo3-0O-95n" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" id="EYb-2P-8KG"/>
+                            <constraint firstItem="nMO-WS-ykg" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="Ive-d4-dQu"/>
+                            <constraint firstItem="onC-Dn-GGJ" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="91" id="QVI-ec-JJ9"/>
+                            <constraint firstItem="hBq-SW-Aka" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="UXE-uF-DG0"/>
+                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="nMO-WS-ykg" secondAttribute="bottom" constant="20" id="aRC-e9-ePa"/>
+                            <constraint firstItem="hBq-SW-Aka" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="8" id="fbJ-vU-Wmo"/>
+                            <constraint firstItem="aq6-QR-X9y" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" id="s2P-RA-zfU"/>
+                        </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>

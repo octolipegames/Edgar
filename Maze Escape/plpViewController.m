@@ -121,8 +121,6 @@
     SKView * spriteView = (SKView *)self.view;
     [spriteView presentScene:myScene];
 
-//    [(plpMyScene*)myScene saveInitialTime]; -> it comes after the tutorial
-
     if(gamePaused == FALSE && startLevel > 0)
     {
         [(plpMyScene*)myScene resumeFromLevel:startLevel];
@@ -130,10 +128,18 @@
     
     if(gamePaused == TRUE)
     {
-        NSLog(@"Resume after a pause");
-        spriteView.paused = NO;
-        [(plpMyScene*)myScene resumeAfterPause];
-        gamePaused = FALSE;
+        if(startLevel == 0)
+        {
+            NSLog(@"New game after a pause");
+            spriteView.paused = NO;
+            gamePaused = FALSE;
+            [(plpMyScene*)myScene resumeFromLevel:startLevel];
+        }else{
+            NSLog(@"Resume after a pause");
+            spriteView.paused = NO;
+            [(plpMyScene*)myScene resumeAfterPause];
+            gamePaused = FALSE;
+        }
     }
 }
 
@@ -148,7 +154,8 @@
 
     
     // 1) the user launches the game
-    if(gamePaused==FALSE)   // we set up the dialog
+//    if(gamePaused==FALSE)   // we set up the dialog
+    if(1==1)   // we set up the dialog
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
@@ -213,10 +220,10 @@
         }
         else // introduction dialog
         {
-            [containerView setFrame: CGRectMake(50, 50, self.view.bounds.size.width-100, self.view.bounds.size.height-100)];
+            [containerView setFrame: CGRectMake(50, 40, self.view.bounds.size.width-100, self.view.bounds.size.height-90)];
             
             UITextView *myTextView = [[UITextView alloc] init];
-            myTextView.text = [NSString stringWithFormat:@"Dear Edgar,\nThank you for enrolling at GreenAlien. Your first task is very simple. You have to inspect an underground laboratory.\nIn each room, you will find a plutonium cell. Collect it to activate the elevator and go the next room.\nFirst, use our training room to prepare your exploration."];
+            myTextView.text = [NSString stringWithFormat:@"Dear Edgar,\nThank you for enrolling at GreenAlien. Your first task is to inspect an underground laboratory which does illegal in vivo alien testing.\nIn each room, you will find a plutonium cell. Collect it to activate the elevator and gain access to the next room.\nBut first, use our training room to get ready."];
             myTextView.textColor = [UIColor whiteColor];
             myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
             myTextView.editable = NO;
@@ -368,10 +375,14 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    // Here: get current nextLevelIndex
-    [defaults setInteger:2 forKey:@"savedLevel"];
-    [defaults synchronize];
-
+    // We save the current level
+    int currentLevel = [(plpMyScene*)myScene getNextLevelIndex];
+    if(currentLevel > 0)
+    {
+        [defaults setInteger:currentLevel forKey:@"savedLevel"];
+        [defaults synchronize];
+    }
+    
     NSLog(@"Tout va fermer: niveau sauvé, terminating...");
     // Next version: we save the current level index
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.

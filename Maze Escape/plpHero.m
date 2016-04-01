@@ -64,8 +64,8 @@
         self.position = position;
         
         
-        SKPhysicsBody *topCircleBody = [SKPhysicsBody bodyWithCircleOfRadius:20 center:CGPointMake(0, 18)]; // 0, 22
-        SKPhysicsBody *rectangleBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(28, 55) center:CGPointMake(0, 10)];
+        SKPhysicsBody *topCircleBody = [SKPhysicsBody bodyWithCircleOfRadius:20 center:CGPointMake(0, 12)]; // until March 18, 2016: center= (0, 18) // 0, 22
+        SKPhysicsBody *rectangleBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(28, 50) center:CGPointMake(0, 10)];
 
         topCircleBody.categoryBitMask = 1;
         rectangleBody.categoryBitMask = 1;
@@ -78,10 +78,12 @@
         rectangleNode.physicsBody.categoryBitMask = 1; // = PhysicsCategoryEdgar
         
         
-        
+        // bottom circle
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:16 center:CGPointMake(0, -18)]; // -20
         self.physicsBody.mass = 50;
         self.physicsBody.friction = 0.6;
+        self.physicsBody.friction = 0.1;
+        
         self.physicsBody.linearDamping = 0;
         self.physicsBody.restitution = 0;
         self.physicsBody.allowsRotation = NO;
@@ -119,16 +121,26 @@
 
 -(void)addLight
 {
-    // Lampe
-    SKLightNode* lampe = [[SKLightNode alloc] init];
-    lampe.zPosition = 20;
-    lampe.categoryBitMask = 1;
-    lampe.falloff = 1;
-    lampe.ambientColor = [UIColor whiteColor];
-    lampe.lightColor = [[UIColor alloc] initWithRed:1.0 green:1.0 blue:0.0 alpha:0.5];
-    lampe.shadowColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
- 
-    [self addChild:lampe];
+    SKNode *lightNode = [self childNodeWithName:@"light"];
+    
+    if(!lightNode)
+    {
+        // Lampe
+        SKLightNode* lampe = [[SKLightNode alloc] init];
+        lampe.name = @"light";
+        lampe.zPosition = 20;
+        lampe.categoryBitMask = 1;
+        lampe.falloff = 1;
+        lampe.ambientColor = [UIColor whiteColor];
+        lampe.lightColor = [[UIColor alloc] initWithRed:1.0 green:1.0 blue:0.0 alpha:0.5];
+    //    lampe.shadowColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+        lampe.shadowColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+        [self addChild:lampe];
+    }
+    else
+    {
+        NSLog(@"LightNode already created");
+    }
 }
 
 -(void)addMasque
@@ -213,8 +225,6 @@
 }
 -(void)crashes{
     NSLog(@"protch");
-//    [self runAction:[SKAction scaleYTo:.2 duration:2]];
-//    [self setYScale:.2];
 }
 
 @end

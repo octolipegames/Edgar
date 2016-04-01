@@ -39,7 +39,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     return distance/duration;
 }
 
-- (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withDuration:(float)duration upToX:(float)x_limit andY:(float)y_limit
+- (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withDuration:(float)duration upToX:(float)x_limit andY:(float)y_limit andIdleDuration:(float)idleDuration
 {
     NSString *texturePath;
     if(x_limit == position.x) // vertical platform
@@ -71,18 +71,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         self.physicsBody.linearDamping = 0;
         
         self.physicsBody.categoryBitMask = PhysicsCategoryObjects;
-
-//        SKPhysicsBody *rampeBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(28, 55) center:CGPointMake(0, 10)];
-//      creer un triangle qui amene sur la plateforme
         
-        SKAction *waitDuration = [SKAction waitForDuration:2];
+        SKAction *waitDuration = [SKAction waitForDuration:idleDuration];
         SKAction *moveDuration = [SKAction waitForDuration:duration];
         
         float Xspeed = [self calculateSpeedForDuration:duration fromPosition:initXPosition toLimit:x_limit];
         float Yspeed = [self calculateSpeedForDuration:duration fromPosition:initYPosition toLimit:y_limit];
-/*        NSLog(@"y_limit: %f", y_limit);
-        NSLog(@"initpos: %f", initYPosition);
-        NSLog(@"yspeed: %f", Yspeed);*/
+        
+
+        // Very primitive movement: we just set a constant speed
         
         SKAction *theMove = [SKAction runBlock:^{
             if(movingLeft==FALSE){
@@ -114,6 +111,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         [self runAction:[SKAction repeatActionForever: maNewSequence]];
     }
     return self;
+}
+
+- (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withDuration:(float)duration upToX:(float)x_limit andY:(float)y_limit
+{
+    
+    return [self initAtPosition:position withSize:size withDuration:duration upToX:x_limit andY:y_limit andIdleDuration:2];
 }
 
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withDuration:(float)duration withMovement:(float)movement

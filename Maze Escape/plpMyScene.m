@@ -65,6 +65,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
             [Edgar.physicsBody setVelocity:CGVectorMake(-EdgarVelocity + contextVelocityX, Edgar.physicsBody.velocity.dy)];
         }];
         SKAction *wait = [SKAction waitForDuration:.05]; // = 20 fois par seconde vs 60
+//        SKAction *wait = [SKAction waitForDuration:1]; // = 20 fois par seconde vs 60
 
         EdgarVelocity = 140;
         
@@ -107,12 +108,34 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
         if (!self.audioPlayer) {
             NSLog(@"Error creating player: %@", error);
         }
-        [self.audioPlayer play];
+// ddd        [self.audioPlayer play];
     }
     return self;
 }
 
 - (void)endGameAnimation{
+    NSLog(@"End game animation start");
+    
+    float theHeight = 400; //self.view.bounds.size.width;
+    float halfHeight = theHeight/2;
+    
+    SKSpriteNode *curtain1 = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
+    SKSpriteNode *curtain2 = [curtain1 copy];
+    curtain1.anchorPoint = CGPointMake(0.5, 0);
+    curtain1.position = CGPointMake(0, halfHeight);
+    curtain1.zPosition = 20;
+    curtain1.name = @"curtain1";
+    
+    curtain2.anchorPoint = CGPointMake(0.5, 1);
+    curtain2.position = CGPointMake(0, -halfHeight);
+    curtain2.zPosition = 20;
+    curtain2.name = @"curtain2";
+    [myCamera addChild:curtain1];
+    [myCamera addChild:curtain2];
+    
+    
+    
+    
     [myCamera setScale:1];
     
     nextLevelIndex = 1;
@@ -127,15 +150,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
     Edgar->rectangleNode.physicsBody.categoryBitMask = PhysicsCategoryEdgar;
     Edgar->rectangleNode.physicsBody.collisionBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles;
     Edgar->rectangleNode.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryAliens|PhysicsCategorySensors|PhysicsCategoryItems;
+
     
+    /*
     //  Camera animation
     SKAction *movingCamera = [SKAction group:@[
                                                [SKAction moveTo:[myLevel childNodeWithName:@"referencePoint"].position duration:5],
-                                               //                                                      [SKAction moveBy:CGVectorMake(800, 1400) duration:5],
-                                               //                                                      [SKAction scaleTo:1 duration:5]
                                                ]];
     
-    [myCamera runAction:[SKAction sequence:@[[SKAction waitForDuration:3],movingCamera]]];
+    [myCamera runAction:[SKAction sequence:@[[SKAction waitForDuration:1.5],movingCamera]]];*/
+    
+    
 }
 
 // endGameNoScore -> closeEndGameDialog
@@ -226,7 +251,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextfield {
     [theTextfield resignFirstResponder];
-    NSLog(@"Return key pressed; fire action here");
+    NSLog(@"Return key pressed");
     
     return YES;
 }
@@ -259,7 +284,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
     // < 6:00 = Knight Edgar
     // else = Snail Edgar
     
-    NSString* rankingString = @"Snail Edgar. Not too bad, thought.";
+    NSString* rankingString = @"Snail Edgar.";
     
     float totalTime = [self getTotalTime];
     if(totalTime < 270)
@@ -267,7 +292,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
         rankingString = @"King Edgar. Congrats, boss.";
     }else if(totalTime < 360)
     {
-        rankingString = @"Knight Edgar. Quite good.";
+        rankingString = @"Knight Edgar. Very good.";
     }
     
     
@@ -310,16 +335,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
 
 - (JSTileMap*)loadLevel:(int)levelIndex
 {
-    if((levelIndex == 1) && (initialTime > 0))
+    //  ddd Find new "title" & tutorial music? Or better: new function to load the music
+/*    if(levelIndex == 1)
     {
-        // We reset the intial and the saved time
-        NSLog(@"First level => initial time saved");
-        [self saveInitialTime];
-        additionalSavedTime = 0;
-        freeCamera = FALSE;
-
-        
-        NSLog(@"Re-creating player");
+        NSLog(@"(Re)-creating player");
         NSURL *url = [[NSBundle mainBundle] URLForResource:@"Sounds/Juno" withExtension:@"mp3"];
         NSError *error = nil;
         self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
@@ -328,7 +347,23 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
             NSLog(@"Error creating player: %@", error);
         }
         [self.audioPlayer play];
+
+    }*/
+    
+    if(levelIndex <= 1)
+    {
+        // We reset the intial and the saved time
+        NSLog(@"First level => initial time saved");
+        [self saveInitialTime];
+        additionalSavedTime = 0;
+        initialLevelTime = CFAbsoluteTimeGetCurrent();
+        freeCamera = FALSE;
+    }else{
+        // We save the initial level time
+        initialLevelTime = CFAbsoluteTimeGetCurrent();
     }
+    
+    
 //    NSLog(@" \n\n Elapsed time: %f - %f = \n %f \n\n ", CFAbsoluteTimeGetCurrent(), initialTime, CFAbsoluteTimeGetCurrent() - initialTime); // ddd
     
     JSTileMap *myTileMap;
@@ -507,15 +542,46 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
         caisse.physicsBody.categoryBitMask = PhysicsCategoryObjects;
 //        caisse.zPosition = -4; // devant les autres objets
         caisse.physicsBody.collisionBitMask = PhysicsCategoryEdgar|PhysicsCategoryObjects|PhysicsCategoryTiles;
+//        caisse.shadowCastBitMask = 1;
         [tileMap addChild: caisse];
-        
-        if(nextLevelIndex == 4)
-        {
-            [caisse runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction colorizeWithColor:[SKColor redColor] colorBlendFactor:1.0 duration:.2],[SKAction waitForDuration:2.8],[SKAction colorizeWithColor:[SKColor greenColor] colorBlendFactor:1.0 duration:.2], [SKAction waitForDuration:2.8]]]]];
-        }
     }
 
-
+    if(nextLevelIndex == 4)
+    {
+        // semaphore
+        
+        NSArray *semaphoreArray;
+        if((semaphoreArray=[group objectsNamed:@"semaphore"]))
+        {
+            for (NSDictionary *monSemaphore in semaphoreArray) {
+                plpItem *myItem;
+                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monSemaphore] withTexture:@"FeuRouge.png"];
+//                float waitBeforeStart = [monSemaphore[@"waitBeforeStart"] floatValue];
+                if(myItem)
+                {
+//                    myItem.physicsBody.categoryBitMask = PhysicsCategoryItems;
+                    [tileMap addChild:myItem];
+                    // action
+                    
+                    SKTexture *semaphoreGreen = [SKTexture textureWithImageNamed:@"FeuVert.png"];
+                    SKTexture *semaphoreRed = [SKTexture textureWithImageNamed:@"FeuRouge.png"];
+                    SKAction *setGreen = [SKAction setTexture:semaphoreGreen];
+                    SKAction *setRed = [SKAction setTexture:semaphoreRed];
+                    SKAction *wait = [SKAction waitForDuration:2];
+                    SKAction *changeTexture = [SKAction sequence:@[wait, setGreen, wait, setRed]];
+                    
+                    [myItem runAction:[SKAction repeatActionForever:changeTexture]];
+                }
+                else
+                {
+                    NSLog(@"Error while creating semaphore.");
+                }
+            }
+        }
+        
+//        [caisse runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction colorizeWithColor:[SKColor redColor] colorBlendFactor:1.0 duration:.2],[SKAction waitForDuration:2.8],[SKAction colorizeWithColor:[SKColor greenColor] colorBlendFactor:1.0 duration:.2], [SKAction waitForDuration:2.8]]]]];
+    }
+    
     
     SKSpriteNode *endLevelLiftNode; // Ascenseur de la fin du niveau
     NSArray *endLevelLift = [group objectsNamed:@"endLevelLift"];
@@ -576,21 +642,22 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
         plpTrain *trainNode;
 
         for (NSDictionary *theTrain in trainObjectMarker) {
-            trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"Train_chassis_02.png" andWheelTexture:@"Train-roue.png"];
-            //trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"ChariotSocle.png" andWheelTexture:@"ChariotRoue.png"];
+/*            trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"Train_chassis_02.png" andWheelTexture:@"Train-roue.png"];*/
+            trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"ChariotSocle.png" andWheelTexture:@"ChariotRoue--correct.png"];
             
             if(trainNode)
             {
                 trainNode.physicsBody.categoryBitMask = PhysicsCategoryObjects;
                 trainNode.physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
+//                trainNode.shadowCastBitMask = 1;
                 [tileMap addChild:trainNode]; // vs myLevel
                 [trainNode getLeftWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
                 [trainNode getRightWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
                 
-                SKPhysicsJointPin *pinGauche = [SKPhysicsJointPin jointWithBodyA:[trainNode getLeftWheel].physicsBody bodyB:trainNode.physicsBody anchor:CGPointMake(trainNode.position.x-20, trainNode.position.y-20)];
+                SKPhysicsJointPin *pinGauche = [SKPhysicsJointPin jointWithBodyA:[trainNode getLeftWheel].physicsBody bodyB:trainNode.physicsBody anchor:CGPointMake(trainNode.position.x-20, trainNode.position.y-18)];
                 [self.physicsWorld addJoint:pinGauche];
                 
-                SKPhysicsJointPin *pinDroit = [SKPhysicsJointPin jointWithBodyA:[trainNode getRightWheel].physicsBody bodyB:trainNode.physicsBody anchor:CGPointMake(trainNode.position.x+20, trainNode.position.y-20)];
+                SKPhysicsJointPin *pinDroit = [SKPhysicsJointPin jointWithBodyA:[trainNode getRightWheel].physicsBody bodyB:trainNode.physicsBody anchor:CGPointMake(trainNode.position.x+20, trainNode.position.y-18)];
                 [self.physicsWorld addJoint:pinDroit];
             }
         }
@@ -614,21 +681,24 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
         
         
         for (NSDictionary *theVerticalPlatform in verticalPlatformObjectMarker) {
+            float idleDuration = [theVerticalPlatform[@"idleDuration"] floatValue];
+            if(!idleDuration) idleDuration = 2;
+
             if([theVerticalPlatform[@"moveUpFirst"] intValue] == 1)
             {
                 verticalPlatformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([theVerticalPlatform[@"x"] floatValue], [theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue]-8)
                     withSize:CGSizeMake([theVerticalPlatform[@"width"] floatValue], 8)
-                    withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue]];
+                                                              withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] andIdleDuration:idleDuration];
             }else{
                 verticalPlatformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([theVerticalPlatform[@"x"] floatValue], [theVerticalPlatform[@"y"] floatValue])
                     withSize:CGSizeMake([theVerticalPlatform[@"width"] floatValue], 8)
-                    withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue] -8];
+                                                              withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue] -8 andIdleDuration:idleDuration];
             }
             
             if(verticalPlatformNode)
             {
                 verticalPlatformNode.physicsBody.categoryBitMask = PhysicsCategoryObjects;
-                [tileMap addChild:verticalPlatformNode]; // vs myLevel
+                [tileMap addChild:verticalPlatformNode];
             }
         }
     }
@@ -645,9 +715,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
             {
                 y_limit = [thePlatform[@"y"] floatValue];
             }
+            float idleDuration = [thePlatform[@"idleDuration"] floatValue];
+            if(!idleDuration) idleDuration = 2;
             platformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([thePlatform[@"x"] floatValue], [thePlatform[@"y"] floatValue])//[self convertPosition:thePlatform]
                                                withSize:CGSizeMake([thePlatform[@"width"] floatValue], [thePlatform[@"height"] floatValue])
-                                                  withDuration:[thePlatform[@"movementDuration"] floatValue] upToX:[thePlatform[@"x_limit"] floatValue] andY:y_limit];
+                                                  withDuration:[thePlatform[@"movementDuration"] floatValue] upToX:[thePlatform[@"x_limit"] floatValue] andY:y_limit andIdleDuration:idleDuration];
             
             if(platformNode)
             {
@@ -695,8 +767,58 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
 {
     return (CFAbsoluteTimeGetCurrent() - initialTime) + additionalSavedTime;
 }
+-(NSString*)getTotalTimeString  // returns the time as a string, for example: "5 minutes and 30 seconds" or "30.15 seconds"
+{
+    float theTotalTime = [self getTotalTime];
+    float seconds = fmodf(theTotalTime, 60);
+    int minutes = roundf(theTotalTime / 60);
+    NSString* userTimeString;
+    
+    if (minutes < 1)    // we return only seconds with two digits
+    {
+        userTimeString = [NSString stringWithFormat:@"%.2f seconds", seconds];
+    }
+    else if(minutes == 1)
+    {
+        userTimeString = [NSString stringWithFormat:@"one minute and %.0f seconds", seconds];
+    }
+    else if(minutes < 60) // we return minutes and seconds
+    {
+        userTimeString = [NSString stringWithFormat:@"%d minutes and %.0f seconds", minutes, seconds];
+    }
+    else // more than 60 minutes: we return this text
+    {
+        userTimeString = @"more than an hour";
+    }
+    
+    return userTimeString;
+}
+-(float)getLevelTime
+{
+    return CFAbsoluteTimeGetCurrent() - initialLevelTime;
+}
 
 // END TIME TRACKER
+
+-(void)startPlaying
+{
+    if(self.audioPlayer)
+        [self.audioPlayer play];
+}
+
+-(void)playTune:(NSString*)filename
+{
+    NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"mp3"];
+    NSError *error = nil;
+
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    self.audioPlayer.numberOfLoops = -1;
+    if (!self.audioPlayer) {
+        NSLog(@"Error creating player: %@", error);
+    }
+    [NSThread detachNewThreadSelector:@selector(startPlaying) toTarget:self withObject:nil];
+}
+
 
 
 // PAUSE & RESUME ACTIONS, LEVELS, GAME OVER
@@ -770,9 +892,16 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
 
 // END PAUSE & RESUME ACTIONS
 
+/*
+- (void)didEvaluateActions
+{
+    
+    
+}
+*/
 
 
-// This method is called just after update, befor rendering the scene
+// This method is called just after update, before rendering the scene
 - (void)didSimulatePhysics
 {
     // New code with SKCameraNode, added in iOS 9
@@ -845,7 +974,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
     NSLog(@"Total time: %f", totalTime);
     
     NSString *urlStr = [[NSString alloc]
-                        initWithFormat:@"http://paulronga.ch/edgar/score.php?user=%@&score=%0.2f", userName, totalTime];
+                        initWithFormat:@"http://paulronga.ch/edgar/score.php?user=%@&score=%.2f", userName, totalTime];
     urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     NSURL *url = [NSURL URLWithString:urlStr];
@@ -881,7 +1010,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
     
     [self addStoneBlocks:myLevel];
     [self loadAssets:myLevel]; // charge la position d'Edgar
-    [myWorld runAction:[SKAction fadeAlphaTo:1 duration:1.0]];
+//    [myWorld runAction:[SKAction fadeAlphaTo:1 duration:1.0]]; inutile avec le "rideau"
     Edgar.position = startPosition;
     myCamera.position = startPosition;
 
@@ -892,42 +1021,62 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
     
     [Edgar giveControl];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if(nextLevelIndex > 0) // we store the accomplished level
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:nextLevelIndex forKey:@"savedLevel"];
+        [defaults synchronize];
+        NSLog(@"Niveau sauvé: %d", nextLevelIndex);
+    }
     
-    // ddd checker ici si le niveau deviendra plus avancé; sinon, on ne change pas
-    [defaults setInteger:nextLevelIndex forKey:@"savedLevel"];
-    [defaults synchronize];
-    NSLog(@"Niveau sauvé: %d", nextLevelIndex);
-
-//    [Edgar addLight]; -> It works! :-)
+    if(nextLevelIndex > 1 && nextLevelIndex <= LAST_LEVEL_INDEX)
+    {
+        [Edgar addLight]; // shadow effect for levels 2-6
+    }
 }
 
 - (void) didBeginContact:(SKPhysicsContact *)contact
 {
     SKNode *contactNode = contact.bodyA.node;
+    SKNode *userNode = contact.bodyB.node;
     
     if(!listensToContactEvents)
     {
         return;
     }
 
-    if(isJumping==TRUE)
+/*    if(isJumping==TRUE)
     {
         if([contactNode isKindOfClass:[plpHero class]] || [contact.bodyB.node isKindOfClass:[plpHero class]])
         {
             isJumping = FALSE;
         }
-    }
+    }*/
     
     if(contactNode.physicsBody.categoryBitMask == PhysicsCategoryEdgar)
     {
+        // Then the nodes are inverted
         contactNode = contact.bodyB.node;
+        userNode = contact.bodyA.node;
     }else{
-        if(contact.bodyB.node.physicsBody.categoryBitMask != PhysicsCategoryEdgar)
+        if(userNode.physicsBody.categoryBitMask != PhysicsCategoryEdgar)
         {
             return; // It means Edgar isn't involved / Edgar n'est pas impliqué
         }
     }
+    
+    
+    if(isJumping==TRUE)
+    {
+        if(contactNode.physicsBody.categoryBitMask == PhysicsCategoryTiles || contactNode.physicsBody.categoryBitMask == PhysicsCategoryObjects)
+        {
+            if([userNode.name isEqualToString:@"Edgar"])
+            {
+                isJumping = FALSE;
+            }
+        }
+    }
+    
     
     if(willLoseContextVelocity==TRUE)
     {
@@ -951,16 +1100,94 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
                 [Edgar runAction: [SKAction sequence:@[[SKAction moveToX:myFinishRectangle.position.x duration: .2], [SKAction runBlock:^{
                     stopRequested = TRUE;
                 }]]]];
+                
                 [myFinishRectangle removeFromParent];
                 myFinishRectangle = nil;
                 nextLevelIndex++;
+                
                 NSLog(@"Chargement du niveau %d", nextLevelIndex);
-                id fade = [SKAction fadeAlphaTo:0 duration:1];
-                id wait = [SKAction waitForDuration:.5];
-                id run = [SKAction runBlock:^{
-                    [self startLevel];
+                
+                float theHeight = 400; //self.view.bounds.size.width;
+                float halfHeight = theHeight/2;
+                
+                SKSpriteNode *curtain1 = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
+                SKSpriteNode *curtain2 = [curtain1 copy];
+                curtain1.anchorPoint = CGPointMake(0.5, 0);
+                curtain1.position = CGPointMake(0, halfHeight);
+                curtain1.zPosition = 20;
+                curtain1.name = @"curtain1";
+                
+                curtain2.anchorPoint = CGPointMake(0.5, 1);
+                curtain2.position = CGPointMake(0, -halfHeight);
+                curtain2.zPosition = 20;
+                curtain2.name = @"curtain2";
+                [myCamera addChild:curtain1];
+                [myCamera addChild:curtain2];
+
+                SKLabelNode *displayTime = [SKLabelNode labelNodeWithFontNamed:@"Gill sans"];
+                displayTime.fontSize = 24;
+                displayTime.fontColor = [SKColor whiteColor];
+                displayTime.position = CGPointMake(40, 10);
+                displayTime.zPosition = 30;
+                
+                SKLabelNode *displayTime2 = [SKLabelNode labelNodeWithFontNamed:@"Gill sans"];
+                displayTime2.fontSize = 20;
+                displayTime2.fontColor = [SKColor whiteColor];
+                displayTime2.position = CGPointMake(40, -30);
+                displayTime2.zPosition = 30;
+                
+                if(nextLevelIndex > 1)
+                {
+                    displayTime.text = [[NSString alloc]
+                                        initWithFormat:@"Total time: %@", [self getTotalTimeString]];
+                    
+                    NSLog(@"User played %.2f.", [self getTotalTime]);
+                    displayTime2.text = [[NSString alloc]
+                                         initWithFormat:@"This level: %.2f seconds", [self getLevelTime]];
+                }
+                else
+                {
+                    displayTime.text = [[NSString alloc]
+                                        initWithFormat:@"You made this tutorial in %.2f seconds", [self getLevelTime]];
+                    
+                    NSLog(@"User played %.2f.", [self getTotalTime]);
+                    displayTime2.text = [[NSString alloc]
+                                         initWithFormat:@"Get ready for the game!"];
+                }
+                
+                // The three actions of the level transition are written in reverse order here:
+                
+                // 3. Third action: open curtains
+                
+                SKAction *openCurtain1 = [SKAction moveToY:halfHeight duration: .5];
+                SKAction *openCurtain2 = [SKAction moveToY:-halfHeight duration: .5];
+                SKAction *openCurtains = [SKAction runBlock:^{
+                    [curtain1 runAction: openCurtain1];
+                    [curtain2 runAction: openCurtain2];
                 }];
-                [myWorld runAction:[SKAction sequence:@[wait, fade, wait, run]]];
+                
+                // 2. Second action: present score and start level (completion = action 3: open curtains)
+                SKAction *presentScore = [SKAction runBlock:^{
+                    [myCamera addChild:displayTime];
+                    [myCamera addChild:displayTime2];
+
+                    // we load the level in background
+                    [self startLevel];
+                    
+                    SKAction *timeVanish = [SKAction sequence: @[[SKAction waitForDuration:2],[SKAction fadeAlphaTo:0 duration:1], [SKAction removeFromParent]]];
+                    [displayTime runAction:timeVanish];
+                    [displayTime2 runAction:timeVanish completion:^{
+                        [myWorld runAction: openCurtains];
+                    }];
+                }];
+
+                
+                // 1. First action: close curtains (completion = action 2: present score)
+                [curtain1 runAction: [SKAction moveToY:-20 duration: .5]];
+                [curtain2 runAction: [SKAction moveToY:20 duration: .5] completion:^
+                {
+                     [myWorld runAction:presentScore];
+                }];
             }
         }
         
@@ -978,7 +1205,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
                     moveRightRequested = TRUE;
                 }
 
-                NSURL *url = [[NSBundle mainBundle] URLForResource:@"Sounds/EndGame" withExtension:@"mp3"];
+                
+                
+/*                NSURL *url = [[NSBundle mainBundle] URLForResource:@"Sounds/EndGame" withExtension:@"mp3"];
                 NSError *error = nil;
                 
                 if(self.audioPlayer != nil)
@@ -990,9 +1219,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
                 if (!self.audioPlayer) {
                     NSLog(@"Error creating player: %@", error);
                 }
+                */
                 
                 SKAction *audioPlayAction = [SKAction runBlock:^{
-                    [self.audioPlayer play];
+                    [self playTune:@"Sounds/EndGame"];
+                    //[self.audioPlayer play];
                 }];
 
                 SKAction *theScale = [SKAction scaleTo:1.5 duration:2];
@@ -1091,7 +1322,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
                     myTextView = [[UITextView alloc] init];
 
                     // We get the user's time
-                    float theTotalTime = [self getTotalTime];
+/*                    float theTotalTime = [self getTotalTime];
                     float seconds = fmodf(theTotalTime, 60);
                     int minutes = roundf(theTotalTime / 60);
                     
@@ -1100,9 +1331,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
                     if (minutes > 60)
                     {
                         userTimeString = @"In more than an hour.";
-                    }
+                    }*/
                     
-                    myTextView.text = [NSString stringWithFormat:@"You succeeded! \n%@\nHowever, the alien vessel wasn’t part of the plan… \nStay tuned for the next part.\n\nSave your score online?", userTimeString];
+                    NSString* userTimeString = [self getTotalTimeString];
+                    
+                    myTextView.text = [NSString stringWithFormat:@"You did it! \nYour time: %@.\nHowever, the alien vessel wasn’t part of the plan… \nStay tuned for the next part.\n\nSave your score online?", userTimeString];
                     
                     // More information on the «Edgar The Explorer» Facebook page.\nThis is a Creative Commons and GLP game. Our assets and source code are freely available on GitHub (search for: Edgar The Explorer).
                     
@@ -1129,9 +1362,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
                     [[myButtonYes layer] setMasksToBounds:YES];
                     [[myButtonYes layer] setCornerRadius:5.0f];
                     
-/*                    [[myButtonYes layer] setBorderWidth:1.0f];
-                    [[myButtonYes layer] setBorderColor:[UIColor blackColor].CGColor];*/
-                    
+
                     [myButtonYes setTitle: @"Yes" forState:UIControlStateNormal];
                     [myButtonYes addTarget: self
                                  action: @selector(endGameWithScore:)
@@ -1194,18 +1425,32 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
             }else if([contactNode.name isEqualToString:@"moveToExit"])
             {
                 helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"goLeft.png"];
+                
+                SKTexture *menuButtonHelp = [SKTexture textureWithImageNamed:@"showMenu.png"];
+                SKAction *showButtonHelp = [SKAction setTexture:menuButtonHelp resize:YES];
+                SKTexture *suicideButtonHelp = [SKTexture textureWithImageNamed:@"showRepeat.png"];
+                SKAction *showSuicideButtonHelp = [SKAction setTexture:suicideButtonHelp resize:YES];
+                
+                SKAction *fadeOutAndWait = [SKAction sequence:@[[SKAction waitForDuration: 1.5], [SKAction fadeAlphaTo:0 duration:.5], [SKAction waitForDuration:.5]]];
+                SKAction *fadeIn = [SKAction fadeAlphaTo:1 duration: .5];
+                
+                SKAction *showButtonSequence = [SKAction sequence:@[fadeOutAndWait, showButtonHelp, fadeIn, fadeOutAndWait, showSuicideButtonHelp, fadeIn, fadeOutAndWait]];
+                
+                [helpNode runAction: showButtonSequence];
             }
             
             if(helpNode)
             {
-                
                 helpNode.name = @"helpNode";
                 if(!helpNode.position.x)
                 {
 //                    [helpNode setPosition:CGPointMake(40.0f, -20.0f)];
                     [helpNode setPosition:CGPointMake(110.0f, -20.0f)];
                     [myCamera addChild: helpNode];
-                    [myLevel runAction: [SKAction fadeAlphaTo:0.5 duration:.5]];
+
+                    
+                    
+                    //[myLevel runAction: [SKAction fadeAlphaTo:0.5 duration:.5]];
                 }else{
                     [myLevel addChild: helpNode];
                 }
@@ -1248,11 +1493,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
 
         if([contactNode isKindOfClass:[plpPlatform class]])
         {
-//            NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 42, contactNode.position.y);
-            if(Edgar.position.y - 42 > contactNode.position.y){ /// ddd verifier hauteur
-                if([Edgar hasControl]){
-                }
+            NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 42, contactNode.position.y);
+            if(Edgar.position.y - 42 > contactNode.position.y){ /// ddd verifier hauteur. Probleme: plus correct (Edgar 290 / pateforme 292 ou 158 / 159.7
                 [(plpPlatform *)contactNode setHeroAbove];
+                NSLog(@"Hero set above");
             }
         }
     }
@@ -1336,10 +1580,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    // On detecte les mouvements et la position du personnage avant de transmettre à update().
     // We get touches events before the update() function.
-
-
+    // On detecte les mouvements et la position du personnage avant de transmettre à update().
     
     if([Edgar hasControl]==TRUE) // && spriteView.paused == NO => plutot: faire variable plus globale
     {
@@ -1467,10 +1709,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
         [Edgar setSpeed:1.0];
         EdgarVelocity = 140;
         [Edgar.physicsBody setVelocity: CGVectorMake(0 + contextVelocityX, Edgar.physicsBody.velocity.dy)];
+/*        SKAction *doTheStop = [SKAction runBlock:^{
+            [Edgar.physicsBody setVelocity: CGVectorMake(0 + contextVelocityX, Edgar.physicsBody.velocity.dy)];
+        }];*/
         [Edgar facingEdgar];
         [Edgar removeActionForKey:@"bougeDroite"];
         [Edgar removeActionForKey:@"bougeGauche"];
         [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
+//        [Edgar runAction:[SKAction repeatAction:doTheStop count:2]];
     }
     
     if (moveRightRequested == TRUE && !isJumping){ // pas suffisant: ajouter s'il a pied / vitesse verticale
@@ -1510,6 +1756,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // pour eviter le contact entre 
         moveUpRequested = false;
         isJumping = TRUE;
         [Edgar.physicsBody applyImpulse: CGVectorMake(0, 48000)]; // auparavant 50000 puis 45000
+//        [Edgar.physicsBody setVelocity: CGVectorMake(Edgar.physicsBody.velocity.dx, 1550)];
         if(moveLeft||moveRight)
         {
             [Edgar jumpingEdgar];

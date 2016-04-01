@@ -34,28 +34,32 @@
 		DA207D1F1C0F3B10002DD3E8 /* icon-01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */; };
 		DA2311611B812D6800A479C6 /* masque_120.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2311601B812D6800A479C6 /* masque_120.png */; };
 		DA2794621C27666F005C3D06 /* MenuBackground in Resources */ = {isa = PBXBuildFile; fileRef = DA2794611C27666F005C3D06 /* MenuBackground */; };
+		DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */; };
 		DA35943F1C3428C800AA587D /* Train_chassis_02.png in Resources */ = {isa = PBXBuildFile; fileRef = DA35943E1C3428C800AA587D /* Train_chassis_02.png */; };
 		DA3E6C5B1C5CFC4900FDC7B3 /* decoTuto.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3E6C5A1C5CFC4900FDC7B3 /* decoTuto.png */; };
 		DA3E6C5D1C5CFC5000FDC7B3 /* Level_1_tuto.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA3E6C5C1C5CFC5000FDC7B3 /* Level_1_tuto.tmx */; };
+		DA3F53C51C9D58A000F2464E /* decoTuto_green.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3F53C21C9D58A000F2464E /* decoTuto_green.png */; };
+		DA3F53C61C9D58A000F2464E /* FeuRouge.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3F53C31C9D58A000F2464E /* FeuRouge.png */; };
+		DA3F53C71C9D58A000F2464E /* FeuVert.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3F53C41C9D58A000F2464E /* FeuVert.png */; };
+		DA3F53C91C9D58AE00F2464E /* arbre-09.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3F53C81C9D58AE00F2464E /* arbre-09.png */; };
+		DA3F53CF1C9EA6B000F2464E /* showMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3F53CE1C9EA6B000F2464E /* showMenu.png */; };
+		DA3F53D11C9EA96E00F2464E /* showRepeat.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3F53D01C9EA96E00F2464E /* showRepeat.png */; };
 		DA4A3CC11C622F9A00FAF2AB /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4A3CC01C622F9A00FAF2AB /* menuButton.png */; };
 		DA4A3CC41C62314300FAF2AB /* box-08.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4A3CC21C62314300FAF2AB /* box-08.png */; };
-		DA4A3CC51C62314300FAF2AB /* EdgarFace-02.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4A3CC31C62314300FAF2AB /* EdgarFace-02.png */; };
 		DA4E2C4D1C0CE90000E271AB /* ElementsTiles-01-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4E2C4B1C0CE90000E271AB /* ElementsTiles-01-01.png */; };
 		DA4E2C4E1C0CE90000E271AB /* Level_3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA4E2C4C1C0CE90000E271AB /* Level_3.tmx */; };
+		DA4EDEC91C77C78E0044D5BC /* showUranium.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4EDEC81C77C78E0044D5BC /* showUranium.png */; };
+		DA4EDED01C78DD1F0044D5BC /* goLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4EDECF1C78DD1F0044D5BC /* goLeft.png */; };
 		DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4A191B81133F009507F9 /* plpHero.m */; };
-		DA5C25641C0A19DB00691FA7 /* _trashLevel_2b.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA5C25631C0A19DB00691FA7 /* _trashLevel_2b.tmx */; };
 		DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */ = {isa = PBXBuildFile; fileRef = DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */; };
 		DA5CF4D11B73E907005A5C91 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5CF4D01B73E907005A5C91 /* libz.dylib */; };
 		DA5CF4E11B73EB84005A5C91 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5CF4DC1B73EB6E005A5C91 /* JSTileMap.m */; };
 		DA5CF4E21B73EB8C005A5C91 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */; };
-		DA5EC59A1B77DEAB003A19C5 /* Train-chassis.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5EC5981B77DEAB003A19C5 /* Train-chassis.png */; };
-		DA5EC59B1B77DEAB003A19C5 /* Train-roue.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5EC5991B77DEAB003A19C5 /* Train-roue.png */; };
 		DA60EAA41B7F38E100A3F927 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = DA60EAA31B7F38E100A3F927 /* Sounds */; };
 		DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7485461B86FF5100920C84 /* plpPlatform.m */; };
 		DA8AD82A199F8CD500753F58 /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA8AD829199F8CD500753F58 /* edgar.atlas */; };
 		DA8BA3D31C6149AA00EFD779 /* rayonb.png in Resources */ = {isa = PBXBuildFile; fileRef = DA8BA3D21C6149AA00EFD779 /* rayonb.png */; };
 		DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */ = {isa = PBXBuildFile; fileRef = DA984E361C0B478A00B13A08 /* LaunchScreen960.png */; };
-		DA984E391C0B478F00B13A08 /* LaunchScreen1136.png in Resources */ = {isa = PBXBuildFile; fileRef = DA984E381C0B478F00B13A08 /* LaunchScreen1136.png */; };
 		DA9EEBF51C4AA2F80056D014 /* Level_7.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA9EEBF41C4AA2F80056D014 /* Level_7.tmx */; };
 		DA9EEBF71C4AA32A0056D014 /* elementsFin-02.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9EEBF61C4AA32A0056D014 /* elementsFin-02.png */; };
 		DAAEBA7F1C0F489D00FB0A48 /* ascenseurF-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAEBA7A1C0F489D00FB0A48 /* ascenseurF-01.png */; };
@@ -63,7 +67,6 @@
 		DAAEBA811C0F489D00FB0A48 /* elevateur-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAEBA7C1C0F489D00FB0A48 /* elevateur-01.png */; };
 		DAAEBA831C0F489D00FB0A48 /* wagon-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DAAEBA7E1C0F489D00FB0A48 /* wagon-01.png */; };
 		DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAB5E1411C21DD2800809756 /* edgarsaute.atlas */; };
-		DAB74D3E1C61F31F007D1EE3 /* _trashLevel_3-train.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DAB74D3D1C61F31F007D1EE3 /* _trashLevel_3-train.tmx */; };
 		DABB49501C67EA9100EDFD12 /* Level_5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DABB494F1C67EA9100EDFD12 /* Level_5.tmx */; };
 		DABB49521C67FE1500EDFD12 /* rail_textures.png in Resources */ = {isa = PBXBuildFile; fileRef = DABB49511C67FE1500EDFD12 /* rail_textures.png */; };
 		DAC6A0C71C6A039600A54B86 /* elevateur-02-horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC6A0C61C6A039600A54B86 /* elevateur-02-horizontal.png */; };
@@ -73,9 +76,8 @@
 		DAC6A0D01C6A042A00A54B86 /* Lvl1_fond_smaller.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC6A0CE1C6A042A00A54B86 /* Lvl1_fond_smaller.png */; };
 		DAC6A0D11C6A042A00A54B86 /* Lvl1_solides_smaller.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC6A0CF1C6A042A00A54B86 /* Lvl1_solides_smaller.png */; };
 		DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAD058511A08288200DAE3E8 /* monstre.atlas */; };
-		DAD236231C2E00020048A2EB /* _trashLevel_2c.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DAD236221C2E00020048A2EB /* _trashLevel_2c.tmx */; };
-		DAD236251C2E02430048A2EB /* _trashLevel_2d.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DAD236241C2E02430048A2EB /* _trashLevel_2d.tmx */; };
 		DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DADBE5191C0A5E9A004469EA /* Media.xcassets */; };
+		DAE228E01C9CBD330022365F /* ChariotRoue--correct.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE228DF1C9CBD330022365F /* ChariotRoue--correct.png */; };
 		DAE67FBE1A0520BC00F6AFDC /* edgarDeFace.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE67FBD1A0520BC00F6AFDC /* edgarDeFace.png */; };
 		DAE713D61C0FA04100ED9139 /* ascenseur-start.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE713D51C0FA04100ED9139 /* ascenseur-start.png */; };
 		DAE713D91C0FA75800ED9139 /* media-repeat-alt.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE713D81C0FA75800ED9139 /* media-repeat-alt.png */; };
@@ -84,10 +86,8 @@
 		DAE9259F1C60060900389716 /* UFO1-02.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE9259E1C60060900389716 /* UFO1-02.png */; };
 		DAF2CB141B83B8B000FC7FF1 /* plpTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */; };
 		DAF381B41B9E2E21008B4D5D /* plpItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF381B31B9E2E21008B4D5D /* plpItem.m */; };
-		DAF9D5BB1C5D561A007A1047 /* swipeRight.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF9D5BA1C5D561A007A1047 /* swipeRight.png */; };
-		DAF9D5BD1C5D5B00007A1047 /* swipeJump.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF9D5BC1C5D5B00007A1047 /* swipeJump.png */; };
-		DAF9D5BF1C5D68EF007A1047 /* showUranium.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF9D5BE1C5D68EF007A1047 /* showUranium.png */; };
-		DAFC15461BB840DE00AEB214 /* elements-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DAFC15441BB840DE00AEB214 /* elements-01.png */; };
+		DAF898A31C71FDF100CF3F4D /* swipeRight.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF898A21C71FDF100CF3F4D /* swipeRight.png */; };
+		DAF898A51C71FF5600CF3F4D /* swipeJump.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF898A41C71FF5600CF3F4D /* swipeJump.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,32 +135,36 @@
 		DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-01@3x.png"; sourceTree = "<group>"; };
 		DA2311601B812D6800A479C6 /* masque_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = masque_120.png; sourceTree = "<group>"; };
 		DA2794611C27666F005C3D06 /* MenuBackground */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MenuBackground; path = decor/MenuBackground; sourceTree = "<group>"; };
+		DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen1136.png; sourceTree = "<group>"; };
 		DA35943E1C3428C800AA587D /* Train_chassis_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Train_chassis_02.png; sourceTree = "<group>"; };
 		DA3E6C5A1C5CFC4900FDC7B3 /* decoTuto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = decoTuto.png; sourceTree = "<group>"; };
 		DA3E6C5C1C5CFC5000FDC7B3 /* Level_1_tuto.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_1_tuto.tmx; sourceTree = "<group>"; };
+		DA3F53C21C9D58A000F2464E /* decoTuto_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = decoTuto_green.png; sourceTree = "<group>"; };
+		DA3F53C31C9D58A000F2464E /* FeuRouge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FeuRouge.png; sourceTree = "<group>"; };
+		DA3F53C41C9D58A000F2464E /* FeuVert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FeuVert.png; sourceTree = "<group>"; };
+		DA3F53C81C9D58AE00F2464E /* arbre-09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arbre-09.png"; sourceTree = "<group>"; };
+		DA3F53CE1C9EA6B000F2464E /* showMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showMenu.png; sourceTree = "<group>"; };
+		DA3F53D01C9EA96E00F2464E /* showRepeat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showRepeat.png; sourceTree = "<group>"; };
 		DA4A3CC01C622F9A00FAF2AB /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		DA4A3CC21C62314300FAF2AB /* box-08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-08.png"; sourceTree = "<group>"; };
-		DA4A3CC31C62314300FAF2AB /* EdgarFace-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EdgarFace-02.png"; sourceTree = "<group>"; };
 		DA4E2C4B1C0CE90000E271AB /* ElementsTiles-01-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ElementsTiles-01-01.png"; sourceTree = "<group>"; };
 		DA4E2C4C1C0CE90000E271AB /* Level_3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_3.tmx; sourceTree = "<group>"; };
+		DA4EDEC81C77C78E0044D5BC /* showUranium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showUranium.png; sourceTree = "<group>"; };
+		DA4EDECF1C78DD1F0044D5BC /* goLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goLeft.png; sourceTree = "<group>"; };
 		DA5B4A181B81133F009507F9 /* plpHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpHero.h; sourceTree = "<group>"; };
 		DA5B4A191B81133F009507F9 /* plpHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpHero.m; sourceTree = "<group>"; };
-		DA5C25631C0A19DB00691FA7 /* _trashLevel_2b.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = _trashLevel_2b.tmx; sourceTree = "<group>"; };
 		DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JSTileMap; sourceTree = "<group>"; };
 		DA5CF4D01B73E907005A5C91 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DA5CF4DB1B73EB6E005A5C91 /* JSTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTileMap.h; sourceTree = "<group>"; };
 		DA5CF4DC1B73EB6E005A5C91 /* JSTileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTileMap.m; sourceTree = "<group>"; };
 		DA5CF4DD1B73EB6E005A5C91 /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtility.h; sourceTree = "<group>"; };
 		DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
-		DA5EC5981B77DEAB003A19C5 /* Train-chassis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Train-chassis.png"; sourceTree = "<group>"; };
-		DA5EC5991B77DEAB003A19C5 /* Train-roue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Train-roue.png"; sourceTree = "<group>"; };
 		DA60EAA31B7F38E100A3F927 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		DA7485451B86FF5100920C84 /* plpPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpPlatform.h; sourceTree = "<group>"; };
 		DA7485461B86FF5100920C84 /* plpPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpPlatform.m; sourceTree = "<group>"; };
 		DA8AD829199F8CD500753F58 /* edgar.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgar.atlas; sourceTree = "<group>"; };
 		DA8BA3D21C6149AA00EFD779 /* rayonb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rayonb.png; sourceTree = "<group>"; };
 		DA984E361C0B478A00B13A08 /* LaunchScreen960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen960.png; sourceTree = "<group>"; };
-		DA984E381C0B478F00B13A08 /* LaunchScreen1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen1136.png; sourceTree = "<group>"; };
 		DA9EEBF41C4AA2F80056D014 /* Level_7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_7.tmx; sourceTree = "<group>"; };
 		DA9EEBF61C4AA32A0056D014 /* elementsFin-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "elementsFin-02.png"; sourceTree = "<group>"; };
 		DAAAA5BD1BB15E2700EF9296 /* Maze Escape-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Maze Escape-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -169,7 +173,6 @@
 		DAAEBA7C1C0F489D00FB0A48 /* elevateur-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "elevateur-01.png"; sourceTree = "<group>"; };
 		DAAEBA7E1C0F489D00FB0A48 /* wagon-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wagon-01.png"; sourceTree = "<group>"; };
 		DAB5E1411C21DD2800809756 /* edgarsaute.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgarsaute.atlas; sourceTree = "<group>"; };
-		DAB74D3D1C61F31F007D1EE3 /* _trashLevel_3-train.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "_trashLevel_3-train.tmx"; sourceTree = "<group>"; };
 		DABB494F1C67EA9100EDFD12 /* Level_5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_5.tmx; sourceTree = "<group>"; };
 		DABB49511C67FE1500EDFD12 /* rail_textures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rail_textures.png; sourceTree = "<group>"; };
 		DAC6A0C61C6A039600A54B86 /* elevateur-02-horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "elevateur-02-horizontal.png"; sourceTree = "<group>"; };
@@ -179,9 +182,8 @@
 		DAC6A0CE1C6A042A00A54B86 /* Lvl1_fond_smaller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lvl1_fond_smaller.png; sourceTree = "<group>"; };
 		DAC6A0CF1C6A042A00A54B86 /* Lvl1_solides_smaller.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lvl1_solides_smaller.png; sourceTree = "<group>"; };
 		DAD058511A08288200DAE3E8 /* monstre.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = monstre.atlas; sourceTree = "<group>"; };
-		DAD236221C2E00020048A2EB /* _trashLevel_2c.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = _trashLevel_2c.tmx; sourceTree = "<group>"; };
-		DAD236241C2E02430048A2EB /* _trashLevel_2d.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = _trashLevel_2d.tmx; sourceTree = "<group>"; };
 		DADBE5191C0A5E9A004469EA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		DAE228DF1C9CBD330022365F /* ChariotRoue--correct.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ChariotRoue--correct.png"; path = "../../Edgar_Community/Community/Import_items/NEW/ChariotRoue--correct.png"; sourceTree = "<group>"; };
 		DAE67FBD1A0520BC00F6AFDC /* edgarDeFace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edgarDeFace.png; sourceTree = "<group>"; };
 		DAE713D51C0FA04100ED9139 /* ascenseur-start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ascenseur-start.png"; sourceTree = "<group>"; };
 		DAE713D81C0FA75800ED9139 /* media-repeat-alt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "media-repeat-alt.png"; sourceTree = "<group>"; };
@@ -192,10 +194,8 @@
 		DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpTrain.m; sourceTree = "<group>"; };
 		DAF381B21B9E2E21008B4D5D /* plpItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpItem.h; sourceTree = "<group>"; };
 		DAF381B31B9E2E21008B4D5D /* plpItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpItem.m; sourceTree = "<group>"; };
-		DAF9D5BA1C5D561A007A1047 /* swipeRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeRight.png; sourceTree = "<group>"; };
-		DAF9D5BC1C5D5B00007A1047 /* swipeJump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeJump.png; sourceTree = "<group>"; };
-		DAF9D5BE1C5D68EF007A1047 /* showUranium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showUranium.png; sourceTree = "<group>"; };
-		DAFC15441BB840DE00AEB214 /* elements-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "elements-01.png"; sourceTree = "<group>"; };
+		DAF898A21C71FDF100CF3F4D /* swipeRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeRight.png; sourceTree = "<group>"; };
+		DAF898A41C71FF5600CF3F4D /* swipeJump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeJump.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,7 +264,6 @@
 				DAD058511A08288200DAE3E8 /* monstre.atlas */,
 				DAE713D71C0FA6D600ED9139 /* UI */,
 				DAAEBA791C0F488A00FB0A48 /* objects */,
-				DAB5E1401C21DC6200809756 /* objects_old */,
 				DA1E7C691C120E9C00147FA2 /* Levels */,
 				DA03CBE1199F4C4700406720 /* Main_iPhone.storyboard */,
 				DA03CBE4199F4C4700406720 /* Main_iPad.storyboard */,
@@ -318,10 +317,6 @@
 		DA1E7C691C120E9C00147FA2 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
-				DAB74D3D1C61F31F007D1EE3 /* _trashLevel_3-train.tmx */,
-				DA5C25631C0A19DB00691FA7 /* _trashLevel_2b.tmx */,
-				DAD236221C2E00020048A2EB /* _trashLevel_2c.tmx */,
-				DAD236241C2E02430048A2EB /* _trashLevel_2d.tmx */,
 				DA3E6C5C1C5CFC5000FDC7B3 /* Level_1_tuto.tmx */,
 				DA1E7C671C120E9200147FA2 /* Level_2.tmx */,
 				DA4E2C4C1C0CE90000E271AB /* Level_3.tmx */,
@@ -367,14 +362,18 @@
 		DAAEBA791C0F488A00FB0A48 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				DA3F53C81C9D58AE00F2464E /* arbre-09.png */,
 				DAC6A0CE1C6A042A00A54B86 /* Lvl1_fond_smaller.png */,
 				DAC6A0CF1C6A042A00A54B86 /* Lvl1_solides_smaller.png */,
+				DA3F53C21C9D58A000F2464E /* decoTuto_green.png */,
+				DA3F53C31C9D58A000F2464E /* FeuRouge.png */,
+				DA3F53C41C9D58A000F2464E /* FeuVert.png */,
 				DAC6A0C81C6A03B500A54B86 /* ChariotBase.png */,
 				DAC6A0C91C6A03B600A54B86 /* ChariotRoue.png */,
+				DAE228DF1C9CBD330022365F /* ChariotRoue--correct.png */,
 				DAC6A0CA1C6A03B600A54B86 /* ChariotSocle.png */,
 				DABB49511C67FE1500EDFD12 /* rail_textures.png */,
 				DA4A3CC21C62314300FAF2AB /* box-08.png */,
-				DA4A3CC31C62314300FAF2AB /* EdgarFace-02.png */,
 				DAE67FBD1A0520BC00F6AFDC /* edgarDeFace.png */,
 				DA3E6C5A1C5CFC4900FDC7B3 /* decoTuto.png */,
 				DA4E2C4B1C0CE90000E271AB /* ElementsTiles-01-01.png */,
@@ -393,16 +392,6 @@
 			name = objects;
 			sourceTree = "<group>";
 		};
-		DAB5E1401C21DC6200809756 /* objects_old */ = {
-			isa = PBXGroup;
-			children = (
-				DAFC15441BB840DE00AEB214 /* elements-01.png */,
-				DA5EC5981B77DEAB003A19C5 /* Train-chassis.png */,
-				DA5EC5991B77DEAB003A19C5 /* Train-roue.png */,
-			);
-			name = objects_old;
-			sourceTree = "<group>";
-		};
 		DAE713D71C0FA6D600ED9139 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,13 +399,16 @@
 				DAE713D81C0FA75800ED9139 /* media-repeat-alt.png */,
 				DA4A3CC01C622F9A00FAF2AB /* menuButton.png */,
 				DA984E361C0B478A00B13A08 /* LaunchScreen960.png */,
-				DA984E381C0B478F00B13A08 /* LaunchScreen1136.png */,
+				DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */,
 				DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */,
 				DA207D1C1C0F3986002DD3E8 /* icon-01@2x.png */,
 				DAE713DA1C0FA87500ED9139 /* Play.png */,
-				DAF9D5BA1C5D561A007A1047 /* swipeRight.png */,
-				DAF9D5BC1C5D5B00007A1047 /* swipeJump.png */,
-				DAF9D5BE1C5D68EF007A1047 /* showUranium.png */,
+				DAF898A21C71FDF100CF3F4D /* swipeRight.png */,
+				DA3F53CE1C9EA6B000F2464E /* showMenu.png */,
+				DA3F53D01C9EA96E00F2464E /* showRepeat.png */,
+				DA4EDEC81C77C78E0044D5BC /* showUranium.png */,
+				DAF898A41C71FF5600CF3F4D /* swipeJump.png */,
+				DA4EDECF1C78DD1F0044D5BC /* goLeft.png */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -502,63 +494,63 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAFC15461BB840DE00AEB214 /* elements-01.png in Resources */,
 				DA35943F1C3428C800AA587D /* Train_chassis_02.png in Resources */,
 				DABB49501C67EA9100EDFD12 /* Level_5.tmx in Resources */,
 				DAC6A0C71C6A039600A54B86 /* elevateur-02-horizontal.png in Resources */,
+				DA3F53C61C9D58A000F2464E /* FeuRouge.png in Resources */,
 				DAAEBA811C0F489D00FB0A48 /* elevateur-01.png in Resources */,
-				DAB74D3E1C61F31F007D1EE3 /* _trashLevel_3-train.tmx in Resources */,
+				DA3F53C91C9D58AE00F2464E /* arbre-09.png in Resources */,
 				DA08E03A1C234EF7007B42A4 /* Level_6.tmx in Resources */,
 				DAC6A0D11C6A042A00A54B86 /* Lvl1_solides_smaller.png in Resources */,
 				DA2311611B812D6800A479C6 /* masque_120.png in Resources */,
 				DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */,
 				DA207D1D1C0F3986002DD3E8 /* icon-01@2x.png in Resources */,
+				DA3F53D11C9EA96E00F2464E /* showRepeat.png in Resources */,
 				DA08E0391C234EF7007B42A4 /* Level_4.tmx in Resources */,
 				DAC6A0D01C6A042A00A54B86 /* Lvl1_fond_smaller.png in Resources */,
-				DAD236251C2E02430048A2EB /* _trashLevel_2d.tmx in Resources */,
 				DA1E7C681C120E9200147FA2 /* Level_2.tmx in Resources */,
+				DA3F53C71C9D58A000F2464E /* FeuVert.png in Resources */,
 				DA3E6C5D1C5CFC5000FDC7B3 /* Level_1_tuto.tmx in Resources */,
 				DA9EEBF51C4AA2F80056D014 /* Level_7.tmx in Resources */,
+				DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */,
 				DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */,
 				DA9EEBF71C4AA32A0056D014 /* elementsFin-02.png in Resources */,
 				DAAEBA7F1C0F489D00FB0A48 /* ascenseurF-01.png in Resources */,
 				DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */,
 				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
 				DA0295E61A0D34B0001BC725 /* masque2.png in Resources */,
-				DA4A3CC51C62314300FAF2AB /* EdgarFace-02.png in Resources */,
-				DA5EC59A1B77DEAB003A19C5 /* Train-chassis.png in Resources */,
-				DAF9D5BD1C5D5B00007A1047 /* swipeJump.png in Resources */,
+				DAF898A31C71FDF100CF3F4D /* swipeRight.png in Resources */,
 				DAE713DB1C0FA87500ED9139 /* Play.png in Resources */,
 				DAE67FBE1A0520BC00F6AFDC /* edgarDeFace.png in Resources */,
 				DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */,
-				DAF9D5BB1C5D561A007A1047 /* swipeRight.png in Resources */,
 				DA4A3CC11C622F9A00FAF2AB /* menuButton.png in Resources */,
-				DA5C25641C0A19DB00691FA7 /* _trashLevel_2b.tmx in Resources */,
 				DA03CBE6199F4C4700406720 /* Main_iPad.storyboard in Resources */,
 				DAC6A0CC1C6A03B600A54B86 /* ChariotRoue.png in Resources */,
 				DA03CBE3199F4C4700406720 /* Main_iPhone.storyboard in Resources */,
 				DA4A3CC41C62314300FAF2AB /* box-08.png in Resources */,
 				DAC6A0CB1C6A03B600A54B86 /* ChariotBase.png in Resources */,
+				DA3F53CF1C9EA6B000F2464E /* showMenu.png in Resources */,
 				DA03CBDA199F4C4700406720 /* InfoPlist.strings in Resources */,
-				DAD236231C2E00020048A2EB /* _trashLevel_2c.tmx in Resources */,
 				DA2794621C27666F005C3D06 /* MenuBackground in Resources */,
 				DA60EAA41B7F38E100A3F927 /* Sounds in Resources */,
 				DAAEBA801C0F489D00FB0A48 /* ascenseurO-01.png in Resources */,
-				DA5EC59B1B77DEAB003A19C5 /* Train-roue.png in Resources */,
 				DA4E2C4E1C0CE90000E271AB /* Level_3.tmx in Resources */,
+				DA3F53C51C9D58A000F2464E /* decoTuto_green.png in Resources */,
 				DA3E6C5B1C5CFC4900FDC7B3 /* decoTuto.png in Resources */,
 				DAE713D91C0FA75800ED9139 /* media-repeat-alt.png in Resources */,
 				DA8BA3D31C6149AA00EFD779 /* rayonb.png in Resources */,
+				DA4EDEC91C77C78E0044D5BC /* showUranium.png in Resources */,
 				DAE713D61C0FA04100ED9139 /* ascenseur-start.png in Resources */,
-				DA984E391C0B478F00B13A08 /* LaunchScreen1136.png in Resources */,
+				DA4EDED01C78DD1F0044D5BC /* goLeft.png in Resources */,
 				DAAEBA831C0F489D00FB0A48 /* wagon-01.png in Resources */,
 				DAE9259F1C60060900389716 /* UFO1-02.png in Resources */,
 				DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */,
-				DAF9D5BF1C5D68EF007A1047 /* showUranium.png in Resources */,
 				DA8AD82A199F8CD500753F58 /* edgar.atlas in Resources */,
+				DAF898A51C71FF5600CF3F4D /* swipeJump.png in Resources */,
 				DA4E2C4D1C0CE90000E271AB /* ElementsTiles-01-01.png in Resources */,
 				DAE8F7EC1C625B6E00954793 /* pile.png in Resources */,
 				DA0295E51A0D34B0001BC725 /* masque.png in Resources */,
+				DAE228E01C9CBD330022365F /* ChariotRoue--correct.png in Resources */,
 				DAC6A0CD1C6A03B600A54B86 /* ChariotSocle.png in Resources */,
 				DA207D1F1C0F3B10002DD3E8 /* icon-01@3x.png in Resources */,
 				DABB49521C67FE1500EDFD12 /* rail_textures.png in Resources */,

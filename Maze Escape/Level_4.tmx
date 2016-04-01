@@ -10,7 +10,7 @@
  </layer>
  <layer name="Solide" width="15" height="11">
   <data encoding="base64" compression="zlib">
-   eJzjY2Bg4KMAkwOooZefSIxNLxcF9lKqF4YZ0TB6eEgwYIYzN5QtgQXjspPYcObGoZ/YcEbGlOoFAML7BRs=
+   eJzjY2Bg4KMAkwNI0cuNQy857qOXm4nRy4iG0eUlGDD9wQVlS5BgJwiLE1DLjcV+StIEpRgARmMElA==
   </data>
  </layer>
  <objectgroup name="Objets">
@@ -23,7 +23,7 @@
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
   </object>
-  <object id="4" name="Caisse" type="Caisse" x="982.667" y="817" width="60" height="60"/>
+  <object id="4" name="Caisse" type="Caisse" x="875.667" y="813" width="60" height="60"/>
   <object id="7" name="platform" x="1096" y="601" width="101" height="10">
    <properties>
     <property name="movementDuration" value="2"/>
