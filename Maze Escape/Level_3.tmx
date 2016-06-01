@@ -39,7 +39,7 @@
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
   </object>
-  <object id="11" name="alien1" type="alien" x="946.448" y="259.53" width="59.1045" height="36.9403">
+  <object id="11" name="alien1zz" type="alien" x="946.448" y="259.53" width="59.1045" height="36.9403">
    <properties>
     <property name="moveX" value="100"/>
    </properties>

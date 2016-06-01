@@ -54,10 +54,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     self = [super initWithTexture:plateformeTexture];
     
     if (self) {
-//        NSLog(@"Size: %f, %f", size.width, size.height);
         self.size = size;
         self.position = position;
-        initXPosition = position.x; // pour calculer si la plateforme est revenue au depart
+        initXPosition = position.x;
         initYPosition = position.y;
         
         self.anchorPoint = CGPointMake(0, 0);
@@ -79,7 +78,30 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         float Yspeed = [self calculateSpeedForDuration:duration fromPosition:initYPosition toLimit:y_limit];
         
 
-        // Very primitive movement: we just set a constant speed
+        
+        // Horizontal platform: a SKAction won't work with physics (Edgar will fall).
+        // Very primitive movement: we just set a constant speed.
+        
+        if(initXPosition == x_limit)
+        {
+            isVertical = TRUE;
+            if(Yspeed > 0)
+            {
+                motionSpeed = Yspeed;
+            }
+            else
+            {
+                motionSpeed = -Yspeed;
+            }
+        }
+        
+        SKAction *theMoveReNew = [SKAction runBlock:^{
+            float newSpeed = [self calculateSpeedForDuration: 2 fromPosition:1 toLimit:2];
+            [self.physicsBody setVelocity:CGVectorMake(Xspeed, Yspeed)];
+            {
+                contextVelocityX = Xspeed;
+            }
+        }];
         
         SKAction *theMove = [SKAction runBlock:^{
             if(movingLeft==FALSE){
@@ -106,9 +128,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
             }
         }];
 
-        SKAction *maNewSequence = [SKAction sequence:@[waitDuration, theMove, moveDuration, stop]];
-        
-        [self runAction:[SKAction repeatActionForever: maNewSequence]];
+        SKAction *wholeSequence = [SKAction sequence:@[waitDuration, theMove, moveDuration, stop]];
+
+    
+        [self runAction:[SKAction repeatActionForever: wholeSequence]];
     }
     return self;
 }
@@ -138,5 +161,37 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     heroAbove = FALSE;
 }
 
+- (void) emergencyStop
+{
+    if(isVertical && self.physicsBody.velocity.dy < 0 && !emergencyStopTriggered) // only if the platform is moving down
+    {
+        NSLog(@"Emergency stop!");
+        emergencyStopTriggered = TRUE; // to avoid simoultaneous calls
+        
+        [self setSpeed: 0]; // We pause the animation
+        [self.physicsBody setVelocity:CGVectorMake(0, motionSpeed)]; // We invert the direction
+        
+        SKAction *delay = [SKAction waitForDuration: .5];
+
+        [self.scene runAction: delay completion:^
+        {
+            [self.physicsBody setVelocity:CGVectorMake(0, 0)];
+            [self.scene runAction: [SKAction waitForDuration: 2] completion:^
+            {
+                [self.physicsBody setVelocity:CGVectorMake(0, -motionSpeed)];
+                
+
+                [self.scene runAction: delay completion:^
+                {
+                    NSLog(@"Animation runs again");
+                    emergencyStopTriggered = FALSE;
+
+                    [self setSpeed: 1]; // animation runs again
+                }];
+
+            }];
+        }];
+    }
+}
 
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LVB-YS-i5n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LVB-YS-i5n">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="M1-01.png" translatesAutoresizingMaskIntoConstraints="NO" id="ujh-gO-BHA">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="M1-01.png" translatesAutoresizingMaskIntoConstraints="NO" id="ujh-gO-BHA">
                                 <rect key="frame" x="0.0" y="1" width="568" height="319"/>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yo3-0O-95n">
@@ -30,7 +30,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="pZ4-yd-4q1"/>
                                     <constraint firstAttribute="height" constant="30" id="uIl-Yn-MhU"/>
                                 </constraints>
-                                <state key="normal" title="†" image="media-repeat-alt.png"/>
+                                <state key="normal" title="†" image="repeatButton.png"/>
                                 <connections>
                                     <action selector="suicideButtonClicked:" destination="LVB-YS-i5n" eventType="touchUpInside" id="bby-Td-5Ce"/>
                                 </connections>
@@ -113,17 +113,17 @@ Music:
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nMO-WS-ykg" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="94" id="1vg-rx-1sz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yo3-0O-95n" secondAttribute="trailing" constant="-20" id="9vI-lf-tr2"/>
                             <constraint firstItem="onC-Dn-GGJ" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="B3m-xH-vje"/>
-                            <constraint firstItem="nMO-WS-ykg" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="94" id="BzJ-xz-5lO"/>
                             <constraint firstItem="yo3-0O-95n" firstAttribute="leading" secondItem="aq6-QR-X9y" secondAttribute="trailing" constant="8" id="E9p-wE-48V"/>
-                            <constraint firstItem="yo3-0O-95n" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" id="EYb-2P-8KG"/>
+                            <constraint firstItem="onC-Dn-GGJ" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="91" id="EWu-nh-ZJR"/>
                             <constraint firstItem="nMO-WS-ykg" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="Ive-d4-dQu"/>
-                            <constraint firstItem="onC-Dn-GGJ" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="91" id="QVI-ec-JJ9"/>
+                            <constraint firstItem="hBq-SW-Aka" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="8" id="Lgj-Fh-MrT"/>
+                            <constraint firstItem="yo3-0O-95n" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" id="O3p-c5-Gyb"/>
                             <constraint firstItem="hBq-SW-Aka" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="UXE-uF-DG0"/>
-                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="nMO-WS-ykg" secondAttribute="bottom" constant="20" id="aRC-e9-ePa"/>
-                            <constraint firstItem="hBq-SW-Aka" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="8" id="fbJ-vU-Wmo"/>
-                            <constraint firstItem="aq6-QR-X9y" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" id="s2P-RA-zfU"/>
+                            <constraint firstItem="aq6-QR-X9y" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" id="h7B-gh-iYh"/>
+                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="nMO-WS-ykg" secondAttribute="bottom" constant="20" id="pCp-vC-jB8"/>
                         </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -143,8 +143,8 @@ Music:
     <resources>
         <image name="M1-01.png" width="1920" height="1080"/>
         <image name="Play.png" width="173" height="173"/>
-        <image name="media-repeat-alt.png" width="40" height="40"/>
         <image name="menuButton.png" width="74" height="70"/>
+        <image name="repeatButton.png" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>

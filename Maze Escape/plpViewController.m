@@ -104,6 +104,7 @@
     [containerView removeFromSuperview];
     
     [self presentTheScene: choosenLevel];
+    [(plpMyScene*)myScene computeCenter];
 }
 
 - (void)presentTheScene: (NSInteger)startLevel
@@ -173,7 +174,7 @@
             myTextView.textColor = [UIColor whiteColor];
             myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
             myTextView.editable = NO;
-            [myTextView setFont:[UIFont fontWithName:@"Gill Sans" size:18]];
+            [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
             
             float outsideMargin = 60;
             float insideMargin = 30;
@@ -227,7 +228,7 @@
             myTextView.textColor = [UIColor whiteColor];
             myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
             myTextView.editable = NO;
-            [myTextView setFont:[UIFont fontWithName:@"Gill Sans" size:18]];
+            [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
             
             float outsideMargin = 60;
             float insideMargin = 30;
@@ -267,28 +268,21 @@
 
 - (BOOL)shouldAutorotate
 {
-    return NO;
+    return YES;
 }
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000
-- (NSUInteger)supportedInterfaceOrientations
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationMaskLandscape;
-    } else {
-        return UIInterfaceOrientationMaskLandscape;
-    }
-}
-#else
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationMaskLandscape;
-    } else {
-        return UIInterfaceOrientationMaskLandscape;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        NSLog(@"Running on iPad");
+        runningOniPad = TRUE;
     }
+    if([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone)
+    {
+        NSLog(@"Not on an iPhone");
+    }
+    return UIInterfaceOrientationMaskLandscape;
 }
-#endif
 
 - (void)didReceiveMemoryWarning
 {

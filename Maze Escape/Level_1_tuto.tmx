@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="15" height="7" tilewidth="100" tileheight="100" nextobjectid="8">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="16" height="7" tilewidth="100" tileheight="100" nextobjectid="11">
  <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
   <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
  </tileset>
- <tileset firstgid="40" name="tuto-03" tilewidth="100" tileheight="100">
-  <image source="decoTuto.png" width="200" height="200"/>
+ <tileset firstgid="40" name="decoTuto_green" tilewidth="100" tileheight="100">
+  <image source="decoTuto_green.png" width="300" height="200"/>
  </tileset>
- <tileset firstgid="44" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
-  <image source="../../Maze Escape Production/Maze Escape/ElementsTiles-01-01.png" width="1300" height="300"/>
- </tileset>
- <layer name="Fond" width="15" height="7">
+ <layer name="Fond" width="16" height="7">
   <data encoding="base64" compression="zlib">
-   eJyTZmBgkKYCliWCjQtrIbE18aiTpJJbyXUnOtaG0hpY/EFNDABm3wtl
+   eJxjYKAcaJCIidGviUe/FgXuo8T9hMzXRmLrQGldAnopBQABZQdo
   </data>
  </layer>
- <layer name="Solide" width="15" height="7">
+ <layer name="Solide" width="16" height="7">
   <data encoding="base64" compression="zlib">
-   eJzjY2Bg4KMAkwpw6eUmQz+x7iLXzfjM5UbC5LqRWAwAl7YDWQ==
+   eJzjY2Bg4KMQkwrw6ecm0wxi3UeJ+ynxP6VhjAsDAAclA5o=
   </data>
  </layer>
  <objectgroup name="Objets">
@@ -34,7 +31,7 @@
     <property name="nodename" value="jump"/>
    </properties>
   </object>
-  <object id="5" name="sensor" x="902.5" y="473.5" width="93" height="123">
+  <object id="5" name="sensor" x="753.333" y="394" width="347.667" height="202.5">
    <properties>
     <property name="nodename" value="goUpstairs"/>
    </properties>
@@ -44,9 +41,14 @@
     <property name="nodename" value="walk"/>
    </properties>
   </object>
-  <object id="7" name="sensor" x="1180.5" y="172.5" width="93" height="123">
+  <object id="7" name="sensor" x="1154" y="172.5" width="151" height="250.5">
    <properties>
     <property name="nodename" value="showUranium"/>
+   </properties>
+  </object>
+  <object id="8" name="sensor" x="424" y="475.5" width="310" height="123">
+   <properties>
+    <property name="nodename" value="moveToExit"/>
    </properties>
   </object>
  </objectgroup>

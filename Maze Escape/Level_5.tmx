@@ -8,7 +8,7 @@
  </tileset>
  <layer name="Fond" width="40" height="6">
   <data encoding="base64" compression="zlib">
-   eJxjYGBgkCYDEwtkoFgWiS2NhS+NxJdBM4NUtyGbyYNmNrFsfHx0Nw4390nS2X2UAFq4j4GK7sMHpHGwieHDAABb6hGm
+   eJxjYGBgkCYDEwtg6mXR9KPz8dlBqttkkNg8ZPqPlDAYbu6TpLH7YP6nBqCF+xio6D58AD2OcMlh48MAADO2EYI=
   </data>
  </layer>
  <layer name="Solide" width="40" height="6">
@@ -29,7 +29,7 @@
   <object id="8" name="train" type="train" x="225.333" y="302.667" width="60" height="60">
    <ellipse/>
   </object>
-  <object id="9" name="verticalPlatform" x="1604" y="348" width="95" height="62">
+  <object id="9" name="verticalPlatform" x="1605" y="348" width="95" height="62">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="1"/>
@@ -37,7 +37,7 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
-  <object id="10" name="verticalPlatform" x="1603.06" y="286" width="93.9395" height="102">
+  <object id="10" name="verticalPlatform" x="1603.06" y="282" width="93.9395" height="106">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="1"/>

@@ -24,22 +24,16 @@
 #import <SpriteKit/SpriteKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "JSTileMap.h"
-//#import "plpDelegate.h"
 #import "plpHero.h"
 #import "plpEnemy.h"
 #import "plpTrain.h"
 #import "plpPlatform.h"
 #import "plpItem.h"
 
-#define MAXNUMBEROFDEATHS 10
-
-#define SUICIDE_DEATH 0
-#define CRASH_DEATH 1
-#define FALLEN_DEATH 2
-#define ALIEN_DEATH 3
-#define HAMMER_DEATH 4
 #define LAST_LEVEL_INDEX 6
 #define USE_ALTERNATE_CONTROLS 0
+#define DEFAULT_EDGAR_VELOCITY 150
+
 
 float contextVelocityX;
 
@@ -50,17 +44,21 @@ float contextVelocityX;
     JSTileMap *myLevel;
     SKNode *myWorld;
     SKCameraNode *myCamera;
+    float screenCenterX;
+    BOOL cheatsEnabled;
     BOOL freeCamera;
     BOOL waitForTap;
     BOOL moveLeftRequested;
     BOOL moveRightRequested;
     BOOL moveUpRequested;
+    BOOL bigJumpRequested;
     BOOL stopRequested;
     BOOL gonnaCrash;
     BOOL moveLeft;
     BOOL moveRight;
     BOOL willLoseContextVelocity;
     BOOL listensToContactEvents;
+    BOOL levelTransitioning;
     int deathCount;
     int globalCounter;
     float EdgarVelocity;
@@ -78,6 +76,7 @@ float contextVelocityX;
     UITextView *myTextView;
     BOOL isJumping;
     BOOL ignoreNextTap;
+    BOOL runningOniPad;
     double initialTime;
     double initialLevelTime;
     double additionalSavedTime;
@@ -94,11 +93,9 @@ float contextVelocityX;
 -(void)saveHighScoreForUser:(NSString*)userName;
 -(void)saveInitialTime;
 -(void)saveAdditionalTime;
--(void)playTune:(NSString*)filename;
+-(void)playTune:(NSString*)filename loops:(int)loops;
+-(void)computeCenter;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
-@property (strong, nonatomic) SKAction *hopSound;
-@property (strong, nonatomic) SKAction *sgroSound;
-//@property (nonatomic) float contextVelocityX;
 
 @end

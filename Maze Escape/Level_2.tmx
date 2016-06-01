@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="26" height="6" tilewidth="100" tileheight="100" nextobjectid="28">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="26" height="6" tilewidth="100" tileheight="100" nextobjectid="30">
  <tileset firstgid="1" name="Lvl1_fond_smaller" tilewidth="100" tileheight="100">
   <image source="Lvl1_fond_smaller.png" width="1000" height="400"/>
  </tileset>
@@ -35,5 +35,6 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
+  <object id="28" name="arbre" type="arbre" x="40" y="17" width="253" height="285"/>
  </objectgroup>
 </map>

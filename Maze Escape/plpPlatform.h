@@ -25,8 +25,11 @@
 
 @interface plpPlatform : SKSpriteNode
 {
+    BOOL isVertical;
     BOOL movingLeft;
     BOOL firstMovement;
+    BOOL emergencyStopTriggered;
+    float motionSpeed;
     BOOL heroAbove;
     float initXPosition;
     float initYPosition;
@@ -42,6 +45,8 @@
 
 - (void) setHeroAbove;
 - (void) HeroWentAway;
+
+- (void) emergencyStop;
 
 
 @end

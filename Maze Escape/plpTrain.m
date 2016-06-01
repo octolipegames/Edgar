@@ -36,31 +36,31 @@
     SKPhysicsBody *parapet2 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4, 10) center:CGPointMake(-36, 4)];
     
     self.physicsBody = [SKPhysicsBody bodyWithBodies:@[mainBody, parapet1, parapet2]];
-
+    
     SKTexture *baseTexture = [SKTexture textureWithImageNamed:@"ChariotBase.png"];
     SKSpriteNode *base = [SKSpriteNode spriteNodeWithTexture:baseTexture];
     base.position = CGPointMake(0, -12);
     
     [self addChild: base];
     
-//    self.physicsBody = [SKPhysicsBody bodyWithTexture: mainTexture alphaThreshold: 0.5 size: CGSizeMake(74, 11)]; -> due to a SpriteKit bug, this doesn't work properly with collision detection. See: http://stackoverflow.com/questions/24228274/why-are-didbegincontact-called-multiple-times
-
+    //    self.physicsBody = [SKPhysicsBody bodyWithTexture: mainTexture alphaThreshold: 0.5 size: CGSizeMake(74, 11)]; -> due to a SpriteKit bug, this doesn't work properly with collision detection. See: http://stackoverflow.com/questions/24228274/why-are-didbegincontact-called-multiple-times
+    
     self.position = position;
     self.physicsBody.density = 5000;
     self.physicsBody.restitution = 0;
-
+    
     SKTexture *textureRoue = [SKTexture textureWithImageNamed:wheelTextureString];
     
     leftWheelNode = [SKSpriteNode spriteNodeWithTexture:textureRoue];
-    leftWheelNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9 center:CGPointMake(0, 0)];
-    leftWheelNode.position = CGPointMake(-20, -18);
+    leftWheelNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9.5 center:CGPointMake(0, 0)];
+    leftWheelNode.position = CGPointMake(-20, -19);
     leftWheelNode.physicsBody.density = 5000; // 500;
     leftWheelNode.physicsBody.restitution = 0;
     [self addChild: leftWheelNode];
     
     rightWheelNode = [SKSpriteNode spriteNodeWithTexture:textureRoue];
-    rightWheelNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9 center:CGPointMake(0, 0)];
-    rightWheelNode.position = CGPointMake(20, -18);
+    rightWheelNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9.5 center:CGPointMake(0, 0)];
+    rightWheelNode.position = CGPointMake(20, -19);
     rightWheelNode.physicsBody.density = 5000; // 500;
     rightWheelNode.physicsBody.restitution = 0;
     [self addChild: rightWheelNode];
@@ -82,7 +82,7 @@
     [self removeActionForKey:@"running"];
     isRunning = FALSE;
     SKAction *decelerate;
-
+    
     if (rightWheelNode.physicsBody.angularVelocity > 0)
     {
         NSLog(@"vitesse positive -> le train roule vers la gauche");
@@ -95,12 +95,12 @@
             [rightWheelNode.physicsBody setAngularVelocity:newSpeed];
             [leftWheelNode.physicsBody setAngularVelocity:newSpeed];
         }];
-
+        
     }else{
         NSLog(@"vitesse négative -> roule vers la droite");
         decelerate = [SKAction runBlock:^{
             float newSpeed = rightWheelNode.physicsBody.angularVelocity + deceleration;
-//            NSLog(@"newSpeed = %f", newSpeed);
+            //            NSLog(@"newSpeed = %f", newSpeed);
             if(newSpeed > 0){
                 newSpeed = 0;
             }
@@ -116,13 +116,13 @@
 - (void)accelerateAtRate:(float)acceleration toMaxSpeed:(float)maxSpeed invertDirection:(BOOL)moveLeft
 {
     [self removeActionForKey:@"braking"];
-
+    
     if(1==1)
     {
         SKAction *accelerate;
         NSLog(@"Self Velocity x: %f", [self getVelocityX]);
-              
-//      if(moveLeft == FALSE) -> now we use getVelocityX instead
+        
+        //      if(moveLeft == FALSE) -> now we use getVelocityX instead
         
         if([self getVelocityX] < 0) // if the train already runs left
         {
@@ -137,7 +137,7 @@
                 if(heroAbove){
                     contextVelocityX = self.physicsBody.velocity.dx;
                 }
-
+                
             }];
         }
         else
@@ -155,9 +155,9 @@
             }];
         }
         
-
+        
         SKAction *theMove = [SKAction repeatActionForever:[SKAction sequence:@[[SKAction waitForDuration:.1], accelerate]]];
-
+        
         [self runAction: theMove withKey:@"running"];
         isRunning = TRUE;
     }

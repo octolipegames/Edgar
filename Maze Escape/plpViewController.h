@@ -29,6 +29,7 @@
 {
     SKScene * myScene;
     BOOL gamePaused;
+    BOOL runningOniPad;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;

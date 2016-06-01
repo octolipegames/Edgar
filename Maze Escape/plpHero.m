@@ -64,8 +64,8 @@
         self.position = position;
         
         
-        SKPhysicsBody *topCircleBody = [SKPhysicsBody bodyWithCircleOfRadius:20 center:CGPointMake(0, 12)]; // until March 18, 2016: center= (0, 18) // 0, 22
-        SKPhysicsBody *rectangleBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(28, 50) center:CGPointMake(0, 10)];
+        SKPhysicsBody *topCircleBody = [SKPhysicsBody bodyWithCircleOfRadius:18 center:CGPointMake(0, 12)]; // until March 18, 2016: center= (0, 18) // 0, 22
+        SKPhysicsBody *rectangleBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(28, 36) center:CGPointMake(0, -2)];
 
         topCircleBody.categoryBitMask = 1;
         rectangleBody.categoryBitMask = 1;
@@ -140,6 +140,15 @@
     else
     {
         NSLog(@"LightNode already created");
+    }
+}
+
+-(void)removeLight
+{
+    SKNode *lightNode = [self childNodeWithName:@"light"];
+    if(lightNode)
+    {
+        [lightNode removeFromParent];
     }
 }
 

@@ -41,6 +41,7 @@
 -(void)jumpingEdgar;
 -(void)facingEdgar;
 -(void)addLight;
+-(void)removeLight;
 -(void)addMasque;
 -(void)giveControl;
 -(void)removeControl;
