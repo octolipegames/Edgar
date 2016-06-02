@@ -47,7 +47,7 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
-  <object id="7" name="platform" x="890" y="1700" width="100" height="8">
+  <object id="7" name="platform" x="895" y="1700" width="100" height="8">
    <properties>
     <property name="decalage" value="problemeCarte"/>
     <property name="movementDuration" value="2"/>
@@ -131,7 +131,7 @@
   <object id="19" name="platform" x="495" y="300" width="101" height="10">
    <properties>
     <property name="movementDuration" value=".5"/>
-    <property name="x_limit" value="406"/>
+    <property name="x_limit" value="404"/>
    </properties>
   </object>
   <object id="20" name="platform" x="994" y="1100" width="101" height="10">
