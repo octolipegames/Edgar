@@ -21,6 +21,7 @@
    <properties>
     <property name="moveUpFirst" value="0"/>
     <property name="movementDuration" value="1.5"/>
+    <property name="noEmergencyStop" value="1"/>
     <property name="x_limit" value="802"/>
     <property name="y_limit" value="430"/>
    </properties>
@@ -76,6 +77,7 @@
    <properties>
     <property name="moveUpFirst" value="0"/>
     <property name="movementDuration" value="3"/>
+    <property name="noEmergencyStop" value="1"/>
     <property name="x_limit" value="802"/>
     <property name="y_limit" value="430"/>
    </properties>
