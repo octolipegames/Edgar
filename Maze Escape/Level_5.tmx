@@ -13,7 +13,7 @@
  </layer>
  <layer name="Solide" width="40" height="6">
   <data encoding="base64" compression="zlib">
-   eJzjY2Bg4KMhliATI5tBD6BBAHNj0YPuPi4cZuMSJ8ZuTagaYsIMl/u4ifAfPrtBZogSsJcUc2HpghrpC589yIDUtIccfoMZAwBNqxCi
+   eJzjY2Bg4KMhliATI5tBD6BBAHNj0YPuPi4cZuMSJ8ZuTagaYsIMl/u4ifAfPrtBZogSsJcUc2Hpghrpi1g7SU17DHjsHEwYALarERo=
   </data>
  </layer>
  <objectgroup name="Objets">
@@ -21,7 +21,7 @@
    <ellipse/>
   </object>
   <object id="2" name="Start" x="103" y="268" width="88" height="106"/>
-  <object id="3" name="endLevelLift" x="3790" y="176" width="105" height="122">
+  <object id="3" name="endLevelLift" x="3790" y="178" width="105" height="122">
    <properties>
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
@@ -33,6 +33,7 @@
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="1"/>
+    <property name="noEmergencyStop" value="1"/>
     <property name="x_limit" value="802"/>
     <property name="y_limit" value="430"/>
    </properties>
@@ -41,6 +42,7 @@
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="1"/>
+    <property name="noEmergencyStop" value="1"/>
     <property name="x_limit" value="802"/>
     <property name="y_limit" value="430"/>
    </properties>
