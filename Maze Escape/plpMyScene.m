@@ -153,15 +153,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     // Let's go! (tutorial = level 0, first level = 1)
     [self resumeFromLevel:1];
-    [self playTune:@"Sounds/Juno" loops:-1];
+    [self runAction:[SKAction waitForDuration:2] completion:^{
+        [self playTune:@"Sounds/Juno" loops:-1];
+    }];
 }
 
 - (IBAction)endGamePlayAgain:(id)sender {
     // We remove all subviews (text field and buttons), then the container
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [containerView removeFromSuperview];
-    
-    NSLog(@"End game dialog closed.");
     [self playAgain];
 }
 
@@ -202,8 +202,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     float buttonYesPositionX = outsideMargin;
     float buttonNoPositionX = buttonWidth + outsideMargin + 2*insideMargin;
     float inputFieldPositionY = containerView.bounds.size.height/2 - 20;
-    
-    NSLog(@"Hauteur : %f", inputFieldPositionY);
     
     [usernameTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, 40)];
     
@@ -288,7 +286,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
     float buttonNewGamePositionX = containerView.bounds.size.width/2 - buttonWidth/2;
     
-    [statusTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, 20)];
+    [statusTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, 35)];
     
     UIButton *myButtonClose  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
     myButtonClose.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
@@ -304,15 +302,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                       action: @selector(endGamePlayAgain:)
             forControlEvents: UIControlEventTouchUpInside];
     
-//    [containerView addSubview:statusTextView];
+    [containerView addSubview:statusTextView];
     [containerView addSubview:myButtonClose];
     [trophy setScale: 0.5];
     // Position: bottom left
     [trophy setPosition: CGPointMake(10 - trophy.size.width/2, 40 - trophy.size.height/2)];
     [trophy setZPosition: 100];
     [myCamera addChild: trophy];
-
-    
 }
 
 - (IBAction)saveScore:(id)sender {
@@ -338,27 +334,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 - (JSTileMap*)loadLevel:(int)levelIndex
 {
-    //  ddd Find new "title" & tutorial music? Or better: new function to load the music
-    /*    if(levelIndex == 1)
-     {
-     NSLog(@"(Re)-creating player");
-     NSURL *url = [[NSBundle mainBundle] URLForResource:@"Sounds/Juno" withExtension:@"mp3"];
-     NSError *error = nil;
-     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-     self.audioPlayer.numberOfLoops = -1;
-     if (!self.audioPlayer) {
-     NSLog(@"Error creating player: %@", error);
-     }
-     [self.audioPlayer play];
-     
-     }*/
-    
     if(levelIndex <= 1)
     {
-        // We reset the intial and the saved time
-        NSLog(@"First level => initial time saved");
+        // We reset the intial, the saved time and the cheat code activation
         [self saveInitialTime];
         additionalSavedTime = 0;
+        
+        cheatsEnabled = FALSE;
 
         initialLevelTime = CFAbsoluteTimeGetCurrent();
         freeCamera = FALSE;
@@ -421,7 +403,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 if(node.physicsBody){
                     node.shadowCastBitMask = 1;
                 }else{
-                    NSLog(@"%d, %d: Le physicsBody n'a pas été créé", a, b);
+                    NSLog(@"%d, %d: The physicsBody was not created.", a, b);
                 }
             }
         }
@@ -439,7 +421,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 {
     // Edgar's starting position / Position de depart d'Edgar
     TMXObjectGroup *group = [tileMap groupNamed:@"Objets"]; // Objets
-    if(!group) NSLog(@"Erreur: pas de calque Objets dans la carte.");
+    if(!group) NSLog(@"Error: no object layer found in the tilemap.");
     NSArray *startPosObjects = [group objectsNamed:@"Start"];
     for (NSDictionary *startPos in startPosObjects) {
         startPosition = [self convertPosition:startPos];
@@ -485,20 +467,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 if(theSensor[@"nodename"])
                 {
                     sensorNode.name = theSensor[@"nodename"];
-                    NSLog(@"Senseur avec nom _%@_ créé", theSensor[@"nodename"]);
                 }
                 else
                 {
                     sensorNode.name = [NSString stringWithFormat:@"sensor%d", sensorId];
-                    NSLog(@"Senseur avec id %d créé", sensorId);
                 }
                 sensorId++;
                 [tileMap addChild:sensorNode];
-                NSLog(@"Senseur ajouté.");
             }
             else
             {
-                NSLog(@"Erreur lors de la création d'un senseur");
+                NSLog(@"Error while creating a sensor.");
             }
         }
     }
@@ -540,7 +519,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 }
                 else
                 {
-                    NSLog(@"Error while creating tree.");
+                    NSLog(@"Error while creating the tree.");
                 }
             }
         }
@@ -573,12 +552,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 }
                 else
                 {
-                    NSLog(@"Error while creating semaphore.");
+                    NSLog(@"Error while creating the semaphore.");
                 }
             }
         }
-        
-        //        [caisse runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction colorizeWithColor:[SKColor redColor] colorBlendFactor:1.0 duration:.2],[SKAction waitForDuration:2.8],[SKAction colorizeWithColor:[SKColor greenColor] colorBlendFactor:1.0 duration:.2], [SKAction waitForDuration:2.8]]]]];
     }
     
     
@@ -629,7 +606,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
             else
             {
-                NSLog(@"Erreur lors de la création de la pile d’uranium.");
+                NSLog(@"Error while creating the uranium cell.");
             }
         }
     }
@@ -698,6 +675,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             {
                 verticalPlatformNode.physicsBody.categoryBitMask = PhysicsCategoryObjects;
                 [tileMap addChild:verticalPlatformNode];
+                
+                if([theVerticalPlatform[@"noEmergencyStop"] intValue] == 1)
+                {
+                    [verticalPlatformNode setNoEmergencyStop];
+                }
             }
         }
     }
@@ -821,7 +803,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 }
 
 
-
 // PAUSE & RESUME ACTIONS, LEVELS, GAME OVER
 - (void)getsPaused
 {
@@ -856,8 +837,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 {
     //  Deaths and death count disabled in current version / Décompte des morts désactivé dans la version actuelle
     
-    // Check if restart level is currently disabled
-    if(!levelTransitioning)
+    if(!levelTransitioning) // Check if restart level is currently disabled
     {
         [Edgar removeControl];
         levelTransitioning = TRUE;
@@ -934,14 +914,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }
         myCamera.position = CGPointMake(roundf(newCameraPosition.x), roundf(newCameraPosition.y));
     }
-    /*
-        Detect if Edgar will crash -- currently disabled
-        if(![Edgar.physicsBody isResting]){
-            if(Edgar.physicsBody.velocity.dy < -1400){
-                gonnaCrash = TRUE;
-            }
+    /* Detect if Edgar will crash -- currently disabled
+    if(![Edgar.physicsBody isResting]){
+        if(Edgar.physicsBody.velocity.dy < -1400){
+            gonnaCrash = TRUE;
         }
-    */
+    }*/
 }
 
 
@@ -962,14 +940,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 - (void) saveHighScoreForUser:(NSString*)userName
 {
     float totalTime = [self getTotalTime];
-    NSLog(@"Total time: %f", totalTime);
-    
     NSString *urlStr = [[NSString alloc]
                         initWithFormat:@"http://paulronga.ch/edgar/score.php?user=%@&score=%.2f", userName, totalTime];
     urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    
     NSURL *url = [NSURL URLWithString:urlStr];
-    
     NSError *error = nil;
     NSStringEncoding encoding = 0;
     
@@ -982,7 +956,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 -(void)doLevelTransition_sameLevel:(BOOL)repeatingLevel{
     float halfHeight = 200;
     
-    // Most examples about SKLabelNode are terribly inneficient. See this excellent blog post: https://gilesey.wordpress.com/2015/01/14/ios-spritekit-font-loading-times-of-sklabelnodes/
+    // Most examples about SKLabelNode are terribly inneficient. See this blog post: https://gilesey.wordpress.com/2015/01/14/ios-spritekit-font-loading-times-of-sklabelnodes/
     // If you only write "Gill sans", it'll take ~4 seconds to load.
     
     SKLabelNode *displayTime = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
@@ -999,7 +973,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(repeatingLevel == YES)
     {
-        displayTime.text = [[NSString alloc] initWithFormat:@"Welcome back to level %d", nextLevelIndex];
+        if(nextLevelIndex == 0)
+        {
+            displayTime.text = [[NSString alloc] initWithFormat:@"Welcome back to the tutorial"];
+        }else{
+            displayTime.text = [[NSString alloc] initWithFormat:@"Welcome back to level %d", nextLevelIndex];
+        }
         displayTime2.text = [[NSString alloc] initWithFormat:@"Your total time: %@", [self getTimeString: [self getTotalTime]]];
     }
     else
@@ -1044,7 +1023,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKAction *openCurtain1 = [SKAction moveToY:halfHeight duration: .5];
     SKAction *openCurtain2 = [SKAction moveToY:-halfHeight duration: .5];
     SKAction *openCurtains = [SKAction runBlock:^{
-        NSLog(@"3. open curtains");
         [curtain1 runAction: openCurtain1];
         [curtain2 runAction: openCurtain2 completion:^{
 //            levelTransitioning = FALSE;
@@ -1060,7 +1038,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         SKAction *timeVanish = [SKAction sequence: @[[SKAction waitForDuration:2],[SKAction fadeAlphaTo:0 duration:1], [SKAction removeFromParent]]];
         [displayTime runAction:timeVanish];
         [displayTime2 runAction:timeVanish completion:^{
-            NSLog(@"2b. displayTime2 completed");
             [myWorld runAction: openCurtains];
         }];
         [self startLevel];
@@ -1071,7 +1048,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [curtain1 runAction: [SKAction moveToY:-20 duration: .5]];
     [curtain2 runAction: [SKAction moveToY:20 duration: .5] completion:^
     {
-        NSLog(@"1. curtain2");
         [myWorld runAction:presentScore];
     }];
     
@@ -1079,7 +1055,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 -(void)startLevel{
     for (SKNode* theNode in [myLevel children]) {
-        NSLog(@"Node removed (position: %f, %f)", theNode.position.x, theNode.position.y);
         [theNode removeFromParent];
     }
 
@@ -1181,30 +1156,22 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         if([contactNode.name isEqualToString:@"finish"])
         {
-            if(levelTransitioning==TRUE)
-            {
-                NSLog(@"!!! LevelTransitioning TRUE!");
-            }
-            else
+            if(!levelTransitioning)
             {
                 if([Edgar hasItem])
                 {
                     /* SND: success - else: error sound */
-                    NSLog(@"-A1 Level Transitioning");
-                    
                     levelTransitioning = TRUE;
                     [Edgar removeControl];
                     [Edgar runAction: [SKAction sequence:@[[SKAction moveToX:myFinishRectangle.position.x duration: .2], [SKAction runBlock:^{
                         stopRequested = TRUE;
                     }]]]];
 
-                    NSLog(@"-A2 remove finishrect");
-                    
                     [myFinishRectangle removeFromParent];
                     myFinishRectangle = nil;
                     nextLevelIndex++;
                     
-                    NSLog(@"Chargement du niveau %d", nextLevelIndex);
+                    NSLog(@"Loading level %d", nextLevelIndex);
                     
                     [self doLevelTransition_sameLevel:NO];
                 } // end if [Edgar hasItem]
@@ -1213,7 +1180,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
         if(nextLevelIndex==LAST_LEVEL_INDEX)
         {
-            if([contactNode.name isEqualToString:@"finalAnimationSensor"])
+            if([contactNode.name isEqualToString:@"finalAnimationSensor"] && contactNode != nil)
             {
                 NSLog(@"Final animation 1 triggered");
                 
@@ -1253,8 +1220,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     [alienVessel addChild: beam];
                     beam.position = CGPointMake(0, -50);
                     beam.zPosition = -12;
-                    
-                    NSLog(@"alien vessel added");
                 }];
                 
                 SKAction *moveAlien = [SKAction runAction:[SKAction moveTo:referencePointAlien duration:2] onChildWithName:@"//alienVessel"];
@@ -1274,8 +1239,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     
                     // Second animation
                     CGPoint referencePoint = [myLevel childNodeWithName:@"referencePoint"].position;
-                    
-                    NSLog(@"Contact pos: %f, %f", contactNode.position.x, contactNode.position.y);
                     [contactNode removeFromParent];
                     
                     SKAction *showBeam = [SKAction runAction:[SKAction fadeAlphaTo:1 duration:0] onChildWithName:@"beam"];
@@ -1294,6 +1257,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         Edgar.physicsBody.affectedByGravity = false;
                         Edgar->rectangleNode.physicsBody.affectedByGravity = false;
                         freeCamera = TRUE;
+                        [myCamera runAction:[SKAction moveToY:Edgar.position.y+200 duration:1]];
                         nextLevelIndex = 1;
                     }];
                     
@@ -1313,7 +1277,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         containerView = [[UIView alloc] init];
                         [containerView setFrame: CGRectMake(50, 50, self.view.bounds.size.width-100, self.view.bounds.size.height-100)]; // coordinates origin is upper left
                         
-                        NSLog(@"Bounds: %f, %f", self.view.bounds.size.width, self.view.bounds.size.height);
                         containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
                         
                         myTextView = [[UITextView alloc] init];
@@ -1451,10 +1414,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if([contactNode isKindOfClass:[plpPlatform class]])
         {
             /* SND: foot on platform */
-            NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 42, contactNode.position.y);
+//            NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 42, contactNode.position.y);
             if(Edgar.position.y - 42 > contactNode.position.y){ /// ddd check the height again
                 [(plpPlatform *)contactNode setHeroAbove];
-                NSLog(@"Hero set above");
             }else if (Edgar.position.y < contactNode.position.y){
                 [(plpPlatform *)contactNode emergencyStop];
             }
@@ -1499,7 +1461,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             /* SND: the train stops */
             [self removeActionForKey:@"trainSoundAction"];
-            NSLog(@"Quitte le train => décélération");
+//            NSLog(@"Quitte le train => décélération");
             [(plpTrain *)contactNode decelerateAtRate:15];
             [(plpTrain *)contactNode HeroWentAway];
             willLoseContextVelocity = TRUE;
@@ -1618,7 +1580,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             
             if(!cheatsEnabled && touch.tapCount == 7)
             {
-                cheatsEnabled = TRUE; // dev
+                cheatsEnabled = TRUE;
                 SKLabelNode *cheatEnabledMessage = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
                 cheatEnabledMessage.fontSize = 36;
                 [cheatEnabledMessage setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
