@@ -54,6 +54,8 @@
 		DA5CF4E11B73EB84005A5C91 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5CF4DC1B73EB6E005A5C91 /* JSTileMap.m */; };
 		DA5CF4E21B73EB8C005A5C91 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */; };
 		DA60EAA41B7F38E100A3F927 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = DA60EAA31B7F38E100A3F927 /* Sounds */; };
+		DA73B8501D02328400ED027D /* Edgar_Explorer_UITests4.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73B84F1D02328400ED027D /* Edgar_Explorer_UITests4.swift */; };
+		DA73B8581D0232A300ED027D /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73B8571D0232A300ED027D /* SnapshotHelper.swift */; };
 		DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7485461B86FF5100920C84 /* plpPlatform.m */; };
 		DA88FE111CBA7B400021DCBB /* Trophy1-03.png in Resources */ = {isa = PBXBuildFile; fileRef = DA88FE0E1CBA7B400021DCBB /* Trophy1-03.png */; };
 		DA88FE121CBA7B400021DCBB /* Trophy2-03.png in Resources */ = {isa = PBXBuildFile; fileRef = DA88FE0F1CBA7B400021DCBB /* Trophy2-03.png */; };
@@ -97,6 +99,20 @@
 			remoteGlobalIDString = DA03CBC9199F4C4700406720;
 			remoteInfo = "Maze Escape";
 		};
+		DA43B8481D00EB170011D624 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA03CBC2199F4C4700406720 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA03CBC9199F4C4700406720;
+			remoteInfo = "Maze Escape";
+		};
+		DA73B8521D02328400ED027D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA03CBC2199F4C4700406720 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA03CBC9199F4C4700406720;
+			remoteInfo = Edgar_the_Explorer;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -107,10 +123,10 @@
 		DA03CBCF199F4C4700406720 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DA03CBD1199F4C4700406720 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DA03CBD3199F4C4700406720 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
-		DA03CBD7199F4C4700406720 /* Maze Escape-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Maze Escape-Info.plist"; sourceTree = "<group>"; };
+		DA03CBD7199F4C4700406720 /* Edgar_the_Explorer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Edgar_the_Explorer-Info.plist"; sourceTree = "<group>"; };
 		DA03CBD9199F4C4700406720 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DA03CBDB199F4C4700406720 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DA03CBDD199F4C4700406720 /* Maze Escape-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Maze Escape-Prefix.pch"; sourceTree = "<group>"; };
+		DA03CBDD199F4C4700406720 /* Edgar_the_Explorer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Edgar_the_Explorer-Prefix.pch"; sourceTree = "<group>"; };
 		DA03CBDE199F4C4700406720 /* plpAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpAppDelegate.h; sourceTree = "<group>"; };
 		DA03CBDF199F4C4700406720 /* plpAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpAppDelegate.m; sourceTree = "<group>"; };
 		DA03CBE2199F4C4700406720 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -120,7 +136,7 @@
 		DA03CBEA199F4C4700406720 /* plpMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpMyScene.h; sourceTree = "<group>"; };
 		DA03CBEB199F4C4700406720 /* plpMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpMyScene.m; sourceTree = "<group>"; };
 		DA03CBEF199F4C4700406720 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DA03CBF5199F4C4700406720 /* Maze EscapeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Maze EscapeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA03CBF5199F4C4700406720 /* Edgar_the_ExplorerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_the_ExplorerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA03CBF6199F4C4700406720 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DA03CBFE199F4C4700406720 /* Maze EscapeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Maze EscapeTests-Info.plist"; sourceTree = "<group>"; };
 		DA03CC00199F4C4700406720 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -142,6 +158,7 @@
 		DA3F53C81C9D58AE00F2464E /* arbre-09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arbre-09.png"; sourceTree = "<group>"; };
 		DA3F53CE1C9EA6B000F2464E /* showMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showMenu.png; sourceTree = "<group>"; };
 		DA3F53D01C9EA96E00F2464E /* showRepeat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showRepeat.png; sourceTree = "<group>"; };
+		DA43B8431D00EB170011D624 /* Edgar_ExplorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_ExplorerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA4A3CC01C622F9A00FAF2AB /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		DA4A3CC21C62314300FAF2AB /* box-08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-08.png"; sourceTree = "<group>"; };
 		DA4E2C4B1C0CE90000E271AB /* ElementsTiles-01-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ElementsTiles-01-01.png"; sourceTree = "<group>"; };
@@ -157,6 +174,10 @@
 		DA5CF4DD1B73EB6E005A5C91 /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtility.h; sourceTree = "<group>"; };
 		DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
 		DA60EAA31B7F38E100A3F927 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		DA73B84D1D02328300ED027D /* Edgar_Explorer_UITests4.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_Explorer_UITests4.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA73B84F1D02328400ED027D /* Edgar_Explorer_UITests4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edgar_Explorer_UITests4.swift; sourceTree = "<group>"; };
+		DA73B8511D02328400ED027D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA73B8571D0232A300ED027D /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		DA7485451B86FF5100920C84 /* plpPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpPlatform.h; sourceTree = "<group>"; };
 		DA7485461B86FF5100920C84 /* plpPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpPlatform.m; sourceTree = "<group>"; };
 		DA88FE0E1CBA7B400021DCBB /* Trophy1-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Trophy1-03.png"; sourceTree = "<group>"; };
@@ -167,7 +188,6 @@
 		DA984E361C0B478A00B13A08 /* LaunchScreen960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen960.png; sourceTree = "<group>"; };
 		DA9EEBF41C4AA2F80056D014 /* Level_7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_7.tmx; sourceTree = "<group>"; };
 		DA9EEBF61C4AA32A0056D014 /* elementsFin-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "elementsFin-02.png"; sourceTree = "<group>"; };
-		DAAAA5BD1BB15E2700EF9296 /* Maze Escape-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Maze Escape-Bridging-Header.h"; sourceTree = "<group>"; };
 		DAAEBA7A1C0F489D00FB0A48 /* ascenseurF-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ascenseurF-01.png"; sourceTree = "<group>"; };
 		DAAEBA7B1C0F489D00FB0A48 /* ascenseurO-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ascenseurO-01.png"; sourceTree = "<group>"; };
 		DAAEBA7C1C0F489D00FB0A48 /* elevateur-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "elevateur-01.png"; sourceTree = "<group>"; };
@@ -219,6 +239,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DA43B8401D00EB170011D624 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA73B84A1D02328300ED027D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -228,6 +262,7 @@
 				DADBE5191C0A5E9A004469EA /* Media.xcassets */,
 				DA03CBD5199F4C4700406720 /* Maze Escape */,
 				DA03CBFC199F4C4700406720 /* Maze EscapeTests */,
+				DA73B84E1D02328400ED027D /* Edgar_Explorer_UITests4 */,
 				DA03CBCC199F4C4700406720 /* Frameworks */,
 				DA03CBCB199F4C4700406720 /* Products */,
 			);
@@ -237,7 +272,9 @@
 			isa = PBXGroup;
 			children = (
 				DA03CBCA199F4C4700406720 /* Edgar Explorer.app */,
-				DA03CBF5199F4C4700406720 /* Maze EscapeTests.xctest */,
+				DA03CBF5199F4C4700406720 /* Edgar_the_ExplorerTests.xctest */,
+				DA43B8431D00EB170011D624 /* Edgar_ExplorerUITests.xctest */,
+				DA73B84D1D02328300ED027D /* Edgar_Explorer_UITests4.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -278,7 +315,6 @@
 				DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */,
 				DA03CBEF199F4C4700406720 /* Images.xcassets */,
 				DA03CBD6199F4C4700406720 /* Supporting Files */,
-				DAAAA5BD1BB15E2700EF9296 /* Maze Escape-Bridging-Header.h */,
 			);
 			path = "Maze Escape";
 			sourceTree = "<group>";
@@ -286,10 +322,10 @@
 		DA03CBD6199F4C4700406720 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DA03CBD7199F4C4700406720 /* Maze Escape-Info.plist */,
+				DA03CBD7199F4C4700406720 /* Edgar_the_Explorer-Info.plist */,
 				DA03CBD8199F4C4700406720 /* InfoPlist.strings */,
 				DA03CBDB199F4C4700406720 /* main.m */,
-				DA03CBDD199F4C4700406720 /* Maze Escape-Prefix.pch */,
+				DA03CBDD199F4C4700406720 /* Edgar_the_Explorer-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -357,6 +393,16 @@
 			path = decor;
 			sourceTree = "<group>";
 		};
+		DA73B84E1D02328400ED027D /* Edgar_Explorer_UITests4 */ = {
+			isa = PBXGroup;
+			children = (
+				DA73B8571D0232A300ED027D /* SnapshotHelper.swift */,
+				DA73B84F1D02328400ED027D /* Edgar_Explorer_UITests4.swift */,
+				DA73B8511D02328400ED027D /* Info.plist */,
+			);
+			path = Edgar_Explorer_UITests4;
+			sourceTree = "<group>";
+		};
 		DAAEBA791C0F488A00FB0A48 /* objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,9 +459,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DA03CBC9199F4C4700406720 /* Maze Escape */ = {
+		DA03CBC9199F4C4700406720 /* Edgar_the_Explorer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA03CC06199F4C4700406720 /* Build configuration list for PBXNativeTarget "Maze Escape" */;
+			buildConfigurationList = DA03CC06199F4C4700406720 /* Build configuration list for PBXNativeTarget "Edgar_the_Explorer" */;
 			buildPhases = (
 				DA03CBC6199F4C4700406720 /* Sources */,
 				DA03CBC7199F4C4700406720 /* Frameworks */,
@@ -425,14 +471,14 @@
 			);
 			dependencies = (
 			);
-			name = "Maze Escape";
+			name = Edgar_the_Explorer;
 			productName = "Maze Escape";
 			productReference = DA03CBCA199F4C4700406720 /* Edgar Explorer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DA03CBF4199F4C4700406720 /* Maze EscapeTests */ = {
+		DA03CBF4199F4C4700406720 /* Edgar_the_ExplorerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA03CC09199F4C4700406720 /* Build configuration list for PBXNativeTarget "Maze EscapeTests" */;
+			buildConfigurationList = DA03CC09199F4C4700406720 /* Build configuration list for PBXNativeTarget "Edgar_the_ExplorerTests" */;
 			buildPhases = (
 				DA03CBF1199F4C4700406720 /* Sources */,
 				DA03CBF2199F4C4700406720 /* Frameworks */,
@@ -443,10 +489,46 @@
 			dependencies = (
 				DA03CBFB199F4C4700406720 /* PBXTargetDependency */,
 			);
-			name = "Maze EscapeTests";
+			name = Edgar_the_ExplorerTests;
 			productName = "Maze EscapeTests";
-			productReference = DA03CBF5199F4C4700406720 /* Maze EscapeTests.xctest */;
+			productReference = DA03CBF5199F4C4700406720 /* Edgar_the_ExplorerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DA43B8421D00EB170011D624 /* Edgar_ExplorerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA43B84C1D00EB170011D624 /* Build configuration list for PBXNativeTarget "Edgar_ExplorerUITests" */;
+			buildPhases = (
+				DA43B83F1D00EB170011D624 /* Sources */,
+				DA43B8401D00EB170011D624 /* Frameworks */,
+				DA43B8411D00EB170011D624 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA43B8491D00EB170011D624 /* PBXTargetDependency */,
+			);
+			name = Edgar_ExplorerUITests;
+			productName = Edgar_ExplorerUITests;
+			productReference = DA43B8431D00EB170011D624 /* Edgar_ExplorerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		DA73B84C1D02328300ED027D /* Edgar_Explorer_UITests4 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA73B8541D02328400ED027D /* Build configuration list for PBXNativeTarget "Edgar_Explorer_UITests4" */;
+			buildPhases = (
+				DA73B8491D02328300ED027D /* Sources */,
+				DA73B84A1D02328300ED027D /* Frameworks */,
+				DA73B84B1D02328300ED027D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA73B8531D02328400ED027D /* PBXTargetDependency */,
+			);
+			name = Edgar_Explorer_UITests4;
+			productName = Edgar_Explorer_UITests4;
+			productReference = DA73B84D1D02328300ED027D /* Edgar_Explorer_UITests4.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -455,7 +537,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = plp;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Polip;
 				TargetAttributes = {
@@ -465,9 +547,17 @@
 					DA03CBF4199F4C4700406720 = {
 						TestTargetID = DA03CBC9199F4C4700406720;
 					};
+					DA43B8421D00EB170011D624 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = DA03CBC9199F4C4700406720;
+					};
+					DA73B84C1D02328300ED027D = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = DA03CBC9199F4C4700406720;
+					};
 				};
 			};
-			buildConfigurationList = DA03CBC5199F4C4700406720 /* Build configuration list for PBXProject "Maze Escape" */;
+			buildConfigurationList = DA03CBC5199F4C4700406720 /* Build configuration list for PBXProject "Edgar_the_Explorer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -480,8 +570,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DA03CBC9199F4C4700406720 /* Maze Escape */,
-				DA03CBF4199F4C4700406720 /* Maze EscapeTests */,
+				DA03CBC9199F4C4700406720 /* Edgar_the_Explorer */,
+				DA03CBF4199F4C4700406720 /* Edgar_the_ExplorerTests */,
+				DA43B8421D00EB170011D624 /* Edgar_ExplorerUITests */,
+				DA73B84C1D02328300ED027D /* Edgar_Explorer_UITests4 */,
 			);
 		};
 /* End PBXProject section */
@@ -561,6 +653,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DA43B8411D00EB170011D624 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA73B84B1D02328300ED027D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -590,13 +696,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DA43B83F1D00EB170011D624 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA73B8491D02328300ED027D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA73B8501D02328400ED027D /* Edgar_Explorer_UITests4.swift in Sources */,
+				DA73B8581D0232A300ED027D /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		DA03CBFB199F4C4700406720 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DA03CBC9199F4C4700406720 /* Maze Escape */;
+			target = DA03CBC9199F4C4700406720 /* Edgar_the_Explorer */;
 			targetProxy = DA03CBFA199F4C4700406720 /* PBXContainerItemProxy */;
+		};
+		DA43B8491D00EB170011D624 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA03CBC9199F4C4700406720 /* Edgar_the_Explorer */;
+			targetProxy = DA43B8481D00EB170011D624 /* PBXContainerItemProxy */;
+		};
+		DA73B8531D02328400ED027D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA03CBC9199F4C4700406720 /* Edgar_the_Explorer */;
+			targetProxy = DA73B8521D02328400ED027D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -720,8 +852,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Maze Escape/Maze Escape-Prefix.pch";
-				INFOPLIST_FILE = "Maze Escape/Maze Escape-Info.plist";
+				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
+				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
@@ -744,8 +876,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Maze Escape/Maze Escape-Prefix.pch";
-				INFOPLIST_FILE = "Maze Escape/Maze Escape-Info.plist";
+				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
+				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
@@ -768,13 +900,13 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Maze Escape/Maze Escape-Prefix.pch";
+				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Maze EscapeTests/Maze EscapeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Edgar_the_ExplorerTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -790,18 +922,102 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Maze Escape/Maze Escape-Prefix.pch";
+				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				INFOPLIST_FILE = "Maze EscapeTests/Maze EscapeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Edgar_the_ExplorerTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		DA43B84A1D00EB170011D624 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Edgar_ExplorerUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "polip.Edgar-ExplorerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Edgar_ExplorerUITests/Edgar_ExplorerUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_TARGET_NAME = "Maze Escape";
+			};
+			name = Debug;
+		};
+		DA43B84B1D00EB170011D624 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Edgar_ExplorerUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "polip.Edgar-ExplorerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Edgar_ExplorerUITests/Edgar_ExplorerUITests-Bridging-Header.h";
+				TEST_TARGET_NAME = "Maze Escape";
+			};
+			name = Release;
+		};
+		DA73B8551D02328400ED027D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Edgar_Explorer_UITests4/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "polip.Edgar-Explorer-UITests4";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_TARGET_NAME = Edgar_the_Explorer;
+			};
+			name = Debug;
+		};
+		DA73B8561D02328400ED027D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Edgar_Explorer_UITests4/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "polip.Edgar-Explorer-UITests4";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Edgar_the_Explorer;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DA03CBC5199F4C4700406720 /* Build configuration list for PBXProject "Maze Escape" */ = {
+		DA03CBC5199F4C4700406720 /* Build configuration list for PBXProject "Edgar_the_Explorer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA03CC04199F4C4700406720 /* Debug */,
@@ -810,7 +1026,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA03CC06199F4C4700406720 /* Build configuration list for PBXNativeTarget "Maze Escape" */ = {
+		DA03CC06199F4C4700406720 /* Build configuration list for PBXNativeTarget "Edgar_the_Explorer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA03CC07199F4C4700406720 /* Debug */,
@@ -819,7 +1035,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA03CC09199F4C4700406720 /* Build configuration list for PBXNativeTarget "Maze EscapeTests" */ = {
+		DA03CC09199F4C4700406720 /* Build configuration list for PBXNativeTarget "Edgar_the_ExplorerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA03CC0A199F4C4700406720 /* Debug */,
@@ -827,6 +1043,23 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		DA43B84C1D00EB170011D624 /* Build configuration list for PBXNativeTarget "Edgar_ExplorerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA43B84A1D00EB170011D624 /* Debug */,
+				DA43B84B1D00EB170011D624 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA73B8541D02328400ED027D /* Build configuration list for PBXNativeTarget "Edgar_Explorer_UITests4" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA73B8551D02328400ED027D /* Debug */,
+				DA73B8561D02328400ED027D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

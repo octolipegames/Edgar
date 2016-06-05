@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DA03CBC9199F4C4700406720"
                BuildableName = "Edgar Explorer.app"
-               BlueprintName = "Maze Escape"
-               ReferencedContainer = "container:Maze Escape.xcodeproj">
+               BlueprintName = "Edgar_the_Explorer"
+               ReferencedContainer = "container:Edgar_the_Explorer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,29 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DA03CBF4199F4C4700406720"
-               BuildableName = "Maze EscapeTests.xctest"
-               BlueprintName = "Maze EscapeTests"
-               ReferencedContainer = "container:Maze Escape.xcodeproj">
+               BuildableName = "Edgar_the_ExplorerTests.xctest"
+               BlueprintName = "Edgar_the_ExplorerTests"
+               ReferencedContainer = "container:Edgar_the_Explorer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DA43B8421D00EB170011D624"
+               BuildableName = "Edgar_ExplorerUITests.xctest"
+               BlueprintName = "Edgar_ExplorerUITests"
+               ReferencedContainer = "container:Edgar_the_Explorer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DA73B84C1D02328300ED027D"
+               BuildableName = "Edgar_Explorer_UITests4.xctest"
+               BlueprintName = "Edgar_Explorer_UITests4"
+               ReferencedContainer = "container:Edgar_the_Explorer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +64,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA03CBC9199F4C4700406720"
             BuildableName = "Edgar Explorer.app"
-            BlueprintName = "Maze Escape"
-            ReferencedContainer = "container:Maze Escape.xcodeproj">
+            BlueprintName = "Edgar_the_Explorer"
+            ReferencedContainer = "container:Edgar_the_Explorer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -67,8 +87,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA03CBC9199F4C4700406720"
             BuildableName = "Edgar Explorer.app"
-            BlueprintName = "Maze Escape"
-            ReferencedContainer = "container:Maze Escape.xcodeproj">
+            BlueprintName = "Edgar_the_Explorer"
+            ReferencedContainer = "container:Edgar_the_Explorer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -86,8 +106,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA03CBC9199F4C4700406720"
             BuildableName = "Edgar Explorer.app"
-            BlueprintName = "Maze Escape"
-            ReferencedContainer = "container:Maze Escape.xcodeproj">
+            BlueprintName = "Edgar_the_Explorer"
+            ReferencedContainer = "container:Edgar_the_Explorer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
