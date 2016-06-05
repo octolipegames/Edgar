@@ -6,13 +6,17 @@ Open-Source iOS game “Edgar The Explorer”.
 
 Images under CC-BY licence, source under LGPL licence.
 
-All assets are now online, except:
+Apple authorized the external testing [using TestFlight](https://developer.apple.com/testflight/) on Saturday, June 4. We're getting really excited!
 
-– JSTileMap, which you can find here: https://github.com/slycrel/JSTileMap
+Three great, much more advanced FOSS iPhone games we love:
 
-– The Creative Commons music. You can find Juno by Chronox here: http://freemusicarchive.org/music/Chronox_2/Voyager/Chronox_-_03_-_Juno (CC-BY), which should be renamed Juno.mp3, and the End Game tune here: https://soundcloud.com/arandompersona/x-files-theme-8bit, which should be renamed EndGame.mp3. Both files go in a folder named "Sounds" in the project folder.
+* 2048 (MIT) https://github.com/gabrielecirulli/2048
 
-We are looking for other free/libre iOS games or game makers. Any help would be appreciated.
+* Dungeon Story (MIT) https://github.com/pdeligia/dungeonstory-ios
+
+* Puzzles (MIT) https://github.com/ghewgill/puzzles
+
+We are looking for other free/libre iOS games or game makers. Any help is appreciated.
 
 Best
 
