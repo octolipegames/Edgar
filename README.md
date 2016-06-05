@@ -4,7 +4,7 @@ Open-Source iOS game “Edgar The Explorer”.
 
 ![iOS icon](/Media.xcassets/AppIcon.appiconset/icon-01%403x.png?raw=true "Edgar The Explorer App Icon")
 
-Images under CC-BY licence, source under LGPL licence.
+Images under **CC-BY** licence, source under **LGPL** licence.
 
 Apple authorized the external testing [using TestFlight](https://developer.apple.com/testflight/) on Saturday, June 4. We're getting really excited!
 
