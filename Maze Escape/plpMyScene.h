@@ -39,15 +39,33 @@ float contextVelocityX;
 
 @interface plpMyScene : SKScene <SKPhysicsContactDelegate>
 {
+    // Objects
     plpHero *Edgar;
     SKPhysicsBody *EdgarCircleBody;
     JSTileMap *myLevel;
     SKNode *myWorld;
     SKCameraNode *myCamera;
-    float screenCenterX;
-    BOOL cheatsEnabled;
+    SKSpriteNode *myFinishRectangle;
+    
+    // Physics
     BOOL freeCamera;
+    BOOL willLoseContextVelocity;
+    float EdgarVelocity;
+    CGPoint startPosition;
+    
+    // Character actions:
+    SKAction *bougeDroite;
+    SKAction *bougeGauche;
+    SKAction *bougeGauche2;
+    SKAction *bougeDroite2;
+    SKAction *moveUp;
+    SKAction *stoppe;
+    
+    // Input
+    CGPoint touchStartPosition;
     BOOL waitForTap;
+    BOOL isJumping;
+    BOOL ignoreNextTap;
     BOOL moveLeftRequested;
     BOOL moveRightRequested;
     BOOL moveUpRequested;
@@ -56,34 +74,28 @@ float contextVelocityX;
     BOOL gonnaCrash;
     BOOL moveLeft;
     BOOL moveRight;
-    BOOL willLoseContextVelocity;
     BOOL listensToContactEvents;
     BOOL levelTransitioning;
-    int deathCount;
-    int globalCounter;
-    float EdgarVelocity;
-    CGPoint startPosition;
-    SKSpriteNode *myFinishRectangle;
-    int nextLevelIndex;
-    SKAction *bougeDroite;
-    SKAction *bougeGauche;
-    SKAction *bougeGauche2;
-    SKAction *bougeDroite2;
-    SKAction *moveUp;
-    SKAction *stoppe;
-    CGPoint touchStartPosition;
+    
+    // User interface
     UIView *containerView;
     UITextView *myTextView;
-    BOOL isJumping;
-    BOOL ignoreNextTap;
     BOOL runningOniPad;
+    float screenCenterX;
+    
+    // Game data
+    int deathCount;
+    int globalCounter;
+    int nextLevelIndex;
     double initialTime;
     double initialLevelTime;
     double additionalSavedTime;
+    BOOL cheatsEnabled;
 }
 
 -(void)loadAssets:(JSTileMap*) tileMap;
 -(void)addStoneBlocks:(JSTileMap*) tileMap;
+-(void)resetGameData;
 -(void)EdgarDiesOf:(int)deathType;
 -(void)resetEdgar;
 -(void)getsPaused;

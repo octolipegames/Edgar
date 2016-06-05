@@ -109,6 +109,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [self.physicsWorld addJoint:pinEdgar];
         
         [self playTune:@"Sounds/Juno" loops:-1];
+        
+        [self saveInitialTime];
+        additionalSavedTime = 0;
+        
+        /*
+        // To debug the time counting
+        SKAction *logTime = [SKAction runBlock:^{
+            if(!levelTransitioning) NSLog(@"Total time saved: %f", [self getTotalTime]);
+        }];
+        [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[logTime, [SKAction waitForDuration:1]]]]];
+        */
     }
     return self;
 }
@@ -152,6 +163,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     Edgar->rectangleNode.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryAliens|PhysicsCategorySensors|PhysicsCategoryItems;
     
     // Let's go! (tutorial = level 0, first level = 1)
+    [self resetGameData];
     [self resumeFromLevel:1];
     [self runAction:[SKAction waitForDuration:2] completion:^{
         [self playTune:@"Sounds/Juno" loops:-1];
@@ -337,10 +349,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if(levelIndex <= 1)
     {
         // We reset the intial, the saved time and the cheat code activation
-        [self saveInitialTime];
+/*        [self saveInitialTime];
         additionalSavedTime = 0;
         
-        cheatsEnabled = FALSE;
+        cheatsEnabled = FALSE;*/
 
         initialLevelTime = CFAbsoluteTimeGetCurrent();
         freeCamera = FALSE;
@@ -822,6 +834,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 }
 
 -(void)resumeFromLevel:(NSInteger)theLevel{
+    // if level == 0: new game => reset game data (cheat enabled, time...)
+    if(nextLevelIndex == 0) [self resetGameData];
+    
     levelTransitioning = TRUE;
     [myFinishRectangle removeFromParent];
     myFinishRectangle = nil;
@@ -829,8 +844,16 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [self startLevel];
 }
 
--(int)getNextLevelIndex{
+- (int) getNextLevelIndex
+{
     return nextLevelIndex;
+}
+
+- (void) resetGameData
+{
+    cheatsEnabled = FALSE;
+    [self saveInitialTime];
+    additionalSavedTime = 0;
 }
 
 - (void)EdgarDiesOf:(int)deathType // Used to restard a level with the upper right button
@@ -956,8 +979,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 -(void)doLevelTransition_sameLevel:(BOOL)repeatingLevel{
     float halfHeight = 200;
     
-    // Most examples about SKLabelNode are terribly inneficient. See this blog post: https://gilesey.wordpress.com/2015/01/14/ios-spritekit-font-loading-times-of-sklabelnodes/
-    // If you only write "Gill sans", it'll take ~4 seconds to load.
+    // A. Prepare the time display
+    
+    /*
+        Most examples about SKLabelNode are terribly inneficient. See this blog post: https://gilesey.wordpress.com/2015/01/14/ios-spritekit-font-loading-times-of-sklabelnodes/
+        If you only write "Gill sans", it'll take ~4 seconds to load.
+    */
     
     SKLabelNode *displayTime = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
     displayTime.fontSize = 30;
@@ -1001,6 +1028,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }
     }
     
+    // B. Save to additionalTime; we call saveInitialTime when the curtains open again
+    [self saveAdditionalTime];
+
+    
+    
     SKSpriteNode *curtain1 = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
     SKSpriteNode *curtain2 = [curtain1 copy];
     curtain1.anchorPoint = CGPointMake(0.5, 0);
@@ -1025,7 +1057,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKAction *openCurtains = [SKAction runBlock:^{
         [curtain1 runAction: openCurtain1];
         [curtain2 runAction: openCurtain2 completion:^{
-//            levelTransitioning = FALSE;
+            [self saveInitialTime];
+            //   levelTransitioning = FALSE; -> too late, may cause unexpected behaviours
             NSLog(@"Level transition complete");
         }];
     }];
@@ -1035,7 +1068,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [myCamera addChild:displayTime];
         [myCamera addChild:displayTime2];
         
-        SKAction *timeVanish = [SKAction sequence: @[[SKAction waitForDuration:2],[SKAction fadeAlphaTo:0 duration:1], [SKAction removeFromParent]]];
+        SKAction *timeVanish = [SKAction sequence: @[[SKAction fadeAlphaTo:1 duration:.7], [SKAction waitForDuration:.6],[SKAction fadeAlphaTo:0 duration:.7], [SKAction removeFromParent]]];
         [displayTime runAction:timeVanish];
         [displayTime2 runAction:timeVanish completion:^{
             [myWorld runAction: openCurtains];
