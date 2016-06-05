@@ -1,0 +1,24 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 Menlo-Bold;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red159\green160\blue28;\red47\green180\blue29;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\b\fs22 \cf2 \CocoaLigature0 Edgar the Explorer/Maze Escape
+\f1\b0 \cf0 $ snapshot init\
+\cf3 Successfully created SnapshotHelper.swift './SnapshotHelper.swift'\cf0 \
+\cf3 Successfully created new Snapfile at './Snapfile'\cf0 \
+\cf2 -------------------------------------------------------\cf0 \
+\cf2 Open your Xcode project and make sure to do the following:\cf0 \
+\cf2 1) Add the ./fastlane/SnapshotHelper.swift to your UI Test target\cf0 \
+\cf2    You can move the file anywhere you want\cf0 \
+\cf2 2) Call `setupSnapshot(app)` when launching your app\cf0 \
+\
+  let app = XCUIApplication()\
+  setupSnapshot(app)\
+  app.launch()\
+\
+\cf2 3) Add `snapshot("0Launch")` to wherever you want to create the screenshots\cf0 \
+\
+\cf3 More information on GitHub: https://github.com/fastlane/fastlane/tree/master/snapshot\cf0 \
+}
