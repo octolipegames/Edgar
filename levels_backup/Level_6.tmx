@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="15" height="20" tilewidth="100" tileheight="100" nextobjectid="30">
+ <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
+  <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
+ </tileset>
+ <layer name="Fond" width="15" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAMSAOxLJQmlo2slxQsiaSXhwz96HrVydCLTw0PEkYWo7VeZCwF9ReyXmqEFS31qmPRS6qd5IQVLr3EpAuFQRjOIPeokqiXGuGsArVXBUlMDYh50cISWS+5AAC+URfm
+  </data>
+ </layer>
+ <layer name="Solide" width="15" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzjY2Bg4KMAkwIYKdALA8h6JaCYAY0vgSYHY9PKXmwAWQ26vYxYMDH2kgqo6WZy7aVE76ibibeXEr3o+QUdoMtTw15yMQDxEQaZ
+  </data>
+ </layer>
+ <objectgroup name="Objets">
+  <object id="1" name="Start" x="110" y="1794" width="88" height="106"/>
+  <object id="2" name="endLevelLift" x="992.5" y="178" width="105" height="122">
+   <properties>
+    <property name="nextLevel" value="_Level02_v1_100px"/>
+   </properties>
+  </object>
+  <object id="3" name="uranium" type="Item" x="1334.5" y="242.5" width="29" height="29">
+   <ellipse/>
+  </object>
+  <object id="4" name="verticalPlatform" x="1302" y="1100" width="97" height="305">
+   <properties>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="5" name="verticalPlatform" x="1300.5" y="1700" width="97" height="200">
+   <properties>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="6" name="verticalPlatform" x="101" y="1400" width="97" height="305">
+   <properties>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="7" name="platform" x="895" y="1700" width="100" height="8">
+   <properties>
+    <property name="decalage" value="problemeCarte"/>
+    <property name="movementDuration" value="2"/>
+    <property name="x_limit" value="502"/>
+   </properties>
+  </object>
+  <object id="8" name="platform" x="407" y="1400" width="60" height="10">
+   <properties>
+    <property name="decalage" value="problemeCarte"/>
+    <property name="movementDuration" value="2"/>
+    <property name="x_limit" value="590"/>
+   </properties>
+  </object>
+  <object id="9" name="platform" x="874.517" y="1400" width="60" height="10">
+   <properties>
+    <property name="movementDuration" value="2"/>
+    <property name="x_limit" value="1036"/>
+   </properties>
+  </object>
+  <object id="10" name="alien1" type="alien" x="419.701" y="1657.71" width="59.1045" height="36.9403">
+   <properties>
+    <property name="moveX" value="-100"/>
+   </properties>
+  </object>
+  <object id="11" name="verticalPlatform" x="101" y="800" width="97" height="305">
+   <properties>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="12" name="verticalPlatform" x="101" y="300" width="97" height="205">
+   <properties>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="13" name="verticalPlatform" x="1300" y="500" width="97" height="305">
+   <properties>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="14" name="verticalPlatform" x="801" y="497" width="95" height="191">
+   <properties>
+    <property name="idleDuration" value=".5"/>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="1"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="15" name="verticalPlatform" x="1001" y="497" width="95" height="191">
+   <properties>
+    <property name="idleDuration" value=".1"/>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="16" name="verticalPlatform" x="901" y="497" width="95" height="191">
+   <properties>
+    <property name="idleDuration" value=".1"/>
+    <property name="moveUpFirst" value="0"/>
+    <property name="movementDuration" value="5"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="17" name="alien1" type="alien" x="925.672" y="457.152" width="59.1045" height="36.9403">
+   <properties>
+    <property name="moveX" value="-10"/>
+   </properties>
+  </object>
+  <object id="19" name="platform" x="495" y="300" width="101" height="10">
+   <properties>
+    <property name="movementDuration" value=".5"/>
+    <property name="x_limit" value="404"/>
+   </properties>
+  </object>
+  <object id="20" name="platform" x="994" y="1100" width="101" height="10">
+   <properties>
+    <property name="movementDuration" value="2"/>
+    <property name="x_limit" value="800"/>
+   </properties>
+  </object>
+  <object id="21" name="platform" x="401" y="1100" width="101" height="10">
+   <properties>
+    <property name="movementDuration" value="2"/>
+    <property name="x_limit" value="696"/>
+   </properties>
+  </object>
+  <object id="22" name="platform" x="402" y="800" width="101" height="10">
+   <properties>
+    <property name="movementDuration" value="2"/>
+    <property name="x_limit" value="696"/>
+   </properties>
+  </object>
+  <object id="23" name="platform" x="994" y="800" width="101" height="10">
+   <properties>
+    <property name="movementDuration" value="2"/>
+    <property name="x_limit" value="800"/>
+   </properties>
+  </object>
+  <object id="24" name="platform" x="720" y="1400" width="150" height="10">
+   <properties>
+    <property name="movementDuration" value="2"/>
+    <property name="x_limit" value="650"/>
+   </properties>
+  </object>
+  <object id="25" name="alien1" type="alien" x="781.848" y="1370" width="39.1523" height="24.4701">
+   <properties>
+    <property name="moveX" value="-10"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
