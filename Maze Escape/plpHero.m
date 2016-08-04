@@ -155,8 +155,14 @@
 -(void)addMasque
 {
     SKSpriteNode *masque = [SKSpriteNode spriteNodeWithImageNamed:@"masque_120.png"];
+    masque.name = @"masque";
     masque.size=CGSizeMake(1200, 800);
     [self addChild: masque];
+}
+-(void)removeMasque
+{
+    SKNode *masque = [self childNodeWithName:@"masque"];
+    [masque removeFromParent];
 }
 
 -(void)giveControl
@@ -229,6 +235,10 @@
 -(void)resetItem{
     hasUranium = FALSE;
 }
+-(void)resetInfected{
+    isInfected = FALSE;
+}
+
 -(BOOL)hasItem{
     return hasUranium;
 }

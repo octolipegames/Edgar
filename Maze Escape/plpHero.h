@@ -43,6 +43,7 @@
 -(void)addLight;
 -(void)removeLight;
 -(void)addMasque;
+-(void)removeMasque;
 -(void)giveControl;
 -(void)removeControl;
 -(BOOL)hasControl;
@@ -51,6 +52,7 @@
 -(BOOL)alreadyInfected;
 -(void)takeItem;
 -(void)resetItem;
+-(void)resetInfected;
 -(void)crashes;
 -(BOOL)hasItem;
     
