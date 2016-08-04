@@ -1503,6 +1503,20 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
         }else if([contactNode.name isEqualToString: @"timeBonus"])
         {
+            SKSpriteNode *bonusDisplayNode = [SKSpriteNode spriteNodeWithImageNamed:@"Time_bonus.png"];
+            [bonusDisplayNode setSize:CGSizeMake(600, 111)];
+            [bonusDisplayNode setPosition:CGPointMake(0, 0)];
+            [bonusDisplayNode setZPosition: 30]; // devdev
+            
+            int theBonusSeconds = 30;
+            [myCamera addChild: bonusDisplayNode];
+            [bonusDisplayNode runAction:[SKAction sequence:@[[SKAction fadeAlphaTo: 1 duration: .5], [SKAction waitForDuration: 1], [SKAction fadeAlphaTo: 0 duration: 1.5], [SKAction removeFromParent]]]];
+            
+            
+            /*
+             
+            // [No SKLabel for now]
+             
             int theBonusSeconds = [(plpItem *)contactNode getSeconds];
             SKLabelNode *bonusLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
             bonusLabel.fontSize = 36;
@@ -1515,7 +1529,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             bonusLabel.alpha = 0;
             [myCamera addChild: bonusLabel];
             
-            [bonusLabel runAction:[SKAction sequence:@[[SKAction fadeAlphaTo: 1 duration: .5], [SKAction waitForDuration: 2], [SKAction fadeAlphaTo: 0 duration: .5], [SKAction removeFromParent]]]];
+            [bonusLabel runAction:[SKAction sequence:@[[SKAction fadeAlphaTo: 1 duration: .5], [SKAction waitForDuration: 5], [SKAction fadeAlphaTo: 0 duration: .5], [SKAction removeFromParent]]]];
+            */
+            
             
             initialTime -= theBonusSeconds;
             [(plpItem *)contactNode removeFromParent];
