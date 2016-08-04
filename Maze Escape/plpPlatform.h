@@ -37,6 +37,7 @@
     float endXPosition; // added for the new movement model (June 1, 2016)
     float endYPosition;
     float movementDuration;
+    SKAction *standardSequence;
 }
 
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withDuration:(float)duration upToX:(float)x_limit andY:(float)y_limit andIdleDuration:(float)idleDuration;
@@ -50,8 +51,10 @@
 - (void) setHeroAbove;
 - (void) HeroWentAway;
 
+- (BOOL) getIsVertical;
 - (void) setNoEmergencyStop;
 - (void) emergencyStop;
+- (void) horizontalEmergencyStop: (float) EdgarXPosition;
 
 
 @end

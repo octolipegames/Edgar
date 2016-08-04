@@ -74,12 +74,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         SKAction *waitDuration = [SKAction waitForDuration:idleDuration];
         SKAction *moveDuration = [SKAction waitForDuration:duration];
         
-        // A SKAction won't work with physics (Edgar will fall).
+        // A SKAction doesn't work with physics (Edgar couldn't stand on the platform).
         // Very primitive movement: we just set a constant speed.
 
         movementDuration = duration;
         float Yspeed = [self calculateSpeedForDuration:duration fromPosition:initYPosition toLimit:y_limit];
-
+        float Xspeed = [self calculateSpeedForDuration:duration fromPosition:initXPosition toLimit:x_limit];
         if(initXPosition == x_limit)
         {
             isVertical = TRUE;
@@ -92,7 +92,18 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
                 motionSpeed = -Yspeed;
             }
             endYPosition = y_limit;
-        }else{
+        }
+        else // horizontal platform
+        {
+            if(Xspeed > 0)
+            {
+                motionSpeed = Xspeed; // used in the emergencyStop function
+            }
+            else
+            {
+                motionSpeed = -Xspeed;
+            }
+            
             endXPosition = x_limit;
         }
         
@@ -122,28 +133,34 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         }else{ // horizontal movement
             
             SKAction *horizontalMove1 = [SKAction runBlock:^{
-                float newSpeed = [self calculateSpeedForDuration:movementDuration fromPosition:self.position.x toLimit:endXPosition];
-                [self.physicsBody setVelocity:CGVectorMake(newSpeed, 0)];
-                if(heroAbove)
-                {
-                    contextVelocityX = newSpeed;
-                }
+                [self horizontalMoveWithDuration: movementDuration forward: TRUE];
             }];
             
             SKAction *horizontalMove2 = [SKAction runBlock:^{
-                float newSpeed = [self calculateSpeedForDuration:movementDuration fromPosition:self.position.x toLimit:initXPosition];
-                [self.physicsBody setVelocity:CGVectorMake(newSpeed, 0)];
-                if(heroAbove)
-                {
-                    contextVelocityX = newSpeed;
-                }
+                [self horizontalMoveWithDuration: movementDuration forward: FALSE];
             }];
             
-            SKAction *horizontalSequence = [SKAction sequence:@[waitDuration, horizontalMove1, moveDuration, stop, waitDuration, horizontalMove2, moveDuration, stop]];
-            [self runAction:[SKAction repeatActionForever: horizontalSequence]];
+            standardSequence = [SKAction sequence:@[waitDuration, horizontalMove1, moveDuration, stop, waitDuration, horizontalMove2, moveDuration, stop]];
+            [self runAction:[SKAction repeatActionForever: standardSequence]];
         }
     }
     return self;
+}
+
+- (void) horizontalMoveWithDuration: (float) theDuration forward: (BOOL) forward
+{
+    float newSpeed;
+    if(forward == TRUE)
+    {
+        newSpeed = [self calculateSpeedForDuration:theDuration fromPosition:self.position.x toLimit:endXPosition];
+    }else{
+        newSpeed = [self calculateSpeedForDuration:theDuration fromPosition:self.position.x toLimit:initXPosition];
+    }
+    [self.physicsBody setVelocity:CGVectorMake(newSpeed, 0)];
+    if(heroAbove)
+    {
+        contextVelocityX = newSpeed;
+    }
 }
 
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withDuration:(float)duration upToX:(float)x_limit andY:(float)y_limit
@@ -171,6 +188,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     heroAbove = FALSE;
 }
 
+
+- (BOOL) getIsVertical
+{
+    return isVertical;
+}
+
 // To handle the cases where no "emergency stop" and backward movement is desired (see emergencyStop function)
 - (void) setNoEmergencyStop
 {
@@ -180,8 +203,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
 
 - (void) emergencyStop
 {
-    // Condition: only if the platform is vertical and moving down
-    if(isVertical && self.physicsBody.velocity.dy < 0 && !emergencyStopTriggered && !noEmergencyStop)
+    // Condition: only if the platform is moving down
+    if(self.physicsBody.velocity.dy < 0 && !emergencyStopTriggered && !noEmergencyStop)
     {
         emergencyStopTriggered = TRUE; // to avoid simoultaneous calls
         
@@ -196,7 +219,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
             [self.scene runAction: [SKAction waitForDuration: 2] completion:^
             {
                 [self.physicsBody setVelocity:CGVectorMake(0, -motionSpeed)];
-                
 
                 [self.scene runAction: delay completion:^
                 {
@@ -208,6 +230,84 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
 
             }];
         }];
+    }
+}
+
+- (void) horizontalEmergencyStop: (float) EdgarXPosition
+{
+    BOOL stopReallyNeeded = FALSE;
+    int factor = 1;
+    
+    if([self getVelocityX] > 0) // the platform moves right
+    {
+        if(EdgarXPosition > self.position.x) // and Edgar stands at its right
+        {
+            stopReallyNeeded = TRUE;
+            factor = -1;
+        }
+    }
+    else // the platform moves left
+    {
+        if(EdgarXPosition < self.position.x) // and Edgar stands at its left
+        {
+            stopReallyNeeded = TRUE;
+            factor = 1;
+        }
+    }
+    
+    if(stopReallyNeeded)
+    {
+        emergencyStopTriggered = TRUE; // to avoid simoultaneous calls
+        
+        //[self setSpeed: 0]; // We pause the animation
+        [self removeAllActions];
+        // NB: [self removeAllChildren];
+        
+        [self.physicsBody setVelocity:CGVectorMake(factor*motionSpeed, 0)]; // We invert the direction
+        
+        //SKAction *stopDuration = [SKAction waitForDuration: .3];
+        SKAction *mvDuration = [SKAction waitForDuration: .3];
+        
+        
+        SKAction *moveDuration = [SKAction waitForDuration:movementDuration];
+        SKAction *tempMove = [SKAction runBlock:^{
+            [self horizontalMoveWithDuration: movementDuration forward: FALSE];
+        }];
+        
+        [self.scene runAction: mvDuration completion:^
+         {
+             emergencyStopTriggered = FALSE;
+             [self runAction: [SKAction sequence:@[tempMove, moveDuration]] completion:^{
+                 [self runAction:[SKAction repeatActionForever: standardSequence]];
+             }];
+         }];
+
+        
+        /*
+        [self.scene runAction: mvDuration completion:^
+         {
+             [self.physicsBody setVelocity:CGVectorMake(0, 0)];
+             [self.scene runAction: [SKAction waitForDuration: .5] completion:^
+              {
+                  [self.physicsBody setVelocity:CGVectorMake(factor*-motionSpeed, 0)];
+                  
+                  SKAction *moveDuration = [SKAction waitForDuration:movementDuration];
+                  SKAction *tempMove = [SKAction runBlock:^{
+                      [self horizontalMoveForward: TRUE];
+                  }];
+                  
+                  [self.scene runAction: mvDuration completion:^
+                   {
+                       emergencyStopTriggered = FALSE;
+                       [self runAction: [SKAction sequence:@[tempMove, moveDuration]] completion:^{
+                           [self runAction:[SKAction repeatActionForever: standardSequence]];
+                       }];
+                       
+                       //[self setSpeed: 1]; // animation runs again
+                   }];
+                  
+              }];
+         }];*/
     }
 }
 
