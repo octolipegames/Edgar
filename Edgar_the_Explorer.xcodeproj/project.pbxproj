@@ -35,6 +35,7 @@
 		DA2311611B812D6800A479C6 /* masque_120.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2311601B812D6800A479C6 /* masque_120.png */; };
 		DA2794621C27666F005C3D06 /* MenuBackground in Resources */ = {isa = PBXBuildFile; fileRef = DA2794611C27666F005C3D06 /* MenuBackground */; };
 		DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */; };
+		DA387BF51D53D81B00E3F4A8 /* Time_bonus.png in Resources */ = {isa = PBXBuildFile; fileRef = DA387BF41D53D81B00E3F4A8 /* Time_bonus.png */; };
 		DA3E6C5D1C5CFC5000FDC7B3 /* Level_1_tuto.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA3E6C5C1C5CFC5000FDC7B3 /* Level_1_tuto.tmx */; };
 		DA3F53C51C9D58A000F2464E /* decoTuto_green.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3F53C21C9D58A000F2464E /* decoTuto_green.png */; };
 		DA3F53C61C9D58A000F2464E /* FeuRouge.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3F53C31C9D58A000F2464E /* FeuRouge.png */; };
@@ -145,6 +146,7 @@
 		DA2311601B812D6800A479C6 /* masque_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = masque_120.png; sourceTree = "<group>"; };
 		DA2794611C27666F005C3D06 /* MenuBackground */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MenuBackground; path = decor/MenuBackground; sourceTree = "<group>"; };
 		DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen1136.png; sourceTree = "<group>"; };
+		DA387BF41D53D81B00E3F4A8 /* Time_bonus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Time_bonus.png; sourceTree = "<group>"; };
 		DA3E6C5C1C5CFC5000FDC7B3 /* Level_1_tuto.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_1_tuto.tmx; sourceTree = "<group>"; };
 		DA3F53C21C9D58A000F2464E /* decoTuto_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = decoTuto_green.png; sourceTree = "<group>"; };
 		DA3F53C31C9D58A000F2464E /* FeuRouge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FeuRouge.png; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				DA4EDEC81C77C78E0044D5BC /* showUranium.png */,
 				DAF898A41C71FF5600CF3F4D /* swipeJump.png */,
 				DA4EDECF1C78DD1F0044D5BC /* goLeft.png */,
+				DA387BF41D53D81B00E3F4A8 /* Time_bonus.png */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				DAAEBA7F1C0F489D00FB0A48 /* ascenseurF-01.png in Resources */,
 				DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */,
 				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
+				DA387BF51D53D81B00E3F4A8 /* Time_bonus.png in Resources */,
 				DA0295E61A0D34B0001BC725 /* masque2.png in Resources */,
 				DAF898A31C71FDF100CF3F4D /* swipeRight.png in Resources */,
 				DAE713DB1C0FA87500ED9139 /* Play.png in Resources */,
