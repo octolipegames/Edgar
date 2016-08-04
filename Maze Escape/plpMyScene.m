@@ -861,13 +861,20 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 }
 
 -(void)resumeFromLevel:(NSInteger)theLevel{
-    // if level == 0: new game => reset game data (cheat enabled, time...)
-    if(nextLevelIndex == 0) [self resetGameData];
-    
     levelTransitioning = TRUE;
+    nextLevelIndex = (int)theLevel;
+    
+    // if level == 0: new game => reset game data (cheat enabled, time...)
+    if(nextLevelIndex == 0)
+    {
+        NSLog(@"Level == 0 => remove light and masque");
+        [self resetGameData];
+        [Edgar removeLight];
+        [Edgar removeMasque];
+    }
+    
     [myFinishRectangle removeFromParent];
     myFinishRectangle = nil;
-    nextLevelIndex = (int)theLevel;
     [self startLevel];
 }
 
