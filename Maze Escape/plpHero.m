@@ -136,6 +136,7 @@
     //    lampe.shadowColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
         lampe.shadowColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
         [self addChild:lampe];
+        NSLog(@"LightNode added");
     }
     else
     {
@@ -149,6 +150,7 @@
     if(lightNode)
     {
         [lightNode removeFromParent];
+        NSLog(@"Node removed");
     }
 }
 
@@ -158,11 +160,13 @@
     masque.name = @"masque";
     masque.size=CGSizeMake(1200, 800);
     [self addChild: masque];
+    NSLog(@"Masque added");
 }
 -(void)removeMasque
 {
     SKNode *masque = [self childNodeWithName:@"masque"];
     [masque removeFromParent];
+    NSLog(@"Masque removed");
 }
 
 -(void)giveControl
