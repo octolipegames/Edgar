@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="16" height="7" tilewidth="100" tileheight="100" nextobjectid="13">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="16" height="7" tilewidth="100" tileheight="100" nextobjectid="14">
  <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
   <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
  </tileset>
@@ -50,6 +50,9 @@
    <properties>
     <property name="nodename" value="moveToExit"/>
    </properties>
+  </object>
+  <object id="13" name="train" type="train" x="524" y="236" width="60" height="60">
+   <ellipse/>
   </object>
  </objectgroup>
 </map>

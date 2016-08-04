@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="7" tilewidth="100" tileheight="100" nextobjectid="12">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="7" tilewidth="100" tileheight="100" nextobjectid="15">
  <tileset firstgid="1" name="ElementsTiles-01-01.png" tilewidth="100" tileheight="100">
   <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
  </tileset>
- <layer name="Fond" width="15" height="7">
+ <layer name="Fond" width="16" height="7">
   <data encoding="base64" compression="zlib">
-   eJxjYKAMSAOxLJRGZ+OSQ9YrB8TyUFoaC4aJw9Qg68WFeXCwYUARiJWBWAlJThlNvSQOvQMBADo7BXg=
+   eJxjYKAcSAOxLJRGZ+OTQ9YvB8TyUFoaC4aJI6tB1o8L8+BgI+tXBGJlIFZCklNG0yOJR/9AAgD/OwXk
   </data>
  </layer>
- <layer name="Solide" width="15" height="7">
+ <layer name="Solide" width="16" height="7">
   <data encoding="base64" compression="zlib">
-   eJzjY2Bg4KMAYwNiOMRhgBp6JdAwAxINAoxIdsDU4LOXkBsoCSNKMQDtvgPg
+   eJzjY2Bg4KMQYwNiOMSRASX6uZD0S6BhBiQaBBiR7EFWg89+YtxCabhRAwMASXEEFA==
   </data>
  </layer>
  <objectgroup name="Objets">
@@ -43,6 +43,15 @@
    <properties>
     <property name="moveX" value="100"/>
    </properties>
+  </object>
+  <object id="12" name="timeBonus" x="1441" y="104" width="20" height="20">
+   <properties>
+    <property name="seconds" value="10"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="13" x="1457" y="128" width="1">
+   <ellipse/>
   </object>
  </objectgroup>
 </map>
