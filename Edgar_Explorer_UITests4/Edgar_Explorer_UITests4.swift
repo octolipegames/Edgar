@@ -65,7 +65,7 @@ class Edgar_Explorer_UITests4: XCTestCase {
         app.buttons["New Game"].tap()
         
         let menuElement = app.otherElements.containingType(.Button, identifier:"Menu").element
-
+/*
         menuElement.tapWithNumberOfTaps(7, numberOfTouches: 1)
         sleep(1)
         menuElement.tapWithNumberOfTaps(5, numberOfTouches: 1) // go to level 2
@@ -73,22 +73,35 @@ class Edgar_Explorer_UITests4: XCTestCase {
         menuElement.tapWithNumberOfTaps(5, numberOfTouches: 1) // go to level 3
         sleep(1)
         menuElement.tapWithNumberOfTaps(5, numberOfTouches: 1) // go to level 4
-
+*/
+        app.buttons["†"].tap()
+        sleep(1)
+        
         menuElement.tap()
         
         menuElement.swipeLeft();
         menuElement.swipeRight();
         menuElement.swipeUp()
-
+        menuElement.tap()
+        
+        snapshot("train")
+        
         sleep(1)
         
         menuElement.tap()
         
-        sleep(5)
+        sleep(7)
         
+        menuElement.swipeLeft();
         menuElement.swipeLeft();
         
         sleep(1)
+        
+        menuElement.tap()
+        
+        sleep(3)
+        
+        menuElement.swipeLeft()
         
         menuElement.swipeUp()
         snapshot("game02")
