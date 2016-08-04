@@ -32,8 +32,8 @@
     self = [super initWithTexture:mainTexture];
     
     SKPhysicsBody *mainBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(74, 5) center:CGPointMake(0, -2)];
-    SKPhysicsBody *parapet1 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4, 10) center:CGPointMake(36, 4)];
-    SKPhysicsBody *parapet2 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4, 10) center:CGPointMake(-36, 4)];
+    SKPhysicsBody *parapet1 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4, 6) center:CGPointMake(36, 4)];
+    SKPhysicsBody *parapet2 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4, 6) center:CGPointMake(-36, 4)];
     
     self.physicsBody = [SKPhysicsBody bodyWithBodies:@[mainBody, parapet1, parapet2]];
     
