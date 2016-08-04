@@ -42,6 +42,7 @@
 		DA3F53C91C9D58AE00F2464E /* arbre-09.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3F53C81C9D58AE00F2464E /* arbre-09.png */; };
 		DA3F53CF1C9EA6B000F2464E /* showMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3F53CE1C9EA6B000F2464E /* showMenu.png */; };
 		DA3F53D11C9EA96E00F2464E /* showRepeat.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3F53D01C9EA96E00F2464E /* showRepeat.png */; };
+		DA409B401D0BBC42007BB341 /* Level_5b.tmx in Resources */ = {isa = PBXBuildFile; fileRef = DA409B3F1D0BBC42007BB341 /* Level_5b.tmx */; };
 		DA4A3CC11C622F9A00FAF2AB /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4A3CC01C622F9A00FAF2AB /* menuButton.png */; };
 		DA4A3CC41C62314300FAF2AB /* box-08.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4A3CC21C62314300FAF2AB /* box-08.png */; };
 		DA4E2C4D1C0CE90000E271AB /* ElementsTiles-01-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4E2C4B1C0CE90000E271AB /* ElementsTiles-01-01.png */; };
@@ -93,13 +94,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		DA03CBFA199F4C4700406720 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA03CBC2199F4C4700406720 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DA03CBC9199F4C4700406720;
-			remoteInfo = "Maze Escape";
-		};
-		DA43B8481D00EB170011D624 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DA03CBC2199F4C4700406720 /* Project object */;
 			proxyType = 1;
@@ -158,7 +152,7 @@
 		DA3F53C81C9D58AE00F2464E /* arbre-09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arbre-09.png"; sourceTree = "<group>"; };
 		DA3F53CE1C9EA6B000F2464E /* showMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showMenu.png; sourceTree = "<group>"; };
 		DA3F53D01C9EA96E00F2464E /* showRepeat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showRepeat.png; sourceTree = "<group>"; };
-		DA43B8431D00EB170011D624 /* Edgar_ExplorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_ExplorerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA409B3F1D0BBC42007BB341 /* Level_5b.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Level_5b.tmx; sourceTree = "<group>"; };
 		DA4A3CC01C622F9A00FAF2AB /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		DA4A3CC21C62314300FAF2AB /* box-08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-08.png"; sourceTree = "<group>"; };
 		DA4E2C4B1C0CE90000E271AB /* ElementsTiles-01-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ElementsTiles-01-01.png"; sourceTree = "<group>"; };
@@ -239,13 +233,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA43B8401D00EB170011D624 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DA73B84A1D02328300ED027D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -273,7 +260,6 @@
 			children = (
 				DA03CBCA199F4C4700406720 /* Edgar Explorer.app */,
 				DA03CBF5199F4C4700406720 /* Edgar_the_ExplorerTests.xctest */,
-				DA43B8431D00EB170011D624 /* Edgar_ExplorerUITests.xctest */,
 				DA73B84D1D02328300ED027D /* Edgar_Explorer_UITests4.xctest */,
 			);
 			name = Products;
@@ -356,6 +342,7 @@
 				DA4E2C4C1C0CE90000E271AB /* Level_3.tmx */,
 				DA08E0371C234EF7007B42A4 /* Level_4.tmx */,
 				DABB494F1C67EA9100EDFD12 /* Level_5.tmx */,
+				DA409B3F1D0BBC42007BB341 /* Level_5b.tmx */,
 				DA08E0381C234EF7007B42A4 /* Level_6.tmx */,
 				DA9EEBF41C4AA2F80056D014 /* Level_7.tmx */,
 			);
@@ -494,24 +481,6 @@
 			productReference = DA03CBF5199F4C4700406720 /* Edgar_the_ExplorerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DA43B8421D00EB170011D624 /* Edgar_ExplorerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DA43B84C1D00EB170011D624 /* Build configuration list for PBXNativeTarget "Edgar_ExplorerUITests" */;
-			buildPhases = (
-				DA43B83F1D00EB170011D624 /* Sources */,
-				DA43B8401D00EB170011D624 /* Frameworks */,
-				DA43B8411D00EB170011D624 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DA43B8491D00EB170011D624 /* PBXTargetDependency */,
-			);
-			name = Edgar_ExplorerUITests;
-			productName = Edgar_ExplorerUITests;
-			productReference = DA43B8431D00EB170011D624 /* Edgar_ExplorerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		DA73B84C1D02328300ED027D /* Edgar_Explorer_UITests4 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA73B8541D02328400ED027D /* Build configuration list for PBXNativeTarget "Edgar_Explorer_UITests4" */;
@@ -547,10 +516,6 @@
 					DA03CBF4199F4C4700406720 = {
 						TestTargetID = DA03CBC9199F4C4700406720;
 					};
-					DA43B8421D00EB170011D624 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = DA03CBC9199F4C4700406720;
-					};
 					DA73B84C1D02328300ED027D = {
 						CreatedOnToolsVersion = 7.3.1;
 						TestTargetID = DA03CBC9199F4C4700406720;
@@ -572,7 +537,6 @@
 			targets = (
 				DA03CBC9199F4C4700406720 /* Edgar_the_Explorer */,
 				DA03CBF4199F4C4700406720 /* Edgar_the_ExplorerTests */,
-				DA43B8421D00EB170011D624 /* Edgar_ExplorerUITests */,
 				DA73B84C1D02328300ED027D /* Edgar_Explorer_UITests4 */,
 			);
 		};
@@ -604,6 +568,7 @@
 				DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */,
 				DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */,
 				DA9EEBF71C4AA32A0056D014 /* elementsFin-02.png in Resources */,
+				DA409B401D0BBC42007BB341 /* Level_5b.tmx in Resources */,
 				DAAEBA7F1C0F489D00FB0A48 /* ascenseurF-01.png in Resources */,
 				DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */,
 				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
@@ -653,13 +618,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA43B8411D00EB170011D624 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DA73B84B1D02328300ED027D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -696,13 +654,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA43B83F1D00EB170011D624 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DA73B8491D02328300ED027D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -719,11 +670,6 @@
 			isa = PBXTargetDependency;
 			target = DA03CBC9199F4C4700406720 /* Edgar_the_Explorer */;
 			targetProxy = DA03CBFA199F4C4700406720 /* PBXContainerItemProxy */;
-		};
-		DA43B8491D00EB170011D624 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DA03CBC9199F4C4700406720 /* Edgar_the_Explorer */;
-			targetProxy = DA43B8481D00EB170011D624 /* PBXContainerItemProxy */;
 		};
 		DA73B8531D02328400ED027D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -930,50 +876,6 @@
 			};
 			name = Release;
 		};
-		DA43B84A1D00EB170011D624 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = Edgar_ExplorerUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "polip.Edgar-ExplorerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Edgar_ExplorerUITests/Edgar_ExplorerUITests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TEST_TARGET_NAME = "Maze Escape";
-			};
-			name = Debug;
-		};
-		DA43B84B1D00EB170011D624 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = Edgar_ExplorerUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "polip.Edgar-ExplorerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Edgar_ExplorerUITests/Edgar_ExplorerUITests-Bridging-Header.h";
-				TEST_TARGET_NAME = "Maze Escape";
-			};
-			name = Release;
-		};
 		DA73B8551D02328400ED027D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1044,15 +946,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA43B84C1D00EB170011D624 /* Build configuration list for PBXNativeTarget "Edgar_ExplorerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DA43B84A1D00EB170011D624 /* Debug */,
-				DA43B84B1D00EB170011D624 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		DA73B8541D02328400ED027D /* Build configuration list for PBXNativeTarget "Edgar_Explorer_UITests4" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1060,6 +953,7 @@
 				DA73B8561D02328400ED027D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
