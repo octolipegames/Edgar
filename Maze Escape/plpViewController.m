@@ -103,6 +103,7 @@
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [containerView removeFromSuperview];
     
+//    [self presentTheScene: 3]; // dev: for screen captures
     [self presentTheScene: choosenLevel];
     [(plpMyScene*)myScene computeCenter];
 }
@@ -124,6 +125,14 @@
 
     if(gamePaused == FALSE && startLevel > 0)
     {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        float totalTime = [defaults floatForKey:@"totalTime"];
+        NSLog(@"Total time retrieved...");
+        if(totalTime){
+            [(plpMyScene*)myScene saveAdditionalTime:totalTime];
+        }else{
+            NSLog(@"Wait, no total time found??");
+        }
         [(plpMyScene*)myScene resumeFromLevel:startLevel];
     }
     
@@ -161,6 +170,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         NSInteger savedLevel = [defaults integerForKey:@"savedLevel"];
+
         
         UIView *containerView = [[UIView alloc] init];
         containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
