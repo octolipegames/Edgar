@@ -284,13 +284,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     [containerView setFrame:CGRectMake(50, 5, self.view.bounds.size.width-100, self.view.bounds.size.height/3)]; // upper half of the screen
 
-    UITextView *statusTextView = [[UITextView alloc] init];
-
-    statusTextView.text = [NSString stringWithFormat:@"Your rank: %@", rankingString];
-    statusTextView.textColor = [UIColor whiteColor];
-    statusTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
-    statusTextView.editable = NO;
-    [statusTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
+    if(!myTextView)
+    {
+        NSLog(@"Re-creating myTextView");
+        myTextView = [[UITextView alloc] init];
+    }
+    
+    myTextView.text = [NSString stringWithFormat:@"Your rank: %@", rankingString];
+    myTextView.textColor = [UIColor whiteColor];
+    myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+    myTextView.editable = NO;
+    [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
     
     float outsideMargin = 60;
     float insideMargin = 30;
@@ -298,7 +302,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
     float buttonNewGamePositionX = containerView.bounds.size.width/2 - buttonWidth/2;
     
-    [statusTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, 35)];
+    [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, 35)];
     
     UIButton *myButtonClose  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
     myButtonClose.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
@@ -314,7 +318,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                       action: @selector(endGamePlayAgain:)
             forControlEvents: UIControlEventTouchUpInside];
     
-    [containerView addSubview:statusTextView];
+    [containerView addSubview:myTextView];
     [containerView addSubview:myButtonClose];
     [trophy setScale: 0.5];
     // Position: bottom left
@@ -623,6 +627,27 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }
     }
     
+    NSArray *tabBonus;
+    if((tabBonus=[group objectsNamed:@"timeBonus"]))
+    {
+        for (NSDictionary *monBonus in tabBonus) {
+            plpItem *myBonus;
+            myBonus = [[plpItem alloc] initAtPosition:[self convertPosition:monBonus] withTexture:@""];
+            if(myBonus)
+            {
+                myBonus.name = @"timeBonus";
+                myBonus.physicsBody.categoryBitMask = PhysicsCategoryItems;
+                [myBonus setSeconds: [monBonus[@"seconds"] intValue]];
+                [tileMap addChild:myBonus];
+            }
+            else
+            {
+                NSLog(@"Error while creating a bonus.");
+            }
+        }
+    }
+
+    
     // Train
     NSArray *trainObjectMarker;
     if((trainObjectMarker = [group objectsNamed:@"train"]))
@@ -751,6 +776,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     initialTime = CFAbsoluteTimeGetCurrent();
     NSLog(@"Initial time = %f", initialTime);
 }
+-(void)saveAdditionalTime:(float)additionalTime{
+    additionalSavedTime += additionalTime;
+    NSLog(@"\n \n saveAdditionalTime called from Controller, time added = %f \n \n", additionalSavedTime);
+}
 -(void)saveAdditionalTime
 {
     additionalSavedTime += CFAbsoluteTimeGetCurrent() - initialTime;
@@ -792,9 +821,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     return userTimeString;
 }
 
-
-// END TIME TRACKER
-
+// MUSIC
 -(void)startPlaying
 {
     if(self.audioPlayer)
@@ -856,7 +883,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     additionalSavedTime = 0;
 }
 
-- (void)EdgarDiesOf:(int)deathType // Used to restard a level with the upper right button
+// Called when the user restarts a level (upper right button)
+- (void)EdgarDiesOf:(int)deathType
 {
     //  Deaths and death count disabled in current version / Décompte des morts désactivé dans la version actuelle
     
@@ -881,8 +909,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [Edgar removeAllActions];
     [Edgar.physicsBody setVelocity:CGVectorMake(0, 0)];
     [Edgar setPosition:startPosition];
+    
+    // To tidy this, it would be better to add a single "reset" method to the plpHero class. Next step...
+    
     [Edgar setScale:1];
     [Edgar resetItem];
+    [Edgar resetInfected];
     [Edgar giveControl]; // ddd voir si ne fait pas doublon
     [Edgar setSpeed: 1.0];
     isJumping = FALSE;
@@ -900,7 +932,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 // END PAUSE & RESUME ACTIONS
 
 
-// This method is called just after update, before rendering the scene.
+// Called just after update, before rendering the scene.
 // See Apple's doc: https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKScene_Ref/
 - (void)didSimulatePhysics
 {
@@ -960,6 +992,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
 }
 
+// Called when the user chooses "Save online">"YES" at the end game.
 - (void) saveHighScoreForUser:(NSString*)userName
 {
     float totalTime = [self getTotalTime];
@@ -973,7 +1006,32 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     NSString *tryString = [[NSString alloc] initWithContentsOfURL:url
                                                      usedEncoding:&encoding
                                                             error:&error];
-    NSLog(@"URL -> result: %@", tryString);
+    NSLog(@"URL -> result: %@", tryString); // yey, it works! :-)
+    
+    if(tryString)
+    {
+        if(myTextView)
+        {
+            [self performSelectorOnMainThread:@selector(updateRank:) withObject:tryString waitUntilDone:NO];
+        }
+    }
+}
+
+// Small function to add the online rank to the final ranking textfield (we need to return to the main selector to perform this UI change)
+-(void)updateRank:(NSString*)onlineRank
+{
+    int intRank = [onlineRank intValue];
+    NSMutableString* onlineRankSentence = [NSMutableString stringWithFormat:@" Online rank: %d", intRank];
+    if(intRank == 1)
+    {
+        [onlineRankSentence appendString:@"!!!"];
+    }else if(intRank <= 10)
+    {
+        [onlineRankSentence appendString:@"!!"];
+    }else{
+        [onlineRankSentence appendString:@"!"];
+    }
+    myTextView.text = [myTextView.text stringByAppendingString:onlineRankSentence];
 }
 
 -(void)doLevelTransition_sameLevel:(BOOL)repeatingLevel{
@@ -1016,7 +1074,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                                 initWithFormat:@"Total time: %@", [self getTimeString: [self getTotalTime]]];
             
             displayTime2.text = [[NSString alloc]
-                                 initWithFormat:@"This level: %.2f seconds", [self getLevelTime]];
+                                 initWithFormat:@"This level: %@", [self getTimeString: [self getLevelTime]]];
         }
         else
         {
@@ -1103,6 +1161,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if((nextLevelIndex == LAST_LEVEL_INDEX) && (self.audioPlayer != nil))
     {
         [Edgar removeLight];
+        [Edgar removeMasque];
         [self doVolumeFade];
     }
     
@@ -1127,6 +1186,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:nextLevelIndex forKey:@"savedLevel"];
+        [defaults setFloat:[self getTotalTime] forKey:@"totalTime"];
         [defaults synchronize];
         NSLog(@"Level saved: %d", nextLevelIndex);
     }
@@ -1134,6 +1194,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if(nextLevelIndex > 1 && nextLevelIndex < LAST_LEVEL_INDEX)
     {
         [Edgar addLight]; // shadow effect for levels 2-6
+        
+        if(nextLevelIndex == 5)
+        {
+            SKNode *lampe = [Edgar childNodeWithName:@"light"];
+            [Edgar addMasque];
+            if(lampe)
+            {
+                [(SKLightNode*) lampe setShadowColor: [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.88]];
+            }
+        }
+
     }
     levelTransitioning = FALSE;
 }
@@ -1315,6 +1386,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         myTextView = [[UITextView alloc] init];
                         NSString* userTimeString = [self getTimeString: [self getTotalTime]];
                         
+                        NSLog(@"Preparing textview");
                         myTextView.text = [NSString stringWithFormat:@"You did it! \nYour time: %@.\nHowever, the alien vessel wasn’t part of the plan… \nStay tuned for the next part.\n\nSave your score online?", userTimeString];
                         
                         myTextView.textColor = [UIColor whiteColor];
@@ -1416,7 +1488,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if(contactNode.physicsBody.categoryBitMask == PhysicsCategoryItems)
     {
         /* SND: item gathered */
-        if([contactNode isKindOfClass:[plpItem class]]) // à simplifier
+        if([contactNode.name isEqualToString: @"uranium"])
         {
             [Edgar takeItem];
             [myLevel childNodeWithName:@"uranium"].hidden = YES;  // <- to simply hide the object
@@ -1429,6 +1501,24 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     [helpNode removeFromParent];
                 }
             }
+        }else if([contactNode.name isEqualToString: @"timeBonus"])
+        {
+            int theBonusSeconds = [(plpItem *)contactNode getSeconds];
+            SKLabelNode *bonusLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+            bonusLabel.fontSize = 36;
+            [bonusLabel setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
+            
+            bonusLabel.fontColor = [SKColor colorWithRed:0 green:.8 blue:.5 alpha:1];
+            bonusLabel.position = CGPointMake(screenCenterX, 0); // should be ~ 100 for an iPad air -> find a way to do it better
+            bonusLabel.zPosition = 30;
+            bonusLabel.text = [NSString stringWithFormat:@"Bonus! -%d seconds", theBonusSeconds];
+            bonusLabel.alpha = 0;
+            [myCamera addChild: bonusLabel];
+            
+            [bonusLabel runAction:[SKAction sequence:@[[SKAction fadeAlphaTo: 1 duration: .5], [SKAction waitForDuration: 2], [SKAction fadeAlphaTo: 0 duration: .5], [SKAction removeFromParent]]]];
+            
+            initialTime -= theBonusSeconds;
+            [(plpItem *)contactNode removeFromParent];
         }
     }
     
@@ -1446,12 +1536,27 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         if([contactNode isKindOfClass:[plpPlatform class]])
         {
-            /* SND: foot on platform */
 //            NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 42, contactNode.position.y);
-            if(Edgar.position.y - 42 > contactNode.position.y){ /// ddd check the height again
+            
+            // Determine vertical position, check if the platform should stop
+            if(Edgar.position.y - 42 > contactNode.position.y) /// dev: check the height again
+            {
+                /* SND: foot on platform */
                 [(plpPlatform *)contactNode setHeroAbove];
-            }else if (Edgar.position.y < contactNode.position.y){
-                [(plpPlatform *)contactNode emergencyStop];
+            }
+            else
+            {
+                if([(plpPlatform *)contactNode getIsVertical] == TRUE)
+                {
+                    if (Edgar.position.y < contactNode.position.y)
+                    {
+                        [(plpPlatform *)contactNode emergencyStop];
+                    }
+                }
+                else // If horizontal, also check if a horizontal stop is needed
+                {
+                    [(plpPlatform *)contactNode horizontalEmergencyStop:Edgar.position.x];
+                }
             }
         }
     }

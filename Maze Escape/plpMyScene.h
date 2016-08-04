@@ -104,6 +104,7 @@ float contextVelocityX;
 -(int)getNextLevelIndex;
 -(void)saveHighScoreForUser:(NSString*)userName;
 -(void)saveInitialTime;
+-(void)saveAdditionalTime:(float)additionalTime;
 -(void)saveAdditionalTime;
 -(void)playTune:(NSString*)filename loops:(int)loops;
 -(void)computeCenter;
