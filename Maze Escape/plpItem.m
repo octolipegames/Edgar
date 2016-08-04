@@ -25,22 +25,39 @@
 
 @implementation plpItem
 
+
 - (id)initAtPosition:(CGPoint)position withTexture:(NSString*)textureString
 {
-    SKTexture *mainTexture = [SKTexture textureWithImageNamed:textureString];
-    self = [super initWithTexture:mainTexture];
-//    self.scale = 1.5;
+    if([textureString isEqualToString:@""])
+    {
+        self = [super initWithColor:[UIColor whiteColor] size:CGSizeMake(4, 4) ];
+        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:4 center:CGPointMake(0, 0)];
+        self.physicsBody.dynamic = NO;
+        self.alpha = 0.5;
+        self.position = position;
+        NSLog(@"Bonus");
+    }
+    else
+    {
+        SKTexture *mainTexture = [SKTexture textureWithImageNamed:textureString];
 
-    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:22 center:CGPointMake(0, 0)];
-
-//    self.physicsBody = [SKPhysicsBody bodyWithTexture:mainTexture size: self.size];
-//    self.physicsBody.allowsRotation = false;
-//    self.physicsBody.mass = 50;
-    self.physicsBody.dynamic = NO;
-
-    self.position = position;
+        self = [super initWithTexture:mainTexture];
+        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:22 center:CGPointMake(0, 0)];
+        self.physicsBody.dynamic = NO;
+        self.position = position;
+    }
 
     return self;
 }
+
+- (void) setSeconds: (int) theSeconds
+{
+    secondsBonus = theSeconds;
+}
+- (int) getSeconds
+{
+    return secondsBonus;
+}
+
 
 @end
