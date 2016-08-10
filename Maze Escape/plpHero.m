@@ -130,7 +130,7 @@
     
     if(!lightNode)
     {
-        // Lampe
+        // The light which produces shadow
         SKLightNode* lampe = [[SKLightNode alloc] init];
         lampe.name = @"light";
         lampe.zPosition = 20;
@@ -138,7 +138,6 @@
         lampe.falloff = 1;
         lampe.ambientColor = [UIColor whiteColor];
         lampe.lightColor = [[UIColor alloc] initWithRed:1.0 green:1.0 blue:0.0 alpha:0.5];
-    //    lampe.shadowColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
         lampe.shadowColor = [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
         [self addChild:lampe];
         NSLog(@"LightNode added");

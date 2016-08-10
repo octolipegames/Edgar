@@ -63,7 +63,7 @@
     
     CGRect MenuBackgroundFrame = CGRectMake(left, bottom, menuWidth, menuHeight);
     self.MenuBackground = [[UIImageView alloc] initWithFrame:MenuBackgroundFrame];
-
+    
     self.MenuBackground.animationImages = [NSArray arrayWithObjects:
                                            [UIImage imageNamed:@"MenuBackground/M1-01.png"],
                                            [UIImage imageNamed:@"MenuBackground/M2-01.png"],
@@ -89,7 +89,7 @@
     [self.MenuBackground startAnimating];
     [self.view insertSubview: self.MenuBackground atIndex:1];
     
-    //     Toucher l'image permet de fermer les crédits / To touch the screen closes the credits
+    //   To touch the screen closes the credits
     UITapGestureRecognizer *newTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeCredits)];
     [self.MenuBackground setUserInteractionEnabled:YES];
     [self.MenuBackground addGestureRecognizer:newTap];
@@ -249,6 +249,7 @@
             
             [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
             
+            // To do: add “Skip Tutorial” button here
             
             UIButton *myButtonStartTutorial  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
             myButtonStartTutorial.tag = 0;
