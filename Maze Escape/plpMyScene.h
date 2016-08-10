@@ -34,7 +34,6 @@
 #define USE_ALTERNATE_CONTROLS 0
 #define DEFAULT_EDGAR_VELOCITY 150
 
-
 float contextVelocityX;
 
 @interface plpMyScene : SKScene <SKPhysicsContactDelegate>

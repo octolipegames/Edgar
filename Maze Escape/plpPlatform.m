@@ -50,9 +50,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     NSString *texturePath;
     if(x_limit == position.x) // vertical platform
     {
-        texturePath = [NSString stringWithFormat:@"elevateur-01.png"];
+        texturePath = [NSString stringWithFormat:@"Level_objects_img/elevateur-01.png"];
     }else{
-        texturePath = [NSString stringWithFormat:@"elevateur-02-horizontal.png"];
+        texturePath = [NSString stringWithFormat:@"Level_objects_img/elevateur-02-horizontal.png"];
     }
     
     SKTexture *plateformeTexture = [SKTexture textureWithImageNamed:texturePath];

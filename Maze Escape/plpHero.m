@@ -32,8 +32,10 @@
 @implementation plpHero
 
 - (id)initAtPosition:(CGPoint)position{
-    edgarDeFace = [SKTexture textureWithImageNamed:@"edgarDeFace.png"];
-    self = [super initWithTexture:edgarDeFace];
+    
+    facingEdgar = [SKTexture textureWithImageNamed:@"Level_objects_img/facingEdgar.png"];
+    //facingEdgar = [SKTexture textureWithImageNamed:@"Level_objects_img/facingEdgar.png"];
+    self = [super initWithTexture:facingEdgar];
     
     if (self) {
         
@@ -112,7 +114,7 @@
 }
 
 -(void)facingEdgar{
-    [self setTexture:edgarDeFace];
+    [self setTexture:facingEdgar];
 }
 
 -(void)jumpingEdgar

@@ -25,7 +25,7 @@
 
 @interface plpHero : SKSpriteNode
 {
-    SKTexture *edgarDeFace;
+    SKTexture *facingEdgar;
     NSArray *_EdgarWalkingFrames;
     NSArray *_EdgarJumpingFrames;
     @public SKSpriteNode *rectangleNode;
@@ -54,5 +54,6 @@
 -(void)resetItem;
 -(void)resetInfected;
 -(BOOL)hasItem;
-    
+
+
 @end

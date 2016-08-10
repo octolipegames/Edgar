@@ -29,7 +29,6 @@
 //
 //................................................
 
-
 @interface plpMyScene () <UITextFieldDelegate>
 {
 }
@@ -261,17 +260,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 - (void)showTrophy {
     NSString *rankingString = @"Snail Edgar.";
-    SKTexture *trophyTexture = [SKTexture textureWithImageNamed:@"Trophy1-03.png"];
+    SKTexture *trophyTexture = [SKTexture textureWithImageNamed:@"Level_objects_img/Trophy1-03.png"];
     
     float totalTime = [self getTotalTime];
     if(totalTime < 600) // 10 minutes
     {
         rankingString = @"King Edgar. Congrats, boss.";
-        trophyTexture = [SKTexture textureWithImageNamed:@"Trophy3-03.png"];
+        trophyTexture = [SKTexture textureWithImageNamed:@"Level_objects_img/Trophy3-03.png"];
     }else if(totalTime < 1200) // 20 minutes
     {
         rankingString = @"Knight Edgar. Very good.";
-        trophyTexture = [SKTexture textureWithImageNamed:@"Trophy2-03.png"];
+        trophyTexture = [SKTexture textureWithImageNamed:@"Level_objects_img/Trophy2-03.png"];
     }else{
         rankingString = @"Snail Edgar.";
     }
@@ -453,9 +452,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(nextLevelIndex>1)
     {
-        SKSpriteNode *startLift = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"ascenseur-start.png"] size: CGSizeMake(88, 106)];
+        SKSpriteNode *startLift = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Level_objects_img/ascenseur-start.png"] size: CGSizeMake(88, 106)];
         startLift.position = startPosition;
         [tileMap addChild: startLift];
+        
+        //[NSString stringWithFormat:@"%@/%@/%@", one, two, three];
     }
     
     // Sensor (detects when the player reaches the center of the lift and triggers events like the alien vessel)
@@ -497,7 +498,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
     
     // Crate / Caisse
-    SKTexture *textureCaisse = [SKTexture textureWithImageNamed:@"box-08.png"];
+    SKTexture *textureCaisse = [SKTexture textureWithImageNamed:@"Level_objects_img/box-08.png"];
     NSArray *placeCaisse = [group objectsNamed:@"Caisse"];
     for (NSDictionary *optionCaisse in placeCaisse) {
         CGFloat width = [optionCaisse[@"width"] floatValue];
@@ -520,7 +521,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             for (NSDictionary *monTree in treeArray) {
                 plpItem *myItem;
-                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withTexture:@"arbre-09.png"];
+                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withTexture:@"Level_objects_img/arbre-09.png"];
                 
                 //                float waitBeforeStart = [montree[@"waitBeforeStart"] floatValue];
                 if(myItem)
@@ -547,7 +548,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             for (NSDictionary *monSemaphore in semaphoreArray) {
                 plpItem *myItem;
-                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monSemaphore] withTexture:@"FeuVert.png"];
+                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monSemaphore] withTexture:@"Level_objects_img/FeuVert.png"];
                 //                float waitBeforeStart = [monSemaphore[@"waitBeforeStart"] floatValue];
                 if(myItem)
                 {
@@ -555,8 +556,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     [tileMap addChild:myItem];
                     // action
                     
-                    SKTexture *semaphoreGreen = [SKTexture textureWithImageNamed:@"FeuVert.png"];
-                    SKTexture *semaphoreRed = [SKTexture textureWithImageNamed:@"FeuRouge.png"];
+                    SKTexture *semaphoreGreen = [SKTexture textureWithImageNamed:@"Level_objects_img/FeuVert.png"];
+                    SKTexture *semaphoreRed = [SKTexture textureWithImageNamed:@"Level_objects_img/FeuRouge.png"];
                     SKAction *setGreen = [SKAction setTexture:semaphoreGreen];
                     SKAction *setRed = [SKAction setTexture:semaphoreRed];
                     SKAction *wait = [SKAction waitForDuration:2];
@@ -581,10 +582,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         CGFloat width = [final[@"width"] floatValue];
         CGFloat height = [final[@"height"] floatValue];
         
-        SKTexture *textureCaisse = [SKTexture textureWithImageNamed:@"ascenseurF-01.png"];
+        SKTexture *textureCaisse = [SKTexture textureWithImageNamed:@"Level_objects_img/ascenseurF-01.png"];
         endLevelLiftNode = [SKSpriteNode spriteNodeWithTexture:textureCaisse size: CGSizeMake(width, height)];
         
-        endLevelLiftNode.name = @"endLevelLiftNode";
+        endLevelLiftNode.name = @"Level_objects_img/endLevelLiftNode";
         endLevelLiftNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(width, height) center:CGPointMake(width/2,height/2)];
         endLevelLiftNode.physicsBody.categoryBitMask = PhysicsCategorySensors;
         endLevelLiftNode.physicsBody.friction = 0.1; // la caisse glisse
@@ -611,7 +612,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         for (NSDictionary *monItem in tabItem) {
             plpItem *myItem;
-            myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monItem] withTexture:@"pile.png"];
+            myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monItem] withTexture:@"Level_objects_img/pile.png"];
             if(myItem)
             {
                 myItem.name = @"uranium";
@@ -653,8 +654,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         plpTrain *trainNode;
         
         for (NSDictionary *theTrain in trainObjectMarker) {
-            /*            trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"Train_chassis_02.png" andWheelTexture:@"Train-roue.png"];*/
-            trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"ChariotSocle.png" andWheelTexture:@"RoueChariot-03.png"];
+            trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"Level_objects_img/ChariotSocle.png" andWheelTexture:@"Level_objects_img/RoueChariot-03.png"];
             
             if(trainNode)
             {
@@ -1253,7 +1253,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         if([contactNode.name isEqualToString:@"endLevelLiftNode"] && [Edgar hasItem])
         {
-            SKAction *greenDoor = [SKAction setTexture:[SKTexture textureWithImageNamed:@"ascenseurO-01.png"]];
+            SKAction *greenDoor = [SKAction setTexture:[SKTexture textureWithImageNamed:@"Level_objects_img/ascenseurO-01.png"]];
             [contactNode runAction:greenDoor];
         }
         
@@ -1304,10 +1304,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
                 // First animation
                 SKNode *alienVessel;
-                alienVessel = [SKSpriteNode spriteNodeWithImageNamed:@"UFO1-02.png"];
+                alienVessel = [SKSpriteNode spriteNodeWithImageNamed:@"Level_objects_img/UFO1-02.png"];
                 alienVessel.name = @"alienVessel";
                 
-                SKSpriteNode *beam = [SKSpriteNode spriteNodeWithImageNamed:@"rayonb.png"];
+                SKSpriteNode *beam = [SKSpriteNode spriteNodeWithImageNamed:@"Level_objects_img/rayonb.png"];
                 beam.alpha = 0;
                 beam.name = @"beam";
                 
