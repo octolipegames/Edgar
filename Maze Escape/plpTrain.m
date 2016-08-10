@@ -24,6 +24,14 @@
 #import "plpTrain.h"
 #import "plpMyScene.h"
 
+//´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
+//
+//  The train on which Edgar can jump.
+//  To do: remove the obsolete moveLeft variable.
+//
+//................................................
+
+
 @implementation plpTrain
 
 - (id)initAtPosition:(CGPoint)position withMainTexture:(NSString*)textureString andWheelTexture:(NSString*)wheelTextureString
@@ -83,9 +91,8 @@
     isRunning = FALSE;
     SKAction *decelerate;
     
-    if (rightWheelNode.physicsBody.angularVelocity > 0)
+    if (rightWheelNode.physicsBody.angularVelocity > 0) // positive speed -> the train runs left
     {
-        NSLog(@"vitesse positive -> le train roule vers la gauche");
         decelerate = [SKAction runBlock:^{
             float newSpeed = rightWheelNode.physicsBody.angularVelocity - deceleration;
             if(newSpeed < 0){
@@ -96,8 +103,7 @@
             [leftWheelNode.physicsBody setAngularVelocity:newSpeed];
         }];
         
-    }else{
-        NSLog(@"vitesse négative -> roule vers la droite");
+    }else{ // 0 or negative speed -> the train runs right
         decelerate = [SKAction runBlock:^{
             float newSpeed = rightWheelNode.physicsBody.angularVelocity + deceleration;
             //            NSLog(@"newSpeed = %f", newSpeed);
@@ -121,8 +127,6 @@
     {
         SKAction *accelerate;
         NSLog(@"Self Velocity x: %f", [self getVelocityX]);
-        
-        //      if(moveLeft == FALSE) -> now we use getVelocityX instead
         
         if([self getVelocityX] < 0) // if the train already runs left
         {

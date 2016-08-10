@@ -23,6 +23,12 @@
 #import "plpViewController.h"
 #import "plpMyScene.h"
 
+//´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
+//
+//  Our controller. Called when we launch the app.
+//
+//................................................
+
 
 @implementation plpViewController
 
@@ -30,8 +36,6 @@
 {
     /* Animation */
     SKView * skView = (SKView *)self.view;
-    NSLog(@"Bounds: %f, %f", skView.bounds.size.width, skView.bounds.size.height);
-    
     [self loadMenuBackgroundWithSize:skView.bounds.size];
 
     myScene = [plpMyScene sceneWithSize:skView.bounds.size];
@@ -96,14 +100,13 @@
 - (IBAction)presentChoosenScene:(id)sender {
     UIButton *clicked = (UIButton *) sender;
     NSInteger choosenLevel = clicked.tag;
+
     // We remove the UI
-    
     UIView *containerView = [clicked superview];
-    
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [containerView removeFromSuperview];
     
-//    [self presentTheScene: 3]; // dev: for screen captures
+//    [self presentTheScene: 3]; // dev: this is for screen captures
     [self presentTheScene: choosenLevel];
     [(plpMyScene*)myScene computeCenter];
 }
@@ -119,7 +122,6 @@
         self.MenuBackground = nil;
     }
 
-    NSLog(@"We present the scene…");
     SKView * spriteView = (SKView *)self.view;
     [spriteView presentScene:myScene];
 
@@ -127,11 +129,10 @@
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         float totalTime = [defaults floatForKey:@"totalTime"];
-        NSLog(@"Total time retrieved...");
         if(totalTime){
             [(plpMyScene*)myScene saveAdditionalTime:totalTime];
         }else{
-            NSLog(@"Wait, no total time found??");
+            NSLog(@"Warning: no total time found");
         }
         [(plpMyScene*)myScene resumeFromLevel:startLevel];
     }
@@ -154,9 +155,9 @@
 }
 
 - (IBAction)playGame:(id)sender {
-    // this method gets called:
+    // this method gets called when the round “play” button is pressed. It occurs:
     // 1) when the user launches the game
-    // 2) when he resumes again after a pause
+    // 2) when he resumes after a pause
     
     self.playButton.hidden = YES;
     self.creditsButton.hidden = YES;
@@ -164,8 +165,8 @@
 
     
     // 1) the user launches the game
-//    if(gamePaused==FALSE)   // we set up the dialog
-    if(1==1)   // we set up the dialog
+    //    if(gamePaused==FALSE)
+    if(1==1)   // we set up the dialog anyway
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
@@ -275,7 +276,6 @@
     }
 }
 
-
 - (BOOL)shouldAutorotate
 {
     return YES;
@@ -298,7 +298,6 @@
 {
     NSLog(@"Memory warning!");
     [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
 }
 
 - (IBAction)pauseButtonClicked:(id)sender {
@@ -331,66 +330,25 @@
     self.creditsText.hidden = YES;
 }
 
-- (void)addButton
+- (void)forcePause // if App goes to background
 {
-    NSLog(@"boum.");
-}
-
-
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    NSLog(@"app will resign active...");
-    
     SKView *spriteView = (SKView *)self.view;
     if(!spriteView.paused){
         spriteView.paused = YES;
-        NSLog(@"Will resign active => Mise en pause");
+        NSLog(@"Will resign active => Pause");
     }
     [(plpMyScene*)myScene getsPaused];
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    NSLog(@"did enter background");
-    
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    NSLog(@"Revient au premier plan");
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    SKView *spriteView = (SKView *)self.view;
-    NSLog(@"Redevient active");
-    if(spriteView.paused){
-        spriteView.paused = NO;
-    }
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
+-(void)saveCurrentProgress
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    // We save the current level
     int currentLevel = [(plpMyScene*)myScene getNextLevelIndex];
     if(currentLevel > 0)
     {
         [defaults setInteger:currentLevel forKey:@"savedLevel"];
         [defaults synchronize];
     }
-    
-    NSLog(@"Tout va fermer: niveau sauvé, terminating...");
-    // Next version: we save the current level index
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 
 @end

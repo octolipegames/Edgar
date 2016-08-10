@@ -39,6 +39,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *creditsText;
 @property (nonatomic, strong) IBOutlet UIImageView *MenuBackground;
 
-- (void)addButton;
+-(void)saveCurrentProgress;
 
 @end

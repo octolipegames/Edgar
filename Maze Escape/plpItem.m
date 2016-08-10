@@ -23,6 +23,14 @@
 
 #import "plpItem.h"
 
+//´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
+//
+//  Class for pickable items: uranium, bonus
+//  To do: make it less primitive
+//
+//................................................
+
+
 @implementation plpItem
 
 
@@ -35,7 +43,6 @@
         self.physicsBody.dynamic = NO;
         self.alpha = 0.5;
         self.position = position;
-        NSLog(@"Bonus");
     }
     else
     {

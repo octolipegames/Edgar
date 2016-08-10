@@ -24,6 +24,12 @@
 #import "plpPlatform.h"
 #import "plpMyScene.h"
 
+//´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
+//
+//  Horizontal and vertical moving platforms.
+//
+//................................................
+
 @implementation plpPlatform
 
 typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
@@ -188,7 +194,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     heroAbove = FALSE;
 }
 
-
 - (BOOL) getIsVertical
 {
     return isVertical;
@@ -200,7 +205,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     noEmergencyStop = TRUE;
 }
 
-
+// When our main character could be stucked under an elevator
 - (void) emergencyStop
 {
     // Condition: only if the platform is moving down
@@ -233,6 +238,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     }
 }
 
+// When our main character could get stucked left/right by a platform
 - (void) horizontalEmergencyStop: (float) EdgarXPosition
 {
     BOOL stopReallyNeeded = FALSE;
@@ -259,15 +265,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     {
         emergencyStopTriggered = TRUE; // to avoid simoultaneous calls
         
-        //[self setSpeed: 0]; // We pause the animation
         [self removeAllActions];
-        // NB: [self removeAllChildren];
-        
         [self.physicsBody setVelocity:CGVectorMake(factor*motionSpeed, 0)]; // We invert the direction
         
-        //SKAction *stopDuration = [SKAction waitForDuration: .3];
         SKAction *mvDuration = [SKAction waitForDuration: .3];
-        
         
         SKAction *moveDuration = [SKAction waitForDuration:movementDuration];
         SKAction *tempMove = [SKAction runBlock:^{
@@ -281,33 +282,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
                  [self runAction:[SKAction repeatActionForever: standardSequence]];
              }];
          }];
-
-        
-        /*
-        [self.scene runAction: mvDuration completion:^
-         {
-             [self.physicsBody setVelocity:CGVectorMake(0, 0)];
-             [self.scene runAction: [SKAction waitForDuration: .5] completion:^
-              {
-                  [self.physicsBody setVelocity:CGVectorMake(factor*-motionSpeed, 0)];
-                  
-                  SKAction *moveDuration = [SKAction waitForDuration:movementDuration];
-                  SKAction *tempMove = [SKAction runBlock:^{
-                      [self horizontalMoveForward: TRUE];
-                  }];
-                  
-                  [self.scene runAction: mvDuration completion:^
-                   {
-                       emergencyStopTriggered = FALSE;
-                       [self runAction: [SKAction sequence:@[tempMove, moveDuration]] completion:^{
-                           [self runAction:[SKAction repeatActionForever: standardSequence]];
-                       }];
-                       
-                       //[self setSpeed: 1]; // animation runs again
-                   }];
-                  
-              }];
-         }];*/
     }
 }
 

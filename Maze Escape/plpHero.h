@@ -36,7 +36,7 @@
     BOOL hasUranium;
 }
 
-- (id)initAtPosition:(CGPoint)position;
+-(id)initAtPosition:(CGPoint)position;
 -(void)walkingEdgar;
 -(void)jumpingEdgar;
 -(void)facingEdgar;
@@ -53,7 +53,6 @@
 -(void)takeItem;
 -(void)resetItem;
 -(void)resetInfected;
--(void)crashes;
 -(BOOL)hasItem;
     
 @end

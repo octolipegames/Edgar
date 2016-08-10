@@ -47,10 +47,8 @@
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withDuration:(float)duration withMovement:(float)movement;
 
 - (float) getVelocityX;
-
 - (void) setHeroAbove;
 - (void) HeroWentAway;
-
 - (BOOL) getIsVertical;
 - (void) setNoEmergencyStop;
 - (void) emergencyStop;

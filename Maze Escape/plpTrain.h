@@ -38,5 +38,4 @@
 - (void) setHeroAbove;
 - (void) HeroWentAway;
 - (float) getVelocityX;
-//- (void)moveToSpeed:(float)maxSpeed;
 @end

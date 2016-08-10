@@ -23,6 +23,15 @@
 
 #import "plpEnemy.h"
 
+
+//´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
+//
+//  The sweet aliens.
+//  To do: more sprites, more colors
+//
+//................................................
+
+
 @implementation plpEnemy
 
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withMovement:(float)movement
@@ -51,14 +60,14 @@
         self.physicsBody.friction = 0.5;
         self.physicsBody.collisionBitMask = 1;
         
-        // Animation avec les textures
+        // Texture animation
         [self runAction:[SKAction repeatActionForever:
              [SKAction animateWithTextures:monstreMutant
               timePerFrame:0.1f
                     resize:NO
                    restore:YES]] withKey:@"monstreMarche"];
         
-        // Mouvement continu
+        // Continuous movement
         if(movement != 0)
         {
             SKAction *mvm1 = [SKAction moveByX:movement y:0 duration: 2];

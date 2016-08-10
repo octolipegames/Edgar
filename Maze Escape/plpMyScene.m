@@ -23,6 +23,13 @@
 
 #import "plpMyScene.h"
 
+//´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
+//
+//  The main scene class: level loading, rendering, input
+//
+//................................................
+
+
 @interface plpMyScene () <UITextFieldDelegate>
 {
 }
@@ -86,6 +93,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         else
         {
             NSLog(@"Could not load level");
+            return false;
         }
         
         // We create our character Edgar
@@ -112,21 +120,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         [self saveInitialTime];
         additionalSavedTime = 0;
-        
-        /*
-        // To debug the time counting
-        SKAction *logTime = [SKAction runBlock:^{
-            if(!levelTransitioning) NSLog(@"Total time saved: %f", [self getTotalTime]);
-        }];
-        [self runAction:[SKAction repeatActionForever:[SKAction sequence:@[logTime, [SKAction waitForDuration:1]]]]];
-        */
     }
     return self;
 }
 
-- (void)playAgain{ // -> play again
-    NSLog(@"End game animation start");
-    
+- (void)playAgain{
     // We clean the UI
     SKNode *theTrophy = [myCamera childNodeWithName:@"trophy"];
     [theTrophy removeFromParent];
@@ -286,7 +284,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
     if(!myTextView)
     {
-        NSLog(@"Re-creating myTextView");
         myTextView = [[UITextView alloc] init];
     }
     
@@ -385,11 +382,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if(!myTileMap)
         {
             NSLog(@"Could not load the .tmx tilemap.");
+            return false;
         }
     }
     else
     {
         NSLog(@"Next level out of the “levelFiles” array");
+        return false;
     }
     
     return myTileMap;
@@ -468,7 +467,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         int sensorId;
         
         for (NSDictionary *theSensor in sensorObjectMarker) {
-            NSLog(@"Création d'un senseur");
             float width = [theSensor[@"width"] floatValue];
             float height = [theSensor [@"height"] floatValue];
             sensorNode = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green: 1                                                                                blue: 1 alpha: 0] size: CGSizeMake(width, height)]; // change alpha e.g. to 0.3 to debug
@@ -763,7 +761,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
             else
             {
-                NSLog(@"Erreur lors de la création de l'alien.");
+                NSLog(@"Error while creating the alien.");
             }
         }
     }
@@ -774,16 +772,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 -(void)saveInitialTime
 {
     initialTime = CFAbsoluteTimeGetCurrent();
-    NSLog(@"Initial time = %f", initialTime);
 }
 -(void)saveAdditionalTime:(float)additionalTime{
     additionalSavedTime += additionalTime;
-    NSLog(@"\n \n saveAdditionalTime called from Controller, time added = %f \n \n", additionalSavedTime);
 }
 -(void)saveAdditionalTime
 {
     additionalSavedTime += CFAbsoluteTimeGetCurrent() - initialTime;
-    NSLog(@"\n \n Additional time = %f \n \n", additionalSavedTime);
 }
 -(float)getTotalTime
 {
@@ -1013,8 +1008,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     NSString *tryString = [[NSString alloc] initWithContentsOfURL:url
                                                      usedEncoding:&encoding
                                                             error:&error];
-    NSLog(@"URL -> result: %@", tryString); // yey, it works! :-)
-    
     if(tryString)
     {
         if(myTextView)
@@ -1124,7 +1117,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [curtain2 runAction: openCurtain2 completion:^{
             [self saveInitialTime];
             //   levelTransitioning = FALSE; -> too late, may cause unexpected behaviours
-            NSLog(@"Level transition complete");
         }];
     }];
 
@@ -1340,7 +1332,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
             else if([contactNode.name isEqualToString:@"finalAnimationSensor2"])
             {
-                NSLog(@"Final animation TWO triggered");
+                NSLog(@"Final animation 2 triggered");
                 
                 if(levelTransitioning==TRUE)
                 {
@@ -1622,7 +1614,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             /* SND: the train stops */
             [self removeActionForKey:@"trainSoundAction"];
-//            NSLog(@"Quitte le train => décélération");
+//            NSLog(@"Leaves the train => deceleration");
             [(plpTrain *)contactNode decelerateAtRate:15];
             [(plpTrain *)contactNode HeroWentAway];
             willLoseContextVelocity = TRUE;

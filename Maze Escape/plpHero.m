@@ -23,6 +23,12 @@
 
 #import "plpHero.h"
 
+//´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
+//
+//  Our beloved main character Edgar {:-[-<
+//
+//................................................
+
 @implementation plpHero
 
 - (id)initAtPosition:(CGPoint)position{
@@ -39,7 +45,6 @@
         SKTextureAtlas *EdgarJumpAtlas = [SKTextureAtlas atlasNamed:@"edgarsaute"];
         NSMutableArray *jumpFrames = [NSMutableArray array];
 
-        //        int numImages = EdgarAnimatedAtlas.textureNames.count;
         for (int i=1; i <= 3; i++) {
             NSString *textureName = [NSString stringWithFormat:@"EdgarMarche%d", i];
             SKTexture *temp = [EdgarAnimatedAtlas textureNamed:textureName];
@@ -188,18 +193,14 @@
     return boolHasControl;
 }
 -(void)takeDamage{
-    SKAction *aie2 = [SKAction sequence:@[
+    SKAction *ouch = [SKAction sequence:@[
       [SKAction colorizeWithColor:[SKColor redColor] colorBlendFactor:1.0 duration:0.15],
       [SKAction waitForDuration:0.1],
       [SKAction colorizeWithColorBlendFactor:0.0 duration:0.15]]];
-//    SKAction *aie = [SKAction sequence: @[[SKAction fadeAlphaTo:.5 duration: .2], [SKAction fadeAlphaTo:1 duration:.2], [SKAction waitForDuration:.5]]];
-    [self runAction: aie2];
-//    [self runAction: aie];
+    [self runAction: ouch];
 }
 -(void)getsInfected{
-    if(isInfected == TRUE)
-    {
-    }else{
+    if(isInfected == FALSE){
         [self removeControl];
         isInfected = TRUE;
         SKAction *getBlue = [SKAction sequence:@[
@@ -210,7 +211,6 @@
              [SKAction moveByX:10 y:0 duration:.1],
              [SKAction moveByX:-40 y:0 duration:.5],
              [SKAction moveByX:40 y:0 duration:.1]]];
-//        SKAction *wait = [SKAction waitForDuration:2];
         SKAction *giveBackControl = [SKAction runBlock:^{
             [self giveControl];
             isInfected = FALSE;
@@ -219,9 +219,6 @@
         SKAction *getWhite = [SKAction colorizeWithColorBlendFactor:0.0 duration:0.3];
 
         [self runAction: [SKAction sequence:@[getBlue, strangeMove, getWhite, giveBackControl]]];
-
-//        [self runAction: [SKAction sequence:@[getBlue, strangeMove, wait, strangeMove, getWhite, giveBackControl]]];
-
     }
 }
 -(BOOL)alreadyInfected{
@@ -229,12 +226,6 @@
 }
 -(void)takeItem{
     hasUranium = TRUE;
-    
-/*    SKAction *getWhite = [SKAction sequence:@[
-          [SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.3],
-          [SKAction waitForDuration:0.2],
-          [SKAction colorizeWithColorBlendFactor:0.0 duration:0.3]]];
-    [self runAction: getWhite];*/
 }
 -(void)resetItem{
     hasUranium = FALSE;
@@ -245,9 +236,6 @@
 
 -(BOOL)hasItem{
     return hasUranium;
-}
--(void)crashes{
-    NSLog(@"protch");
 }
 
 @end
