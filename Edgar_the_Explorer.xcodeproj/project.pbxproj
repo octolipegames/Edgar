@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA0295E51A0D34B0001BC725 /* masque.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0295E31A0D34B0001BC725 /* masque.png */; };
-		DA0295E61A0D34B0001BC725 /* masque2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0295E41A0D34B0001BC725 /* masque2.png */; };
 		DA03CBCE199F4C4700406720 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBCD199F4C4700406720 /* Foundation.framework */; };
 		DA03CBD0199F4C4700406720 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBCF199F4C4700406720 /* CoreGraphics.framework */; };
 		DA03CBD2199F4C4700406720 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBD1199F4C4700406720 /* UIKit.framework */; };
@@ -111,8 +109,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA0295E31A0D34B0001BC725 /* masque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = masque.png; sourceTree = "<group>"; };
-		DA0295E41A0D34B0001BC725 /* masque2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = masque2.png; sourceTree = "<group>"; };
 		DA03CBCA199F4C4700406720 /* Edgar Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Edgar Explorer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA03CBCD199F4C4700406720 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA03CBCF199F4C4700406720 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -375,8 +371,6 @@
 		DA6940781A0934AD00C47ECF /* decor */ = {
 			isa = PBXGroup;
 			children = (
-				DA0295E31A0D34B0001BC725 /* masque.png */,
-				DA0295E41A0D34B0001BC725 /* masque2.png */,
 				DA2311601B812D6800A479C6 /* masque_120.png */,
 			);
 			path = decor;
@@ -576,7 +570,6 @@
 				DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */,
 				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
 				DA387BF51D53D81B00E3F4A8 /* Time_bonus.png in Resources */,
-				DA0295E61A0D34B0001BC725 /* masque2.png in Resources */,
 				DAF898A31C71FDF100CF3F4D /* swipeRight.png in Resources */,
 				DAE713DB1C0FA87500ED9139 /* Play.png in Resources */,
 				DAE67FBE1A0520BC00F6AFDC /* edgarDeFace.png in Resources */,
@@ -607,7 +600,6 @@
 				DAF898A51C71FF5600CF3F4D /* swipeJump.png in Resources */,
 				DA4E2C4D1C0CE90000E271AB /* ElementsTiles-01-01.png in Resources */,
 				DAE8F7EC1C625B6E00954793 /* pile.png in Resources */,
-				DA0295E51A0D34B0001BC725 /* masque.png in Resources */,
 				DAC6A0CD1C6A03B600A54B86 /* ChariotSocle.png in Resources */,
 				DA207D1F1C0F3B10002DD3E8 /* icon-01@3x.png in Resources */,
 				DABB49521C67FE1500EDFD12 /* rail_textures.png in Resources */,
