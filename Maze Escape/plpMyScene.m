@@ -583,7 +583,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         SKTexture *textureCaisse = [SKTexture textureWithImageNamed:@"Level_objects_img/ascenseurF-01.png"];
         endLevelLiftNode = [SKSpriteNode spriteNodeWithTexture:textureCaisse size: CGSizeMake(width, height)];
         
-        endLevelLiftNode.name = @"Level_objects_img/endLevelLiftNode";
+        endLevelLiftNode.name = @"endLevelLiftNode";
         endLevelLiftNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(width, height) center:CGPointMake(width/2,height/2)];
         endLevelLiftNode.physicsBody.categoryBitMask = PhysicsCategorySensors;
         endLevelLiftNode.physicsBody.friction = 0.1; // la caisse glisse
@@ -1179,14 +1179,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     [Edgar giveControl];
     
-    if(nextLevelIndex > 0) // we store the last accomplished level
-    {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setInteger:nextLevelIndex forKey:@"savedLevel"];
-        [defaults setFloat:[self getTotalTime] forKey:@"totalTime"];
-        [defaults synchronize];
-        NSLog(@"Level saved: %d", nextLevelIndex);
-    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:nextLevelIndex forKey:@"savedLevel"];
+    [defaults setFloat:[self getTotalTime] forKey:@"totalTime"];
+    [defaults synchronize];
+    NSLog(@"Level saved: %d", nextLevelIndex);
     
     if(nextLevelIndex > 1 && nextLevelIndex < LAST_LEVEL_INDEX)
     {
