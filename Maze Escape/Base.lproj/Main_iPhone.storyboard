@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="M1-01.png" translatesAutoresizingMaskIntoConstraints="NO" id="ujh-gO-BHA">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ujh-gO-BHA">
                                 <rect key="frame" x="0.0" y="1" width="568" height="319"/>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yo3-0O-95n">
@@ -142,7 +142,6 @@ Music:
         </scene>
     </scenes>
     <resources>
-        <image name="M1-01.png" width="1920" height="1080"/>
         <image name="Play.png" width="173" height="173"/>
         <image name="menuButton.png" width="74" height="70"/>
         <image name="repeatButton.png" width="40" height="40"/>
