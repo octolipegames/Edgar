@@ -45,7 +45,7 @@
     
     self.physicsBody = [SKPhysicsBody bodyWithBodies:@[mainBody, parapet1, parapet2]];
     
-    SKTexture *baseTexture = [SKTexture textureWithImageNamed:@"ChariotBase.png"];
+    SKTexture *baseTexture = [SKTexture textureWithImageNamed:@"Level_objects_img/ChariotBase.png"];
     SKSpriteNode *base = [SKSpriteNode spriteNodeWithTexture:baseTexture];
     base.position = CGPointMake(0, -12);
     
