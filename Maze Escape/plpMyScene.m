@@ -847,10 +847,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 {
     [self saveInitialTime];
     [Edgar giveControl];
-    if(self.audioPlayer != nil)
-    {
-        [self.audioPlayer play];
-    }
+    [self playTune:@"Sounds/Juno" loops:-1];
 }
 
 -(void)resumeFromLevel:(NSInteger)theLevel{
