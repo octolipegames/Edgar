@@ -244,7 +244,7 @@
         
         // Text: “You were at level 1...”
         UITextView *myTextView = [[UITextView alloc] init];
-        myTextView.text = [NSString stringWithFormat:@"You were at level %li...", (long)savedLevel+1];
+        myTextView.text = [NSString stringWithFormat:@"You were at level %li...", (long)savedLevel];
         myTextView.textColor = [UIColor whiteColor];
         myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
         myTextView.editable = NO;
