@@ -108,7 +108,7 @@ Music:
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="playGame:" destination="LVB-YS-i5n" eventType="touchUpInside" id="0Gb-Yd-QVp"/>
+                                    <action selector="playButtonClicked:" destination="LVB-YS-i5n" eventType="touchUpInside" id="Ryp-Kf-1S1"/>
                                 </connections>
                             </button>
                         </subviews>

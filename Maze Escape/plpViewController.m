@@ -97,7 +97,7 @@
 
 
 
-- (IBAction)presentChoosenScene:(id)sender {
+- (IBAction)levelChoiceButtonClicked:(id)sender {
     UIButton *clicked = (UIButton *) sender;
     NSInteger choosenLevel = clicked.tag;
 
@@ -154,7 +154,7 @@
     }
 }
 
-- (IBAction)playGame:(id)sender {
+- (IBAction)playButtonClicked:(id)sender {
     // this method gets called when the round “play” button is pressed. It occurs:
     // 1) when the user launches the game
     // 2) when he resumes after a pause
@@ -208,7 +208,7 @@
             
             [myButtonNewGame setTitle: @"New Game" forState:UIControlStateNormal];
             [myButtonNewGame addTarget: self
-                                action: @selector(presentChoosenScene:)
+                                action: @selector(levelChoiceButtonClicked:)
                       forControlEvents: UIControlEventTouchUpInside];
             
             UIButton *myButtonContinue  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -222,7 +222,7 @@
             
             [myButtonContinue setTitle: @"Resume" forState:UIControlStateNormal];
             [myButtonContinue addTarget: self
-                                 action: @selector(presentChoosenScene:)
+                                 action: @selector(levelChoiceButtonClicked:)
                        forControlEvents: UIControlEventTouchUpInside];
             
             [self.view addSubview: containerView];
@@ -262,7 +262,7 @@
             
             [myButtonStartTutorial setTitle: @"Continue" forState:UIControlStateNormal];
             [myButtonStartTutorial addTarget: self
-                                action: @selector(presentChoosenScene:)
+                                action: @selector(levelChoiceButtonClicked:)
                       forControlEvents: UIControlEventTouchUpInside];
             
             [self.view addSubview: containerView];

@@ -167,7 +167,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }];
 }
 
-- (IBAction)endGamePlayAgain:(id)sender {
+- (IBAction)playAgainButtonClicked:(id)sender {
     // We remove all subviews (text field and buttons), then the container
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [containerView removeFromSuperview];
@@ -311,7 +311,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     [myButtonClose setTitle: @"Play again" forState:UIControlStateNormal];
     [myButtonClose addTarget: self
-                      action: @selector(endGamePlayAgain:)
+                      action: @selector(playAgainButtonClicked:)
             forControlEvents: UIControlEventTouchUpInside];
     
     [containerView addSubview:myTextView];

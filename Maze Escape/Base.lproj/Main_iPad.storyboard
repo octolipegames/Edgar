@@ -83,6 +83,9 @@ Music:
                                 <state key="normal" title="Play" image="Play.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playButtonClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="tZk-5P-wh5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNc-Il-890">
                                 <rect key="frame" x="480" y="279" width="65" height="30"/>
