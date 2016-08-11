@@ -106,9 +106,13 @@
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [containerView removeFromSuperview];
     
-//    [self presentTheScene: 3]; // dev: this is for screen captures
     [self presentTheScene: choosenLevel];
     [(plpMyScene*)myScene computeCenter];
+}
+
+- (IBAction)continueButtonClicked:(id)sender {
+    // to use when the user doesn't want to do a new game!
+    
 }
 
 - (void)presentTheScene: (NSInteger)startLevel
@@ -279,7 +283,7 @@
         
         [myButtonContinue setTitle: @"Resume" forState:UIControlStateNormal];
         [myButtonContinue addTarget: self
-                             action: @selector(levelChoiceButtonClicked:)
+                             action: @selector(continueButtonClicked:)
                    forControlEvents: UIControlEventTouchUpInside];
         
         [self.view addSubview: containerView];
