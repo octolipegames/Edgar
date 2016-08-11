@@ -27,7 +27,6 @@
 //´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
 //
 //  The train on which Edgar can jump.
-//  To do: remove the obsolete moveLeft variable.
 //
 //................................................
 
@@ -119,52 +118,47 @@
     [self runAction:[SKAction sequence:@[[SKAction waitForDuration:2], theBraking]] withKey:@"braking"];
 }
 
-- (void)accelerateAtRate:(float)acceleration toMaxSpeed:(float)maxSpeed invertDirection:(BOOL)moveLeft
+- (void)accelerateAtRate:(float)acceleration toMaxSpeed:(float)maxSpeed
 {
     [self removeActionForKey:@"braking"];
     
-    if(1==1)
+    SKAction *accelerate;
+    if([self getVelocityX] < 0) // if the train already runs left
     {
-        SKAction *accelerate;
-        NSLog(@"Self Velocity x: %f", [self getVelocityX]);
-        
-        if([self getVelocityX] < 0) // if the train already runs left
-        {
-            accelerate = [SKAction runBlock:^{
-                float newSpeed = rightWheelNode.physicsBody.angularVelocity + acceleration;
-                if(newSpeed > maxSpeed){ // Speed limit / limite de vitesse
-                    newSpeed = maxSpeed;
-                }
-                [rightWheelNode.physicsBody setAngularVelocity:newSpeed];
-                [leftWheelNode.physicsBody setAngularVelocity:newSpeed];
-                
-                if(heroAbove){
-                    contextVelocityX = self.physicsBody.velocity.dx;
-                }
-                
-            }];
-        }
-        else
-        {
-            accelerate = [SKAction runBlock:^{
-                float newSpeed = rightWheelNode.physicsBody.angularVelocity - acceleration;
-                if(newSpeed < - maxSpeed){ // Speed limit / limite de vitesse
-                    newSpeed = - maxSpeed;
-                }
-                [rightWheelNode.physicsBody setAngularVelocity:newSpeed];
-                [leftWheelNode.physicsBody setAngularVelocity:newSpeed];
-                if(heroAbove){
-                    contextVelocityX = self.physicsBody.velocity.dx;
-                }
-            }];
-        }
-        
-        
-        SKAction *theMove = [SKAction repeatActionForever:[SKAction sequence:@[[SKAction waitForDuration:.1], accelerate]]];
-        
-        [self runAction: theMove withKey:@"running"];
-        isRunning = TRUE;
+        accelerate = [SKAction runBlock:^{
+            float newSpeed = rightWheelNode.physicsBody.angularVelocity + acceleration;
+            if(newSpeed > maxSpeed){ // Speed limit / limite de vitesse
+                newSpeed = maxSpeed;
+            }
+            [rightWheelNode.physicsBody setAngularVelocity:newSpeed];
+            [leftWheelNode.physicsBody setAngularVelocity:newSpeed];
+            
+            if(heroAbove){
+                contextVelocityX = self.physicsBody.velocity.dx;
+            }
+            
+        }];
     }
+    else
+    {
+        accelerate = [SKAction runBlock:^{
+            float newSpeed = rightWheelNode.physicsBody.angularVelocity - acceleration;
+            if(newSpeed < - maxSpeed){ // Speed limit / limite de vitesse
+                newSpeed = - maxSpeed;
+            }
+            [rightWheelNode.physicsBody setAngularVelocity:newSpeed];
+            [leftWheelNode.physicsBody setAngularVelocity:newSpeed];
+            if(heroAbove){
+                contextVelocityX = self.physicsBody.velocity.dx;
+            }
+        }];
+    }
+    
+    
+    SKAction *theMove = [SKAction repeatActionForever:[SKAction sequence:@[[SKAction waitForDuration:.1], accelerate]]];
+    
+    [self runAction: theMove withKey:@"running"];
+    isRunning = TRUE;
 }
 
 - (float) getVelocityX

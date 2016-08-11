@@ -455,8 +455,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         SKSpriteNode *startLift = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Level_objects_img/ascenseur-start.png"] size: CGSizeMake(88, 106)];
         startLift.position = startPosition;
         [tileMap addChild: startLift];
-        
-        //[NSString stringWithFormat:@"%@/%@/%@", one, two, three];
     }
     
     // Sensor (detects when the player reaches the center of the lift and triggers events like the alien vessel)
@@ -1545,7 +1543,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             /* SND: train runs */
             plpTrain *theTrain = (plpTrain *)contactNode;
             [theTrain setHeroAbove];
-            [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed:200 invertDirection:FALSE];
+            [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed:200];
             return;
         }
         
