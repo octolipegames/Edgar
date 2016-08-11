@@ -107,7 +107,7 @@
     [containerView removeFromSuperview];
     
     [self presentTheScene: choosenLevel];
-    [(plpMyScene*)myScene computeCenter];
+    [(plpMyScene*)myScene computeSceneCenter];
 }
 
 - (IBAction)continueButtonClicked:(id)sender {

@@ -106,7 +106,7 @@ float contextVelocityX;
 -(void)saveAdditionalTime:(float)additionalTime;
 -(void)saveAdditionalTime;
 -(void)playTune:(NSString*)filename loops:(int)loops;
--(void)computeCenter;
+-(void)computeSceneCenter;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 

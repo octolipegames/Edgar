@@ -1875,7 +1875,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
      }*/
 }
 
-- (void) computeCenter
+- (void) computeSceneCenter
 {
     float theScale = 400 / self.view.bounds.size.height; // usually 1.25
     screenCenterX = 400 - ((self.view.bounds.size.width * theScale)/2);
