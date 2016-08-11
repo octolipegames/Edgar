@@ -26,11 +26,11 @@
 		DA03CC03199F4C4700406720 /* Maze_EscapeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03CC02199F4C4700406720 /* Maze_EscapeTests.m */; };
 		DA10C1A31D5BEBBD00579F1F /* Level_objects_img in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A21D5BEBBD00579F1F /* Level_objects_img */; };
 		DA10C1A51D5BF3F900579F1F /* UI_img in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A41D5BF3F900579F1F /* UI_img */; };
+		DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A61D5BFB6400579F1F /* edgar.atlas */; };
 		DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */; };
 		DA207D1D1C0F3986002DD3E8 /* icon-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA207D1C1C0F3986002DD3E8 /* icon-01@2x.png */; };
 		DA207D1F1C0F3B10002DD3E8 /* icon-01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */; };
 		DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */; };
-		DA4A3CC11C622F9A00FAF2AB /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA4A3CC01C622F9A00FAF2AB /* menuButton.png */; };
 		DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4A191B81133F009507F9 /* plpHero.m */; };
 		DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */ = {isa = PBXBuildFile; fileRef = DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */; };
 		DA5CF4D11B73E907005A5C91 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5CF4D01B73E907005A5C91 /* libz.dylib */; };
@@ -40,15 +40,15 @@
 		DA73B8501D02328400ED027D /* Edgar_Explorer_UITests4.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73B84F1D02328400ED027D /* Edgar_Explorer_UITests4.swift */; };
 		DA73B8581D0232A300ED027D /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73B8571D0232A300ED027D /* SnapshotHelper.swift */; };
 		DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7485461B86FF5100920C84 /* plpPlatform.m */; };
-		DA8AD82A199F8CD500753F58 /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA8AD829199F8CD500753F58 /* edgar.atlas */; };
 		DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */ = {isa = PBXBuildFile; fileRef = DA984E361C0B478A00B13A08 /* LaunchScreen960.png */; };
+		DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9ADE411D5C05A800254A58 /* menuButton.png */; };
+		DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9ADE421D5C05A800254A58 /* repeatButton.png */; };
 		DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAB5E1411C21DD2800809756 /* edgarsaute.atlas */; };
 		DABCE3491D5BE8A900C277BB /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = DABCE3481D5BE8A900C277BB /* Levels */; };
 		DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAD058511A08288200DAE3E8 /* monstre.atlas */; };
 		DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DADBE5191C0A5E9A004469EA /* Media.xcassets */; };
 		DAE713DB1C0FA87500ED9139 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE713DA1C0FA87500ED9139 /* Play.png */; };
 		DAF2CB141B83B8B000FC7FF1 /* plpTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */; };
-		DAF35B581CB2CE65008DF412 /* repeatButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF35B571CB2CE65008DF412 /* repeatButton.png */; };
 		DAF381B41B9E2E21008B4D5D /* plpItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF381B31B9E2E21008B4D5D /* plpItem.m */; };
 /* End PBXBuildFile section */
 
@@ -95,12 +95,12 @@
 		DA03CC02199F4C4700406720 /* Maze_EscapeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Maze_EscapeTests.m; sourceTree = "<group>"; };
 		DA10C1A21D5BEBBD00579F1F /* Level_objects_img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Level_objects_img; sourceTree = "<group>"; };
 		DA10C1A41D5BF3F900579F1F /* UI_img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UI_img; sourceTree = "<group>"; };
+		DA10C1A61D5BFB6400579F1F /* edgar.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgar.atlas; sourceTree = "<group>"; };
 		DA1BE6EE1B81256000DA2E47 /* plpEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpEnemy.h; sourceTree = "<group>"; };
 		DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpEnemy.m; sourceTree = "<group>"; };
 		DA207D1C1C0F3986002DD3E8 /* icon-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-01@2x.png"; sourceTree = "<group>"; };
 		DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-01@3x.png"; sourceTree = "<group>"; };
 		DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen1136.png; sourceTree = "<group>"; };
-		DA4A3CC01C622F9A00FAF2AB /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		DA5B4A181B81133F009507F9 /* plpHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpHero.h; sourceTree = "<group>"; };
 		DA5B4A191B81133F009507F9 /* plpHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpHero.m; sourceTree = "<group>"; };
 		DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JSTileMap; sourceTree = "<group>"; };
@@ -116,8 +116,9 @@
 		DA73B8571D0232A300ED027D /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		DA7485451B86FF5100920C84 /* plpPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpPlatform.h; sourceTree = "<group>"; };
 		DA7485461B86FF5100920C84 /* plpPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpPlatform.m; sourceTree = "<group>"; };
-		DA8AD829199F8CD500753F58 /* edgar.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgar.atlas; sourceTree = "<group>"; };
 		DA984E361C0B478A00B13A08 /* LaunchScreen960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen960.png; sourceTree = "<group>"; };
+		DA9ADE411D5C05A800254A58 /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
+		DA9ADE421D5C05A800254A58 /* repeatButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repeatButton.png; sourceTree = "<group>"; };
 		DAB5E1411C21DD2800809756 /* edgarsaute.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgarsaute.atlas; sourceTree = "<group>"; };
 		DABCE3481D5BE8A900C277BB /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = "<group>"; };
 		DAD058511A08288200DAE3E8 /* monstre.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = monstre.atlas; sourceTree = "<group>"; };
@@ -125,7 +126,6 @@
 		DAE713DA1C0FA87500ED9139 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
 		DAF2CB121B83B8B000FC7FF1 /* plpTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpTrain.h; sourceTree = "<group>"; };
 		DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpTrain.m; sourceTree = "<group>"; };
-		DAF35B571CB2CE65008DF412 /* repeatButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repeatButton.png; sourceTree = "<group>"; };
 		DAF381B21B9E2E21008B4D5D /* plpItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpItem.h; sourceTree = "<group>"; };
 		DAF381B31B9E2E21008B4D5D /* plpItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,7 +209,7 @@
 				DA03CBE1199F4C4700406720 /* Main_iPhone.storyboard */,
 				DA03CBE4199F4C4700406720 /* Main_iPad.storyboard */,
 				DA60EAA31B7F38E100A3F927 /* Sounds */,
-				DA8AD829199F8CD500753F58 /* edgar.atlas */,
+				DA10C1A61D5BFB6400579F1F /* edgar.atlas */,
 				DAB5E1411C21DD2800809756 /* edgarsaute.atlas */,
 				DA03CBDE199F4C4700406720 /* plpAppDelegate.h */,
 				DA03CBDF199F4C4700406720 /* plpAppDelegate.m */,
@@ -304,8 +304,8 @@
 		DAE713D71C0FA6D600ED9139 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				DA4A3CC01C622F9A00FAF2AB /* menuButton.png */,
-				DAF35B571CB2CE65008DF412 /* repeatButton.png */,
+				DA9ADE411D5C05A800254A58 /* menuButton.png */,
+				DA9ADE421D5C05A800254A58 /* repeatButton.png */,
 				DA984E361C0B478A00B13A08 /* LaunchScreen960.png */,
 				DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */,
 				DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */,
@@ -422,21 +422,21 @@
 				DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */,
 				DA207D1D1C0F3986002DD3E8 /* icon-01@2x.png in Resources */,
 				DA10C1A31D5BEBBD00579F1F /* Level_objects_img in Resources */,
+				DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */,
 				DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */,
 				DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */,
+				DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */,
 				DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */,
 				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
 				DAE713DB1C0FA87500ED9139 /* Play.png in Resources */,
 				DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */,
-				DA4A3CC11C622F9A00FAF2AB /* menuButton.png in Resources */,
 				DA03CBE6199F4C4700406720 /* Main_iPad.storyboard in Resources */,
+				DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */,
 				DA03CBE3199F4C4700406720 /* Main_iPhone.storyboard in Resources */,
 				DA03CBDA199F4C4700406720 /* InfoPlist.strings in Resources */,
-				DAF35B581CB2CE65008DF412 /* repeatButton.png in Resources */,
 				DA60EAA41B7F38E100A3F927 /* Sounds in Resources */,
 				DA10C1A51D5BF3F900579F1F /* UI_img in Resources */,
 				DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */,
-				DA8AD82A199F8CD500753F58 /* edgar.atlas in Resources */,
 				DABCE3491D5BE8A900C277BB /* Levels in Resources */,
 				DA207D1F1C0F3B10002DD3E8 /* icon-01@3x.png in Resources */,
 			);
