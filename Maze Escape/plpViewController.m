@@ -201,7 +201,7 @@
         // New skip button - tests needed
         
         UIButton *myButtonSkip  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        myButtonSkip.tag = 0;
+        myButtonSkip.tag = 1;
         myButtonSkip.frame      =   CGRectMake(leftButtonPositionX, buttonsVerticalPosition, buttonWidth, 30.0);
         [myButtonSkip setBackgroundColor: [UIColor whiteColor]];
         [myButtonSkip setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
