@@ -71,6 +71,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }];
         SKAction *wait = [SKAction waitForDuration:.05]; // = 20 fois par seconde vs 60
         
+        // This speed gets higher when Edgar does a long jump.
+        // He could also walk faster or slower with new items.
         EdgarVelocity = 140;
         
         
@@ -79,8 +81,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
 
         // First call to loadLevel
-        
-        myLevel = [self loadLevel:0]; // levelIndex
+        myLevel = [self loadLevel:0];
         if(myLevel)
         {
             [myWorld addChild: myLevel];
@@ -90,7 +91,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         else
         {
             NSLog(@"Could not load level");
-            return false;
+            return FALSE;
         }
         
         // We create our character Edgar
@@ -132,19 +133,19 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     // Curtains
     float halfHeight = 200;
     
-    SKSpriteNode *curtain1 = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
-    SKSpriteNode *curtain2 = [curtain1 copy];
-    curtain1.anchorPoint = CGPointMake(0.5, 0);
-    curtain1.position = CGPointMake(0, halfHeight);
-    curtain1.zPosition = 20;
-    curtain1.name = @"curtain1";
+    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
+    SKSpriteNode *lowerCurtain = [upperCurtain copy];
+    upperCurtain.anchorPoint = CGPointMake(0.5, 0);
+    upperCurtain.position = CGPointMake(0, halfHeight);
+    upperCurtain.zPosition = 20;
+    upperCurtain.name = @"upperCurtain";
     
-    curtain2.anchorPoint = CGPointMake(0.5, 1);
-    curtain2.position = CGPointMake(0, -halfHeight);
-    curtain2.zPosition = 20;
-    curtain2.name = @"curtain2";
-    [myCamera addChild:curtain1];
-    [myCamera addChild:curtain2];
+    lowerCurtain.anchorPoint = CGPointMake(0.5, 1);
+    lowerCurtain.position = CGPointMake(0, -halfHeight);
+    lowerCurtain.zPosition = 20;
+    lowerCurtain.name = @"lowerCurtain";
+    [myCamera addChild:upperCurtain];
+    [myCamera addChild:lowerCurtain];
     
     //  We need to make a new Edgar (removed for the final animation)
     Edgar = nil;
@@ -1086,30 +1087,30 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
     
     
-    SKSpriteNode *curtain1 = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
-    SKSpriteNode *curtain2 = [curtain1 copy];
-    curtain1.anchorPoint = CGPointMake(0.5, 0);
-    curtain1.position = CGPointMake(0, halfHeight);
-    curtain1.zPosition = 20;
-    curtain1.name = @"curtain1";
+    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
+    SKSpriteNode *lowerCurtain = [upperCurtain copy];
+    upperCurtain.anchorPoint = CGPointMake(0.5, 0);
+    upperCurtain.position = CGPointMake(0, halfHeight);
+    upperCurtain.zPosition = 20;
+    upperCurtain.name = @"upperCurtain";
     
-    curtain2.anchorPoint = CGPointMake(0.5, 1);
-    curtain2.position = CGPointMake(0, -halfHeight);
-    curtain2.zPosition = 20;
-    curtain2.name = @"curtain2";
-    [myCamera addChild:curtain1];
-    [myCamera addChild:curtain2];
+    lowerCurtain.anchorPoint = CGPointMake(0.5, 1);
+    lowerCurtain.position = CGPointMake(0, -halfHeight);
+    lowerCurtain.zPosition = 20;
+    lowerCurtain.name = @"lowerCurtain";
+    [myCamera addChild:upperCurtain];
+    [myCamera addChild:lowerCurtain];
     
     
     // The three actions of the level transition are written in reverse order here:
 
     // 3. Third action: open curtains
 
-    SKAction *openCurtain1 = [SKAction moveToY:halfHeight duration: .5];
-    SKAction *openCurtain2 = [SKAction moveToY:-halfHeight duration: .5];
+    SKAction *openupperCurtain = [SKAction moveToY:halfHeight duration: .5];
+    SKAction *openlowerCurtain = [SKAction moveToY:-halfHeight duration: .5];
     SKAction *openCurtains = [SKAction runBlock:^{
-        [curtain1 runAction: openCurtain1];
-        [curtain2 runAction: openCurtain2 completion:^{
+        [upperCurtain runAction: openupperCurtain];
+        [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
             //   levelTransitioning = FALSE; -> too late, may cause unexpected behaviours
         }];
@@ -1130,8 +1131,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }];
 
     // 1. First action: close curtains (completion = action 2: present score)
-    [curtain1 runAction: [SKAction moveToY:-20 duration: .5]];
-    [curtain2 runAction: [SKAction moveToY:20 duration: .5] completion:^
+    [upperCurtain runAction: [SKAction moveToY:-20 duration: .5]];
+    [lowerCurtain runAction: [SKAction moveToY:20 duration: .5] completion:^
     {
         [myWorld runAction:presentScore];
     }];
