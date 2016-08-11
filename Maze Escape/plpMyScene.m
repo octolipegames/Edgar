@@ -854,8 +854,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     levelTransitioning = TRUE;
     nextLevelIndex = (int)theLevel;
     
-    // if level == 0: new game => reset game data (cheat enabled, time...)
-    if(nextLevelIndex == 0)
+    // if level <= 1: new game => reset game data (cheat enabled, time...)
+    if(nextLevelIndex <= 1)
     {
         NSLog(@"Level == 0 => remove light and masque");
         [self resetGameData];
@@ -1050,6 +1050,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     displayTime2.fontColor = [SKColor whiteColor];
     displayTime2.position = CGPointMake(screenCenterX, -30);
     displayTime2.zPosition = 30;
+    
+    NSLog(@"Screen center x: %f", screenCenterX);
     
     if(repeatingLevel == YES)
     {
@@ -1496,7 +1498,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             SKSpriteNode *bonusDisplayNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/Time_bonus.png"];
             [bonusDisplayNode setSize:CGSizeMake(600, 111)];
-            [bonusDisplayNode setPosition:CGPointMake(0, 0)];
+            [bonusDisplayNode setPosition:CGPointMake(screenCenterX, 0)];
             [bonusDisplayNode setZPosition: 30]; // devdev
             
             int theBonusSeconds = 30;
