@@ -64,20 +64,18 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [self addChild:myCamera];
         
         // Actions
-        SKAction *mvm1 = [SKAction runBlock:^{
+        SKAction *walkRight = [SKAction runBlock:^{
             [Edgar.physicsBody setVelocity:CGVectorMake(EdgarVelocity + contextVelocityX, Edgar.physicsBody.velocity.dy)];        }];
-        SKAction *mvm2 = [SKAction runBlock:^{
+        SKAction *walkLeft = [SKAction runBlock:^{
             [Edgar.physicsBody setVelocity:CGVectorMake(-EdgarVelocity + contextVelocityX, Edgar.physicsBody.velocity.dy)];
         }];
         SKAction *wait = [SKAction waitForDuration:.05]; // = 20 fois par seconde vs 60
         
         EdgarVelocity = 140;
         
-        bougeDroite = [SKAction sequence:@[mvm1, wait]];
-        bougeGauche = [SKAction sequence:@[mvm2, wait]];
         
-        bougeGauche2 = [SKAction repeatActionForever:bougeGauche];
-        bougeDroite2 = [SKAction repeatActionForever:bougeDroite];
+        moveLeftAction = [SKAction repeatActionForever:[SKAction sequence:@[walkLeft, wait]]];
+        moveRightAction = [SKAction repeatActionForever:[SKAction sequence:@[walkRight, wait]]];
         
 
         // First call to loadLevel
@@ -916,8 +914,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [Edgar setSpeed: 1.0];
     isJumping = FALSE;
     gonnaCrash = FALSE;
-    moveLeft = FALSE;
-    moveRight = FALSE;
+    movingLeft = FALSE;
+    movingRight = FALSE;
     moveUpRequested = FALSE;
     bigJumpRequested = FALSE;
     moveLeftRequested = FALSE;
@@ -1283,7 +1281,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
                 [contactNode removeFromParent];
                 [Edgar removeControl];
-                if(!moveRight)
+                if(!movingRight)
                 {
                     moveRightRequested = TRUE;
                 }
@@ -1577,7 +1575,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if(![Edgar alreadyInfected])
             {
                 /* SND: Edgar gets infected */
-                if(!bougeDroite && !bougeGauche) // essai pour éviter l'immobilisation
+                if(!movingLeft && !movingRight) // essai pour éviter l'immobilisation
                 {
                     moveRightRequested = TRUE;
                 }
@@ -1664,7 +1662,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             // Contrôles alternatifs pour le simulateur iOS | Alternate controls for the iOS simulator
             if(USE_ALTERNATE_CONTROLS==1)
             {
-                if(!moveLeft && !moveRight)
+                if(!movingLeft && !movingRight)
                 {
                     if(touchStartPosition.x > 400)
                     {
@@ -1776,7 +1774,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             // Contrôles alternatifs pour le simulateur iOS | Alternate controls for the iOS simulator
             if(USE_ALTERNATE_CONTROLS==1)
             {
-                if((ignoreNextTap==FALSE) && (moveLeft || moveRight))
+                if((ignoreNextTap==FALSE) && (movingLeft || movingRight))
                 {
                     if(endPosition.x > 400)
                     {
@@ -1796,8 +1794,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(stopRequested == TRUE && !isJumping){
         stopRequested = FALSE;
-        moveLeft = FALSE;
-        moveRight = FALSE;
+        movingLeft = FALSE;
+        movingRight = FALSE;
         moveRightRequested = FALSE;
         moveLeftRequested = FALSE;
         Edgar.xScale = 1.0;
@@ -1807,42 +1805,31 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
          [Edgar.physicsBody setVelocity: CGVectorMake(0 + contextVelocityX, Edgar.physicsBody.velocity.dy)];
          }];*/
         [Edgar facingEdgar];
-        [Edgar removeActionForKey:@"bougeDroite"];
-        [Edgar removeActionForKey:@"bougeGauche"];
+        [Edgar removeActionForKey:@"moveRightKey"];
+        [Edgar removeActionForKey:@"moveLeftKey"];
         [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
-        //        [Edgar runAction:[SKAction repeatAction:doTheStop count:2]];
     }
     
     if (moveRightRequested == TRUE && !isJumping){ // pas suffisant: ajouter s'il a pied / vitesse verticale
         moveRightRequested = false;
-        if((moveRight!=TRUE) || moveUpRequested){ // ddd why "or moveUpRequested"?
+        if((movingRight!=TRUE) || moveUpRequested){ // ddd why "or moveUpRequested"?
             Edgar.xScale = 1.0;
             [Edgar removeAllActions];
             [Edgar walkingEdgar];
-            [Edgar runAction:bougeDroite2 withKey:@"bougeDroite"];
-            moveRight = TRUE;
-            moveLeft = FALSE;
-        }else{
-            // il s'arrete. OU: il court 2x plus vite
-            //             stopRequested = TRUE;
-            //            EdgarVelocity = 280; -> problème avec stopRequested
-            //            Edgar.speed = 1.6;
+            [Edgar runAction:moveRightAction withKey:@"moveRightKey"];
+            movingRight = TRUE;
+            movingLeft = FALSE;
         }
     }else if (moveLeftRequested == true && !isJumping){
         moveLeftRequested = false;
-        if((moveLeft != TRUE) || moveUpRequested){
+        if((movingLeft != TRUE) || moveUpRequested){
             Edgar.xScale = -1.0;
             [Edgar removeAllActions];
             [Edgar walkingEdgar];
-            [Edgar runAction: bougeGauche2 withKey:@"bougeGauche"];
-            moveLeft = true;
-            moveRight = false;
+            [Edgar runAction: moveLeftAction withKey:@"moveLeftKey"];
+            movingLeft = true;
+            movingRight = false;
             Edgar.speed = 1.0;
-        }else{
-            // il s'arrete
-            //            stopRequested = TRUE;
-            //            EdgarVelocity = 280;
-            //            Edgar.speed = 1.6;
         }
     }
     
@@ -1861,20 +1848,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             EdgarVelocity = 250;
             [Edgar.physicsBody applyImpulse: CGVectorMake(0, 25000)];        }
         
-        if(moveLeft||moveRight)
+        if(movingLeft||movingRight)
         {
             [Edgar jumpingEdgar];
         }
         
     }
-    
-    /*    if(moveLeft)
-     {
-     [Edgar.physicsBody setVelocity:CGVectorMake(-EdgarVelocity + contextVelocityX, Edgar.physicsBody.velocity.dy)];
-     }else if(moveRight)
-     {
-     [Edgar.physicsBody setVelocity:CGVectorMake(EdgarVelocity + contextVelocityX, Edgar.physicsBody.velocity.dy)];
-     }*/
 }
 
 - (void) computeSceneCenter

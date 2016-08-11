@@ -53,12 +53,9 @@ float contextVelocityX;
     CGPoint startPosition;
     
     // Character actions:
-    SKAction *bougeDroite;
-    SKAction *bougeGauche;
-    SKAction *bougeGauche2;
-    SKAction *bougeDroite2;
+    SKAction *moveLeftAction;
+    SKAction *moveRightAction;
     SKAction *moveUp;
-    SKAction *stoppe;
     
     // Input
     CGPoint touchStartPosition;
@@ -71,8 +68,8 @@ float contextVelocityX;
     BOOL bigJumpRequested;
     BOOL stopRequested;
     BOOL gonnaCrash;
-    BOOL moveLeft;
-    BOOL moveRight;
+    BOOL movingLeft;
+    BOOL movingRight;
     BOOL listensToContactEvents;
     BOOL levelTransitioning;
     
