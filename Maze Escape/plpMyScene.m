@@ -260,17 +260,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 - (void)showTrophy {
     NSString *rankingString = @"Snail Edgar.";
-    SKTexture *trophyTexture = [SKTexture textureWithImageNamed:@"Level_objects_img/Trophy1-03.png"];
+    SKTexture *trophyTexture = [SKTexture textureWithImageNamed:@"UI_img/Trophy1-03.png"];
     
     float totalTime = [self getTotalTime];
     if(totalTime < 600) // 10 minutes
     {
         rankingString = @"King Edgar. Congrats, boss.";
-        trophyTexture = [SKTexture textureWithImageNamed:@"Level_objects_img/Trophy3-03.png"];
+        trophyTexture = [SKTexture textureWithImageNamed:@"UI_img/Trophy3-03.png"];
     }else if(totalTime < 1200) // 20 minutes
     {
         rankingString = @"Knight Edgar. Very good.";
-        trophyTexture = [SKTexture textureWithImageNamed:@"Level_objects_img/Trophy2-03.png"];
+        trophyTexture = [SKTexture textureWithImageNamed:@"UI_img/Trophy2-03.png"];
     }else{
         rankingString = @"Snail Edgar.";
     }
@@ -1451,22 +1451,22 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             
             if([contactNode.name isEqualToString:@"walk"])
             {
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"swipeRight.png"];
+                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeRight.png"];
             }else if([contactNode.name isEqualToString:@"jump"])
             {
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"swipeJump.png"];
+                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
             }else if([contactNode.name isEqualToString:@"goUpstairs"])
             {
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"swipeJump.png"];
+                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
             }else if([contactNode.name isEqualToString:@"showUranium"])
             {
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"showUranium.png"];
+                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/showUranium.png"];
                 [helpNode setPosition:[myLevel childNodeWithName:@"uranium"].position];
                 [helpNode setSize:CGSizeMake(100, 100)];
                 [helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
             }else if([contactNode.name isEqualToString:@"moveToExit"])
             {
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"goLeft.png"];
+                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/goLeft.png"];
             }
             
             if(helpNode)
@@ -1502,7 +1502,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
         }else if([contactNode.name isEqualToString: @"timeBonus"])
         {
-            SKSpriteNode *bonusDisplayNode = [SKSpriteNode spriteNodeWithImageNamed:@"Time_bonus.png"];
+            SKSpriteNode *bonusDisplayNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/Time_bonus.png"];
             [bonusDisplayNode setSize:CGSizeMake(600, 111)];
             [bonusDisplayNode setPosition:CGPointMake(0, 0)];
             [bonusDisplayNode setZPosition: 30]; // devdev
