@@ -159,121 +159,133 @@
     // 1) when the user launches the game
     // 2) when he resumes after a pause
     
+    
     self.playButton.hidden = YES;
     self.creditsButton.hidden = YES;
     self.creditsText.hidden = YES;
 
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger savedLevel = [defaults integerForKey:@"savedLevel"];
     
-    // 1) the user launches the game
-    //    if(gamePaused==FALSE)
-    if(1==1)   // we set up the dialog anyway
+    UIView *containerView = [[UIView alloc] init];
+    containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+    
+    if(savedLevel == 0) // 1) New game; introduction dialog
     {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [containerView setFrame: CGRectMake(50, 40, self.view.bounds.size.width-100, self.view.bounds.size.height-90)];
         
-        NSInteger savedLevel = [defaults integerForKey:@"savedLevel"];
+        UITextView *myTextView = [[UITextView alloc] init];
+        myTextView.text = [NSString stringWithFormat:@"Dear Edgar,\nThank you for enrolling at GreenAlien. Your first task is to inspect an underground laboratory which does illegal in vivo alien testing.\nIn each room, you will find a plutonium cell. Collect it to activate the elevator and gain access to the next room.\nBut first, use our training room to get ready."];
+        myTextView.textColor = [UIColor whiteColor];
+        myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+        myTextView.editable = NO;
+        [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
+        
+        /*
+        float outsideMargin = 60;
+        float insideMargin = 30;
+        float buttonsVerticalPosition = containerView.bounds.size.height-50;
+        float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
+        float buttonNewGamePositionX = containerView.bounds.size.width/2 - buttonWidth/2;
+        */
+        
+        float outsideMargin = 60;
+        float insideMargin = 30;
+        float buttonsVerticalPosition = containerView.bounds.size.height-50;
+        float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
+        float leftButtonPositionX = outsideMargin;
+        float rightButtonPositionX = buttonWidth + outsideMargin + 2*insideMargin;
 
+        [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
         
-        UIView *containerView = [[UIView alloc] init];
-        containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+        // New skip button - tests needed
         
-        if(savedLevel>0) // dialog: continue or new game
-        {
-            [containerView setFrame: CGRectMake(50, 100, self.view.bounds.size.width-100, self.view.bounds.size.height-200)];
-            
-            UITextView *myTextView = [[UITextView alloc] init];
-            myTextView.text = [NSString stringWithFormat:@"You were at level %li...", (long)savedLevel+1];
-            myTextView.textColor = [UIColor whiteColor];
-            myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
-            myTextView.editable = NO;
-            [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
-            
-            float outsideMargin = 60;
-            float insideMargin = 30;
-            float buttonsVerticalPosition = containerView.bounds.size.height-50;
-            float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
-            float buttonNewGamePositionX = outsideMargin;
-            float buttonContinuePositionX = buttonWidth + outsideMargin + 2*insideMargin;
-            
-            [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
-            
-            
-            UIButton *myButtonNewGame  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            myButtonNewGame.tag = 0;
-            myButtonNewGame.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
-            [myButtonNewGame setBackgroundColor: [UIColor whiteColor]];
-            
-            [myButtonNewGame setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
-            [[myButtonNewGame layer] setMasksToBounds:YES];
-            [[myButtonNewGame layer] setCornerRadius:5.0f];
-            
-            [myButtonNewGame setTitle: @"New Game" forState:UIControlStateNormal];
-            [myButtonNewGame addTarget: self
-                                action: @selector(levelChoiceButtonClicked:)
-                      forControlEvents: UIControlEventTouchUpInside];
-            
-            UIButton *myButtonContinue  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            myButtonContinue.tag = savedLevel;
-            myButtonContinue.frame      =   CGRectMake(buttonContinuePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
-            [myButtonContinue setBackgroundColor: [UIColor whiteColor]];
-            
-            [myButtonContinue setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
-            [[myButtonContinue layer] setMasksToBounds:YES];
-            [[myButtonContinue layer] setCornerRadius:5.0f];
-            
-            [myButtonContinue setTitle: @"Resume" forState:UIControlStateNormal];
-            [myButtonContinue addTarget: self
-                                 action: @selector(levelChoiceButtonClicked:)
-                       forControlEvents: UIControlEventTouchUpInside];
-            
-            [self.view addSubview: containerView];
-            [containerView addSubview:myTextView];
-            [containerView addSubview:myButtonNewGame];
-            [containerView addSubview:myButtonContinue];
-        }
-        else // introduction dialog
-        {
-            [containerView setFrame: CGRectMake(50, 40, self.view.bounds.size.width-100, self.view.bounds.size.height-90)];
-            
-            UITextView *myTextView = [[UITextView alloc] init];
-            myTextView.text = [NSString stringWithFormat:@"Dear Edgar,\nThank you for enrolling at GreenAlien. Your first task is to inspect an underground laboratory which does illegal in vivo alien testing.\nIn each room, you will find a plutonium cell. Collect it to activate the elevator and gain access to the next room.\nBut first, use our training room to get ready."];
-            myTextView.textColor = [UIColor whiteColor];
-            myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
-            myTextView.editable = NO;
-            [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
-            
-            float outsideMargin = 60;
-            float insideMargin = 30;
-            float buttonsVerticalPosition = containerView.bounds.size.height-50;
-            float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
-            float buttonNewGamePositionX = containerView.bounds.size.width/2 - buttonWidth/2;
-            
-            [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
-            
-            // To do: add “Skip Tutorial” button here
-            
-            UIButton *myButtonStartTutorial  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            myButtonStartTutorial.tag = 0;
-            myButtonStartTutorial.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
-            [myButtonStartTutorial setBackgroundColor: [UIColor whiteColor]];
-            
-            [myButtonStartTutorial setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
-            [[myButtonStartTutorial layer] setMasksToBounds:YES];
-            [[myButtonStartTutorial layer] setCornerRadius:5.0f];
-            
-            [myButtonStartTutorial setTitle: @"Continue" forState:UIControlStateNormal];
-            [myButtonStartTutorial addTarget: self
-                                action: @selector(levelChoiceButtonClicked:)
-                      forControlEvents: UIControlEventTouchUpInside];
-            
-            [self.view addSubview: containerView];
-            [containerView addSubview:myTextView];
-            [containerView addSubview:myButtonStartTutorial];
-        }
-
+        UIButton *myButtonSkip  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        myButtonSkip.tag = 0;
+        myButtonSkip.frame      =   CGRectMake(leftButtonPositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+        [myButtonSkip setBackgroundColor: [UIColor whiteColor]];
+        [myButtonSkip setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+        [[myButtonSkip layer] setMasksToBounds:YES];
+        [[myButtonSkip layer] setCornerRadius:5.0f];
+        
+        [myButtonSkip setTitle: @"Skip tutorial" forState:UIControlStateNormal];
+        [myButtonSkip addTarget: self
+                                  action: @selector(levelChoiceButtonClicked:)
+                        forControlEvents: UIControlEventTouchUpInside];
+        
+        
+        UIButton *myButtonStartTutorial  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        myButtonStartTutorial.tag = 0;
+        myButtonStartTutorial.frame      =   CGRectMake(rightButtonPositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+        [myButtonStartTutorial setBackgroundColor: [UIColor whiteColor]];
+        
+        [myButtonStartTutorial setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+        [[myButtonStartTutorial layer] setMasksToBounds:YES];
+        [[myButtonStartTutorial layer] setCornerRadius:5.0f];
+        
+        [myButtonStartTutorial setTitle: @"Continue" forState:UIControlStateNormal];
+        [myButtonStartTutorial addTarget: self
+                                  action: @selector(levelChoiceButtonClicked:)
+                        forControlEvents: UIControlEventTouchUpInside];
+        
+        [self.view addSubview: containerView];
+        [containerView addSubview:myTextView];
+        [containerView addSubview:myButtonStartTutorial];
+        [containerView addSubview:myButtonSkip];
     }
-    else    // go back after the game was paused, without dialog
+    else // 2: savedLevel > 0, continue or new game
     {
-        [self presentTheScene:0];
+        [containerView setFrame: CGRectMake(50, 100, self.view.bounds.size.width-100, self.view.bounds.size.height-200)];
+        
+        UITextView *myTextView = [[UITextView alloc] init];
+        myTextView.text = [NSString stringWithFormat:@"You were at level %li...", (long)savedLevel+1];
+        myTextView.textColor = [UIColor whiteColor];
+        myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+        myTextView.editable = NO;
+        [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
+        
+        float outsideMargin = 60;
+        float insideMargin = 30;
+        float buttonsVerticalPosition = containerView.bounds.size.height-50;
+        float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
+        float buttonNewGamePositionX = outsideMargin;
+        float buttonContinuePositionX = buttonWidth + outsideMargin + 2*insideMargin;
+        
+        [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
+        
+        
+        UIButton *myButtonNewGame  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        myButtonNewGame.tag = 0;
+        myButtonNewGame.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+        [myButtonNewGame setBackgroundColor: [UIColor whiteColor]];
+        
+        [myButtonNewGame setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+        [[myButtonNewGame layer] setMasksToBounds:YES];
+        [[myButtonNewGame layer] setCornerRadius:5.0f];
+        
+        [myButtonNewGame setTitle: @"New Game" forState:UIControlStateNormal];
+        [myButtonNewGame addTarget: self
+                            action: @selector(levelChoiceButtonClicked:)
+                  forControlEvents: UIControlEventTouchUpInside];
+        
+        UIButton *myButtonContinue  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        myButtonContinue.tag = savedLevel;
+        myButtonContinue.frame      =   CGRectMake(buttonContinuePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+        [myButtonContinue setBackgroundColor: [UIColor whiteColor]];
+        
+        [myButtonContinue setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+        [[myButtonContinue layer] setMasksToBounds:YES];
+        [[myButtonContinue layer] setCornerRadius:5.0f];
+        
+        [myButtonContinue setTitle: @"Resume" forState:UIControlStateNormal];
+        [myButtonContinue addTarget: self
+                             action: @selector(levelChoiceButtonClicked:)
+                   forControlEvents: UIControlEventTouchUpInside];
+        
+        [self.view addSubview: containerView];
+        [containerView addSubview:myTextView];
+        [containerView addSubview:myButtonNewGame];
+        [containerView addSubview:myButtonContinue];
     }
 }
 
