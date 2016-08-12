@@ -4,22 +4,22 @@
 
 * **[plpViewController.m](plpViewController.m)** deals with user interaction when the App is launched: New Game / Credits / Resume, as well as “pause” and “repeat level” in-game buttons
 
-* **plpMyScene.m** renders the scene and deals with touch actions while the game runs
+* **[plpMyScene.m](plpMyScene.m)** renders the scene and deals with touch actions while the game runs
 
 ## Objects
 
-* **plpHero.m**: class for our main character Edgar
+* **[plpHero.m](plpHero.m)**: class for our main character Edgar
 
-* **plpEnemy.m**: aliens
+* **[plpEnemy.m](plpEnemy.m)**: these nasty aliens make Edgar lose control of himself
 
-* **plpItem.m**: pickup items (uranium cells and boni)
+* **[plpItem.m](plpItem.m)**: pickup items (uranium cells and boni)
 
-* **plpPlatforms.m**: horizontal and vertical moving platforms
+* **[plpPlatforms.m](plpPlatforms.m)**: horizontal and vertical moving platforms
 
-* **plpTrain.m**: little trains (actually minecarts)
+* **[plpTrain.m](plpTrain.m)**: little trains (actually minecarts)
 
 ## Tilemap parser
 
-**JSTileMap.m** loads .tmx tilemaps (we make them using the GPL editor [Tiled](http://www.mapeditor.org).
+**[JSTileMap.m](JSTileMap.m)** loads .tmx tilemaps (we make them using the GPL editor [Tiled](http://www.mapeditor.org).
 
 MIT-licensed code by Jeremy Stone and Christopher LaPollo -- GitHub repo: https://github.com/slycrel/JSTileMap
