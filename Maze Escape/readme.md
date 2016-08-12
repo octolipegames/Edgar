@@ -8,7 +8,7 @@
 
 ## Objects
 
-<img style="width: 90px; float: right;" src="edgarsaute.atlas/Saut3-01.png" />
+[!Edgar](edgarsaute.atlas/Saut3-01.png"){:style="float: right; width: 100px;}
 
 * **[plpHero.m](plpHero.m)**: class for our main character Edgar
 
