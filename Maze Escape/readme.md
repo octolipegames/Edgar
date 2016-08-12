@@ -20,6 +20,6 @@
 
 ## Tilemap parser
 
-**JSTileMap.m** load .tmx tilemaps (we make them using the GPL editor [Tiled](http://www.mapeditor.org).
+**JSTileMap.m** loads .tmx tilemaps (we make them using the GPL editor [Tiled](http://www.mapeditor.org).
 
 MIT-licensed code by Jeremy Stone and Christopher LaPollo -- GitHub repo: https://github.com/slycrel/JSTileMap
