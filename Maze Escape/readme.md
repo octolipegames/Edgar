@@ -8,6 +8,8 @@
 
 ## Objects
 
+<img src="edgarsaute.atlas/Saut3-01.png" style="float: right;" />
+
 * **[plpHero.m](plpHero.m)**: class for our main character Edgar
 
 * **[plpEnemy.m](plpEnemy.m)**: these nasty aliens make Edgar lose control of himself
