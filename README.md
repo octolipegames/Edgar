@@ -6,7 +6,13 @@ Open-Source iOS game “Edgar The Explorer”.
 
 Images under **CC-BY** licence, source under **LGPL** licence.
 
-Apple authorized the external testing [using TestFlight](https://developer.apple.com/testflight/) on Saturday, June 4. We're getting really excited!
+We started this project during **summer 2014**.
+
+On **June 4, 2016**, Apple authorized the external testing [using TestFlight](https://developer.apple.com/testflight/). We got a lot of great feedback and this enabled us to improve the game a lot.
+
+As of **August 13, 2016**, the App, [App Preview](https://developer.apple.com/app-store/app-previews/) and screenshots are almost ready. We still need to fix [some issues](issues).
+
+All **source files** are in [Maze Escape](Maze%20Escape). This folder's README contains more informations about the code.
 
 Three great, much more advanced FOSS iPhone games we love:
 
