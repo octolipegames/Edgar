@@ -41,25 +41,20 @@
     <property name="nodename" value="showUranium"/>
    </properties>
   </object>
-  <object id="8" name="sensor" x="693" y="474.5" width="186" height="123">
-   <properties>
-    <property name="nodename" value="noUranium"/>
-   </properties>
-  </object>
   <object id="13" name="train" type="train" x="703" y="237" width="60" height="60">
    <ellipse/>
   </object>
-  <object id="14" name="sensor" x="506.5" y="175.5" width="167.5" height="123">
+  <object id="14" name="sensor" x="498.507" y="175.5" width="109.493" height="123">
    <properties>
     <property name="nodename" value="stop"/>
    </properties>
   </object>
-  <object id="15" name="sensor" x="640.25" y="176.5" width="59.75" height="123">
+  <object id="15" name="sensor" x="618" y="176.5" width="75" height="123">
    <properties>
     <property name="nodename" value="explainTrain"/>
    </properties>
   </object>
-  <object id="16" name="sensor" x="325" y="475.5" width="321" height="123">
+  <object id="16" name="sensor" x="376" y="477.5" width="510" height="123">
    <properties>
     <property name="nodename" value="showMenu"/>
    </properties>
