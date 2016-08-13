@@ -13,7 +13,7 @@
  </layer>
  <layer name="Solide" width="16" height="7">
   <data encoding="base64" compression="zlib">
-   eJzjY2Bg4KMQkwrw6eemwAxi3EeJ+ynxP6VhjAsDAPmGA4w=
+   eJzjY2Bg4KMQkwrw6ecm0wxi3UeJ+ynxP6VhjAsDAAclA5o=
   </data>
  </layer>
  <objectgroup name="Objets">
@@ -59,7 +59,7 @@
     <property name="nodename" value="explainTrain"/>
    </properties>
   </object>
-  <object id="16" name="sensor" x="466" y="475.5" width="186" height="123">
+  <object id="16" name="sensor" x="325" y="475.5" width="321" height="123">
    <properties>
     <property name="nodename" value="showMenu"/>
    </properties>
