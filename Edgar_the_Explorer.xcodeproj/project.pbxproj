@@ -28,8 +28,6 @@
 		DA10C1A51D5BF3F900579F1F /* UI_img in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A41D5BF3F900579F1F /* UI_img */; };
 		DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A61D5BFB6400579F1F /* edgar.atlas */; };
 		DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */; };
-		DA207D1D1C0F3986002DD3E8 /* icon-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA207D1C1C0F3986002DD3E8 /* icon-01@2x.png */; };
-		DA207D1F1C0F3B10002DD3E8 /* icon-01@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */; };
 		DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */; };
 		DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4A191B81133F009507F9 /* plpHero.m */; };
 		DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */ = {isa = PBXBuildFile; fileRef = DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */; };
@@ -98,8 +96,6 @@
 		DA10C1A61D5BFB6400579F1F /* edgar.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgar.atlas; sourceTree = "<group>"; };
 		DA1BE6EE1B81256000DA2E47 /* plpEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpEnemy.h; sourceTree = "<group>"; };
 		DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpEnemy.m; sourceTree = "<group>"; };
-		DA207D1C1C0F3986002DD3E8 /* icon-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-01@2x.png"; sourceTree = "<group>"; };
-		DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-01@3x.png"; sourceTree = "<group>"; };
 		DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen1136.png; sourceTree = "<group>"; };
 		DA5B4A181B81133F009507F9 /* plpHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpHero.h; sourceTree = "<group>"; };
 		DA5B4A191B81133F009507F9 /* plpHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpHero.m; sourceTree = "<group>"; };
@@ -205,7 +201,8 @@
 				DAD058511A08288200DAE3E8 /* monstre.atlas */,
 				DA10C1A41D5BF3F900579F1F /* UI_img */,
 				DAE713D71C0FA6D600ED9139 /* UI */,
-				DAAEBA791C0F488A00FB0A48 /* objects */,
+				DA10C1A21D5BEBBD00579F1F /* Level_objects_img */,
+				DABCE3481D5BE8A900C277BB /* Levels */,
 				DA03CBE1199F4C4700406720 /* Main_iPhone.storyboard */,
 				DA03CBE4199F4C4700406720 /* Main_iPad.storyboard */,
 				DA60EAA31B7F38E100A3F927 /* Sounds */,
@@ -292,15 +289,6 @@
 			path = Edgar_Explorer_UITests4;
 			sourceTree = "<group>";
 		};
-		DAAEBA791C0F488A00FB0A48 /* objects */ = {
-			isa = PBXGroup;
-			children = (
-				DA10C1A21D5BEBBD00579F1F /* Level_objects_img */,
-				DABCE3481D5BE8A900C277BB /* Levels */,
-			);
-			name = objects;
-			sourceTree = "<group>";
-		};
 		DAE713D71C0FA6D600ED9139 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,8 +296,6 @@
 				DA9ADE421D5C05A800254A58 /* repeatButton.png */,
 				DA984E361C0B478A00B13A08 /* LaunchScreen960.png */,
 				DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */,
-				DA207D1E1C0F3B10002DD3E8 /* icon-01@3x.png */,
-				DA207D1C1C0F3986002DD3E8 /* icon-01@2x.png */,
 				DAE713DA1C0FA87500ED9139 /* Play.png */,
 			);
 			name = UI;
@@ -420,7 +406,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */,
-				DA207D1D1C0F3986002DD3E8 /* icon-01@2x.png in Resources */,
 				DA10C1A31D5BEBBD00579F1F /* Level_objects_img in Resources */,
 				DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */,
 				DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */,
@@ -438,7 +423,6 @@
 				DA10C1A51D5BF3F900579F1F /* UI_img in Resources */,
 				DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */,
 				DABCE3491D5BE8A900C277BB /* Levels in Resources */,
-				DA207D1F1C0F3B10002DD3E8 /* icon-01@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
