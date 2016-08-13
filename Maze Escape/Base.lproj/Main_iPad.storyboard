@@ -127,8 +127,8 @@ Music:
     </scenes>
     <resources>
         <image name="Play.png" width="173" height="173"/>
-        <image name="menuButton.png" width="74" height="70"/>
-        <image name="repeatButton.png" width="40" height="40"/>
+        <image name="menuButton.png" width="84" height="99"/>
+        <image name="repeatButton.png" width="104" height="96"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
