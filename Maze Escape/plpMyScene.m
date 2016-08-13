@@ -1448,18 +1448,59 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }else if([contactNode.name isEqualToString:@"jump"])
             {
                 helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
-            }else if([contactNode.name isEqualToString:@"goUpstairs"])
+            }else if([contactNode.name isEqualToString:@"stop"])
             {
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
+                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/tap.png"];
+                [helpNode runAction:[SKAction sequence:@[[SKAction waitForDuration:.5], [SKAction fadeAlphaTo:0 duration:1]]]];
+            }else if([contactNode.name isEqualToString:@"explainTrain"])
+            {
+                SKLabelNode *explainTrainNode = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+                explainTrainNode.fontSize = 30;
+                explainTrainNode.fontColor = [SKColor whiteColor];
+                explainTrainNode.position = CGPointMake(screenCenterX, 50);
+                explainTrainNode.zPosition = 30;
+                explainTrainNode.text = @"You can jump on this minecart to make it move";
+                [myCamera addChild: explainTrainNode];
+                [explainTrainNode runAction:[SKAction sequence:@[[SKAction waitForDuration:.5], [SKAction fadeAlphaTo:0 duration:1]]]];
+                //helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
             }else if([contactNode.name isEqualToString:@"showUranium"])
             {
                 helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/showUranium.png"];
                 [helpNode setPosition:[myLevel childNodeWithName:@"uranium"].position];
                 [helpNode setSize:CGSizeMake(100, 100)];
-                [helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
-            }else if([contactNode.name isEqualToString:@"moveToExit"])
+                [helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
+                
+                SKLabelNode *explainUranium = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+                explainUranium.fontSize = 30;
+                explainUranium.fontColor = [SKColor whiteColor];
+                explainUranium.position = CGPointMake(screenCenterX, 50);
+                explainUranium.zPosition = 30;
+                explainUranium.text = @"Take the uranium cell to activate the exit";
+                [myCamera addChild: explainUranium];
+                [explainUranium runAction:[SKAction sequence:@[[SKAction waitForDuration:1.5], [SKAction fadeAlphaTo:0 duration:1]]]];
+            }else if([contactNode.name isEqualToString:@"noUranium"] && ! [Edgar hasItem])
             {
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/goLeft.png"];
+                SKLabelNode *noUranium = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+                noUranium.fontSize = 30;
+                noUranium.fontColor = [SKColor whiteColor];
+                noUranium.position = CGPointMake(screenCenterX, 50);
+                noUranium.zPosition = 30;
+                noUranium.text = @"Go back to take the uranium cell";
+                [myCamera addChild: noUranium];
+                [noUranium runAction:[SKAction sequence:@[[SKAction waitForDuration:1.5], [SKAction fadeAlphaTo:0 duration:1]]]];
+                
+            }else if([contactNode.name isEqualToString:@"showMenu"])
+            {
+                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/arrowMenu"];
+                [helpNode setPosition:CGPointMake(screenCenterX+180, 200)];
+                [helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
+                
+                SKLabelNode *showMenu = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+                showMenu.fontSize = 30;
+                showMenu.fontColor = [SKColor whiteColor];
+                showMenu.zPosition = 30;
+                showMenu.text = @"Go back to take the uranium cell";
+                [helpNode addChild: showMenu];
             }
             
             if(helpNode)
@@ -1467,7 +1508,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 helpNode.name = @"helpNode";
                 if(!helpNode.position.x)
                 {
-                    [helpNode setPosition:CGPointMake(110.0f, -20.0f)];
+                    [helpNode setPosition:CGPointMake(screenCenterX, -20.0f)];
+                    //[helpNode setPosition:CGPointMake(110.0f, -20.0f)];
                     [myCamera addChild: helpNode];
                 }else{
                     [myLevel addChild: helpNode];
