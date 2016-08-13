@@ -114,7 +114,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         SKPhysicsJointFixed *pinEdgar = [SKPhysicsJointFixed jointWithBodyA:Edgar.physicsBody bodyB:Edgar->rectangleNode.physicsBody anchor:CGPointMake(Edgar.position.x, Edgar.position.y)];
         [self.physicsWorld addJoint:pinEdgar];
         
-        [self playTune:@"Sounds/Juno" loops:-1];
+        // dev [self playTune:@"Sounds/Juno" loops:-1];
         
         [self saveInitialTime];
         additionalSavedTime = 0;
@@ -1121,7 +1121,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [myCamera addChild:displayTime];
         [myCamera addChild:displayTime2];
         
-        SKAction *timeVanish = [SKAction sequence: @[[SKAction fadeAlphaTo:1 duration:.7], [SKAction waitForDuration:.6],[SKAction fadeAlphaTo:0 duration:.7], [SKAction removeFromParent]]];
+        SKAction *timeVanish = [SKAction sequence: @[[SKAction fadeAlphaTo:1 duration:.3], [SKAction waitForDuration:1],[SKAction fadeAlphaTo:0 duration:.7], [SKAction removeFromParent]]];
         [displayTime runAction:timeVanish];
         [displayTime2 runAction:timeVanish completion:^{
             [myWorld runAction: openCurtains];
@@ -1248,6 +1248,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             SKAction *greenDoor = [SKAction setTexture:[SKTexture textureWithImageNamed:@"Level_objects_img/ascenseurO-01.png"]];
             [contactNode runAction:greenDoor];
+            NSLog(@"Green door");
         }
         
         if([contactNode.name isEqualToString:@"finish"])
@@ -1469,6 +1470,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 [helpNode setPosition:[myLevel childNodeWithName:@"uranium"].position];
                 [helpNode setSize:CGSizeMake(100, 100)];
                 [helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
+                [myLevel addChild: helpNode];
                 
                 SKLabelNode *explainUranium = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
                 explainUranium.fontSize = 30;
@@ -1491,16 +1493,20 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
             }else if([contactNode.name isEqualToString:@"showMenu"])
             {
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/arrowMenu"];
-                [helpNode setPosition:CGPointMake(screenCenterX+180, 200)];
+                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/arrowMenuWithButtons.png"];
+                [myCamera addChild: helpNode];
+                [helpNode setPosition:CGPointMake(screenCenterX+220.0f, 80.0f)];
+                
                 [helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
                 
                 SKLabelNode *showMenu = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
                 showMenu.fontSize = 30;
                 showMenu.fontColor = [SKColor whiteColor];
                 showMenu.zPosition = 30;
-                showMenu.text = @"Go back to take the uranium cell";
+                showMenu.text = @"Use the buttons to pause or restart a level";
+                
                 [helpNode addChild: showMenu];
+                [showMenu setPosition:CGPointMake(-220.0f, -80.0f)];
             }
             
             if(helpNode)
@@ -1509,10 +1515,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 if(!helpNode.position.x)
                 {
                     [helpNode setPosition:CGPointMake(screenCenterX, -20.0f)];
-                    //[helpNode setPosition:CGPointMake(110.0f, -20.0f)];
                     [myCamera addChild: helpNode];
-                }else{
-                    [myLevel addChild: helpNode];
                 }
             }
             
@@ -1673,8 +1676,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
                 if((helpNode = (SKSpriteNode*)[myCamera childNodeWithName:@"//helpNode"]))
                 {
-                    [myLevel runAction: [SKAction fadeAlphaTo:1 duration:.5]];
-                    
                     [helpNode removeFromParent];
                     helpNode = nil;
                     [contactNode removeFromParent]; // We remove the sensor / On enlève le senseur
