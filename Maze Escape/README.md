@@ -25,3 +25,7 @@
 **[JSTileMap.m](JSTileMap.m)** loads .tmx tilemaps. We make them using GPL editor [Tiled](http://www.mapeditor.org).
 
 MIT-licensed code by Jeremy Stone and Christopher LaPollo -- GitHub repo: https://github.com/slycrel/JSTileMap
+
+---
+
+See also our [main README](../README.md)
