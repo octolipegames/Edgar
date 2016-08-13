@@ -232,9 +232,14 @@
     NSInteger savedLevel = [defaults integerForKey:@"savedLevel"];
     
     
-    if(savedLevel == 0) // 1) New game; introduction dialog
+    if(savedLevel == 0)
     {
-        [self displayIntroductionDialog];
+        if(gamePaused == TRUE) // Player is still doing tutorial
+        {
+            [self resumePausedGame];
+        }else{
+            [self displayIntroductionDialog];  // 1) New game; introduction dialog
+        }
     }
     else // 2: savedLevel > 0 => “New Game” or “Resume”
     {
