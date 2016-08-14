@@ -1035,12 +1035,23 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 -(void)doLevelTransition_sameLevel:(BOOL)repeatingLevel{
     float halfHeight = 200;
     
-    // A. Prepare the time display
+    // A. Save to additionalTime; we call saveInitialTime when the curtains open again (we don't count time between levels, it wouldn't be fair!)
+    [self saveAdditionalTime];
+    float totalTime = [self getTotalTime];
+    float levelTime = [self getLevelTime];
+    
+    // B. Prepare the time display
     
     /*
         Most examples about SKLabelNode are terribly inneficient. See this blog post: https://gilesey.wordpress.com/2015/01/14/ios-spritekit-font-loading-times-of-sklabelnodes/
         If you only write "Gill sans", it'll take ~4 seconds to load.
     */
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width-40, self.view.bounds.size.height-40,50,50)];
+    [spinner startAnimating];
+    [self.view addSubview:spinner];
+
+    
     
     SKLabelNode *displayTime = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
     displayTime.fontSize = 30;
@@ -1064,31 +1075,28 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }else{
             displayTime.text = [[NSString alloc] initWithFormat:@"Welcome back to level %d", nextLevelIndex];
         }
-        displayTime2.text = [[NSString alloc] initWithFormat:@"Your total time: %@", [self getTimeString: [self getTotalTime]]];
+        displayTime2.text = [[NSString alloc] initWithFormat:@"Your total time: %@", [self getTimeString: totalTime]];
     }
     else
     {
         if(nextLevelIndex > 1)
         {
             displayTime.text = [[NSString alloc]
-                                initWithFormat:@"Total time: %@", [self getTimeString: [self getTotalTime]]];
+                                initWithFormat:@"Total time: %@", [self getTimeString: totalTime]];
             
             displayTime2.text = [[NSString alloc]
-                                 initWithFormat:@"This level: %@", [self getTimeString: [self getLevelTime]]];
+                                 initWithFormat:@"This level: %@", [self getTimeString: levelTime]];
         }
         else
         {
             displayTime.text = [[NSString alloc]
-                                initWithFormat:@"You made this tutorial in %@", [self getTimeString:[self getLevelTime]]];
+                                initWithFormat:@"You made this tutorial in %@", [self getTimeString:levelTime]];
             
             displayTime2.text = [[NSString alloc]
                                  initWithFormat:@"Get ready for the game!"];
         }
     }
     
-    // B. Save to additionalTime; we call saveInitialTime when the curtains open again
-    [self saveAdditionalTime];
-
     
     
     SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
@@ -1104,8 +1112,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     lowerCurtain.name = @"lowerCurtain";
     [myCamera addChild:upperCurtain];
     [myCamera addChild:lowerCurtain];
+
     
-    
+
     // The three actions of the level transition are written in reverse order here:
 
     // 3. Third action: open curtains
@@ -1125,7 +1134,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [myCamera addChild:displayTime];
         [myCamera addChild:displayTime2];
         
-        SKAction *timeVanish = [SKAction sequence: @[[SKAction fadeAlphaTo:1 duration:.3], [SKAction waitForDuration:1],[SKAction fadeAlphaTo:0 duration:.7], [SKAction removeFromParent]]];
+        SKAction *timeVanish = [SKAction sequence: @[[SKAction fadeAlphaTo:1 duration:.3], [SKAction waitForDuration:1.5],[SKAction fadeAlphaTo:0 duration:1], [SKAction removeFromParent]]];
         [displayTime runAction:timeVanish];
         [displayTime2 runAction:timeVanish completion:^{
             [myWorld runAction: openCurtains];
@@ -1134,10 +1143,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         // [NSThread detachNewThreadSelector:@selector(startLevel) toTarget:self withObject:nil];
     }];
 
+    
     // 1. First action: close curtains (completion = action 2: present score)
     [upperCurtain runAction: [SKAction moveToY:-20 duration: .5]];
     [lowerCurtain runAction: [SKAction moveToY:20 duration: .5] completion:^
     {
+        [spinner removeFromSuperview];
         [myWorld runAction:presentScore];
     }];
     
