@@ -1,0 +1,6 @@
+{
+  "name": "Edgar the Explorer",
+  "tagline": "Open-Source iOS platform game",
+  "body": "We dreamed of a FOSS (Free/Libre and Open Source) platformer on iOS. We didn't find any, so we ended up making it. Feedback, reuse and contributions are welcome!\r\n\r\n### CC-BY 4.0 images\r\n* [Level objects](https://github.com/PolipGames/Edgar/tree/master/Maze%20Escape/Level_objects_img)\r\n* [User interface](https://github.com/PolipGames/Edgar/tree/master/Maze%20Escape/UI_img)\r\n* Texture atlases: [main character walking](https://github.com/PolipGames/Edgar/tree/master/Maze%20Escape/edgar.atlas), [main character jumping](https://github.com/PolipGames/Edgar/tree/master/Maze%20Escape/edgarsaute.atlas), [monster](https://github.com/PolipGames/Edgar/tree/master/Maze%20Escape/monstre.atlas)\r\n\r\n### LGPL code\r\n* [Readme about code with links to classes](https://github.com/PolipGames/Edgar/tree/master/Maze%20Escape/README.md)\r\n* [Classes folder](https://github.com/PolipGames/Edgar/tree/master/Maze%20Escape)",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
