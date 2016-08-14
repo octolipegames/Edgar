@@ -662,6 +662,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 [trainNode getLeftWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
                 [trainNode getRightWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
                 
+                // DEV: Added on August 14th to solve bug when Edgar gets stuck - tests required [DONE]
+                [trainNode getLeftWheel].physicsBody.categoryBitMask = PhysicsCategoryObjects;
+                [trainNode getRightWheel].physicsBody.categoryBitMask = PhysicsCategoryObjects;
+                
                 SKPhysicsJointPin *pinGauche = [SKPhysicsJointPin jointWithBodyA:[trainNode getLeftWheel].physicsBody bodyB:trainNode.physicsBody anchor:CGPointMake(trainNode.position.x-20, trainNode.position.y-19)];
                 [self.physicsWorld addJoint:pinGauche];
                 
