@@ -34,7 +34,7 @@
 @implementation plpItem
 
 
-- (id)initAtPosition:(CGPoint)position withTexture:(NSString*)textureString
+- (id)initAtPosition:(CGPoint)position withTexture:(NSString*)textureString andRadius:(int) radius
 {
     if([textureString isEqualToString:@""])
     {
@@ -49,7 +49,8 @@
         SKTexture *mainTexture = [SKTexture textureWithImageNamed:textureString];
 
         self = [super initWithTexture:mainTexture];
-        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:22 center:CGPointMake(0, 0)];
+        // radius = 22 for uranium, 5 for time bonus
+        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius: radius center:CGPointMake(0, 0)];
         self.physicsBody.dynamic = NO;
         self.position = position;
     }

@@ -518,7 +518,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             for (NSDictionary *monTree in treeArray) {
                 plpItem *myItem;
-                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withTexture:@"Level_objects_img/arbre-09.png"];
+                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withTexture:@"Level_objects_img/arbre-09.png" andRadius: 22];
                 
                 //                float waitBeforeStart = [montree[@"waitBeforeStart"] floatValue];
                 if(myItem)
@@ -545,7 +545,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             for (NSDictionary *monSemaphore in semaphoreArray) {
                 plpItem *myItem;
-                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monSemaphore] withTexture:@"Level_objects_img/FeuVert.png"];
+                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monSemaphore] withTexture:@"Level_objects_img/FeuVert.png" andRadius:22];
                 //                float waitBeforeStart = [monSemaphore[@"waitBeforeStart"] floatValue];
                 if(myItem)
                 {
@@ -609,7 +609,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         for (NSDictionary *monItem in tabItem) {
             plpItem *myItem;
-            myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monItem] withTexture:@"Level_objects_img/pile.png"];
+            myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monItem] withTexture:@"Level_objects_img/pile.png" andRadius: 22];
             if(myItem)
             {
                 myItem.name = @"uranium";
@@ -628,7 +628,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         for (NSDictionary *monBonus in tabBonus) {
             plpItem *myBonus;
-            myBonus = [[plpItem alloc] initAtPosition:[self convertPosition:monBonus] withTexture:@""];
+            myBonus = [[plpItem alloc] initAtPosition:[self convertPosition:monBonus] withTexture:@"Level_objects_img/timeBonus.png" andRadius: 8];
             if(myBonus)
             {
                 myBonus.name = @"timeBonus";
@@ -1455,6 +1455,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 [helpNode runAction:[SKAction sequence:@[[SKAction waitForDuration:.5], [SKAction fadeAlphaTo:0 duration:1]]]];
             }else if([contactNode.name isEqualToString:@"explainTrain"])
             {
+                [contactNode setName: NULL];
                 SKLabelNode *explainTrainNode = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
                 explainTrainNode.fontSize = 30;
                 explainTrainNode.fontColor = [SKColor whiteColor];
@@ -1497,7 +1498,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 [myCamera addChild: helpNode];
                 [helpNode setPosition:CGPointMake(screenCenterX+220.0f, 80.0f)];
                 
-                [helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
+                //[helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
                 
                 SKLabelNode *showMenu = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
                 showMenu.fontSize = 30;
@@ -1514,7 +1515,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 helpNode.name = @"helpNode";
                 if(!helpNode.position.x)
                 {
-                    [helpNode setPosition:CGPointMake(screenCenterX, -20.0f)];
+                    [helpNode setPosition:CGPointMake(screenCenterX+30, -100.0f)];
                     [myCamera addChild: helpNode];
                 }
             }
