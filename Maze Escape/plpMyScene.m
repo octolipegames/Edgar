@@ -1091,9 +1091,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     float totalTime = [self getTotalTime];
     float levelTime = [self getLevelTime];
-    NSLog(@"T: totalTime = %f, levelTime = %f", totalTime, levelTime);
-    NSLog(@"T: savedTime = %f, savedLevel = %f", additionalSavedTime, additionalLevelTime);
-    
     [self saveAdditionalTime];
     
     // B. Prepare the time display
@@ -1320,7 +1317,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             SKAction *greenDoor = [SKAction setTexture:[SKTexture textureWithImageNamed:@"Level_objects_img/ascenseurO-01.png"]];
             [contactNode runAction:greenDoor];
-            NSLog(@"Green door");
         }
         
         if([contactNode.name isEqualToString:@"finish"])
@@ -1451,7 +1447,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         myTextView = [[UITextView alloc] init];
                         NSString* userTimeString = [self getTimeString: [self getTotalTime]];
                         
-                        NSLog(@"Preparing textview");
                         myTextView.text = [NSString stringWithFormat:@"You did it! \nYour time: %@.\nHowever, the alien vessel wasn’t part of the plan… \nStay tuned for the next part.\n\nSave your score online?", userTimeString];
                         
                         myTextView.textColor = [UIColor whiteColor];
@@ -1551,6 +1546,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 [myLevel addChild: helpNode];
                 
                 SKLabelNode *explainUranium = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+                explainUranium.name = @"explainText";
                 explainUranium.fontSize = 30;
                 explainUranium.fontColor = [SKColor whiteColor];
                 explainUranium.position = CGPointMake(screenCenterX, 50);
@@ -1558,19 +1554,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 explainUranium.text = @"Take the uranium cell to activate the exit";
                 [myCamera addChild: explainUranium];
                 [explainUranium runAction:[SKAction sequence:@[[SKAction waitForDuration:2], [SKAction fadeAlphaTo:0 duration:1]]]];
-            }else if([contactNode.name isEqualToString:@"noUranium"] && ! [Edgar hasItem])
-            {
-                SKLabelNode *noUranium = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
-                noUranium.fontSize = 30;
-                noUranium.fontColor = [SKColor whiteColor];
-                noUranium.position = CGPointMake(screenCenterX, 50);
-                noUranium.zPosition = 30;
-                noUranium.text = @"Go back to take the uranium cell";
-                [myCamera addChild: noUranium];
-                [noUranium runAction:[SKAction sequence:@[[SKAction waitForDuration:1.5], [SKAction fadeAlphaTo:0 duration:1]]]];
-                
             }else if([contactNode.name isEqualToString:@"showMenu"])
             {
+                SKNode *lastTextNode = [myCamera childNodeWithName:@"explainText"];
+                if(lastTextNode){
+                    [lastTextNode removeFromParent]; // to avoid a text overlap
+                }
+                
                 helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/arrowMenuWithButtons.png"];
                 [myCamera addChild: helpNode];
                 
@@ -1579,7 +1569,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
                 // previously: fixed helpNodeXgap, 220px
                 // NSLog(@"width=%f, estimation = %f", self.view.bounds.size.width, helpNodeXgap);
-                                
+                
                 SKLabelNode *showMenu = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
                 showMenu.fontSize = 30;
                 showMenu.fontColor = [SKColor whiteColor];
