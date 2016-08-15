@@ -38,8 +38,6 @@
     SKView * skView = (SKView *)self.view;
     [self loadMenuBackgroundWithSize:skView.bounds.size];
 
-    myScene = [plpMyScene sceneWithSize:skView.bounds.size];
-    myScene.scaleMode = SKSceneScaleModeAspectFill;
     [super viewDidLoad];
 }
 
@@ -146,6 +144,13 @@
 {
     self.pauseButton.hidden = NO;
     self.suicideButton.hidden = NO;
+ 
+    
+    if(gamePaused == FALSE){
+        SKView * skView = (SKView *)self.view;
+        myScene = [plpMyScene sceneWithSize:skView.bounds.size];
+        myScene.scaleMode = SKSceneScaleModeAspectFill;
+    }
     
     if(self.MenuBackground)
     {
@@ -177,6 +182,13 @@
 {
     self.pauseButton.hidden = NO;
     self.suicideButton.hidden = NO;
+ 
+    
+    if(gamePaused == FALSE){
+        SKView * skView = (SKView *)self.view;
+        myScene = [plpMyScene sceneWithSize:skView.bounds.size];
+        myScene.scaleMode = SKSceneScaleModeAspectFill;
+    }
     
     if(self.MenuBackground)
     {
