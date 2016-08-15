@@ -54,7 +54,7 @@
     <property name="nodename" value="explainTrain"/>
    </properties>
   </object>
-  <object id="16" name="sensor" x="376" y="477.5" width="510" height="123">
+  <object id="16" name="sensor" x="376" y="397.015" width="510" height="203.485">
    <properties>
     <property name="nodename" value="showMenu"/>
    </properties>
