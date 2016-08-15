@@ -115,9 +115,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [self.physicsWorld addJoint:pinEdgar];
         
         // dev [self playTune:@"Sounds/Juno" loops:-1];
-        
-        [self saveInitialTime];
-        additionalSavedTime = 0;
     }
     return self;
 }
@@ -345,19 +342,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 - (JSTileMap*)loadLevel:(int)levelIndex
 {
-    if(levelIndex <= 1)
+    if(levelIndex <= 1) // dev: need to this to the right place
     {
-        // We reset the intial, the saved time and the cheat code activation
-/*        [self saveInitialTime];
-        additionalSavedTime = 0;
-        
-        cheatsEnabled = FALSE;*/
-
-        initialLevelTime = CFAbsoluteTimeGetCurrent();
         freeCamera = FALSE;
-    }else{
-        // We save the initial level time
-        initialLevelTime = CFAbsoluteTimeGetCurrent();
     }
     
     JSTileMap *myTileMap;
@@ -770,25 +757,48 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 // TIME TRACKER
 
+/*
+
+ - Start of each level: we do saveInitialTime
+ - End of each level: saveAdditionalTime (total)
+ 
+ - Pause: saveAdditionalTime + (!!!) saveLevelTime
+ - Resume: saveInitialTime
+ 
+ - Load a saved game (after the app was closed): we add the stored saved time
+ 
+*/
+
+
 -(void)saveInitialTime
 {
+    NSLog(@"T: Initial time saved.");
     initialTime = CFAbsoluteTimeGetCurrent();
 }
 -(void)saveAdditionalTime:(float)additionalTime{
+    NSLog(@"T: Custom additional time saved: %f", additionalTime);
     additionalSavedTime += additionalTime;
 }
 -(void)saveAdditionalTime
 {
+    NSLog(@"T: Additional time saved.");
     additionalSavedTime += CFAbsoluteTimeGetCurrent() - initialTime;
 }
+-(void)saveAdditionalLevelTime
+{
+    NSLog(@"T: Additional level time saved");
+    additionalLevelTime += CFAbsoluteTimeGetCurrent() - initialTime;
+}
+
 -(float)getTotalTime
 {
+    NSLog(@"%f, %f, %f", CFAbsoluteTimeGetCurrent(), initialTime, additionalSavedTime);
     return (CFAbsoluteTimeGetCurrent() - initialTime) + additionalSavedTime;
 }
 
 -(float)getLevelTime
 {
-    return CFAbsoluteTimeGetCurrent() - initialLevelTime;
+    return (CFAbsoluteTimeGetCurrent() - initialTime) + additionalLevelTime;
 }
 
 -(NSString*)getTimeString: (float) theTime  // returns the time as a string, for example: "5 minutes and 30 seconds" or "30.15 seconds"
@@ -844,6 +854,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [Edgar removeControl];
     [self doVolumeFade];
     [self saveAdditionalTime]; // We save the elapsed time. When the player resumes, we set a new initial time.
+    [self saveAdditionalLevelTime];
 }
 
 -(void)resumeAfterPause
@@ -860,15 +871,21 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     // if level <= 1: new game => reset game data (cheat enabled, time...)
     if(nextLevelIndex <= 1)
     {
-        NSLog(@"Level == 0 => remove light and masque");
         [self resetGameData];
         [Edgar removeLight];
         [Edgar removeMasque];
+    }else{
+        [self saveInitialTime];
     }
     
     [myFinishRectangle removeFromParent];
     myFinishRectangle = nil;
+    
     [self startLevel];
+
+    // Add curtain animation here
+
+    //[myWorld runAction: openCurtains];
 }
 
 - (int) getNextLevelIndex
@@ -881,6 +898,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     cheatsEnabled = FALSE;
     [self saveInitialTime];
     additionalSavedTime = 0;
+    NSLog(@"T: saved time set to 0");
 }
 
 // Called when the user restarts a level (upper right button)
@@ -1032,13 +1050,19 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     myTextView.text = [myTextView.text stringByAppendingString:onlineRankSentence];
 }
 
+
+
 -(void)doLevelTransition_sameLevel:(BOOL)repeatingLevel{
     float halfHeight = 200;
     
     // A. Save to additionalTime; we call saveInitialTime when the curtains open again (we don't count time between levels, it wouldn't be fair!)
-    [self saveAdditionalTime];
+    
     float totalTime = [self getTotalTime];
     float levelTime = [self getLevelTime];
+    NSLog(@"T: totalTime = %f, levelTime = %f", totalTime, levelTime);
+    NSLog(@"T: savedTime = %f, savedLevel = %f", additionalSavedTime, additionalLevelTime);
+    
+    [self saveAdditionalTime];
     
     // B. Prepare the time display
     
@@ -1125,6 +1149,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [upperCurtain runAction: openupperCurtain];
         [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
+            additionalLevelTime = 0;
             //   levelTransitioning = FALSE; -> too late, may cause unexpected behaviours
         }];
     }];
