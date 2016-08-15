@@ -114,7 +114,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         SKPhysicsJointFixed *pinEdgar = [SKPhysicsJointFixed jointWithBodyA:Edgar.physicsBody bodyB:Edgar->rectangleNode.physicsBody anchor:CGPointMake(Edgar.position.x, Edgar.position.y)];
         [self.physicsWorld addJoint:pinEdgar];
         
-        // dev [self playTune:@"Sounds/Juno" loops:-1];
+        [self playTune:@"Sounds/Juno" loops:-1];
     }
     return self;
 }
@@ -886,6 +886,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     // Add curtain animation here
 
     //[myWorld runAction: openCurtains];
+    [self doFirstOpening];
 }
 
 - (int) getNextLevelIndex
@@ -1050,6 +1051,35 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     myTextView.text = [myTextView.text stringByAppendingString:onlineRankSentence];
 }
 
+
+-(void)doFirstOpening{
+    float halfHeight = 200;
+    
+    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
+    SKSpriteNode *lowerCurtain = [upperCurtain copy];
+    upperCurtain.anchorPoint = CGPointMake(0.5, 0);
+    upperCurtain.position = CGPointMake(0, 0);
+    upperCurtain.zPosition = 20;
+    upperCurtain.name = @"upperCurtain";
+    
+    lowerCurtain.anchorPoint = CGPointMake(0.5, 1);
+    lowerCurtain.position = CGPointMake(0, 0);
+    lowerCurtain.zPosition = 20;
+    lowerCurtain.name = @"lowerCurtain";
+    [myCamera addChild:upperCurtain];
+    [myCamera addChild:lowerCurtain];
+    
+    SKAction *openupperCurtain = [SKAction moveToY:halfHeight duration: .5];
+    SKAction *openlowerCurtain = [SKAction moveToY:-halfHeight duration: .5];
+    SKAction *openCurtains = [SKAction runBlock:^{
+        [upperCurtain runAction: openupperCurtain];
+        [lowerCurtain runAction: openlowerCurtain completion:^{
+            [self saveInitialTime];
+        }];
+    }];
+    
+    [myWorld runAction: openCurtains];
+}
 
 
 -(void)doLevelTransition_sameLevel:(BOOL)repeatingLevel{
