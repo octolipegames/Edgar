@@ -115,6 +115,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [self.physicsWorld addJoint:pinEdgar];
         
         [self playTune:@"Sounds/Juno" loops:-1];
+        [self doFirstOpening];
     }
     return self;
 }
