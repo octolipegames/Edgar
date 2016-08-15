@@ -67,7 +67,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         
         self.anchorPoint = CGPointMake(0, 0);
         
-        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size center:CGPointMake(size.width/2,size.height/2)];
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(size.width-2, size.height) center:CGPointMake(size.width/2,size.height/2)];
         self.physicsBody.mass = 20000000000;
         self.physicsBody.allowsRotation = NO;
         self.physicsBody.affectedByGravity = NO;
