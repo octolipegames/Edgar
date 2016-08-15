@@ -208,10 +208,17 @@
              [SKAction colorizeWithColor:[SKColor blueColor] colorBlendFactor:0.8 duration:0.15],
              [SKAction waitForDuration:.5],
              [SKAction colorizeWithColorBlendFactor:0.5 duration:0.15]]];
+        
+        int random_distance = 20 + rand() % 30;
+        float random_duration = 1 / (1 + rand() % 5);
+        
+        NSLog(@"Random: %d, %f", random_distance, random_duration);
+        
         SKAction *strangeMove = [SKAction sequence:@[
              [SKAction moveByX:10 y:0 duration:.1],
-             [SKAction moveByX:-40 y:0 duration:.5],
-             [SKAction moveByX:40 y:0 duration:.1]]];
+             [SKAction moveByX:-random_distance y:0 duration:random_duration],
+             [SKAction moveByX:random_distance+5 y:0 duration:.1]]];
+        
         SKAction *giveBackControl = [SKAction runBlock:^{
             [self giveControl];
             isInfected = FALSE;
