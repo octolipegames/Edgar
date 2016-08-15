@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="15" height="20" tilewidth="100" tileheight="100" nextobjectid="33">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="15" height="20" tilewidth="100" tileheight="100" nextobjectid="34">
  <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
   <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
  </tileset>
@@ -23,19 +23,16 @@
   <object id="3" name="uranium" type="Item" x="1334.5" y="242.5" width="29" height="29">
    <ellipse/>
   </object>
-  <object id="4" name="verticalPlatform" x="1302" y="1100" width="97" height="305">
+  <object id="4" name="verticalPlatform" x="1301" y="1100" width="97" height="305">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
-    <property name="x_limit" value="802"/>
-    <property name="y_limit" value="430"/>
    </properties>
   </object>
   <object id="5" name="verticalPlatform" x="1300.5" y="1700" width="97" height="200">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
-    <property name="x_limit" value="802"/>
     <property name="y_limit" value="430"/>
    </properties>
   </object>
@@ -43,7 +40,6 @@
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
-    <property name="x_limit" value="802"/>
     <property name="y_limit" value="430"/>
    </properties>
   </object>
@@ -76,7 +72,6 @@
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
-    <property name="x_limit" value="802"/>
     <property name="y_limit" value="430"/>
    </properties>
   </object>
@@ -92,7 +87,6 @@
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
-    <property name="x_limit" value="802"/>
     <property name="y_limit" value="430"/>
    </properties>
   </object>
@@ -101,7 +95,6 @@
     <property name="idleDuration" value=".5"/>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="1"/>
-    <property name="x_limit" value="802"/>
     <property name="y_limit" value="430"/>
    </properties>
   </object>
@@ -110,7 +103,6 @@
     <property name="idleDuration" value=".1"/>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
-    <property name="x_limit" value="802"/>
     <property name="y_limit" value="430"/>
    </properties>
   </object>
@@ -119,7 +111,6 @@
     <property name="idleDuration" value=".1"/>
     <property name="moveUpFirst" value="0"/>
     <property name="movementDuration" value="5"/>
-    <property name="x_limit" value="802"/>
     <property name="y_limit" value="430"/>
    </properties>
   </object>
@@ -183,5 +174,6 @@
     <property name="x_limit" value="994"/>
    </properties>
   </object>
+  <object id="33" name="Start" x="1156" y="1284.33" width="88" height="106"/>
  </objectgroup>
 </map>
