@@ -114,7 +114,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         SKPhysicsJointFixed *pinEdgar = [SKPhysicsJointFixed jointWithBodyA:Edgar.physicsBody bodyB:Edgar->rectangleNode.physicsBody anchor:CGPointMake(Edgar.position.x, Edgar.position.y)];
         [self.physicsWorld addJoint:pinEdgar];
         
-        [self playTune:@"Sounds/Juno" loops:-1];
         [self doFirstOpening];
     }
     return self;
@@ -639,7 +638,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         plpTrain *trainNode;
         
         for (NSDictionary *theTrain in trainObjectMarker) {
+//            trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"Level_objects_img/ChariotSocle.png" andWheelTexture:@"Level_objects_img/RoueChariot-03.png"];
             trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"Level_objects_img/ChariotSocle.png" andWheelTexture:@"Level_objects_img/RoueChariot-03.png"];
+            
             
             if(trainNode)
             {
@@ -698,6 +699,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if(verticalPlatformNode)
             {
                 verticalPlatformNode.physicsBody.categoryBitMask = PhysicsCategoryObjects;
+                verticalPlatformNode.physicsBody.collisionBitMask = PhysicsCategoryEdgar | PhysicsCategoryTiles;
                 [tileMap addChild:verticalPlatformNode];
                 
                 if([theVerticalPlatform[@"noEmergencyStop"] intValue] == 1)
@@ -729,6 +731,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if(platformNode)
             {
                 platformNode.physicsBody.categoryBitMask = PhysicsCategoryObjects;
+                platformNode.physicsBody.collisionBitMask = PhysicsCategoryEdgar | PhysicsCategoryTiles;
+                //platformNode.zPosition = -15.0f;
                 [tileMap addChild:platformNode];
             }
         }
@@ -745,7 +749,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             {
                 alien.physicsBody.categoryBitMask = PhysicsCategoryAliens;
                 alien.physicsBody.collisionBitMask = PhysicsCategoryObjects | PhysicsCategoryTiles;
-                
                 [tileMap addChild:alien];
             }
             else
@@ -837,6 +840,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 -(void)playTune:(NSString*)filename loops:(int)loops
 {
+    NSLog(@"playTune called");
     NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"mp3"];
     NSError *error = nil;
     
@@ -883,10 +887,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     myFinishRectangle = nil;
     
     [self startLevel];
-
-    // Add curtain animation here
-
-    //[myWorld runAction: openCurtains];
     [self doFirstOpening];
 }
 
@@ -1076,6 +1076,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [upperCurtain runAction: openupperCurtain];
         [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
+            [self playTune:@"Sounds/Juno" loops:-1];
         }];
     }];
     
@@ -1572,7 +1573,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             {
                 helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/arrowMenuWithButtons.png"];
                 [myCamera addChild: helpNode];
-                [helpNode setPosition:CGPointMake(screenCenterX+220.0f, 80.0f)];
+                
+                float helpNodeXgap = (self.view.bounds.size.width/2)-60;
+                [helpNode setPosition:CGPointMake(screenCenterX+helpNodeXgap, 80.0f)]; // 220
+                
+                NSLog(@"width=%f, estimation = %f", self.view.bounds.size.width, helpNodeXgap);
                 
                 //[helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
                 
@@ -1583,7 +1588,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 showMenu.text = @"Use the buttons to pause or restart a level";
                 
                 [helpNode addChild: showMenu];
-                [showMenu setPosition:CGPointMake(-220.0f, -80.0f)];
+                [showMenu setPosition:CGPointMake(-helpNodeXgap, -80.0f)];
                 [helpNode runAction:[SKAction sequence:@[[SKAction waitForDuration:2], [SKAction fadeAlphaTo:0 duration:1]]]];
             }
             
@@ -1699,10 +1704,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if(![Edgar alreadyInfected])
             {
                 /* SND: Edgar gets infected */
-                if(!movingLeft && !movingRight) // essai pour éviter l'immobilisation
-                {
-                    moveRightRequested = TRUE;
-                }
                 [Edgar getsInfected];
             }
         }
