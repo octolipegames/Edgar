@@ -22,8 +22,6 @@
     <property name="moveUpFirst" value="0"/>
     <property name="movementDuration" value="1.5"/>
     <property name="noEmergencyStop" value="1"/>
-    <property name="x_limit" value="802"/>
-    <property name="y_limit" value="430"/>
    </properties>
   </object>
   <object id="2" name="Start" x="110" y="1794" width="88" height="106"/>
@@ -32,12 +30,10 @@
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
   </object>
-  <object id="4" name="verticalPlatform" x="201" y="1600" width="98" height="297.167">
+  <object id="4" name="verticalPlatform" x="202" y="1600" width="96" height="297.167">
    <properties>
     <property name="moveUpFirst" value="0"/>
     <property name="movementDuration" value="2"/>
-    <property name="x_limit" value="802"/>
-    <property name="y_limit" value="430"/>
    </properties>
   </object>
   <object id="5" name="sensor" x="508" y="464" width="286" height="276">
@@ -57,20 +53,17 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="15" name="verticalPlatform" x="301" y="1298.41" width="98" height="396.623">
+  <object id="15" name="verticalPlatform" x="302" y="1298.41" width="96" height="396.623">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="2"/>
-    <property name="x_limit" value="802"/>
-    <property name="y_limit" value="430"/>
+    <property name="noEmergencyStop" value="1"/>
    </properties>
   </object>
   <object id="16" name="verticalPlatform" x="101" y="1000.94" width="98" height="495.779">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
-    <property name="x_limit" value="802"/>
-    <property name="y_limit" value="430"/>
    </properties>
   </object>
   <object id="17" name="verticalPlatform" x="201" y="701" width="98" height="196.762">
@@ -78,8 +71,6 @@
     <property name="moveUpFirst" value="0"/>
     <property name="movementDuration" value="3"/>
     <property name="noEmergencyStop" value="1"/>
-    <property name="x_limit" value="802"/>
-    <property name="y_limit" value="430"/>
    </properties>
   </object>
   <object id="18" name="alien1" type="alien" x="121.861" y="659.541" width="59.1045" height="36.9403">
