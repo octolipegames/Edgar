@@ -210,9 +210,9 @@
              [SKAction colorizeWithColorBlendFactor:0.5 duration:0.15]]];
         
         int random_distance = 20 + rand() % 30;
-        float random_duration = 1 / (1 + rand() % 5);
+        float random_duration = 1.0f / (1.0f + rand() % 5);
         
-        NSLog(@"Random: %d, %f", random_distance, random_duration);
+        NSLog(@"Random: %d, %f, %d", random_distance, random_duration, rand() % 5);
         
         SKAction *strangeMove = [SKAction sequence:@[
              [SKAction moveByX:10 y:0 duration:.1],
