@@ -203,7 +203,9 @@
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         float totalTime = [defaults floatForKey:@"totalTime"];
+        NSLog(@"T: retrieved totalTime: %f", totalTime);
         if(totalTime){
+            NSLog(@"T: Saved totalTime loaded.");
             [(plpMyScene*)myScene saveAdditionalTime:totalTime];
         }else{
             NSLog(@"Warning: no total time found");
@@ -310,7 +312,6 @@
 
 - (void) displayIntroductionDialog
 {
-    NSLog(@"DisplayIntroDialog func calld");
     UIView *containerView = [[UIView alloc] init];
     containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
     
