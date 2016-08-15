@@ -1575,12 +1575,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 [myCamera addChild: helpNode];
                 
                 float helpNodeXgap = (self.view.bounds.size.width/2)-60;
-                [helpNode setPosition:CGPointMake(screenCenterX+helpNodeXgap, 80.0f)]; // 220
+                [helpNode setPosition:CGPointMake(screenCenterX+helpNodeXgap, 80.0f)];
                 
-                NSLog(@"width=%f, estimation = %f", self.view.bounds.size.width, helpNodeXgap);
-                
-                //[helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
-                
+                // previously: fixed helpNodeXgap, 220px
+                // NSLog(@"width=%f, estimation = %f", self.view.bounds.size.width, helpNodeXgap);
+                                
                 SKLabelNode *showMenu = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
                 showMenu.fontSize = 30;
                 showMenu.fontColor = [SKColor whiteColor];
