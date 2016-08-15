@@ -490,7 +490,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         CGFloat height = [optionCaisse[@"height"] floatValue];
         
         SKSpriteNode *caisse = [SKSpriteNode spriteNodeWithTexture:textureCaisse size: CGSizeMake(width, height)];
-        caisse.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(width, height)];
+        caisse.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(width-1.5, height-1.5)]; // minus 1.5 so the crate doesn't float over the floor
         caisse.physicsBody.mass = 20; // auparavant: 40
         caisse.physicsBody.friction = 0.1;
         caisse.position = [self convertPosition:optionCaisse];
@@ -1528,16 +1528,21 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             {
                 [contactNode setName: NULL];
                 SKLabelNode *explainTrainNode = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+                explainTrainNode.name = @"explainText";
                 explainTrainNode.fontSize = 30;
                 explainTrainNode.fontColor = [SKColor whiteColor];
                 explainTrainNode.position = CGPointMake(screenCenterX, 50);
                 explainTrainNode.zPosition = 30;
                 explainTrainNode.text = @"You can jump on this minecart to make it move";
                 [myCamera addChild: explainTrainNode];
-                [explainTrainNode runAction:[SKAction sequence:@[[SKAction waitForDuration:.5], [SKAction fadeAlphaTo:0 duration:1]]]];
+                [explainTrainNode runAction:[SKAction sequence:@[[SKAction waitForDuration:2], [SKAction fadeAlphaTo:0 duration:1]]]];
                 //helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
             }else if([contactNode.name isEqualToString:@"showUranium"])
             {
+                SKNode *lastTextNode = [myCamera childNodeWithName:@"explainText"];
+                if(lastTextNode){
+                    [lastTextNode removeFromParent]; // to avoid a text overlap
+                }
                 helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/showUranium.png"];
                 [helpNode setPosition:[myLevel childNodeWithName:@"uranium"].position];
                 [helpNode setSize:CGSizeMake(100, 100)];
@@ -1551,7 +1556,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 explainUranium.zPosition = 30;
                 explainUranium.text = @"Take the uranium cell to activate the exit";
                 [myCamera addChild: explainUranium];
-                [explainUranium runAction:[SKAction sequence:@[[SKAction waitForDuration:1.5], [SKAction fadeAlphaTo:0 duration:1]]]];
+                [explainUranium runAction:[SKAction sequence:@[[SKAction waitForDuration:2], [SKAction fadeAlphaTo:0 duration:1]]]];
             }else if([contactNode.name isEqualToString:@"noUranium"] && ! [Edgar hasItem])
             {
                 SKLabelNode *noUranium = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
@@ -1579,6 +1584,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
                 [helpNode addChild: showMenu];
                 [showMenu setPosition:CGPointMake(-220.0f, -80.0f)];
+                [helpNode runAction:[SKAction sequence:@[[SKAction waitForDuration:2], [SKAction fadeAlphaTo:0 duration:1]]]];
             }
             
             if(helpNode)
