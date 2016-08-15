@@ -84,8 +84,8 @@ float contextVelocityX;
     int globalCounter;
     int nextLevelIndex;
     double initialTime;
-    double initialLevelTime;
     double additionalSavedTime;
+    double additionalLevelTime;
     BOOL cheatsEnabled;
 }
 
