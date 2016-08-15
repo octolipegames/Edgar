@@ -60,7 +60,7 @@
     <property name="noEmergencyStop" value="1"/>
    </properties>
   </object>
-  <object id="16" name="verticalPlatform" x="101" y="1000.94" width="98" height="495.779">
+  <object id="16" name="verticalPlatform" x="102" y="1000.94" width="96" height="495.779">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
