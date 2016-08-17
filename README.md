@@ -2,7 +2,7 @@
 
 Open-Source iOS game “Edgar The Explorer”.
 
-[![Youtube Demo](Edgar_Preview.png)](https://www.youtube.com/watch?v=lmzz6sqzB70)
+[![Youtube Demo](Edgar_Preview_.png)](https://www.youtube.com/watch?v=lmzz6sqzB70)
 
 ![iOS icon](/Media.xcassets/AppIcon.appiconset/icon-01%403x.png?raw=true "Edgar The Explorer App Icon")
 
