@@ -1,0 +1,8 @@
+ENGLISH
+platformer, platform, libre, free, FOSS, exploration, 2d, Edgar, explorer, jump, run
+
+FRENCH
+plateforme, libre, gratuit, jeu, exploration, 2d, Edgar, platformer, jump
+
+GERMAN
+platformer, platform, libre, gratis, FOSS, exploration, Spiel, 2d, Edgar, jump, jump n run

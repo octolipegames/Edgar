@@ -1,0 +1,54 @@
+ENGLISH
+
+Free/libre platformer, no ads. Edgar, an old mustached activist (you), has to inspect an underground laboratory. He fights against experimentation on alien beings at Greenalien.
+
+• Free movement: left, right, high jump, long jump
+• Use minecarts and elevators
+• Avoid contamination by escaped aliens
+• Rush or explore slowly: it's up to you!
+• The stopwatch makes the score
+
+FOSS (free and open-source): reuse or contribute!
+
+Our source code (LGPL) and assets (Creative Commons): http://github.com/EdgarTheExplorer
+
+Contact us at polipgames@gmail.com
+
+Filipe Mathez and Paul Ronga
+
+
+
+
+FRENCH
+
+Jeu de plateforme gratuit et sans pub. Edgar, un vieil activiste moustachu (vous), a pour mission d'explorer un laboratoire secret. Il lutte contre l'expérimentation extraterrestre chez Greenalien.
+
+	•	Bougez librement à gauche, à droite, faites de petits ou de grands sauts
+	•	Utilisez des wagonnets et des plateformes mobiles
+	•	Evitez d'être contaminé par les extraterrestres qui s'échappent
+	•	Battre le record de vitesse ou explorer tranquillement, c'est votre choix
+
+Libre et open-source: réutilisation et contributions bienvenues!
+
+Retrouvez notre code source (LGPL) et nos images (Creative Commons) sur: http://github.com/EdgarTheExplorer.
+Ecrivez-nous à polipgames@gmail.com
+Filipe Mathez et Paul Ronga
+
+
+GERMAN
+
+Kostenloses und werbefreies Jump ’n’ Run. Edgar, ein alter Schnauzbart-Träger (Du), soll ein geheimes Laboratorium untersuchen. Er kämpft gegen Versuche an Aliens bei Greenalien.
+
+	•	freie Steuerung: links, rechts, Springen weit und hoch
+	•	Fahre mit Loren und Aufzügen
+	•	Vermeide Verseuchung durch entflohene Außerirdische
+	•	Finde deinen Weg durch Sperren und Dunkelheit
+	•	Du spielst gegen die Stoppuhr oderlässt dir Zeit alles zu erkunden - es ist dein Wahl
+
+Frei und Open-Source: Wiederverwendung und Mitmachen ist willkommen!
+
+Quellcode (LGPL) und Sprites (Creative Commons): http://github.com/EdgarTheExplorer.
+
+Schreib uns an polipgames@gmail.com!
+
+Filipe Mathez und Paul Ronga
