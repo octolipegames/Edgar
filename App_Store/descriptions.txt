@@ -10,7 +10,7 @@ Free/libre platformer, no ads. Edgar, an old mustached activist (you), has to in
 
 FOSS (free and open-source): reuse or contribute!
 
-Our source code (LGPL) and assets (Creative Commons): http://github.com/EdgarTheExplorer
+Our source code (LGPL) and assets (Creative Commons): http://github.com/PolipGames/Edgar
 
 Contact us at polipgames@gmail.com
 
@@ -30,7 +30,7 @@ Jeu de plateforme gratuit et sans pub. Edgar, un vieil activiste moustachu (vous
 
 Libre et open-source: réutilisation et contributions bienvenues!
 
-Retrouvez notre code source (LGPL) et nos images (Creative Commons) sur: http://github.com/EdgarTheExplorer.
+Retrouvez notre code source (LGPL) et nos images (Creative Commons) sur: http://github.com/PolipGames/Edgar
 Ecrivez-nous à polipgames@gmail.com
 Filipe Mathez et Paul Ronga
 
@@ -47,7 +47,7 @@ Kostenloses und werbefreies Jump ’n’ Run. Edgar, ein alter Schnauzbart-Träg
 
 Frei und Open-Source: Wiederverwendung und Mitmachen ist willkommen!
 
-Quellcode (LGPL) und Sprites (Creative Commons): http://github.com/EdgarTheExplorer.
+Quellcode (LGPL) und Sprites (Creative Commons): http://github.com/PolipGames/Edgar
 
 Schreib uns an polipgames@gmail.com!
 
