@@ -116,8 +116,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         [self doFirstOpening];
     }
+    
     return self;
 }
+
 
 - (void)playAgain{
     // We clean the UI
