@@ -616,7 +616,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
 				PRODUCT_NAME = "Edgar Explorer";
@@ -640,7 +640,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
 				PRODUCT_NAME = "Edgar Explorer";
