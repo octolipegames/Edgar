@@ -37,7 +37,12 @@
     /* Animation */
     SKView * skView = (SKView *)self.view;
     [self loadMenuBackgroundWithSize:skView.bounds.size];
-
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pauseWhileInBackground)
+                                                 name:@"pauseWhileInBackground"
+                                               object:nil];
+    
     [super viewDidLoad];
 }
 
@@ -122,6 +127,15 @@
     [containerView removeFromSuperview];
 
     [self displayIntroductionDialog];
+}
+
+- (IBAction)resumeFreezedGame:(id)sender {
+    UIView *container = [(UIGestureRecognizer *)sender view];
+    if(container)
+    {
+        [container removeFromSuperview];
+    }
+    [self resumePausedGame];
 }
 
 - (IBAction)continueButtonClicked:(id)sender {
@@ -376,6 +390,43 @@
 
 /* In-game UI buttons: pause, restart */
 
+- (void)pauseWhileInBackground{
+    SKView *spriteView = (SKView *)self.view;
+    if(!myScene){
+        NSLog(@"No scene"); // tested
+        return;
+    }
+    if(spriteView.paused){
+        NSLog(@"Already paused"); // tested
+    }else{
+        NSLog(@"We pause because going to background");
+        gamePaused = TRUE;
+
+        [spriteView setPaused:YES];
+        [(plpMyScene*)myScene getsPaused];
+        
+        
+        UIView *containerView = [[UIView alloc] init];
+        containerView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:.5];
+        [containerView setFrame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        
+        [self.view addSubview: containerView];
+        
+        UITapGestureRecognizer *newTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resumeFreezedGame:)];
+        [containerView setUserInteractionEnabled:YES];
+        [containerView addGestureRecognizer:newTap];
+
+
+        UILabel *scoreLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0.0, (self.view.bounds.size.height/2)-20, self.view.bounds.size.width, 40.0) ];
+        scoreLabel.textAlignment =  NSTextAlignmentCenter;
+        scoreLabel.textColor = [UIColor whiteColor];
+        // scoreLabel.backgroundColor = [UIColor blackColor];
+        scoreLabel.font = [UIFont fontWithName:@"GillSans" size:42];
+        [containerView addSubview:scoreLabel];
+        scoreLabel.text = @"Tap to resume";
+    }
+}
+
 - (IBAction)pauseButtonClicked:(id)sender {
     gamePaused = TRUE;
     
@@ -398,16 +449,6 @@
     [(plpMyScene*)myScene EdgarDiesOf:0];
 }
 
-- (void)forcePause // if App goes to background -- need to be called from plpAppDelegate (to do)
-{
-    SKView *spriteView = (SKView *)self.view;
-    if(!spriteView.paused){
-        spriteView.paused = YES;
-        NSLog(@"Will resign active => Pause");
-    }
-    [(plpMyScene*)myScene getsPaused];
-}
-
 -(void)saveCurrentProgress
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -418,9 +459,6 @@
         [defaults synchronize];
     }
 }
-
-
-
 
 
 
