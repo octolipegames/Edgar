@@ -60,6 +60,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [self addChild:myWorld];
         
         myCamera = [SKCameraNode node];
+        
         self.camera = myCamera;
         [self addChild:myCamera];
         
@@ -964,9 +965,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(freeCamera != TRUE)
     {
-        // We move the camera when Edgar is close from the edge / On bouge la vue quand Edgar approche du bord du cadre:
+        // We move the camera when Edgar is close from the edge
+        
+        // First, we get the horizontal and vertical distances between Edgar and the camera
         CGFloat xDistance = Edgar.position.x - myCamera.position.x; // gets > 0 if Edgar moves right
         CGFloat yDistance = Edgar.position.y - myCamera.position.y;
+
+        // The camera position will stay at the same place if none of the following conditions is met
         CGPoint newCameraPosition = myCamera.position;
         
         if(xDistance < -100) // a gauche
@@ -1915,9 +1920,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         Edgar.xScale = 1.0;
         [Edgar setSpeed:1.0];
         [Edgar.physicsBody setVelocity: CGVectorMake(0 + contextVelocityX, Edgar.physicsBody.velocity.dy)];
-        /*        SKAction *doTheStop = [SKAction runBlock:^{
-         [Edgar.physicsBody setVelocity: CGVectorMake(0 + contextVelocityX, Edgar.physicsBody.velocity.dy)];
-         }];*/
         [Edgar facingEdgar];
         [Edgar removeActionForKey:@"moveRightKey"];
         [Edgar removeActionForKey:@"moveLeftKey"];
