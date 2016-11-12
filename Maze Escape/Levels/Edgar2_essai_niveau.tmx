@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="100" tileheight="100" nextobjectid="13">
+ <tileset firstgid="1" name="ElementsTiles-01-01.png" tilewidth="100" tileheight="100">
+  <image source="../../../Edgar_Community/Create_levels_git/8e44673c9eae5350be300b439d2c8412/ElementsTiles-01-01.png" width="1300" height="300"/>
+ </tileset>
+ <layer name="Fond" width="15" height="10" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBiaQBqIZaE0OhuXHLJeOSCWh9LSWDBMHKYGWS8uzIODDQOKQKwMxEpIcspo6iVx6B1qAACC4gV4
+  </data>
+ </layer>
+ <layer name="Solide" width="15" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzjY2Bg4CMCYwO4xIkB+Mwk1z1iRNhJLb0SUMyARIMAI5I6mBp89hJyAz570dWQElbE6iUVwwAATawEJg==
+  </data>
+ </layer>
+ <objectgroup name="Objets">
+  <object id="1" name="Start" x="394.997" y="70" width="88" height="106"/>
+  <object id="5" name="verticalPlatform" x="105" y="196" width="98" height="700">
+   <properties>
+    <property name="moveUpFirst" value="0"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="1102"/>
+    <property name="y_limit" value="200"/>
+   </properties>
+  </object>
+  <object id="6" name="uranium" type="Item" x="1034.5" y="640.5" width="29" height="29">
+   <ellipse/>
+  </object>
+  <object id="7" name="endLevelLift" x="1280" y="578" width="105" height="122">
+   <properties>
+    <property name="nextLevel" value="_Level02_v1_100px"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
