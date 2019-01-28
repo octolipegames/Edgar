@@ -66,9 +66,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         // Actions
         SKAction *walkRight = [SKAction runBlock:^{
-            [self->Edgar.physicsBody setVelocity:CGVectorMake(EdgarVelocity + contextVelocityX, Edgar.physicsBody.velocity.dy)];        }];
+            [self->Edgar.physicsBody setVelocity:CGVectorMake(self->EdgarVelocity + contextVelocityX, self->Edgar.physicsBody.velocity.dy)];        }];
         SKAction *walkLeft = [SKAction runBlock:^{
-            [self->Edgar.physicsBody setVelocity:CGVectorMake(-EdgarVelocity + contextVelocityX, self->Edgar.physicsBody.velocity.dy)];
+            [self->Edgar.physicsBody setVelocity:CGVectorMake(-self->EdgarVelocity + contextVelocityX, self->Edgar.physicsBody.velocity.dy)];
         }];
         SKAction *wait = [SKAction waitForDuration:.05]; // = 20 fois par seconde vs 60
         
@@ -1428,9 +1428,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         [self->Edgar.physicsBody setVelocity: CGVectorMake(0, 0)];
                         self->Edgar.physicsBody.affectedByGravity = false;
                         self->      Edgar->rectangleNode.physicsBody.affectedByGravity = false;
-                        freeCamera = TRUE;
-                        [myCamera runAction:[SKAction moveToY:Edgar.position.y+200 duration:1]];
-                        nextLevelIndex = 1;
+                        self->freeCamera = TRUE;
+                        [self->myCamera runAction:[SKAction moveToY:self->Edgar.position.y+200 duration:1]];
+                        self->nextLevelIndex = 1;
                     }];
                     
                     SKAction *flyAway = [SKAction runAction:[SKAction moveTo:CGPointMake(2000, 2000) duration:4] onChildWithName:@"//alienVessel"];
@@ -1446,29 +1446,29 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     }];
                     
                     SKAction *finalMessage = [SKAction runBlock:^{
-                        containerView = [[UIView alloc] init];
-                        [containerView setFrame: CGRectMake(50, 50, self.view.bounds.size.width-100, self.view.bounds.size.height-100)]; // coordinates origin is upper left
+                        self->containerView = [[UIView alloc] init];
+                        [self->containerView setFrame: CGRectMake(50, 50, self.view.bounds.size.width-100, self.view.bounds.size.height-100)]; // coordinates origin is upper left
                         
-                        containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+                        self->containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
                         
-                        myTextView = [[UITextView alloc] init];
+                        self->myTextView = [[UITextView alloc] init];
                         NSString* userTimeString = [self getTimeString: [self getTotalTime]];
                         
-                        myTextView.text = [NSString stringWithFormat:@"You did it! \nYour time: %@.\nHowever, the alien vessel wasn’t part of the plan… \nStay tuned for the next part.\n\nSave your score online?", userTimeString];
+                        self->myTextView.text = [NSString stringWithFormat:@"You did it! \nYour time: %@.\nHowever, the alien vessel wasn’t part of the plan… \nStay tuned for the next part.\n\nSave your score online?", userTimeString];
                         
-                        myTextView.textColor = [UIColor whiteColor];
-                        myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
-                        myTextView.editable = NO;
-                        [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
+                        self->myTextView.textColor = [UIColor whiteColor];
+                        self->myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+                        self->myTextView.editable = NO;
+                        [self->myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
                         
                         float outsideMargin = 60;
                         float insideMargin = 30;
-                        float buttonsVerticalPosition = containerView.bounds.size.height-50;
-                        float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
+                        float buttonsVerticalPosition = self->containerView.bounds.size.height-50;
+                        float buttonWidth = (self->containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
                         float buttonYesPositionX = outsideMargin;
                         float buttonNoPositionX = buttonWidth + outsideMargin + 2*insideMargin;
                         
-                        [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
+                        [self->myTextView setFrame: CGRectMake(20, 5, self->containerView.bounds.size.width-40, self->containerView.bounds.size.height-70)];
                         
                         
                         UIButton *myButtonYes  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -1497,10 +1497,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                                        action: @selector(endGameNoSaveScore:)
                              forControlEvents: UIControlEventTouchUpInside];
                         
-                        [self.view addSubview: containerView];
-                        [containerView addSubview:myTextView];
-                        [containerView addSubview:myButtonYes];
-                        [containerView addSubview:myButtonNo];
+                        [self.view addSubview: self->containerView];
+                        [self->containerView addSubview:self->myTextView];
+                        [self->containerView addSubview:myButtonYes];
+                        [self->containerView addSubview:myButtonNo];
                     }];
                     
                     [myLevel runAction:[SKAction sequence:@[createBeam, showBeam, moveEdgar, longWaitAction, vanish, removeBeam, longWaitAction, flyAway, longWaitAction, finalMessage]]];

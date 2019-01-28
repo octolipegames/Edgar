@@ -93,24 +93,24 @@
     if (rightWheelNode.physicsBody.angularVelocity > 0) // positive speed -> the train runs left
     {
         decelerate = [SKAction runBlock:^{
-            float newSpeed = rightWheelNode.physicsBody.angularVelocity - deceleration;
+            float newSpeed = self->rightWheelNode.physicsBody.angularVelocity - deceleration;
             if(newSpeed < 0){
                 newSpeed = 0;
             }
             
-            [rightWheelNode.physicsBody setAngularVelocity:newSpeed];
-            [leftWheelNode.physicsBody setAngularVelocity:newSpeed];
+            [self->rightWheelNode.physicsBody setAngularVelocity:newSpeed];
+            [self->leftWheelNode.physicsBody setAngularVelocity:newSpeed];
         }];
         
     }else{ // 0 or negative speed -> the train runs right
         decelerate = [SKAction runBlock:^{
-            float newSpeed = rightWheelNode.physicsBody.angularVelocity + deceleration;
+            float newSpeed = self->rightWheelNode.physicsBody.angularVelocity + deceleration;
             //            NSLog(@"newSpeed = %f", newSpeed);
             if(newSpeed > 0){
                 newSpeed = 0;
             }
-            [rightWheelNode.physicsBody setAngularVelocity:newSpeed];
-            [leftWheelNode.physicsBody setAngularVelocity:newSpeed];
+            [self->rightWheelNode.physicsBody setAngularVelocity:newSpeed];
+            [self->leftWheelNode.physicsBody setAngularVelocity:newSpeed];
         }];
     }
     SKAction *theBraking = [SKAction repeatActionForever:[SKAction sequence:@[[SKAction waitForDuration:.1], decelerate]]];
@@ -126,14 +126,14 @@
     if([self getVelocityX] < 0) // if the train already runs left
     {
         accelerate = [SKAction runBlock:^{
-            float newSpeed = rightWheelNode.physicsBody.angularVelocity + acceleration;
+            float newSpeed = self->rightWheelNode.physicsBody.angularVelocity + acceleration;
             if(newSpeed > maxSpeed){ // Speed limit / limite de vitesse
                 newSpeed = maxSpeed;
             }
-            [rightWheelNode.physicsBody setAngularVelocity:newSpeed];
-            [leftWheelNode.physicsBody setAngularVelocity:newSpeed];
+            [self->rightWheelNode.physicsBody setAngularVelocity:newSpeed];
+            [self->leftWheelNode.physicsBody setAngularVelocity:newSpeed];
             
-            if(heroAbove){
+            if(self->heroAbove){
                 contextVelocityX = self.physicsBody.velocity.dx;
             }
             
@@ -142,13 +142,13 @@
     else
     {
         accelerate = [SKAction runBlock:^{
-            float newSpeed = rightWheelNode.physicsBody.angularVelocity - acceleration;
+            float newSpeed = self->rightWheelNode.physicsBody.angularVelocity - acceleration;
             if(newSpeed < - maxSpeed){ // Speed limit / limite de vitesse
                 newSpeed = - maxSpeed;
             }
-            [rightWheelNode.physicsBody setAngularVelocity:newSpeed];
-            [leftWheelNode.physicsBody setAngularVelocity:newSpeed];
-            if(heroAbove){
+            [self->rightWheelNode.physicsBody setAngularVelocity:newSpeed];
+            [self->leftWheelNode.physicsBody setAngularVelocity:newSpeed];
+            if(self->heroAbove){
                 contextVelocityX = self.physicsBody.velocity.dx;
             }
         }];
