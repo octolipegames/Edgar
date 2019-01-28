@@ -66,9 +66,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         // Actions
         SKAction *walkRight = [SKAction runBlock:^{
-            [Edgar.physicsBody setVelocity:CGVectorMake(EdgarVelocity + contextVelocityX, Edgar.physicsBody.velocity.dy)];        }];
+            [self->Edgar.physicsBody setVelocity:CGVectorMake(EdgarVelocity + contextVelocityX, Edgar.physicsBody.velocity.dy)];        }];
         SKAction *walkLeft = [SKAction runBlock:^{
-            [Edgar.physicsBody setVelocity:CGVectorMake(-EdgarVelocity + contextVelocityX, Edgar.physicsBody.velocity.dy)];
+            [self->Edgar.physicsBody setVelocity:CGVectorMake(-EdgarVelocity + contextVelocityX, self->Edgar.physicsBody.velocity.dy)];
         }];
         SKAction *wait = [SKAction waitForDuration:.05]; // = 20 fois par seconde vs 60
         
@@ -452,7 +452,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if((sensorObjectMarker = [group objectsNamed:@"sensor"]))
     {
         SKSpriteNode *sensorNode;
-        int sensorId;
+        int sensorId = 0;
         
         for (NSDictionary *theSensor in sensorObjectMarker) {
             float width = [theSensor[@"width"] floatValue];
@@ -1185,20 +1185,20 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [upperCurtain runAction: openupperCurtain];
         [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
-            additionalLevelTime = 0;
+            self->additionalLevelTime = 0;
             //   levelTransitioning = FALSE; -> too late, may cause unexpected behaviours
         }];
     }];
 
     // 2. Second action: present score and start level (completion = action 3: open curtains)
     SKAction *presentScore = [SKAction runBlock:^{
-        [myCamera addChild:displayTime];
-        [myCamera addChild:displayTime2];
+        [self->myCamera addChild:displayTime];
+        [self->myCamera addChild:displayTime2];
         
         SKAction *timeVanish = [SKAction sequence: @[[SKAction fadeAlphaTo:1 duration:.3], [SKAction waitForDuration:1.5],[SKAction fadeAlphaTo:0 duration:1], [SKAction removeFromParent]]];
         [displayTime runAction:timeVanish];
         [displayTime2 runAction:timeVanish completion:^{
-            [myWorld runAction: openCurtains];
+            [self->myWorld runAction: openCurtains];
         }];
         [self startLevel];
         // [NSThread detachNewThreadSelector:@selector(startLevel) toTarget:self withObject:nil];
@@ -1210,7 +1210,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [lowerCurtain runAction: [SKAction moveToY:20 duration: .5] completion:^
     {
         [spinner removeFromSuperview];
-        [myWorld runAction:presentScore];
+        [self->myWorld runAction:presentScore];
     }];
     
 }
@@ -1336,7 +1336,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     levelTransitioning = TRUE;
                     [Edgar removeControl];
                     [Edgar runAction: [SKAction sequence:@[[SKAction moveToX:myFinishRectangle.position.x duration: .2], [SKAction runBlock:^{
-                        stopRequested = TRUE;
+                        self->stopRequested = TRUE;
                     }]]]];
 
                     [myFinishRectangle removeFromParent];
@@ -1386,8 +1386,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 SKAction *waitAction = [SKAction waitForDuration: 1];
                 
                 SKAction *createAlien = [SKAction runBlock:^{
-                    alienVessel.position = CGPointMake(Edgar.position.x, Edgar.position.y+400);
-                    [myLevel addChild: alienVessel];
+                    alienVessel.position = CGPointMake(self->Edgar.position.x, self->Edgar.position.y+400);
+                    [self->myLevel addChild: alienVessel];
                     
                     [alienVessel addChild: beam];
                     beam.position = CGPointMake(0, -50);
@@ -1423,11 +1423,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     
                     SKAction *createBeam = [SKAction runBlock:^{
                         [beam setAlpha: 1.0f];
-                        [Edgar removeActionForKey:@"bougeDroite"];
-                        [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
-                        [Edgar.physicsBody setVelocity: CGVectorMake(0, 0)];
-                        Edgar.physicsBody.affectedByGravity = false;
-                        Edgar->rectangleNode.physicsBody.affectedByGravity = false;
+                        [self->Edgar removeActionForKey:@"bougeDroite"];
+                        [self->Edgar removeActionForKey:@"walkingInPlaceEdgar"];
+                        [self->Edgar.physicsBody setVelocity: CGVectorMake(0, 0)];
+                        self->Edgar.physicsBody.affectedByGravity = false;
+                        self->      Edgar->rectangleNode.physicsBody.affectedByGravity = false;
                         freeCamera = TRUE;
                         [myCamera runAction:[SKAction moveToY:Edgar.position.y+200 duration:1]];
                         nextLevelIndex = 1;

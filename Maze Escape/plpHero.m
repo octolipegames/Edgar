@@ -221,7 +221,7 @@
         
         SKAction *giveBackControl = [SKAction runBlock:^{
             [self giveControl];
-            isInfected = FALSE;
+            self->isInfected = FALSE;
             NSLog(@"Control given back");
         }];
         SKAction *getWhite = [SKAction colorizeWithColorBlendFactor:0.0 duration:0.3];
