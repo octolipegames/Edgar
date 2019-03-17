@@ -12,7 +12,7 @@ On **June 4, 2016**, Apple authorized the external testing [using TestFlight](ht
 
 First release on **August 17, 2016** on the [App Store](https://itunes.apple.com/ch/app/edgar-explorer-platform-game/id1100015560&l=en). We were very bad at marketing the game (no advertising / blog posts / press news), but a good ranking helped us to get about 1000 downloads within two months (see our [download statistics](https://github.com/PolipGames/Edgar/blob/master/App_Store/itunes_connect_downloads.csv)).
 
-Unexpected download spike two years later.
+Unexpected download peak two years later (3000 installs in a few weeks).
 
 **February 2019**: a Swiss music producer started creating sounds and a new music -- work in progress.
 
