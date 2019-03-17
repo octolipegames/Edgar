@@ -4,7 +4,7 @@ Open-Source iOS game “Edgar The Explorer”.
 
 [![Youtube Demo](Edgar_Preview_.png)](https://www.youtube.com/watch?v=lmzz6sqzB70)
 
-Images under **CC-BY** licence, source under **LGPL** licence.
+Images under **CC-BY** license, source under **LGPL** licence. Sounds: mixed license (see COPYING).
 
 We started this project during **summer 2014**.
 
