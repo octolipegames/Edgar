@@ -72,6 +72,12 @@
     rightWheelNode.physicsBody.restitution = 0;
     [self addChild: rightWheelNode];
     
+    trainSound = [[SKAudioNode alloc] initWithFileNamed:@"Sounds/fx_chariot.wav"];
+    trainSound.autoplayLooped = false;
+    trainSound.position = CGPointMake(0, 0);
+    trainSound.positional = true;
+    [self addChild: trainSound];
+    
     return self;
 }
 
@@ -95,6 +101,7 @@
         decelerate = [SKAction runBlock:^{
             float newSpeed = self->rightWheelNode.physicsBody.angularVelocity - deceleration;
             if(newSpeed < 0){
+                [trainSound runAction: [SKAction stop]];
                 newSpeed = 0;
             }
             
@@ -107,6 +114,7 @@
             float newSpeed = self->rightWheelNode.physicsBody.angularVelocity + deceleration;
             //            NSLog(@"newSpeed = %f", newSpeed);
             if(newSpeed > 0){
+                [trainSound runAction: [SKAction stop]];
                 newSpeed = 0;
             }
             [self->rightWheelNode.physicsBody setAngularVelocity:newSpeed];
@@ -122,6 +130,8 @@
 {
     [self removeActionForKey:@"braking"];
     
+    [trainSound runAction: [SKAction play]];
+    
     SKAction *accelerate;
     if([self getVelocityX] < 0) // if the train already runs left
     {
@@ -129,7 +139,10 @@
             float newSpeed = self->rightWheelNode.physicsBody.angularVelocity + acceleration;
             if(newSpeed > maxSpeed){ // Speed limit / limite de vitesse
                 newSpeed = maxSpeed;
+            } else if(self->rightWheelNode.physicsBody.angularVelocity < 1){
+                [self->trainSound runAction: [SKAction stop]];
             }
+
             [self->rightWheelNode.physicsBody setAngularVelocity:newSpeed];
             [self->leftWheelNode.physicsBody setAngularVelocity:newSpeed];
             
@@ -145,7 +158,10 @@
             float newSpeed = self->rightWheelNode.physicsBody.angularVelocity - acceleration;
             if(newSpeed < - maxSpeed){ // Speed limit / limite de vitesse
                 newSpeed = - maxSpeed;
+            } else if(self->rightWheelNode.physicsBody.angularVelocity > -1){
+                [self->trainSound runAction: [SKAction stop]];
             }
+            
             [self->rightWheelNode.physicsBody setAngularVelocity:newSpeed];
             [self->leftWheelNode.physicsBody setAngularVelocity:newSpeed];
             if(self->heroAbove){

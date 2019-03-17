@@ -72,6 +72,18 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }];
         SKAction *wait = [SKAction waitForDuration:.05]; // = 20 fois par seconde vs 60
         
+        // Just for debug, but we could make this an option
+        musicOn = true;
+        
+        jumpSound = [SKAction playSoundFileNamed:@"Sounds/fx_jump.wav" waitForCompletion:NO];
+        takeCellSound = [SKAction playSoundFileNamed:@"Sounds/fx_pile.aif" waitForCompletion:NO];
+        liftReadySound = [SKAction playSoundFileNamed:@"Sounds/fx_bouton_porte.wav" waitForCompletion:NO];
+
+        takeLiftSound = [SKAction playSoundFileNamed:@"Sounds/fx_arrivee_ascenseur.wav" waitForCompletion:NO];
+        leftFootstepSound = [SKAction playSoundFileNamed:@"Sounds/fx_pas_gauche.aif" waitForCompletion:YES];
+        rightFootstepSound = [SKAction playSoundFileNamed:@"Sounds/fx_pas_droit.aif" waitForCompletion:YES];
+        crateSound = [SKAction playSoundFileNamed:@"Sounds/fx_caisse_short.wav" waitForCompletion:YES];
+        
         // This speed gets higher when Edgar does a long jump.
         // He could also walk faster or slower with new items.
         EdgarVelocity = 140;
@@ -99,6 +111,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         Edgar = [[plpHero alloc] initAtPosition: CGPointMake(startPosition.x, startPosition.y)];
         myCamera.position = startPosition;
+        self.listener = Edgar;
         
         Edgar.physicsBody.categoryBitMask = PhysicsCategoryEdgar;
         Edgar.physicsBody.collisionBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles;
@@ -162,7 +175,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [self resetGameData];
     [self resumeFromLevel:1];
     [self runAction:[SKAction waitForDuration:2] completion:^{
-        [self playTune:@"Sounds/Juno" loops:-1];
+        [self playTune:@"Sounds/Edgar_VF" loops:-1];
     }];
 }
 
@@ -498,6 +511,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         caisse.position = [self convertPosition:optionCaisse];
         caisse.physicsBody.categoryBitMask = PhysicsCategoryObjects;
         caisse.physicsBody.collisionBitMask = PhysicsCategoryEdgar|PhysicsCategoryObjects|PhysicsCategoryTiles;
+        caisse.name = @"caisse";
         [tileMap addChild: caisse];
     }
     
@@ -844,15 +858,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 -(void)playTune:(NSString*)filename loops:(int)loops
 {
     NSLog(@"playTune called");
-    NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"mp3"];
-    NSError *error = nil;
-    
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-    self.audioPlayer.numberOfLoops = loops;
-    if (!self.audioPlayer) {
-        NSLog(@"Error creating player: %@", error);
+    if( musicOn == true ){
+        NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"mp3"];
+        NSError *error = nil;
+        
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+        self.audioPlayer.numberOfLoops = loops;
+        if (!self.audioPlayer) {
+            NSLog(@"Error creating player: %@", error);
+        }
+        [NSThread detachNewThreadSelector:@selector(startPlaying) toTarget:self withObject:nil];
     }
-    [NSThread detachNewThreadSelector:@selector(startPlaying) toTarget:self withObject:nil];
 }
 
 
@@ -869,7 +885,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 {
     [self saveInitialTime];
     [Edgar giveControl];
-    [self playTune:@"Sounds/Juno" loops:-1];
+    [self playTune:@"Sounds/Edgar_VF" loops:-1];
+    if((movingLeft || movingRight) && !isJumping){
+        [self playFootstepSound];
+    }
 }
 
 -(void)resumeFromLevel:(NSInteger)theLevel{
@@ -901,6 +920,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 - (void) resetGameData
 {
     cheatsEnabled = FALSE;
+    liftReady = FALSE;
     [self saveInitialTime];
     additionalSavedTime = 0;
     NSLog(@"T: saved time set to 0");
@@ -929,6 +949,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 - (void)resetEdgar
 {
     stopRequested = TRUE;
+    liftReady = FALSE;
     [Edgar removeAllActions];
     [Edgar.physicsBody setVelocity:CGVectorMake(0, 0)];
     [Edgar setPosition:startPosition];
@@ -1083,7 +1104,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [upperCurtain runAction: openupperCurtain];
         [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
-            [self playTune:@"Sounds/Juno" loops:-1];
+            [self playTune:@"Sounds/Edgar_VF" loops:-1];
         }];
     }];
     
@@ -1307,6 +1328,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             {
                 isJumping = FALSE;
                 EdgarVelocity = DEFAULT_EDGAR_VELOCITY;
+                if(movingLeft || movingRight){
+                    [self playFootstepSound];
+                }
             }
         }
     }
@@ -1322,8 +1346,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         if([contactNode.name isEqualToString:@"endLevelLiftNode"] && [Edgar hasItem])
         {
-            SKAction *greenDoor = [SKAction setTexture:[SKTexture textureWithImageNamed:@"Level_objects_img/ascenseurO-01.png"]];
-            [contactNode runAction:greenDoor];
+            if(!liftReady){
+                SKAction *greenDoor = [SKAction setTexture:[SKTexture textureWithImageNamed:@"Level_objects_img/ascenseurO-01.png"]];
+                [self runAction:liftReadySound];
+                [contactNode runAction:greenDoor];
+                liftReady = true;
+            }
         }
         
         if([contactNode.name isEqualToString:@"finish"])
@@ -1333,10 +1361,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 if([Edgar hasItem])
                 {
                     /* SND: success - else: error sound */
+                    
                     levelTransitioning = TRUE;
                     [Edgar removeControl];
                     [Edgar runAction: [SKAction sequence:@[[SKAction moveToX:myFinishRectangle.position.x duration: .2], [SKAction runBlock:^{
                         self->stopRequested = TRUE;
+                        [self runAction: self->takeLiftSound];
                     }]]]];
 
                     [myFinishRectangle removeFromParent];
@@ -1503,6 +1533,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         [self->containerView addSubview:myButtonNo];
                     }];
                     
+                    // TODO sound: here stop footsteps
                     [myLevel runAction:[SKAction sequence:@[createBeam, showBeam, moveEdgar, longWaitAction, vanish, removeBeam, longWaitAction, flyAway, longWaitAction, finalMessage]]];
                 }
             } // end if LAST_LEVEL_INDEX
@@ -1607,6 +1638,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if([contactNode.name isEqualToString: @"uranium"])
         {
             [Edgar takeItem];
+            if(contactNode.hidden == NO)
+            {
+                [self runAction: takeCellSound];
+            }
             [myLevel childNodeWithName:@"uranium"].hidden = YES;  // <- to simply hide the object
             //            [(plpItem *)contactNode removeFromParent]; // <- if there is a need to remove the item
             if(nextLevelIndex==0)
@@ -1657,6 +1692,19 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(contactNode.physicsBody.categoryBitMask == PhysicsCategoryObjects)
     {
+        // son caisse
+        if([contactNode.name isEqual: @"caisse"]){
+            // NSLog(@"%f", contactNode.physicsBody.velocity.dx);
+            
+            if(!pushingCrate && fabs(contactNode.physicsBody.velocity.dx) > 10){
+                [self runAction: [SKAction sequence: @[crateSound, [SKAction runBlock:^{
+                    self->pushingCrate = false;
+                }] ] ] ];
+                pushingCrate = true;
+            }
+            return;
+        }
+        
         if([contactNode isKindOfClass:[plpTrain class]])
         {
             /* SND: train runs */
@@ -1909,6 +1957,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
 }
 
+-(void)playFootstepSound {
+    [self runAction:[SKAction repeatActionForever:
+                     [SKAction sequence: @[rightFootstepSound, leftFootstepSound]]] withKey:@"footstepSound"];
+}
+
 -(void)update:(CFTimeInterval)currentTime {
     
     if(stopRequested == TRUE && !isJumping){
@@ -1924,7 +1977,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [Edgar removeActionForKey:@"moveRightKey"];
         [Edgar removeActionForKey:@"moveLeftKey"];
         [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
+        [self removeActionForKey:@"footstepSound"];
     }
+    
+    
     
     if (moveRightRequested == TRUE && !isJumping){ // pas suffisant: ajouter s'il a pied / vitesse verticale
         moveRightRequested = false;
@@ -1933,6 +1989,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             [Edgar removeAllActions];
             [Edgar walkingEdgar];
             [Edgar runAction:moveRightAction withKey:@"moveRightKey"];
+            [self playFootstepSound];
             movingRight = TRUE;
             movingLeft = FALSE;
         }
@@ -1943,6 +2000,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             [Edgar removeAllActions];
             [Edgar walkingEdgar];
             [Edgar runAction: moveLeftAction withKey:@"moveLeftKey"];
+            [self removeActionForKey:@"footstepSound"];
+            [self playFootstepSound];
             movingLeft = true;
             movingRight = false;
             Edgar.speed = 1.0;
@@ -1951,6 +2010,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if (moveUpRequested == true && !isJumping){
         /* SND: swoosh */
+        [self removeActionForKey:@"footstepSound"];
+        [self runAction: jumpSound];
+        
         moveUpRequested = FALSE;
         isJumping = TRUE;
         

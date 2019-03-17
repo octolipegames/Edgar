@@ -57,6 +57,20 @@ float contextVelocityX;
     SKAction *moveRightAction;
     SKAction *moveUp;
     
+    // Audio
+    BOOL musicOn;
+    SKAction *jumpSound;
+    SKAction *takeCellSound;
+    SKAction *activateLiftSound;
+    SKAction *takeLiftSound;
+    BOOL runningPlatformSound;
+    SKAction *liftReadySound;
+    SKAction *leftFootstepSound;
+    SKAction *rightFootstepSound;
+    BOOL pushingCrate;
+    SKAction *crateSound;
+    
+    
     // Input
     CGPoint touchStartPosition;
     BOOL waitForTap;
@@ -86,6 +100,7 @@ float contextVelocityX;
     double initialTime;
     double additionalSavedTime;
     double additionalLevelTime;
+    BOOL liftReady;
     BOOL cheatsEnabled;
 }
 
@@ -106,5 +121,6 @@ float contextVelocityX;
 -(void)computeSceneCenter;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+@property(nonatomic, weak) SKNode *listener;
 
 @end

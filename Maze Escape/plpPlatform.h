@@ -38,6 +38,7 @@
     float endYPosition;
     float movementDuration;
     SKAction *standardSequence;
+    SKAudioNode *platformSound;
 }
 
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withDuration:(float)duration upToX:(float)x_limit andY:(float)y_limit andIdleDuration:(float)idleDuration;

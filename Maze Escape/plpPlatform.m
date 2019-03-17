@@ -80,6 +80,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         SKAction *waitDuration = [SKAction waitForDuration:idleDuration];
         SKAction *moveDuration = [SKAction waitForDuration:duration];
         
+        platformSound = [[SKAudioNode alloc] initWithFileNamed:@"Sounds/fx_elevateur.wav"];
+        platformSound.autoplayLooped = false;
+        platformSound.position = CGPointMake(0, 0);
+        platformSound.positional = true;
+        [self addChild: platformSound];
+        
         // A SKAction doesn't work with physics (Edgar couldn't stand on the platform).
         // Very primitive movement: we just set a constant speed.
 
@@ -115,22 +121,25 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         
         SKAction *stop = [SKAction runBlock:^{
             [self.physicsBody setVelocity:CGVectorMake(0, 0)];
-            if(heroAbove)
+            if(self->heroAbove)
             {
                 contextVelocityX = 0;
             }
+            [self->platformSound runAction: [SKAction stop]];
         }];
 
         if(isVertical) // vertical movement
         {
             SKAction *verticalMove1 = [SKAction runBlock:^{
-                float newSpeed = [self calculateSpeedForDuration:movementDuration fromPosition:self.position.y toLimit:endYPosition];
+                float newSpeed = [self calculateSpeedForDuration: self->movementDuration fromPosition:self.position.y toLimit: self->endYPosition];
                 [self.physicsBody setVelocity:CGVectorMake(0, newSpeed)];
+                [self->platformSound runAction: [SKAction play]];
             }];
             
             SKAction *verticalMove2 = [SKAction runBlock:^{
-                float newSpeed = [self calculateSpeedForDuration:movementDuration fromPosition:self.position.y toLimit:initYPosition];
+                float newSpeed = [self calculateSpeedForDuration: self->movementDuration fromPosition:self.position.y toLimit:self->initYPosition];
                 [self.physicsBody setVelocity:CGVectorMake(0, newSpeed)];
+                [self->platformSound runAction: [SKAction play]];
             }];
             
             SKAction *verticalSequence = [SKAction sequence:@[waitDuration, verticalMove1, moveDuration, stop, waitDuration, verticalMove2, moveDuration, stop]];
@@ -139,11 +148,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         }else{ // horizontal movement
             
             SKAction *horizontalMove1 = [SKAction runBlock:^{
-                [self horizontalMoveWithDuration: movementDuration forward: TRUE];
+                [self horizontalMoveWithDuration: self->movementDuration forward: TRUE];
+                [self->platformSound runAction: [SKAction play]];
             }];
             
             SKAction *horizontalMove2 = [SKAction runBlock:^{
-                [self horizontalMoveWithDuration: movementDuration forward: FALSE];
+                [self horizontalMoveWithDuration: self->movementDuration forward: FALSE];
+                [self->platformSound runAction: [SKAction play]];
             }];
             
             standardSequence = [SKAction sequence:@[waitDuration, horizontalMove1, moveDuration, stop, waitDuration, horizontalMove2, moveDuration, stop]];
@@ -212,7 +223,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     if(self.physicsBody.velocity.dy < 0 && !emergencyStopTriggered && !noEmergencyStop)
     {
         emergencyStopTriggered = TRUE; // to avoid simoultaneous calls
-        
+        [self->platformSound runAction: [SKAction sequence:@[ [SKAction stop], [SKAction play] ] ] ];
+
         [self setSpeed: 0]; // We pause the animation
         [self.physicsBody setVelocity:CGVectorMake(0, motionSpeed)]; // We invert the direction
         
@@ -221,15 +233,19 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         [self.scene runAction: delay completion:^
         {
             [self.physicsBody setVelocity:CGVectorMake(0, 0)];
+            [self->platformSound runAction: [SKAction stop] ];
+
             [self.scene runAction: [SKAction waitForDuration: 2] completion:^
             {
-                [self.physicsBody setVelocity:CGVectorMake(0, -motionSpeed)];
+                [self.physicsBody setVelocity:CGVectorMake(0, -self->motionSpeed)];
+                [self->platformSound runAction: [SKAction play] ];
 
                 [self.scene runAction: delay completion:^
                 {
                     NSLog(@"Animation runs again");
-                    emergencyStopTriggered = FALSE;
+                    self->emergencyStopTriggered = FALSE;
 
+                    [self->platformSound runAction: [SKAction sequence:@[ [SKAction stop], [SKAction play] ] ] ];
                     [self setSpeed: 1]; // animation runs again
                 }];
 
@@ -272,14 +288,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         
         SKAction *moveDuration = [SKAction waitForDuration:movementDuration];
         SKAction *tempMove = [SKAction runBlock:^{
-            [self horizontalMoveWithDuration: movementDuration forward: FALSE];
+            [self horizontalMoveWithDuration: self->movementDuration forward: FALSE];
         }];
         
         [self.scene runAction: mvDuration completion:^
          {
-             emergencyStopTriggered = FALSE;
+             self->emergencyStopTriggered = FALSE;
              [self runAction: [SKAction sequence:@[tempMove, moveDuration]] completion:^{
-                 [self runAction:[SKAction repeatActionForever: standardSequence]];
+                 [self runAction:[SKAction repeatActionForever: self->standardSequence]];
              }];
          }];
     }
