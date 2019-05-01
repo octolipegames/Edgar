@@ -77,7 +77,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         */
         plpSoundController *soundController = [[plpSoundController alloc] init];
         [soundController initSounds];
-        soundNodes = [NSMutableArray array];
+        platformNodes = [NSMutableArray array];
         
         // Just for debug, but we could make this an option
         musicOn = FALSE;
@@ -731,7 +731,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     [verticalPlatformNode setNoEmergencyStop];
                 }
                 
-                [soundNodes addObject: [verticalPlatformNode getPlatformSound]];
+                [platformNodes addObject: verticalPlatformNode];
             }
         }
     }
@@ -761,6 +761,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 //platformNode.zPosition = -15.0f;
                 [tileMap addChild:platformNode];
             }
+            [platformNodes addObject: platformNode];
         }
     }
     
@@ -1036,12 +1037,19 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 - (void)setNearHero
 {
-    //if(fabs(Edgar.position.x - ) > 50){
-    NSLog(@"Set near hero.");
-    NSLog(@"there are %lu objects in the array", (unsigned long)[soundNodes count]);
-    
-    for (SKAudioNode *audioNode in soundNodes) {
-        NSLog(@"Position is %f", audioNode.position.x);
+    // Loop through platformnodes and
+    // toggles "heroNear" for those in a box of 500x500 pixels near the hero.
+    for (plpPlatform *platformNode in platformNodes) {
+        
+        // For debug
+        /* float distance = fabs(Edgar.position.y - audioNode.parent.position.y);
+         // NSLog(@"Position is %f", audioNode.parent.position.x); */
+
+        if( (fabs(Edgar.position.x - platformNode.position.x) < 500) && (fabs(Edgar.position.y - platformNode.position.y) < 500) ){
+            [platformNode setHeroNear];
+        } else {
+            [platformNode setHeroAway];
+        }
     }
 }
 
@@ -1259,7 +1267,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     for (SKNode* theNode in [myLevel children]) {
         [theNode removeFromParent];
     }
-    [soundNodes removeAllObjects];
+    [platformNodes removeAllObjects];
 
     [myLevel removeFromParent]; // signal SIGABRT
     [Edgar removeFromParent];

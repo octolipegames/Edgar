@@ -134,16 +134,20 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
                 float newSpeed = [self calculateSpeedForDuration: self->movementDuration fromPosition:self.position.y toLimit: self->endYPosition];
                 [self.physicsBody setVelocity:CGVectorMake(0, newSpeed)];
                 
-                // if near Hero
-                [self->platformSound runAction: [SKAction play]];
+                // if Hero is nearby (see plpMyScene)
+                if(self->heroNear){
+                    [self->platformSound runAction: [SKAction play]];
+                }
             }];
             
             SKAction *verticalMove2 = [SKAction runBlock:^{
                 float newSpeed = [self calculateSpeedForDuration: self->movementDuration fromPosition:self.position.y toLimit:self->initYPosition];
                 [self.physicsBody setVelocity:CGVectorMake(0, newSpeed)];
                 
-                // if near Hero
-                [self->platformSound runAction: [SKAction play]];
+                // if Hero is nearby (see plpMyScene)
+                if(self->heroNear){
+                    [self->platformSound runAction: [SKAction play]];
+                }
             }];
             
             SKAction *verticalSequence = [SKAction sequence:@[waitDuration, verticalMove1, moveDuration, stop, waitDuration, verticalMove2, moveDuration, stop]];
@@ -154,15 +158,19 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
             SKAction *horizontalMove1 = [SKAction runBlock:^{
                 [self horizontalMoveWithDuration: self->movementDuration forward: TRUE];
                 
-                // if near Hero
-                [self->platformSound runAction: [SKAction play]];
+                // if Hero is nearby (see plpMyScene)
+                if(self->heroNear){
+                    [self->platformSound runAction: [SKAction play]];
+                }
             }];
             
             SKAction *horizontalMove2 = [SKAction runBlock:^{
                 [self horizontalMoveWithDuration: self->movementDuration forward: FALSE];
                 
-                // if near Hero
-                [self->platformSound runAction: [SKAction play]];
+                // if Hero is nearby (see plpMyScene)
+                if(self->heroNear){
+                    [self->platformSound runAction: [SKAction play]];
+                }
             }];
             
             standardSequence = [SKAction sequence:@[waitDuration, horizontalMove1, moveDuration, stop, waitDuration, horizontalMove2, moveDuration, stop]];
@@ -221,11 +229,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
 
 - (void) setHeroNear
 {
-    heroNear = TRUE;
+    if(!self->heroNear){
+        heroNear = TRUE;
+    }
 }
 - (void) setHeroAway
 {
-    heroNear = FALSE;
+    if(self->heroNear){
+        heroNear = FALSE;
+    }
 }
 
 - (BOOL) getIsVertical

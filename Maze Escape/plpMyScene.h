@@ -70,7 +70,7 @@ float contextVelocityX;
     BOOL pushingCrate;
     SKAction *crateSound;
     NSTimer *setNearHeroTimer;
-    NSMutableArray *soundNodes;
+    NSMutableArray *platformNodes;
     
     // Input
     CGPoint touchStartPosition;
