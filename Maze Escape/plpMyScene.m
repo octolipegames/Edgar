@@ -75,7 +75,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         /*
          INIT SOUND CONTROLLER
         */
-        plpSoundController *soundController = [[plpSoundController alloc] init];
+        soundController = [[plpSoundController alloc] init];
         [soundController initSounds];
         platformNodes = [NSMutableArray array];
         
@@ -2051,6 +2051,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         /* SND: swoosh */
         [self removeActionForKey:@"footstepSound"];
         [self runAction: jumpSound];
+        
+        // TODO
+        // [soundController playJumpSound];
         
         moveUpRequested = FALSE;
         isJumping = TRUE;

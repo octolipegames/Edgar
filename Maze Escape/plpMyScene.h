@@ -59,6 +59,7 @@ float contextVelocityX;
     SKAction *moveUp;
     
     // Audio
+    plpSoundController *soundController;
     BOOL musicOn;
     SKAction *jumpSound;
     SKAction *takeCellSound;
