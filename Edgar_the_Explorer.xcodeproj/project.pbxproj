@@ -35,6 +35,8 @@
 		DA5CF4E11B73EB84005A5C91 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5CF4DC1B73EB6E005A5C91 /* JSTileMap.m */; };
 		DA5CF4E21B73EB8C005A5C91 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */; };
 		DA60EAA41B7F38E100A3F927 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = DA60EAA31B7F38E100A3F927 /* Sounds */; };
+		DA60FCB4223EBB6A005276C6 /* plpSoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60FCB3223EBB6A005276C6 /* plpSoundController.m */; };
+		DA60FCB6223EBB88005276C6 /* plpSoundController.h in Sources */ = {isa = PBXBuildFile; fileRef = DA60FCB5223EBB88005276C6 /* plpSoundController.h */; };
 		DA73B8501D02328400ED027D /* Edgar_Explorer_UITests4.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73B84F1D02328400ED027D /* Edgar_Explorer_UITests4.swift */; };
 		DA73B8581D0232A300ED027D /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73B8571D0232A300ED027D /* SnapshotHelper.swift */; };
 		DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7485461B86FF5100920C84 /* plpPlatform.m */; };
@@ -106,6 +108,8 @@
 		DA5CF4DD1B73EB6E005A5C91 /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFCGzipUtility.h; sourceTree = "<group>"; };
 		DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
 		DA60EAA31B7F38E100A3F927 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		DA60FCB3223EBB6A005276C6 /* plpSoundController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpSoundController.m; sourceTree = "<group>"; };
+		DA60FCB5223EBB88005276C6 /* plpSoundController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpSoundController.h; sourceTree = "<group>"; };
 		DA73B84D1D02328300ED027D /* Edgar_Explorer_UITests4.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_Explorer_UITests4.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA73B84F1D02328400ED027D /* Edgar_Explorer_UITests4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edgar_Explorer_UITests4.swift; sourceTree = "<group>"; };
 		DA73B8511D02328400ED027D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 				DA03CBDE199F4C4700406720 /* plpAppDelegate.h */,
 				DA03CBDF199F4C4700406720 /* plpAppDelegate.m */,
 				DA03CBE7199F4C4700406720 /* plpViewController.h */,
+				DA60FCB3223EBB6A005276C6 /* plpSoundController.m */,
+				DA60FCB5223EBB88005276C6 /* plpSoundController.h */,
 				DA03CBE8199F4C4700406720 /* plpViewController.m */,
 				DA03CBEA199F4C4700406720 /* plpMyScene.h */,
 				DA03CBEB199F4C4700406720 /* plpMyScene.m */,
@@ -365,7 +371,7 @@
 			attributes = {
 				CLASSPREFIX = plp;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Polip;
 				TargetAttributes = {
 					DA03CBC9199F4C4700406720 = {
@@ -384,7 +390,7 @@
 			};
 			buildConfigurationList = DA03CBC5199F4C4700406720 /* Build configuration list for PBXProject "Edgar_the_Explorer" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -454,6 +460,7 @@
 				DA5CF4E11B73EB84005A5C91 /* JSTileMap.m in Sources */,
 				DAF381B41B9E2E21008B4D5D /* plpItem.m in Sources */,
 				DA03CBDC199F4C4700406720 /* main.m in Sources */,
+				DA60FCB4223EBB6A005276C6 /* plpSoundController.m in Sources */,
 				DA03CBE0199F4C4700406720 /* plpAppDelegate.m in Sources */,
 				DA03CBE9199F4C4700406720 /* plpViewController.m in Sources */,
 				DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */,
@@ -461,6 +468,7 @@
 				DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */,
 				DA03CBEC199F4C4700406720 /* plpMyScene.m in Sources */,
 				DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */,
+				DA60FCB6223EBB88005276C6 /* plpSoundController.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
