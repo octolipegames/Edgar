@@ -215,8 +215,6 @@
 				DA03CBDE199F4C4700406720 /* plpAppDelegate.h */,
 				DA03CBDF199F4C4700406720 /* plpAppDelegate.m */,
 				DA03CBE7199F4C4700406720 /* plpViewController.h */,
-				DA60FCB3223EBB6A005276C6 /* plpSoundController.m */,
-				DA60FCB5223EBB88005276C6 /* plpSoundController.h */,
 				DA03CBE8199F4C4700406720 /* plpViewController.m */,
 				DA03CBEA199F4C4700406720 /* plpMyScene.h */,
 				DA03CBEB199F4C4700406720 /* plpMyScene.m */,
@@ -260,6 +258,8 @@
 		DA1E7C6B1C120ED300147FA2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DA60FCB5223EBB88005276C6 /* plpSoundController.h */,
+				DA60FCB3223EBB6A005276C6 /* plpSoundController.m */,
 				DAF381B21B9E2E21008B4D5D /* plpItem.h */,
 				DAF381B31B9E2E21008B4D5D /* plpItem.m */,
 				DAF2CB121B83B8B000FC7FF1 /* plpTrain.h */,
