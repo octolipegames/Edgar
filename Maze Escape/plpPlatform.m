@@ -336,8 +336,4 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     }
 }
 
-- (SKAudioNode*) getPlatformSound{
-    return self -> platformSound;
-}
-
 @end
