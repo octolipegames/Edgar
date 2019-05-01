@@ -101,7 +101,7 @@
         decelerate = [SKAction runBlock:^{
             float newSpeed = self->rightWheelNode.physicsBody.angularVelocity - deceleration;
             if(newSpeed < 0){
-                [trainSound runAction: [SKAction stop]];
+                [self->trainSound runAction: [SKAction stop]];
                 newSpeed = 0;
             }
             
@@ -114,7 +114,7 @@
             float newSpeed = self->rightWheelNode.physicsBody.angularVelocity + deceleration;
             //            NSLog(@"newSpeed = %f", newSpeed);
             if(newSpeed > 0){
-                [trainSound runAction: [SKAction stop]];
+                [self->trainSound runAction: [SKAction stop]];
                 newSpeed = 0;
             }
             [self->rightWheelNode.physicsBody setAngularVelocity:newSpeed];
