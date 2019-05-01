@@ -73,7 +73,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         SKAction *wait = [SKAction waitForDuration:.05]; // = 20 fois par seconde vs 60
         
         // Just for debug, but we could make this an option
-        musicOn = true;
+        musicOn = FALSE;
         
         jumpSound = [SKAction playSoundFileNamed:@"Sounds/fx_jump.wav" waitForCompletion:NO];
         takeCellSound = [SKAction playSoundFileNamed:@"Sounds/fx_pile.aif" waitForCompletion:NO];
@@ -1025,6 +1025,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }*/
 }
 
+- (void)setNearHero
+{
+    NSLog(@"Set near hero.");
+}
 
 - (void)doVolumeFade
 {
@@ -1269,6 +1273,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     [myLevel addChild: Edgar];
     
+    setNearHeroTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
+                                     target:self
+                                   selector:@selector(setNearHero)
+                                   userInfo:nil
+                                    repeats:YES];
+    
     SKPhysicsJointFixed *pinEdgar = [SKPhysicsJointFixed jointWithBodyA:Edgar.physicsBody bodyB:Edgar->rectangleNode.physicsBody anchor:CGPointMake(Edgar.position.x, Edgar.position.y)];
     [self.physicsWorld addJoint:pinEdgar];
     
@@ -1363,6 +1373,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     /* SND: success - else: error sound */
                     
                     levelTransitioning = TRUE;
+                    
+                    // TODO Remove all FX sounds
+                    [setNearHeroTimer invalidate];
+                    setNearHeroTimer = nil;
+                    
                     [Edgar removeControl];
                     [Edgar runAction: [SKAction sequence:@[[SKAction moveToX:myFinishRectangle.position.x duration: .2], [SKAction runBlock:^{
                         self->stopRequested = TRUE;
@@ -1694,12 +1709,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         // son caisse
         if([contactNode.name isEqual: @"caisse"]){
-            // NSLog(@"%f", contactNode.physicsBody.velocity.dx);
+            NSLog(@"%f", contactNode.physicsBody.velocity.dx);
             
-            if(!pushingCrate && fabs(contactNode.physicsBody.velocity.dx) > 10){
+            if(!pushingCrate && fabs(contactNode.physicsBody.velocity.dx) > 50){
                 [self runAction: [SKAction sequence: @[crateSound, [SKAction runBlock:^{
                     self->pushingCrate = false;
-                }] ] ] ];
+                }] ] ] withKey: @"pushingCrate"];
                 pushingCrate = true;
             }
             return;

@@ -133,12 +133,16 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
             SKAction *verticalMove1 = [SKAction runBlock:^{
                 float newSpeed = [self calculateSpeedForDuration: self->movementDuration fromPosition:self.position.y toLimit: self->endYPosition];
                 [self.physicsBody setVelocity:CGVectorMake(0, newSpeed)];
+                
+                // if near Hero
                 [self->platformSound runAction: [SKAction play]];
             }];
             
             SKAction *verticalMove2 = [SKAction runBlock:^{
                 float newSpeed = [self calculateSpeedForDuration: self->movementDuration fromPosition:self.position.y toLimit:self->initYPosition];
                 [self.physicsBody setVelocity:CGVectorMake(0, newSpeed)];
+                
+                // if near Hero
                 [self->platformSound runAction: [SKAction play]];
             }];
             
@@ -149,11 +153,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
             
             SKAction *horizontalMove1 = [SKAction runBlock:^{
                 [self horizontalMoveWithDuration: self->movementDuration forward: TRUE];
+                
+                // if near Hero
                 [self->platformSound runAction: [SKAction play]];
             }];
             
             SKAction *horizontalMove2 = [SKAction runBlock:^{
                 [self horizontalMoveWithDuration: self->movementDuration forward: FALSE];
+                
+                // if near Hero
                 [self->platformSound runAction: [SKAction play]];
             }];
             
@@ -196,6 +204,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     return self.physicsBody.velocity.dx;
 }
 
+- (BOOL) heroIsNearby
+{
+    
+    return FALSE;
+}
+
 - (void) setHeroAbove
 {
     heroAbove = TRUE;
@@ -203,6 +217,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
 - (void) HeroWentAway
 {
     heroAbove = FALSE;
+}
+
+- (void) setHeroNear
+{
+    heroNear = TRUE;
+}
+- (void) setHeroAway
+{
+    heroNear = FALSE;
 }
 
 - (BOOL) getIsVertical

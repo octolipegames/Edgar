@@ -63,12 +63,12 @@ float contextVelocityX;
     SKAction *takeCellSound;
     SKAction *activateLiftSound;
     SKAction *takeLiftSound;
-    BOOL runningPlatformSound;
     SKAction *liftReadySound;
     SKAction *leftFootstepSound;
     SKAction *rightFootstepSound;
     BOOL pushingCrate;
     SKAction *crateSound;
+    NSTimer *setNearHeroTimer;
     
     
     // Input
@@ -119,6 +119,7 @@ float contextVelocityX;
 -(void)saveAdditionalTime;
 -(void)playTune:(NSString*)filename loops:(int)loops;
 -(void)computeSceneCenter;
+-(void)setNearHero;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property(nonatomic, weak) SKNode *listener;

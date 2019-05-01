@@ -30,6 +30,7 @@
     BOOL firstMovement;
     BOOL emergencyStopTriggered;
     float motionSpeed;
+    BOOL heroNear; // TODO implement this
     BOOL heroAbove;
     BOOL noEmergencyStop;
     float initXPosition;
@@ -47,9 +48,15 @@
 
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withDuration:(float)duration withMovement:(float)movement;
 
+- (BOOL) heroIsNearby;
 - (float) getVelocityX;
+
 - (void) setHeroAbove;
 - (void) HeroWentAway;
+
+- (void) setHeroNear;
+- (void) setHeroAway;
+
 - (BOOL) getIsVertical;
 - (void) setNoEmergencyStop;
 - (void) emergencyStop;
