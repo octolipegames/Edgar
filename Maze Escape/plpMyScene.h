@@ -29,6 +29,7 @@
 #import "plpTrain.h"
 #import "plpPlatform.h"
 #import "plpItem.h"
+#import "plpSoundController.h"
 
 #define LAST_LEVEL_INDEX 6
 #define USE_ALTERNATE_CONTROLS 0
@@ -69,7 +70,7 @@ float contextVelocityX;
     BOOL pushingCrate;
     SKAction *crateSound;
     NSTimer *setNearHeroTimer;
-    
+    NSMutableArray *soundNodes;
     
     // Input
     CGPoint touchStartPosition;

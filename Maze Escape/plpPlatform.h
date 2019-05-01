@@ -62,5 +62,6 @@
 - (void) emergencyStop;
 - (void) horizontalEmergencyStop: (float) EdgarXPosition;
 
+- (SKAudioNode*) getPlatformSound;
 
 @end

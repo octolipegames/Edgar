@@ -72,6 +72,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }];
         SKAction *wait = [SKAction waitForDuration:.05]; // = 20 fois par seconde vs 60
         
+        /*
+         INIT SOUND CONTROLLER
+        */
+        plpSoundController *soundController = [[plpSoundController alloc] init];
+        [soundController initSounds];
+        soundNodes = [NSMutableArray array];
+        
         // Just for debug, but we could make this an option
         musicOn = FALSE;
         
@@ -723,6 +730,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 {
                     [verticalPlatformNode setNoEmergencyStop];
                 }
+                
+                [soundNodes addObject: [verticalPlatformNode getPlatformSound]];
             }
         }
     }
@@ -1027,7 +1036,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 - (void)setNearHero
 {
+    //if(fabs(Edgar.position.x - ) > 50){
     NSLog(@"Set near hero.");
+    NSLog(@"there are %lu objects in the array", (unsigned long)[soundNodes count]);
+    
+    for (SKAudioNode *audioNode in soundNodes) {
+        NSLog(@"Position is %f", audioNode.position.x);
+    }
 }
 
 - (void)doVolumeFade
@@ -1244,6 +1259,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     for (SKNode* theNode in [myLevel children]) {
         [theNode removeFromParent];
     }
+    [soundNodes removeAllObjects];
 
     [myLevel removeFromParent]; // signal SIGABRT
     [Edgar removeFromParent];
