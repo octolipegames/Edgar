@@ -11,11 +11,13 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AVFoundation/AVAudioSession.h>
 
-@interface plpSoundController : NSObject {
-    SKAudioNode *platformSound;
+@interface plpSoundController : SKSpriteNode {
+    SKAction *jumpSound;
     BOOL muteMusic;
     BOOL muteSoundFX;
 }
 - (BOOL)isHeadsetPluggedIn;
 - (void)initSounds;
+- (void)playJumpSound;
+
 @end

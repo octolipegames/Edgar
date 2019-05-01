@@ -22,8 +22,16 @@
     NSLog(@"init sound controller");
 
     self = [super init];
-    if (!self) return nil;
-
+    
+    if(self){
+        // TODO check for silent mode, headphones etc. here
+        self.muteSoundFX = FALSE;
+        self.muteMusic = FALSE;
+    }
+    else{
+        return nil;
+    }
+    
     return self;
 }
 
@@ -50,11 +58,18 @@
 }
 
 - (void)initSounds {
-    platformSound = [[SKAudioNode alloc] initWithFileNamed:@"Sounds/fx_elevateur.wav"];
-    [self->platformSound runAction: [SKAction play]];
-    NSLog(@"end init inner func");
+    // platformSound = [[SKAudioNode alloc] initWithFileNamed:@"Sounds/fx_elevateur.wav"];
+    jumpSound = [SKAction playSoundFileNamed:@"Sounds/fx_jump.wav" waitForCompletion:NO];
 }
 
+- (void) playJumpSound {
+    NSLog(@"juump");
+    if ( !self -> muteSoundFX ){
+        NSLog(@"paly");
+        [self runAction: jumpSound];
+    }
+}
 
+// TODO: add music methods from plpMyScene here
 
 @end
