@@ -59,14 +59,12 @@
 
 - (void)initSounds {
     // platformSound = [[SKAudioNode alloc] initWithFileNamed:@"Sounds/fx_elevateur.wav"];
-    jumpSound = [SKAction playSoundFileNamed:@"Sounds/fx_jump.wav" waitForCompletion:NO];
+    // jumpSound = [SKAction playSoundFileNamed:@"Sounds/fx_jump.wav" waitForCompletion:NO];
 }
 
 - (void) playJumpSound {
-    NSLog(@"juump");
     if ( !self -> muteSoundFX ){
-        NSLog(@"paly");
-        [self runAction: jumpSound];
+        // [self runAction: jumpSound];
     }
 }
 
