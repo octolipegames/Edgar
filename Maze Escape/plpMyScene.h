@@ -29,7 +29,7 @@
 #import "plpTrain.h"
 #import "plpPlatform.h"
 #import "plpItem.h"
-#import "plpSoundController.h"
+// #import "plpSoundController.h"
 
 #define LAST_LEVEL_INDEX 6
 #define USE_ALTERNATE_CONTROLS 0
@@ -59,7 +59,7 @@ float contextVelocityX;
     SKAction *moveUp;
     
     // Audio
-    plpSoundController *soundController;
+    // plpSoundController *soundController;
     BOOL musicOn;
     SKAction *jumpSound;
     SKAction *takeCellSound;
@@ -70,6 +70,7 @@ float contextVelocityX;
     SKAction *rightFootstepSound;
     BOOL pushingCrate;
     SKAction *crateSound;
+    SKAction *trainImpactSound;
     NSTimer *setNearHeroTimer;
     NSMutableArray *platformNodes;
     

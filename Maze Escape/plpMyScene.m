@@ -75,12 +75,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         /*
          INIT SOUND CONTROLLER
         */
-        soundController = [[plpSoundController alloc] init];
-        [soundController initSounds];
+        //soundController = [[plpSoundController alloc] init];
+        // [soundController initSounds];
         platformNodes = [NSMutableArray array];
         
         // Just for debug, but we could make this an option
-        musicOn = FALSE;
+        musicOn = TRUE;
         
         jumpSound = [SKAction playSoundFileNamed:@"Sounds/fx_jump.wav" waitForCompletion:NO];
         takeCellSound = [SKAction playSoundFileNamed:@"Sounds/fx_pile.aif" waitForCompletion:NO];
@@ -90,7 +90,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         leftFootstepSound = [SKAction playSoundFileNamed:@"Sounds/fx_pas_gauche.aif" waitForCompletion:YES];
         rightFootstepSound = [SKAction playSoundFileNamed:@"Sounds/fx_pas_droit.aif" waitForCompletion:YES];
         crateSound = [SKAction playSoundFileNamed:@"Sounds/fx_caisse_short.wav" waitForCompletion:YES];
-        
+        trainImpactSound = [SKAction playSoundFileNamed:@"Sounds/fx_chariot_tombe.wav" waitForCompletion:NO];
         // This speed gets higher when Edgar does a long jump.
         // He could also walk faster or slower with new items.
         EdgarVelocity = 140;
@@ -143,6 +143,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 
 - (void)playAgain{
+    NSLog(@"playAgain called");
     // We clean the UI
     SKNode *theTrophy = [myCamera childNodeWithName:@"trophy"];
     [theTrophy removeFromParent];
@@ -518,6 +519,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         caisse.position = [self convertPosition:optionCaisse];
         caisse.physicsBody.categoryBitMask = PhysicsCategoryObjects;
         caisse.physicsBody.collisionBitMask = PhysicsCategoryEdgar|PhysicsCategoryObjects|PhysicsCategoryTiles;
+        caisse.physicsBody.contactTestBitMask = PhysicsCategoryEdgar|PhysicsCategoryObjects|PhysicsCategoryTiles;
         caisse.name = @"caisse";
         [tileMap addChild: caisse];
     }
@@ -670,14 +672,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             {
                 trainNode.physicsBody.categoryBitMask = PhysicsCategoryObjects;
                 trainNode.physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
-                //                trainNode.shadowCastBitMask = 1;
+                trainNode.physicsBody.contactTestBitMask = PhysicsCategoryEdgar|PhysicsCategoryObjects|PhysicsCategoryTiles;
+                
                 [tileMap addChild:trainNode]; // vs myLevel
                 [trainNode getLeftWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
                 [trainNode getRightWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
                 
                 // DEV: Added on August 14th to solve bug when Edgar gets stuck - tests required [DONE]
                 [trainNode getLeftWheel].physicsBody.categoryBitMask = PhysicsCategoryObjects;
+                [trainNode getLeftWheel].physicsBody.contactTestBitMask = PhysicsCategoryEdgar|PhysicsCategoryObjects|PhysicsCategoryTiles;
                 [trainNode getRightWheel].physicsBody.categoryBitMask = PhysicsCategoryObjects;
+                [trainNode getRightWheel].physicsBody.contactTestBitMask = PhysicsCategoryEdgar|PhysicsCategoryObjects|PhysicsCategoryTiles;
                 
                 SKPhysicsJointPin *pinGauche = [SKPhysicsJointPin jointWithBodyA:[trainNode getLeftWheel].physicsBody bodyB:trainNode.physicsBody anchor:CGPointMake(trainNode.position.x-20, trainNode.position.y-19)];
                 [self.physicsWorld addJoint:pinGauche];
@@ -1278,11 +1283,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [myCamera removeAllActions];
     }
     
-    if((nextLevelIndex == LAST_LEVEL_INDEX) && (self.audioPlayer != nil))
+    if(nextLevelIndex == LAST_LEVEL_INDEX)
     {
         [Edgar removeLight];
         [Edgar removeMasque];
-        [self doVolumeFade];
+        // [self doVolumeFade]; -> no, we keep the music
     }
     
     myLevel = [self loadLevel:nextLevelIndex];
@@ -1350,6 +1355,16 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }else{
         if(userNode.physicsBody.categoryBitMask != PhysicsCategoryEdgar)
         {
+            // React only if we need to render a sound
+            if(userNode.physicsBody.categoryBitMask == PhysicsCategoryObjects){
+                if(contact.collisionImpulse > 40000){
+                    NSLog(@"BENG!!");
+                    [self runAction: trainImpactSound];
+                }
+                //NSLog(@"Collision impulse is: %f", contact.collisionImpulse);
+                // NSLog(@"Object vs object");
+            }
+            
             return; // It means Edgar isn't involved / Edgar n'est pas impliqué
         }
     }
@@ -1434,7 +1449,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
                 
                 SKAction *audioPlayAction = [SKAction runBlock:^{
-                    [self playTune:@"Sounds/EndGame" loops:1];
+                    [self playTune:@"Sounds/final_theme" loops:0];
                 }];
                 
                 SKAction *theScale = [SKAction scaleTo:1.5 duration:2];
@@ -1484,6 +1499,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     
                     SKAction *showBeam = [SKAction runAction:[SKAction fadeAlphaTo:1 duration:0] onChildWithName:@"beam"];
                     
+                    SKAction *beamSound = [SKAction playSoundFileNamed:@"Sounds/fx_faisceau_alien.wav" waitForCompletion:NO];
+                    
                     SKSpriteNode *beam = (SKSpriteNode*)[myLevel childNodeWithName:@"//beam"];
                     
                     //                SKAction *waitAction = [SKAction waitForDuration: 1];
@@ -1492,18 +1509,21 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     
                     SKAction *createBeam = [SKAction runBlock:^{
                         [beam setAlpha: 1.0f];
+                        [self removeActionForKey:@"footstepSound"];
                         [self->Edgar removeActionForKey:@"bougeDroite"];
                         [self->Edgar removeActionForKey:@"walkingInPlaceEdgar"];
                         [self->Edgar.physicsBody setVelocity: CGVectorMake(0, 0)];
                         self->Edgar.physicsBody.affectedByGravity = false;
-                        self->      Edgar->rectangleNode.physicsBody.affectedByGravity = false;
+                        self->Edgar->rectangleNode.physicsBody.affectedByGravity = false;
                         self->freeCamera = TRUE;
                         [self->myCamera runAction:[SKAction moveToY:self->Edgar.position.y+200 duration:1]];
                         self->nextLevelIndex = 1;
+                        [self runAction: beamSound];
                     }];
                     
                     SKAction *flyAway = [SKAction runAction:[SKAction moveTo:CGPointMake(2000, 2000) duration:4] onChildWithName:@"//alienVessel"];
                     [flyAway setTimingMode: SKActionTimingEaseIn];
+                    SKAction *flyAwaySound = [SKAction playSoundFileNamed:@"Sounds/fx_vaisseau_part.wav" waitForCompletion:NO];
                     
                     SKAction *moveEdgar = [SKAction runAction:[SKAction moveTo:referencePoint duration:2] onChildWithName:@"//Edgar"];
                     moveEdgar.timingMode = SKActionTimingEaseInEaseOut;
@@ -1573,7 +1593,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     }];
                     
                     // TODO sound: here stop footsteps
-                    [myLevel runAction:[SKAction sequence:@[createBeam, showBeam, moveEdgar, longWaitAction, vanish, removeBeam, longWaitAction, flyAway, longWaitAction, finalMessage]]];
+                    [myLevel runAction:[SKAction sequence:@[createBeam, showBeam, moveEdgar, longWaitAction, vanish, removeBeam, longWaitAction, flyAwaySound, flyAway, longWaitAction, finalMessage]]];
                 }
             } // end if LAST_LEVEL_INDEX
         }else if(nextLevelIndex==0) // Tutorial level
