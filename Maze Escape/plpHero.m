@@ -156,7 +156,6 @@
     if(lightNode)
     {
         [lightNode removeFromParent];
-        NSLog(@"Node removed");
     }
 }
 
@@ -171,8 +170,9 @@
 -(void)removeMasque
 {
     SKNode *masque = [self childNodeWithName:@"masque"];
-    [masque removeFromParent];
-    NSLog(@"Masque removed");
+    if(masque){
+        [masque removeFromParent];
+    }
 }
 
 -(void)giveControl
