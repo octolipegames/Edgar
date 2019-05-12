@@ -75,6 +75,12 @@
             SKAction *maNewSequence = [SKAction sequence:@[mvm1, mvm2]];
             [self runAction:[SKAction repeatActionForever: maNewSequence]];
         }
+        
+        alienSound = [[SKAudioNode alloc] initWithFileNamed:@"Sounds/fx_alien.wav"];
+        alienSound.autoplayLooped = true;
+        alienSound.position = CGPointMake(0, 0);
+        alienSound.positional = true;
+        [self addChild: alienSound];
     }
     
     return self;
