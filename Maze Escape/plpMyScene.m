@@ -75,12 +75,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         /*
          INIT SOUND CONTROLLER
         */
-        //soundController = [[plpSoundController alloc] init];
+        soundController = [[plpSoundController alloc] init];
         // [soundController initSounds];
         platformNodes = [NSMutableArray array];
-        
-        // Just for debug, but we could make this an option
-        musicOn = TRUE;
         
         jumpSound = [SKAction playSoundFileNamed:@"Sounds/fx_jump.wav" waitForCompletion:NO];
         takeCellSound = [SKAction playSoundFileNamed:@"Sounds/fx_pile.aif" waitForCompletion:NO];
@@ -149,7 +146,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [theTrophy removeFromParent];
     [myCamera setScale:1];
     
-    [self doVolumeFade];
+    [self->soundController doVolumeFade];
     
     // Curtains
     float halfHeight = 200;
@@ -183,7 +180,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [self resetGameData];
     [self resumeFromLevel:1];
     [self runAction:[SKAction waitForDuration:2] completion:^{
-        [self playTune:@"Sounds/Edgar_VF" loops:-1];
+        [self->soundController playTune:@"Sounds/Edgar_VF" loops:-1];
     }];
 }
 
@@ -863,35 +860,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     return userTimeString;
 }
 
-// MUSIC
--(void)startPlaying
-{
-    if(self.audioPlayer)
-        [self.audioPlayer play];
-}
-
--(void)playTune:(NSString*)filename loops:(int)loops
-{
-    NSLog(@"playTune called");
-    if( musicOn == true ){
-        NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"mp3"];
-        NSError *error = nil;
-        
-        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-        self.audioPlayer.numberOfLoops = loops;
-        if (!self.audioPlayer) {
-            NSLog(@"Error creating player: %@", error);
-        }
-        [NSThread detachNewThreadSelector:@selector(startPlaying) toTarget:self withObject:nil];
-    }
-}
-
-
 // PAUSE & RESUME ACTIONS, LEVELS, GAME OVER
 - (void)getsPaused
 {
     [Edgar removeControl];
-    [self doVolumeFade];
+    [self->soundController doVolumeFade];
     [self saveAdditionalTime]; // We save the elapsed time. When the player resumes, we set a new initial time.
     [self saveAdditionalLevelTime];
 }
@@ -900,7 +873,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 {
     [self saveInitialTime];
     [Edgar giveControl];
-    [self playTune:@"Sounds/Edgar_VF" loops:-1];
+    [self->soundController playTune:@"Sounds/Edgar_VF" loops:-1];
     if((movingLeft || movingRight) && !isJumping){
         [self playFootstepSound];
     }
@@ -1058,19 +1031,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
 }
 
-- (void)doVolumeFade
-{
-    if (self.audioPlayer.volume > 0.1) {
-        self.audioPlayer.volume = self.audioPlayer.volume - 0.1;
-        [self performSelector:@selector(doVolumeFade) withObject:nil afterDelay:0.1];
-    } else {
-        // Stop and get the sound ready for playing again
-        [self.audioPlayer stop];
-        self.audioPlayer.currentTime = 0;
-        [self.audioPlayer prepareToPlay];
-        self.audioPlayer.volume = 1.0;
-    }
-}
+
 
 // Called when the user chooses "Save online">"YES" at the end game.
 - (void) saveHighScoreForUser:(NSString*)userName
@@ -1136,7 +1097,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [upperCurtain runAction: openupperCurtain];
         [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
-            [self playTune:@"Sounds/Edgar_VF" loops:-1];
+            [self->soundController playTune:@"Sounds/Edgar_VF" loops:-1];
         }];
     }];
     
@@ -1449,7 +1410,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
                 
                 SKAction *audioPlayAction = [SKAction runBlock:^{
-                    [self playTune:@"Sounds/final_theme" loops:0];
+                    [self->soundController playTune:@"Sounds/final_theme" loops:0];
                 }];
                 
                 SKAction *theScale = [SKAction scaleTo:1.5 duration:2];

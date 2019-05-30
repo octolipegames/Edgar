@@ -20,7 +20,7 @@
 - (id)init
 {
     NSLog(@"init sound controller");
-
+    
     self = [super init];
     
     if(self){
@@ -42,6 +42,42 @@
             return YES;
     }
     return NO;
+}
+
+-(void)startPlaying
+{
+    if(self.audioPlayer)
+        [self.audioPlayer play];
+}
+
+-(void)playTune:(NSString*)filename loops:(int)loops
+{
+    NSLog(@"playTune called");
+    if( !self->muteMusic == true ){
+        NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"mp3"];
+        NSError *error = nil;
+        
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+        self.audioPlayer.numberOfLoops = loops;
+        if (!self.audioPlayer) {
+            NSLog(@"Error creating player: %@", error);
+        }
+        [NSThread detachNewThreadSelector:@selector(startPlaying) toTarget:self withObject:nil];
+    }
+}
+
+- (void)doVolumeFade
+{
+    if (self.audioPlayer.volume > 0.1) {
+        self.audioPlayer.volume = self.audioPlayer.volume - 0.1;
+        [self performSelector:@selector(doVolumeFade) withObject:nil afterDelay:0.1];
+    } else {
+        // Stop and get the sound ready for playing again
+        [self.audioPlayer stop];
+        self.audioPlayer.currentTime = 0;
+        [self.audioPlayer prepareToPlay];
+        self.audioPlayer.volume = 1.0;
+    }
 }
 
 - (void)setMuteMusic: (BOOL) muted{
