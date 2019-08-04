@@ -12,11 +12,27 @@
 //#import <AVFoundation/AVAudioSession.h>
 
 @interface plpSoundController : SKSpriteNode {
-    SKAction *jumpSound;
     BOOL muteMusic;
     BOOL muteSoundFX;
+    BOOL pushingCrate;
+    float musicVolume;
+    float fxVolume;
+    
+    SKAction *jumpSound;
+    SKAction *takeCellSound;
+    SKAction *activateLiftSound;
+    SKAction *takeLiftSound;
+    SKAction *liftReadySound;
+    SKAction *leftFootstepSound;
+    SKAction *rightFootstepSound;
+    SKAction *crateSound;
+    SKAction *trainImpactSound;
+    
+    
+    SKAudioNode *platformSound;
 }
 
+-(id)init;
 - (BOOL)isHeadsetPluggedIn;
 
 // Music
@@ -24,8 +40,20 @@
 - (void)doVolumeFade;
 
 // Sounds
-- (void)initSounds;
-- (void)playJumpSound;
+- (void) playSound;
+- (void) initSounds;
+- (void) playJumpSound;
+- (void) playTakeCellSound;
+- (void) playLiftReadySound;
+- (void) playTakeLiftSound;
+- (void) playFootstepSound;
+- (void) stopFootstepSound;
+/*- (void) playLeftFootstepSound;
+- (void) playRightFootstepSound;*/
+- (void) playCrateSound;
+- (void) stopCrateSound;
+- (void) playTrainImpactSound;
+//- (id)getPlatformSound;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property(nonatomic, weak) SKNode *listener;

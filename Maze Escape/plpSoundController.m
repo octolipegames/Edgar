@@ -26,13 +26,35 @@
     if(self){
         // TODO check for silent mode, headphones etc. here
         self.muteSoundFX = FALSE;
-        self.muteMusic = FALSE;
+        self.muteMusic = TRUE;
+        
+        self->pushingCrate = FALSE;
+
+        // @TODO: get prefs
+        self->musicVolume = 1.0f;
+        self->fxVolume = 1.0f;
     }
     else{
         return nil;
     }
     
     return self;
+}
+
+- (void) playSound{
+    NSError *error;
+    NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"fx_jump" withExtension:@"wav"];
+    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:&error];
+    [player setVolume:fxVolume];
+    [player prepareToPlay];
+    
+    SKAction*   playAction = [SKAction runBlock:^{
+        [player play];
+    }];
+    SKAction *waitAction = [SKAction waitForDuration:player.duration+1];
+    SKAction *sequence = [SKAction sequence:@[playAction, waitAction]];
+    
+    [self runAction:sequence];
 }
 
 - (BOOL)isHeadsetPluggedIn {
@@ -94,16 +116,88 @@
 }
 
 - (void)initSounds {
-    // platformSound = [[SKAudioNode alloc] initWithFileNamed:@"Sounds/fx_elevateur.wav"];
-    // jumpSound = [SKAction playSoundFileNamed:@"Sounds/fx_jump.wav" waitForCompletion:NO];
+/*    platformSound = [[SKAudioNode alloc] initWithFileNamed:@"Sounds/fx_elevateur.wav"];
+    platformSound.autoplayLooped = false;
+    platformSound.position = CGPointMake(0, 0);
+    platformSound.positional = true;*/
+    if( self -> muteSoundFX){
+        NSLog(@"Sound fx muted - we dont initialize sounds");
+        return;
+    }
+    jumpSound = [SKAction playSoundFileNamed:@"Sounds/fx_jump.wav" waitForCompletion:NO];
+    takeCellSound = [SKAction playSoundFileNamed:@"Sounds/fx_pile.aif" waitForCompletion:NO];
+    liftReadySound = [SKAction playSoundFileNamed:@"Sounds/fx_bouton_porte.wav" waitForCompletion:NO];
+    takeLiftSound = [SKAction playSoundFileNamed:@"Sounds/fx_arrivee_ascenseur.wav" waitForCompletion:NO];
+    leftFootstepSound = [SKAction playSoundFileNamed:@"Sounds/fx_pas_gauche.aif" waitForCompletion:YES];
+    rightFootstepSound = [SKAction playSoundFileNamed:@"Sounds/fx_pas_droit.aif" waitForCompletion:YES];
+    crateSound = [SKAction playSoundFileNamed:@"Sounds/fx_caisse_short.wav" waitForCompletion:YES];
+    trainImpactSound = [SKAction playSoundFileNamed:@"Sounds/fx_chariot_tombe.wav" waitForCompletion:NO];
+    
+    NSLog(@"Init sounds done");
 }
 
 - (void) playJumpSound {
+    //NSLog(@"sadf");
     if ( !self -> muteSoundFX ){
-        // [self runAction: jumpSound];
+        [self playSound];
+        //[self runAction: jumpSound];
+    }
+}
+- (void) playTakeCellSound {
+    if ( !self -> muteSoundFX ){
+        [self runAction: takeCellSound];
+    }
+}
+- (void) playLiftReadySound {
+    if ( !self -> muteSoundFX ){
+        [self runAction: liftReadySound];
+    }
+}
+- (void) playTakeLiftSound {
+    if ( !self -> muteSoundFX ){
+        [self runAction: takeLiftSound];
     }
 }
 
-// TODO: add music methods from plpMyScene here
+-(void) playFootstepSound {
+    if ( !self -> muteSoundFX ){
+        [self runAction:[SKAction repeatActionForever:
+                     [SKAction sequence: @[rightFootstepSound, leftFootstepSound]]] withKey:@"footstepSound"];
+    }
+}
+-(void) stopFootstepSound {
+    if ( !self -> muteSoundFX ){
+        [self removeActionForKey:@"footstepSound"];
+    }
+}
+
+
+- (void) playCrateSound {
+    if ( !self -> muteSoundFX ){
+        if(!pushingCrate){
+            [self runAction: [SKAction sequence: @[crateSound, [SKAction runBlock:^{
+                self->pushingCrate = false;
+            }] ] ] withKey: @"pushingCrate"];
+            pushingCrate = true;
+        }
+    }
+}
+- (void) stopCrateSound {
+    if ( !self -> muteSoundFX ){
+        NSLog(@"stopit");
+        [self removeActionForKey:@"pushingCrate"];
+    }
+}
+
+- (void) playTrainImpactSound {
+    if ( !self -> muteSoundFX ){
+        [self runAction: trainImpactSound];
+    }
+}
+
+
+//- (void) getPlatformSound {
+//    return self->platformSound;
+//}
 
 @end

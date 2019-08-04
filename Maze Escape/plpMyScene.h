@@ -60,7 +60,6 @@ float contextVelocityX;
     
     // Audio
     plpSoundController *soundController;
-    SKAction *jumpSound;
     SKAction *takeCellSound;
     SKAction *activateLiftSound;
     SKAction *takeLiftSound;
