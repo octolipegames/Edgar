@@ -86,7 +86,7 @@
 		DA03CBE7199F4C4700406720 /* plpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpViewController.h; sourceTree = "<group>"; };
 		DA03CBE8199F4C4700406720 /* plpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpViewController.m; sourceTree = "<group>"; };
 		DA03CBEA199F4C4700406720 /* plpMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpMyScene.h; sourceTree = "<group>"; };
-		DA03CBEB199F4C4700406720 /* plpMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpMyScene.m; sourceTree = "<group>"; };
+		DA03CBEB199F4C4700406720 /* plpMyScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpMyScene.m; sourceTree = "<group>"; };
 		DA03CBEF199F4C4700406720 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DA03CBF5199F4C4700406720 /* Edgar_the_ExplorerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_the_ExplorerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA03CBF6199F4C4700406720 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -218,6 +218,8 @@
 				DA03CBE8199F4C4700406720 /* plpViewController.m */,
 				DA03CBEA199F4C4700406720 /* plpMyScene.h */,
 				DA03CBEB199F4C4700406720 /* plpMyScene.m */,
+				DA60FCB5223EBB88005276C6 /* plpSoundController.h */,
+				DA60FCB3223EBB6A005276C6 /* plpSoundController.m */,
 				DA1E7C6B1C120ED300147FA2 /* Classes */,
 				DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */,
 				DA03CBEF199F4C4700406720 /* Images.xcassets */,
@@ -258,8 +260,6 @@
 		DA1E7C6B1C120ED300147FA2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DA60FCB5223EBB88005276C6 /* plpSoundController.h */,
-				DA60FCB3223EBB6A005276C6 /* plpSoundController.m */,
 				DAF381B21B9E2E21008B4D5D /* plpItem.h */,
 				DAF381B31B9E2E21008B4D5D /* plpItem.m */,
 				DAF2CB121B83B8B000FC7FF1 /* plpTrain.h */,
