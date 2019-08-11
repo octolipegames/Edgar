@@ -200,7 +200,7 @@
       [SKAction colorizeWithColorBlendFactor:0.0 duration:0.15]]];
     [self runAction: ouch];
 }
--(void)getsInfected{
+-(void)getsInfectedFor:(float)randomDuration{
     if(isInfected == FALSE){
         [self removeControl];
         isInfected = TRUE;
@@ -210,13 +210,12 @@
              [SKAction colorizeWithColorBlendFactor:0.5 duration:0.15]]];
         
         int random_distance = 20 + rand() % 30;
-        float random_duration = 1.0f / (1.0f + rand() % 5);
         
-        NSLog(@"Random: %d, %f, %d", random_distance, random_duration, rand() % 5);
+        // NSLog(@"Random: %d, %f, %d", random_distance, randomDuration, rand() % 5);
         
         SKAction *strangeMove = [SKAction sequence:@[
              [SKAction moveByX:10 y:0 duration:.1],
-             [SKAction moveByX:-random_distance y:0 duration:random_duration],
+             [SKAction moveByX:-random_distance y:0 duration:randomDuration],
              [SKAction moveByX:random_distance+5 y:0 duration:.1]]];
         
         SKAction *giveBackControl = [SKAction runBlock:^{

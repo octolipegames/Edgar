@@ -48,7 +48,7 @@
 -(void)removeControl;
 -(BOOL)hasControl;
 -(void)takeDamage;
--(void)getsInfected;
+-(void)getsInfectedFor:(float)randomDuration;
 -(BOOL)alreadyInfected;
 -(void)takeItem;
 -(void)resetItem;
