@@ -24,7 +24,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface plpEnemy : SKSpriteNode{
-    SKAudioNode *alienSound;
+    //SKAudioNode *alienSound;
 }
 
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withMovement:(float)movement;
