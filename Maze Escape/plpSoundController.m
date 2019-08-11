@@ -42,16 +42,11 @@
 }
 
 - (void) playSound{
-    NSError *error;
-    NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"fx_jump" withExtension:@"wav"];
-    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:&error];
-    [player setVolume:fxVolume];
-    [player prepareToPlay];
     
     SKAction*   playAction = [SKAction runBlock:^{
-        [player play];
+        [self.jumpAudioPlayer play];
     }];
-    SKAction *waitAction = [SKAction waitForDuration:player.duration+1];
+    SKAction *waitAction = [SKAction waitForDuration:self.jumpAudioPlayer.duration+1];
     SKAction *sequence = [SKAction sequence:@[playAction, waitAction]];
     
     [self runAction:sequence];
@@ -133,6 +128,36 @@
     crateSound = [SKAction playSoundFileNamed:@"Sounds/fx_caisse_short.wav" waitForCompletion:YES];
     trainImpactSound = [SKAction playSoundFileNamed:@"Sounds/fx_chariot_tombe.wav" waitForCompletion:NO];
     
+    // sons avec AVAudioPlayer
+    NSError* error = nil;
+
+    NSURL *jumpSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_jump" withExtension:@"wav"];
+    self.jumpAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:jumpSoundURL error:&error];
+    if (error != nil) {
+        NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+    } else {
+        [self.jumpAudioPlayer setVolume:fxVolume];
+        [self.jumpAudioPlayer prepareToPlay];
+    }
+    
+    NSURL* alienSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_alien" withExtension:@"wav"];
+    self.alienAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: alienSoundURL error:&error];
+    if (error != nil) {
+        NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+    } else {
+        [self.alienAudioPlayer setVolume:fxVolume];
+        [self.alienAudioPlayer prepareToPlay];
+    }
+    
+    NSURL* crateSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_caisse_short" withExtension:@"wav"];
+    self.crateAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: crateSoundURL error:&error];
+    if (error != nil) {
+        NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+    } else {
+        [self.crateAudioPlayer setVolume:fxVolume];
+        [self.crateAudioPlayer prepareToPlay];
+    }
+    
     NSLog(@"Init sounds done");
 }
 
@@ -175,17 +200,28 @@
 - (void) playCrateSound {
     if ( !self -> muteSoundFX ){
         if(!pushingCrate){
-            [self runAction: [SKAction sequence: @[crateSound, [SKAction runBlock:^{
-                self->pushingCrate = false;
-            }] ] ] withKey: @"pushingCrate"];
+            self.crateAudioPlayer.volume = 1.0;
+            [self.crateAudioPlayer play];
             pushingCrate = true;
+        }
+    }
+}
+- (void) fadeOutCrateSound {
+    if (!pushingCrate){
+        if (self.crateAudioPlayer.volume > 0.2) {
+            self.crateAudioPlayer.volume -= 0.2;
+            [self performSelector:@selector(fadeOutCrateSound) withObject:nil afterDelay:0.1];
+        }else{
+            [self.crateAudioPlayer stop];
         }
     }
 }
 - (void) stopCrateSound {
     if ( !self -> muteSoundFX ){
         NSLog(@"stopit");
-        [self removeActionForKey:@"pushingCrate"];
+        [self performSelector:@selector(fadeOutCrateSound) withObject:nil afterDelay:0.1];
+        pushingCrate = false;
+        
     }
 }
 
@@ -195,6 +231,16 @@
     }
 }
 
+- (void) playAlienSound {
+    if ( !self -> muteSoundFX ){
+        [self.alienAudioPlayer play];
+    }
+}
+- (void) stopAlienSound {
+    if ( !self -> muteSoundFX ){
+        [self.alienAudioPlayer stop];
+    }
+}
 
 //- (void) getPlatformSound {
 //    return self->platformSound;

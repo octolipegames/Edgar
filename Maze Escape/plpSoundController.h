@@ -28,7 +28,6 @@
     SKAction *crateSound;
     SKAction *trainImpactSound;
     
-    
     SKAudioNode *platformSound;
 }
 
@@ -53,9 +52,15 @@
 - (void) playCrateSound;
 - (void) stopCrateSound;
 - (void) playTrainImpactSound;
+- (void) playAlienSound;
+- (void) stopAlienSound;
 //- (id)getPlatformSound;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+@property (strong, nonatomic) AVAudioPlayer *jumpAudioPlayer;
+@property (strong, nonatomic) AVAudioPlayer *alienAudioPlayer;
+@property (strong, nonatomic) AVAudioPlayer *crateAudioPlayer;
+
 @property(nonatomic, weak) SKNode *listener;
 
 @end

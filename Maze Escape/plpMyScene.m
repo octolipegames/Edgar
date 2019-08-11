@@ -1708,8 +1708,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if([contactNode.name isEqual: @"caisse"]){
             NSLog(@"Vitesse caisse: %f", contactNode.physicsBody.velocity.dx);
             
-            if(fabs(contactNode.physicsBody.velocity.dx) > 50){
-                [soundController playCrateSound];
+            //NSLog(@"Vitesse caisse: %f", contactNode.physicsBody.);
+            
+            // TODO Dans l’idéal: à lier au frottement de la caisse sur le sol
+            // Si la caisse bouge assez vite...
+            if(fabs(contactNode.physicsBody.velocity.dx) > 40){
+                // ... et n’est pas contre le mur de gauche
+                if(contactNode.position.x > 155){
+                    [soundController playCrateSound];
+                }
             }
             return;
         }
@@ -1757,7 +1764,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if(![Edgar alreadyInfected])
             {
                 /* SND: Edgar gets infected */
-                [Edgar getsInfected];
+                [soundController playAlienSound];
+                float randomDuration = 1.0f / (1.0f + rand() % 5);
+                [Edgar getsInfectedFor: randomDuration];
+                [self runAction: [SKAction sequence:@[[SKAction waitForDuration: randomDuration + 1.5], [SKAction runBlock:^{
+                    NSLog(@"oki");
+                    [self->soundController stopAlienSound];
+                }]]]];
             }
         }
     }
@@ -1782,10 +1795,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         // fin son caisse
         if([contactNode.name isEqual: @"caisse"]){
-            //SKAction *waitAction = [SKAction waitForDuration: 1];
-            //[myLevel runAction:[SKAction sequence:@[waitAction, ]];
-
-            
             [soundController stopCrateSound];
             return;
         }
@@ -1833,6 +1842,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }
     }
 }
+
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     // We get touches events before the update() function.
