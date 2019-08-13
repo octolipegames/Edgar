@@ -371,6 +371,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                            @"Levels/Level_5.tmx",
                            @"Levels/Level_6.tmx",
                            @"Levels/Level_7.tmx",
+                           @"Levels/Level_8.tmx",
                            nil];
     
     NSString *myLevelFile;
@@ -1457,7 +1458,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     
                     SKSpriteNode *beam = (SKSpriteNode*)[myLevel childNodeWithName:@"//beam"];
                     
-                    //                SKAction *waitAction = [SKAction waitForDuration: 1];
+//                    SKAction *shortWaitAction = [SKAction waitForDuration: 0.2];
                     SKAction *longWaitAction = [SKAction waitForDuration: 2];
                     
                     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="17" height="20" tilewidth="100" tileheight="100" nextobjectid="19">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="17" height="20" tilewidth="100" tileheight="100" nextobjectid="20">
  <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
   <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
  </tileset>
@@ -17,7 +17,7 @@
   </data>
  </layer>
  <objectgroup name="Objets">
-  <object id="1" name="verticalPlatform" x="301" y="899.102" width="98" height="297.468">
+  <object id="1" name="verticalPlatform" x="302" y="899" width="96" height="297.468">
    <properties>
     <property name="moveUpFirst" value="0"/>
     <property name="movementDuration" value="1.5"/>
@@ -75,7 +75,7 @@
   </object>
   <object id="18" name="alien1" type="alien" x="121.861" y="659.541" width="59.1045" height="36.9403">
    <properties>
-    <property name="moveX" value="100"/>
+    <property name="moveX" value="95"/>
    </properties>
   </object>
  </objectgroup>
