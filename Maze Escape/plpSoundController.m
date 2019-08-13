@@ -26,7 +26,7 @@
     if(self){
         // TODO check for silent mode, headphones etc. here
         self.muteSoundFX = FALSE;
-        self.muteMusic = TRUE;
+        self.muteMusic = FALSE;
         
         self->pushingCrate = FALSE;
 
@@ -70,7 +70,7 @@
 -(void)playTune:(NSString*)filename loops:(int)loops
 {
     NSLog(@"playTune called");
-    if( !self->muteMusic == true ){
+    if( !self->muteMusic ){
         NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"mp3"];
         NSError *error = nil;
         
@@ -208,8 +208,8 @@
 }
 - (void) fadeOutCrateSound {
     if (!pushingCrate){
-        if (self.crateAudioPlayer.volume > 0.2) {
-            self.crateAudioPlayer.volume -= 0.2;
+        if (self.crateAudioPlayer.volume > 0.15) {
+            self.crateAudioPlayer.volume -= 0.15;
             [self performSelector:@selector(fadeOutCrateSound) withObject:nil afterDelay:0.1];
         }else{
             [self.crateAudioPlayer stop];
@@ -218,8 +218,8 @@
 }
 - (void) stopCrateSound {
     if ( !self -> muteSoundFX ){
-        NSLog(@"stopit");
-        [self performSelector:@selector(fadeOutCrateSound) withObject:nil afterDelay:0.1];
+        // NSLog(@"stopit");
+        [self performSelector:@selector(fadeOutCrateSound) withObject:nil afterDelay:0.5];
         pushingCrate = false;
         
     }
