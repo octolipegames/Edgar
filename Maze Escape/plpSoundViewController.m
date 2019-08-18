@@ -31,20 +31,16 @@
 */
 - (void)viewDidLoad
 {
-    /* Animation */
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    float savedMusicVolume = [defaults floatForKey:@"musicVolume"];
-    if(savedMusicVolume){
+    BOOL volumeSaved = [defaults boolForKey:@"volumeSaved"];
+    if(volumeSaved == YES){
+        float savedMusicVolume = [defaults floatForKey:@"musicVolume"];
+        float savedFxVolume = [defaults floatForKey:@"fxVolume"];
+        
         [self.musicVolumeSlider setValue: savedMusicVolume animated: NO];
-    }else{
-        NSLog(@"No saved volume found in prefs");
-    }
-    
-    float savedFxVolume = [defaults floatForKey:@"fxVolume"];
-    if(savedMusicVolume){
         [self.fxVolumeSlider setValue: savedFxVolume animated: NO];
-    }else{
-        NSLog(@"No fx volume found in prefs");
+    } else {
+        NSLog(@"(soundView) No saved volumes found in prefs");
     }
 }
 
@@ -69,6 +65,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setFloat:self.musicVolumeSlider.value forKey:@"musicVolume"];
         [defaults setFloat:self.fxVolumeSlider.value forKey:@"fxVolume"];
+        [defaults setBool:YES forKey:@"volumeSaved"];
         [defaults synchronize];
     }
 }

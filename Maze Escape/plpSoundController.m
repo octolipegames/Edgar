@@ -30,7 +30,7 @@
         
         self->pushingCrate = FALSE;
 
-        [self getStoredVolumes];
+        [self updateVolumes];
     }
     else{
         return nil;
@@ -41,24 +41,23 @@
 
 - (void) getStoredVolumes{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    float savedMusicVolume = [defaults floatForKey:@"musicVolume"];
-    if(savedMusicVolume){
+    BOOL volumeSaved = [defaults boolForKey:@"volumeSaved"];
+    
+    if(volumeSaved == YES){
+        float savedMusicVolume = [defaults floatForKey:@"musicVolume"];
+        float savedFxVolume = [defaults floatForKey:@"fxVolume"];
+        
         self->musicVolume = savedMusicVolume;
         if(savedMusicVolume == 0){
-//            self.muteMusic = TRUE;
+            // self.muteMusic = TRUE;
         }
-    }else{
-        NSLog(@"No music volume found");
-        self->musicVolume = 1.0f;
-    }
-    
-    float savedFxVolume = [defaults floatForKey:@"fxVolume"];
-    if(savedMusicVolume){
         self->fxVolume = savedFxVolume;
         if(savedMusicVolume == 0){
-//            self.muteSoundFX = TRUE;
+            // self.muteSoundFX = TRUE;
         }
-    }else{
+    } else {
+        NSLog(@"(soundController) No saved volumes found in prefs");
+        self->musicVolume = 1.0f;
         self->fxVolume = 1.0f;
     }
     NSLog(@"Stored volumes retrieved: %f / %f", self->musicVolume, self->fxVolume);
