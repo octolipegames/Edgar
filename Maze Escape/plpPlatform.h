@@ -63,4 +63,6 @@
 - (void) emergencyStop;
 - (void) horizontalEmergencyStop: (float) EdgarXPosition;
 
+- (void) setVolume: (float) fxVolume;
+
 @end

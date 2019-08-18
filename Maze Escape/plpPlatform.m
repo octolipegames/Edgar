@@ -336,4 +336,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     }
 }
 
+- (void) setVolume: (float) fxVolume{
+    NSLog(@"updating fx vol");
+}
+
 @end
