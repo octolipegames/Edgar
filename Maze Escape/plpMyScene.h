@@ -113,6 +113,7 @@ float contextVelocityX;
 -(void)getsPaused;
 -(void)resumeAfterPause;
 -(void)resumeFromLevel:(NSInteger)theLevel;
+-(void)updateVolumes;
 -(int)getNextLevelIndex;
 -(void)saveHighScoreForUser:(NSString*)userName;
 -(void)saveInitialTime;

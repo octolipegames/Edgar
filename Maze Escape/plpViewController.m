@@ -32,8 +32,35 @@
 
 @implementation plpViewController
 
+/*
+@synthesize myScene;
+
+#pragma mark Singleton Methods
+
++ (id)sharedManager {
+    NSLog(@"shared Manager");
+    static plpViewController *sharedMyManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedMyManager = [[self alloc] init];
+    });
+    return sharedMyManager;
+}
+
+- (id)init {
+    if (self = [super init]) {
+        NSLog(@"init");
+        SKView * skView = (SKView *)self.view;
+        myScene = [plpMyScene sceneWithSize:skView.bounds.size];
+        myScene.scaleMode = SKSceneScaleModeAspectFill;
+    }
+    return self;
+}*/
+
+
 - (void)viewDidLoad
 {
+    
     /* Animation */
     SKView * skView = (SKView *)self.view;
     [self loadMenuBackgroundWithSize:skView.bounds.size];
@@ -252,6 +279,7 @@
     // - when he resumes after a pause
     
     self.playButton.hidden = YES;
+    self.soundButton.hidden = YES;
     self.creditsButton.hidden = YES;
     self.creditsText.hidden = YES;
 
@@ -436,6 +464,7 @@
         [(plpMyScene*)myScene getsPaused];
         
         self.playButton.hidden = NO;
+        self.soundButton.hidden = NO;
         self.creditsButton.hidden = NO;
         
         self.pauseButton.hidden = YES;
@@ -449,6 +478,11 @@
     [(plpMyScene*)myScene EdgarDiesOf:0];
 }
 
+- (IBAction)soundButton:(id)sender {
+    NSLog(@"opened");
+}
+
+
 -(void)saveCurrentProgress
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -459,7 +493,6 @@
         [defaults synchronize];
     }
 }
-
 
 
 - (BOOL)shouldAutorotate

@@ -34,12 +34,15 @@
 -(id)init;
 - (BOOL)isHeadsetPluggedIn;
 
+- (void) getStoredVolumes;
+- (void) updateVolumes;
+- (float) getFxVolume;
+
 // Music
 - (void)playTune:(NSString*)filename loops:(int)loops;
 - (void)doVolumeFade;
 
 // Sounds
-- (void) playSound;
 - (void) initSounds;
 - (void) playJumpSound;
 - (void) playTakeCellSound;

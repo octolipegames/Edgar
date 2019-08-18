@@ -30,9 +30,7 @@
         
         self->pushingCrate = FALSE;
 
-        // @TODO: get prefs
-        self->musicVolume = 1.0f;
-        self->fxVolume = 1.0f;
+        [self getStoredVolumes];
     }
     else{
         return nil;
@@ -41,15 +39,41 @@
     return self;
 }
 
-- (void) playSound{
+- (void) getStoredVolumes{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    float savedMusicVolume = [defaults floatForKey:@"musicVolume"];
+    if(savedMusicVolume){
+        self->musicVolume = savedMusicVolume;
+        if(savedMusicVolume == 0){
+//            self.muteMusic = TRUE;
+        }
+    }else{
+        NSLog(@"No music volume found");
+        self->musicVolume = 1.0f;
+    }
     
-    SKAction*   playAction = [SKAction runBlock:^{
-        [self.jumpAudioPlayer play];
-    }];
-    SKAction *waitAction = [SKAction waitForDuration:self.jumpAudioPlayer.duration+1];
-    SKAction *sequence = [SKAction sequence:@[playAction, waitAction]];
-    
-    [self runAction:sequence];
+    float savedFxVolume = [defaults floatForKey:@"fxVolume"];
+    if(savedMusicVolume){
+        self->fxVolume = savedFxVolume;
+        if(savedMusicVolume == 0){
+//            self.muteSoundFX = TRUE;
+        }
+    }else{
+        self->fxVolume = 1.0f;
+    }
+    NSLog(@"Stored volumes retrieved: %f / %f", self->musicVolume, self->fxVolume);
+}
+
+- (void) updateVolumes{
+    [self getStoredVolumes];
+    self.audioPlayer.volume = self->musicVolume;
+    self.jumpAudioPlayer.volume = self->fxVolume;
+    self.alienAudioPlayer.volume = self->fxVolume;
+    self.crateAudioPlayer.volume = self->fxVolume;
+}
+
+- (float) getFxVolume{
+    return self->fxVolume;
 }
 
 - (BOOL)isHeadsetPluggedIn {
@@ -76,6 +100,7 @@
         
         self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
         self.audioPlayer.numberOfLoops = loops;
+        self.audioPlayer.volume = self->musicVolume;
         if (!self.audioPlayer) {
             NSLog(@"Error creating player: %@", error);
         }
@@ -119,7 +144,7 @@
         NSLog(@"Sound fx muted - we dont initialize sounds");
         return;
     }
-    jumpSound = [SKAction playSoundFileNamed:@"Sounds/fx_jump.wav" waitForCompletion:NO];
+    
     takeCellSound = [SKAction playSoundFileNamed:@"Sounds/fx_pile.aif" waitForCompletion:NO];
     liftReadySound = [SKAction playSoundFileNamed:@"Sounds/fx_bouton_porte.wav" waitForCompletion:NO];
     takeLiftSound = [SKAction playSoundFileNamed:@"Sounds/fx_arrivee_ascenseur.wav" waitForCompletion:NO];
@@ -164,8 +189,13 @@
 - (void) playJumpSound {
     //NSLog(@"sadf");
     if ( !self -> muteSoundFX ){
-        [self playSound];
-        //[self runAction: jumpSound];
+        SKAction*   playAction = [SKAction runBlock:^{
+            [self.jumpAudioPlayer play];
+        }];
+        SKAction *waitAction = [SKAction waitForDuration:self.jumpAudioPlayer.duration+1];
+        SKAction *sequence = [SKAction sequence:@[playAction, waitAction]];
+        
+        [self runAction:sequence];
     }
 }
 - (void) playTakeCellSound {

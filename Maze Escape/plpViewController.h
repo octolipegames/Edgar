@@ -32,14 +32,19 @@
     BOOL runningOniPad;
 }
 
+-(void)saveCurrentProgress;
+
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *soundButton;
 @property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *suicideButton;
 @property (weak, nonatomic) IBOutlet UIButton *creditsButton;
 @property (weak, nonatomic) IBOutlet UITextView *creditsText;
 @property (nonatomic, strong) IBOutlet UIImageView *MenuBackground;
 
--(void)saveCurrentProgress;
 
+/*@property (nonatomic, retain) SKScene * myScene;
+
++ (id)sharedManager;*/
 
 @end

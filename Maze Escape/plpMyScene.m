@@ -866,6 +866,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 -(void)resumeAfterPause
 {
+    [soundController updateVolumes];
+    float fxVolume = [soundController getFxVolume];
+    for (plpPlatform *platformNode in platformNodes) {
+        [platformNode setVolume: fxVolume];
+    }
+    
     [self saveInitialTime];
     [Edgar giveControl];
     [self->soundController playTune:@"Sounds/Edgar_VF" loops:-1];
@@ -893,6 +899,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     [self startLevel];
     [self doFirstOpening];
+}
+
+-(void)updateVolumes{
+    [soundController getStoredVolumes];
 }
 
 - (int) getNextLevelIndex
