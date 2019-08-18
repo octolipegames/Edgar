@@ -43,6 +43,10 @@
 		DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */ = {isa = PBXBuildFile; fileRef = DA984E361C0B478A00B13A08 /* LaunchScreen960.png */; };
 		DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9ADE411D5C05A800254A58 /* menuButton.png */; };
 		DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9ADE421D5C05A800254A58 /* repeatButton.png */; };
+		DA9BC04C230724A900ACC878 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9BC04B230724A900ACC878 /* sound.png */; };
+		DA9BC04E23072C1B00ACC878 /* SoundButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9BC04D23072C1B00ACC878 /* SoundButton.png */; };
+		DA9BC0502307335600ACC878 /* plpSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC04F2307335600ACC878 /* plpSoundViewController.m */; };
+		DA9BC0522307336600ACC878 /* plpSoundViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC0512307336500ACC878 /* plpSoundViewController.h */; };
 		DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAB5E1411C21DD2800809756 /* edgarsaute.atlas */; };
 		DABCE3491D5BE8A900C277BB /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = DABCE3481D5BE8A900C277BB /* Levels */; };
 		DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAD058511A08288200DAE3E8 /* monstre.atlas */; };
@@ -119,6 +123,10 @@
 		DA984E361C0B478A00B13A08 /* LaunchScreen960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen960.png; sourceTree = "<group>"; };
 		DA9ADE411D5C05A800254A58 /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		DA9ADE421D5C05A800254A58 /* repeatButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repeatButton.png; sourceTree = "<group>"; };
+		DA9BC04B230724A900ACC878 /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sound.png; path = "External-media/sound.png"; sourceTree = SOURCE_ROOT; };
+		DA9BC04D23072C1B00ACC878 /* SoundButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoundButton.png; path = "External-media/SoundButton.png"; sourceTree = SOURCE_ROOT; };
+		DA9BC04F2307335600ACC878 /* plpSoundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpSoundViewController.m; sourceTree = "<group>"; };
+		DA9BC0512307336500ACC878 /* plpSoundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpSoundViewController.h; sourceTree = "<group>"; };
 		DAB5E1411C21DD2800809756 /* edgarsaute.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgarsaute.atlas; sourceTree = "<group>"; };
 		DABCE3481D5BE8A900C277BB /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = "<group>"; };
 		DAD058511A08288200DAE3E8 /* monstre.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = monstre.atlas; sourceTree = "<group>"; };
@@ -216,6 +224,8 @@
 				DA03CBDF199F4C4700406720 /* plpAppDelegate.m */,
 				DA03CBE7199F4C4700406720 /* plpViewController.h */,
 				DA03CBE8199F4C4700406720 /* plpViewController.m */,
+				DA9BC0512307336500ACC878 /* plpSoundViewController.h */,
+				DA9BC04F2307335600ACC878 /* plpSoundViewController.m */,
 				DA03CBEA199F4C4700406720 /* plpMyScene.h */,
 				DA03CBEB199F4C4700406720 /* plpMyScene.m */,
 				DA60FCB5223EBB88005276C6 /* plpSoundController.h */,
@@ -298,7 +308,9 @@
 		DAE713D71C0FA6D600ED9139 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DA9BC04D23072C1B00ACC878 /* SoundButton.png */,
 				DA9ADE411D5C05A800254A58 /* menuButton.png */,
+				DA9BC04B230724A900ACC878 /* sound.png */,
 				DA9ADE421D5C05A800254A58 /* repeatButton.png */,
 				DA984E361C0B478A00B13A08 /* LaunchScreen960.png */,
 				DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */,
@@ -419,6 +431,7 @@
 				DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */,
 				DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */,
 				DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */,
+				DA9BC04C230724A900ACC878 /* sound.png in Resources */,
 				DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */,
 				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
 				DAE713DB1C0FA87500ED9139 /* Play.png in Resources */,
@@ -427,6 +440,7 @@
 				DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */,
 				DA03CBE3199F4C4700406720 /* Main_iPhone.storyboard in Resources */,
 				DA03CBDA199F4C4700406720 /* InfoPlist.strings in Resources */,
+				DA9BC04E23072C1B00ACC878 /* SoundButton.png in Resources */,
 				DA60EAA41B7F38E100A3F927 /* Sounds in Resources */,
 				DA10C1A51D5BF3F900579F1F /* UI_img in Resources */,
 				DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */,
@@ -457,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA5CF4E21B73EB8C005A5C91 /* LFCGzipUtility.m in Sources */,
+				DA9BC0522307336600ACC878 /* plpSoundViewController.h in Sources */,
 				DA5CF4E11B73EB84005A5C91 /* JSTileMap.m in Sources */,
 				DAF381B41B9E2E21008B4D5D /* plpItem.m in Sources */,
 				DA03CBDC199F4C4700406720 /* main.m in Sources */,
@@ -469,6 +484,7 @@
 				DA03CBEC199F4C4700406720 /* plpMyScene.m in Sources */,
 				DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */,
 				DA60FCB6223EBB88005276C6 /* plpSoundController.h in Sources */,
+				DA9BC0502307335600ACC878 /* plpSoundViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,7 +603,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -634,7 +650,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -654,7 +670,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
 				PRODUCT_NAME = "Edgar Explorer";
@@ -679,7 +695,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
 				PRODUCT_NAME = "Edgar Explorer";
