@@ -64,6 +64,12 @@
 @property (strong, nonatomic) AVAudioPlayer *alienAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *crateAudioPlayer;
 
+@property (strong, nonatomic) AVAudioPlayer *takeCellAudioPlayer;
+@property (strong, nonatomic) AVAudioPlayer *liftReadyAudioPlayer;
+@property (strong, nonatomic) AVAudioPlayer *takeLiftAudioPlayer;
+@property (strong, nonatomic) AVAudioPlayer *trainImpactAudioPlayer;
+@property (strong, nonatomic) AVAudioPlayer *footstepAudioPlayer;
+
 @property(nonatomic, weak) SKNode *listener;
 
 @end

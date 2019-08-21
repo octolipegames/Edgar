@@ -49,11 +49,11 @@
         
         self->musicVolume = savedMusicVolume;
         if(savedMusicVolume == 0){
-            // self.muteMusic = TRUE;
+            self.muteMusic = TRUE;
         }
         self->fxVolume = savedFxVolume;
-        if(savedMusicVolume == 0){
-            // self.muteSoundFX = TRUE;
+        if(savedFxVolume == 0){
+            self.muteSoundFX = TRUE;
         }
     } else {
         NSLog(@"(soundController) No saved volumes found in prefs");
@@ -69,6 +69,11 @@
     self.jumpAudioPlayer.volume = self->fxVolume;
     self.alienAudioPlayer.volume = self->fxVolume;
     self.crateAudioPlayer.volume = self->fxVolume;
+    self.takeCellAudioPlayer.volume = self->musicVolume;
+    self.liftReadyAudioPlayer.volume = self->musicVolume;
+    self.takeLiftAudioPlayer.volume = self->musicVolume;
+    self.trainImpactAudioPlayer.volume = self->musicVolume;
+    self.footstepAudioPlayer.volume = self->musicVolume;
 }
 
 - (float) getFxVolume{
@@ -79,6 +84,7 @@
     AVAudioSessionRouteDescription* route = [[AVAudioSession sharedInstance] currentRoute];
     for (AVAudioSessionPortDescription* desc in [route outputs]) {
         if ([[desc portType] isEqualToString:AVAudioSessionPortHeadphones])
+            NSLog(@"Headphones in");
             return YES;
     }
     return NO;
@@ -86,8 +92,11 @@
 
 -(void)startPlaying
 {
-    if(self.audioPlayer)
+    if(self.audioPlayer){
         [self.audioPlayer play];
+    }else{
+        NSLog(@"WARNING: no audioPlayer yet");
+    }
 }
 
 -(void)playTune:(NSString*)filename loops:(int)loops
@@ -117,7 +126,7 @@
         [self.audioPlayer stop];
         self.audioPlayer.currentTime = 0;
         [self.audioPlayer prepareToPlay];
-        self.audioPlayer.volume = 1.0;
+        self.audioPlayer.volume = self->musicVolume;
     }
 }
 
@@ -135,93 +144,153 @@
 }
 
 - (void)initSounds {
-/*    platformSound = [[SKAudioNode alloc] initWithFileNamed:@"Sounds/fx_elevateur.wav"];
-    platformSound.autoplayLooped = false;
-    platformSound.position = CGPointMake(0, 0);
-    platformSound.positional = true;*/
+    
     if( self -> muteSoundFX){
         NSLog(@"Sound fx muted - we dont initialize sounds");
         return;
     }
     
-    takeCellSound = [SKAction playSoundFileNamed:@"Sounds/fx_pile.aif" waitForCompletion:NO];
-    liftReadySound = [SKAction playSoundFileNamed:@"Sounds/fx_bouton_porte.wav" waitForCompletion:NO];
-    takeLiftSound = [SKAction playSoundFileNamed:@"Sounds/fx_arrivee_ascenseur.wav" waitForCompletion:NO];
+    // lagge trop avec AVAudioPlayer
     leftFootstepSound = [SKAction playSoundFileNamed:@"Sounds/fx_pas_gauche.aif" waitForCompletion:YES];
     rightFootstepSound = [SKAction playSoundFileNamed:@"Sounds/fx_pas_droit.aif" waitForCompletion:YES];
-    crateSound = [SKAction playSoundFileNamed:@"Sounds/fx_caisse_short.wav" waitForCompletion:YES];
-    trainImpactSound = [SKAction playSoundFileNamed:@"Sounds/fx_chariot_tombe.wav" waitForCompletion:NO];
-    
-    // sons avec AVAudioPlayer
-    NSError* error = nil;
 
-    NSURL *jumpSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_jump" withExtension:@"wav"];
-    self.jumpAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:jumpSoundURL error:&error];
-    if (error != nil) {
-        NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
-    } else {
-        [self.jumpAudioPlayer setVolume:fxVolume];
-        [self.jumpAudioPlayer prepareToPlay];
-    }
+    // sons avec AVAudioPlayer
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
+        NSError* error = nil;
     
-    NSURL* alienSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_alien" withExtension:@"wav"];
-    self.alienAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: alienSoundURL error:&error];
-    if (error != nil) {
-        NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
-    } else {
-        [self.alienAudioPlayer setVolume:fxVolume];
-        [self.alienAudioPlayer prepareToPlay];
-    }
+        /*
+        NSURL *footstepSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_pas" withExtension:@"wav"];
+        self.footstepAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:footstepSoundURL error:&error];
+        if (error != nil) {
+            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+        } else {
+            self.footstepAudioPlayer.numberOfLoops = -1;
+            [self.footstepAudioPlayer setVolume:self->fxVolume];
+            [self.footstepAudioPlayer prepareToPlay];
+        }
+        */
+
+        NSURL *jumpSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_jump" withExtension:@"wav"];
+        self.jumpAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:jumpSoundURL error:&error];
+        if (error != nil) {
+            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+        } else {
+            [self.jumpAudioPlayer setVolume:self->fxVolume];
+            [self.jumpAudioPlayer prepareToPlay];
+        }
     
-    NSURL* crateSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_caisse_short" withExtension:@"wav"];
-    self.crateAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: crateSoundURL error:&error];
-    if (error != nil) {
-        NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
-    } else {
-        [self.crateAudioPlayer setVolume:fxVolume];
-        [self.crateAudioPlayer prepareToPlay];
-    }
+        NSURL *alienSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_alien" withExtension:@"wav"];
+        self.alienAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: alienSoundURL error:&error];
+        if (error != nil) {
+            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+        } else {
+            [self.alienAudioPlayer setVolume:self->fxVolume];
+            [self.alienAudioPlayer prepareToPlay];
+        }
     
+        NSURL *crateSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_caisse_short" withExtension:@"wav"];
+        self.crateAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: crateSoundURL error:&error];
+        if (error != nil) {
+            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+        } else {
+            [self.crateAudioPlayer setVolume:self->fxVolume];
+            [self.crateAudioPlayer prepareToPlay];
+        }
+    
+        NSURL *takeCellURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_pile" withExtension:@"aif"];
+        self.takeCellAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:takeCellURL error:&error];
+        if (error != nil) {
+            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+        } else {
+            [self.takeCellAudioPlayer setVolume:self->fxVolume];
+            [self.takeCellAudioPlayer prepareToPlay];
+        }
+    
+        NSURL *liftReadyURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_bouton_porte" withExtension:@"wav"];
+        self.liftReadyAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:liftReadyURL error:&error];
+        if (error != nil) {
+            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+        } else {
+            [self.liftReadyAudioPlayer setVolume:self->fxVolume];
+            [self.liftReadyAudioPlayer prepareToPlay];
+        }
+    
+        NSURL *takeLiftURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_arrivee_ascenseur" withExtension:@"wav"];
+        self.takeLiftAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:takeLiftURL error:&error];
+        if (error != nil) {
+            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+        } else {
+            [self.takeLiftAudioPlayer setVolume:self->fxVolume];
+            [self.takeLiftAudioPlayer prepareToPlay];
+        }
+    
+        NSURL *trainImpactURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_chariot_tombe" withExtension:@"wav"];
+        self.trainImpactAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:trainImpactURL error:&error];
+        if (error != nil) {
+            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+        } else {
+            [self.trainImpactAudioPlayer setVolume:self->fxVolume];
+            [self.trainImpactAudioPlayer prepareToPlay];
+        }
+    });
     NSLog(@"Init sounds done");
 }
 
 - (void) playJumpSound {
-    //NSLog(@"sadf");
     if ( !self -> muteSoundFX ){
-        SKAction*   playAction = [SKAction runBlock:^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
             [self.jumpAudioPlayer play];
-        }];
-        SKAction *waitAction = [SKAction waitForDuration:self.jumpAudioPlayer.duration+1];
-        SKAction *sequence = [SKAction sequence:@[playAction, waitAction]];
+            [self.jumpAudioPlayer prepareToPlay];
+        });
         
-        [self runAction:sequence];
-    }
-}
-- (void) playTakeCellSound {
-    if ( !self -> muteSoundFX ){
-        [self runAction: takeCellSound];
-    }
-}
-- (void) playLiftReadySound {
-    if ( !self -> muteSoundFX ){
-        [self runAction: liftReadySound];
-    }
-}
-- (void) playTakeLiftSound {
-    if ( !self -> muteSoundFX ){
-        [self runAction: takeLiftSound];
     }
 }
 
--(void) playFootstepSound {
-    if ( !self -> muteSoundFX ){
+- (void) playTakeCellSound {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+        if( !self->muteSoundFX){
+            [self.takeCellAudioPlayer play];
+        }
+    });
+}
+
+- (void) playLiftReadySound {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+        if ( !self -> muteSoundFX ){
+            [self.liftReadyAudioPlayer play];
+        }
+    });
+}
+- (void) playTakeLiftSound {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+        if ( !self -> muteSoundFX ){
+            [self.takeLiftAudioPlayer play];
+        }
+    });
+}
+
+- (void) playTrainImpactSound {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+        if ( !self -> muteSoundFX ){
+            [self.trainImpactAudioPlayer play];
+        }
+    });
+}
+
+- (void) playFootstepSound {
+    if ( ! self -> muteSoundFX ){
         [self runAction:[SKAction repeatActionForever:
-                     [SKAction sequence: @[rightFootstepSound, leftFootstepSound]]] withKey:@"footstepSound"];
+                         [SKAction sequence: @[rightFootstepSound, leftFootstepSound]]] withKey:@"footstepSound"];
+
+        // [self.footstepAudioPlayer play];
     }
 }
 -(void) stopFootstepSound {
     if ( !self -> muteSoundFX ){
         [self removeActionForKey:@"footstepSound"];
+
+        // [self.footstepAudioPlayer pause];
+        // self.footstepAudioPlayer.currentTime = 0;
     }
 }
 
@@ -229,9 +298,11 @@
 - (void) playCrateSound {
     if ( !self -> muteSoundFX ){
         if(!pushingCrate){
-            self.crateAudioPlayer.volume = 1.0;
-            [self.crateAudioPlayer play];
-            pushingCrate = true;
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+                self.crateAudioPlayer.volume = self->fxVolume;
+                [self.crateAudioPlayer play];
+                self->pushingCrate = true;
+            });
         }
     }
 }
@@ -242,6 +313,9 @@
             [self performSelector:@selector(fadeOutCrateSound) withObject:nil afterDelay:0.1];
         }else{
             [self.crateAudioPlayer stop];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+                [self.crateAudioPlayer prepareToPlay];
+            });
         }
     }
 }
@@ -254,12 +328,6 @@
     }
 }
 
-- (void) playTrainImpactSound {
-    if ( !self -> muteSoundFX ){
-        [self runAction: trainImpactSound];
-    }
-}
-
 - (void) playAlienSound {
     if ( !self -> muteSoundFX ){
         [self.alienAudioPlayer play];
@@ -268,11 +336,11 @@
 - (void) stopAlienSound {
     if ( !self -> muteSoundFX ){
         [self.alienAudioPlayer stop];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+            [self.alienAudioPlayer prepareToPlay];
+        });
     }
 }
 
-//- (void) getPlatformSound {
-//    return self->platformSound;
-//}
 
 @end
