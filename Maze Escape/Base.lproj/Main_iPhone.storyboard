@@ -43,7 +43,7 @@
                                 <color key="backgroundColor" red="0.25523348272943197" green="0.17362821954383129" blue="0.33683874591503271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="GL8-H7-j71"/>
-                                    <constraint firstAttribute="width" constant="65" id="mel-Xv-e5Y"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="mel-Xv-e5Y"/>
                                 </constraints>
                                 <color key="tintColor" red="0.75294117647058822" green="0.71764705882352942" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Credits">
@@ -171,7 +171,7 @@ Music and sound FX: © Guillaume Carel
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1.2" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH7-fe-1SY" userLabel="Music">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.90000000000000002" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH7-fe-1SY" userLabel="Music">
                                 <rect key="frame" x="62" y="91" width="772" height="31"/>
                                 <color key="tintColor" red="0.17070774781150025" green="0.11668630863064573" blue="0.22472918699235478" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -200,19 +200,19 @@ Music and sound FX: © Guillaume Carel
                                     <segue destination="LVB-YS-i5n" kind="modal" animates="NO" modalTransitionStyle="flipHorizontal" id="xxg-iF-hRj"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1.2" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jh0-gi-i4z" userLabel="Sound Effects">
-                                <rect key="frame" x="62" y="240" width="772" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Effects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMK-02-PwT">
+                                <rect key="frame" x="64" y="249" width="108" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jh0-gi-i4z" userLabel="Sound Effects">
+                                <rect key="frame" x="62" y="279" width="772" height="31"/>
                                 <color key="tintColor" red="0.21464487910270691" green="0.15303006768226624" blue="0.27721971273422241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="fxVolumeChanged:" destination="yhh-pS-joL" eventType="valueChanged" id="A8k-VY-v5D"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sound Effects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMK-02-PwT">
-                                <rect key="frame" x="64" y="210" width="108" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.35013985633850098" green="0.25930362939834595" blue="0.44797712564468384" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
