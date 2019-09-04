@@ -364,7 +364,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     JSTileMap *myTileMap;
     NSArray *levelFiles = [NSArray arrayWithObjects:
-                           @"Levels/Level_1_tuto.tmx",
+                           @"Levels/Level_0_tuto.tmx",
+                           @"Levels/Level_1.tmx",
                            @"Levels/Level_2.tmx",
                            @"Levels/Level_3.tmx",
                            @"Levels/Level_4.tmx",
@@ -541,9 +542,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
         }
     }
-    else if(nextLevelIndex == 4)
+    else if(nextLevelIndex == SEMAPHORE_LEVEL_INDEX)
     {
         // semaphore
+        NSLog(@"Level including semaphore");
         
         NSArray *semaphoreArray;
         if((semaphoreArray=[group objectsNamed:@"semaphore"]))
@@ -667,6 +669,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 trainNode.physicsBody.contactTestBitMask = PhysicsCategoryEdgar|PhysicsCategoryObjects|PhysicsCategoryTiles;
                 
                 [tileMap addChild:trainNode]; // vs myLevel
+                [trainNode setVolume: [soundController getFxVolume]];
+                
                 [trainNode getLeftWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
                 [trainNode getRightWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
                 
@@ -728,6 +732,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     [verticalPlatformNode setNoEmergencyStop];
                 }
                 
+                [verticalPlatformNode setVolume: [soundController getFxVolume]];
                 [platformNodes addObject: verticalPlatformNode];
             }
         }
@@ -758,6 +763,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 //platformNode.zPosition = -15.0f;
                 [tileMap addChild:platformNode];
             }
+            [platformNode setVolume: [soundController getFxVolume]];
             [platformNodes addObject: platformNode];
         }
     }
@@ -1289,7 +1295,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         [Edgar addLight]; // shadow effect for levels 2-6
         
-        if(nextLevelIndex == 5)
+        if(nextLevelIndex == FIRST_DARK_LEVEL)
         {
             SKNode *lampe = [Edgar childNodeWithName:@"light"];
             [Edgar addMasque];

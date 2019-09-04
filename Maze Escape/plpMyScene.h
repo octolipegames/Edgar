@@ -31,7 +31,9 @@
 #import "plpItem.h"
 #import "plpSoundController.h"
 
-#define LAST_LEVEL_INDEX 7
+#define LAST_LEVEL_INDEX 8
+#define SEMAPHORE_LEVEL_INDEX 5
+#define FIRST_DARK_LEVEL 6
 #define USE_ALTERNATE_CONTROLS 0
 #define DEFAULT_EDGAR_VELOCITY 150
 
