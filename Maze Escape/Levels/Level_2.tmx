@@ -1,40 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="26" height="6" tilewidth="100" tileheight="100" nextobjectid="33">
- <tileset firstgid="1" name="Lvl1_fond_smaller" tilewidth="100" tileheight="100">
-  <image source="Lvl1_fond_smaller.png" width="1000" height="400"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="17" height="5" tilewidth="100" tileheight="100" nextobjectid="19">
+ <tileset firstgid="1" name="ElementsTiles-01-01.png" tilewidth="100" tileheight="100">
+  <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
  </tileset>
- <tileset firstgid="41" name="Lvl1_solides_smaller" tilewidth="100" tileheight="100">
-  <image source="Lvl1_solides_smaller.png" width="800" height="400"/>
- </tileset>
- <layer name="Fond" width="26" height="6">
+ <layer name="Fond" width="17" height="5">
   <data encoding="base64" compression="zlib">
-   eJyt0EkOgCAMBVCcVg4751m3XsK48f4n8hMhaZqiLmzyAkLDB5W6y2N8CCBU/1XMMvR3AilkUBsNmfM1aa8Wciydk0MBJVSmv4XOjNpAzorInK73wpvoe0aYYIbl4T+s5M787rz2FwdsDjbHcvVtH3NOgaukXu0CT/kO8A==
+   eJxjYKAOkAZiWSiNzJbEIwfDyGaAsBSaPDEY3QxyMD6gDFXDg+QvGBtdPwBPBQWg
   </data>
  </layer>
- <layer name="Solide" width="26" height="6">
+ <layer name="Solide" width="17" height="5">
   <data encoding="base64" compression="zlib">
-   eJzjZmBg4EbDmkCsBcTaQKwDxB4UYF2oGSBz0YEhEBsBsTEQmwCxKRY1ZljEQMAcie1KwB5qApg9TgSwCwPuMIEBDyQaV7iRA1yhmFhxcgHILFx+xGUPAHz1EUc=
+   eJzjY2Bg4KMCxgYYcYgjAwk8ZnBBzQDJcSOJIdMwgM1NAkTYDwPcOMwgBwMA06cCxw==
   </data>
  </layer>
  <objectgroup name="Objets">
-  <object id="15" name="uranium" type="Item" x="2335.9" y="240.49" width="29" height="29">
+  <object id="1" name="Start" x="104.997" y="194" width="88" height="106"/>
+  <object id="6" name="uranium" type="Item" x="732.5" y="140.5" width="29" height="29">
    <ellipse/>
   </object>
-  <object id="25" name="endLevelLift" x="2095" y="178" width="105" height="122">
+  <object id="7" name="endLevelLift" x="1352" y="276" width="105" height="122">
    <properties>
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
   </object>
-  <object id="26" name="Start" x="427.212" y="191.151" width="88" height="106"/>
-  <object id="27" name="verticalPlatform" x="1502" y="298" width="100" height="200">
-   <properties>
-    <property name="moveUpFirst" value="1"/>
-    <property name="movementDuration" value="2"/>
-    <property name="x_limit" value="802"/>
-    <property name="y_limit" value="430"/>
-   </properties>
+  <object id="13" x="1457" y="128" width="1">
+   <ellipse/>
   </object>
-  <object id="28" name="arbre" type="arbre" x="40" y="17" width="253" height="285"/>
-  <object id="30" name="Caissezz" type="Caisse" x="1619" y="436" width="60" height="60"/>
+  <object id="17" name="Caisse" type="Caisse" x="928" y="336" width="60" height="60"/>
  </objectgroup>
 </map>

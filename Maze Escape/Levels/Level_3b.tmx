@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="7" tilewidth="100" tileheight="100" nextobjectid="17">
+ <tileset firstgid="1" name="ElementsTiles-01-01.png" tilewidth="100" tileheight="100">
+  <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
+ </tileset>
+ <layer name="Fond" width="16" height="7">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAcSAOxLJRGZ+OTQ9YvB8TyUFoaC4aJI6tB1o8L8+BgI+tXBGJlIFZCklNG0yOJR/9AAgD/OwXk
+  </data>
+ </layer>
+ <layer name="Solide" width="16" height="7">
+  <data encoding="base64" compression="zlib">
+   eJzjY2Bg4KMQYwNiOMSRASX6uZD0S6BhBiQaBBiR7EFWg89+YtxCabhRAwMASXEEFA==
+  </data>
+ </layer>
+ <objectgroup name="Objets">
+  <object id="1" name="Start" x="104.997" y="194" width="88" height="106"/>
+  <object id="3" name="verticalPlatform" x="793" y="300" width="110" height="200">
+   <properties>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
+  </object>
+  <object id="5" name="verticalPlatform" x="1101" y="300" width="98" height="200">
+   <properties>
+    <property name="moveUpFirst" value="0"/>
+    <property name="movementDuration" value="3"/>
+    <property name="x_limit" value="1102"/>
+    <property name="y_limit" value="200"/>
+   </properties>
+  </object>
+  <object id="6" name="uranium" type="Item" x="1034.5" y="440.5" width="29" height="29">
+   <ellipse/>
+  </object>
+  <object id="7" name="endLevelLift" x="1280" y="378" width="105" height="122">
+   <properties>
+    <property name="nextLevel" value="_Level02_v1_100px"/>
+   </properties>
+  </object>
+  <object id="11" name="alien1zz" type="alien" x="946.448" y="259.53" width="59.1045" height="36.9403">
+   <properties>
+    <property name="moveX" value="100"/>
+   </properties>
+  </object>
+  <object id="12" name="timeBonus" x="1441" y="104" width="20" height="20">
+   <properties>
+    <property name="seconds" value="10"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="13" x="1457" y="128" width="1">
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>
