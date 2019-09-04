@@ -277,7 +277,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
 
                 [self.scene runAction: delay completion:^
                 {
-                    NSLog(@"Animation runs again");
                     self->emergencyStopTriggered = FALSE;
 
                     [self->platformSound runAction: [SKAction sequence:@[ [SKAction stop], [SKAction play] ] ] ];
@@ -337,7 +336,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
 }
 
 - (void) setVolume: (float) fxVolume{
-    NSLog(@"updating fx vol");
+    [self->platformSound runAction:[SKAction changeVolumeTo:fxVolume duration:0.1]];
 }
 
 @end

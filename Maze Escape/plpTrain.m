@@ -191,6 +191,8 @@
     heroAbove = FALSE;
 }
 
-
+- (void) setVolume: (float) fxVolume{
+    [self->trainSound runAction:[SKAction changeVolumeTo:fxVolume duration:0.1]];
+}
 
 @end

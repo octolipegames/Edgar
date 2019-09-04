@@ -39,4 +39,5 @@
 - (void) setHeroAbove;
 - (void) HeroWentAway;
 - (float) getVelocityX;
+- (void) setVolume: (float) fxVolume;
 @end
