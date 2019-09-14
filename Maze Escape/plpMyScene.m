@@ -65,26 +65,31 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [self addChild:myCamera];
         
         // BUTTONS //
-
-        useMovementButtons = TRUE;
-
-        plpButton *buttonRight = [[plpButton alloc] initAtPosition:CGPointMake(300, -50) withImage:@"Arrow.png" andRotation:0];
-        buttonRight.name = @"right";
-        [myCamera addChild: buttonRight];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        useSwipeGestures = [defaults boolForKey:@"useSwipeGestures"];
+        enableDebug = [defaults boolForKey:@"enableDebug"];
         
-        plpButton *buttonLeft = [[plpButton alloc] initAtPosition:CGPointMake(-300, -50) withImage:@"Arrow.png" andRotation:3.14159];
-        buttonLeft.name = @"left";
-        [myCamera addChild: buttonLeft];
-       
-        
-        plpButton *buttonUp = [[plpButton alloc] initAtPosition:CGPointMake(0, 160) withImage:@"Arrow.png" andRotation:3.14159/2];
-        buttonUp.name = @"up";
-        [myCamera addChild: buttonUp];
-        
-        plpButton *buttonUpRight = [[plpButton alloc] initAtPosition:CGPointMake(280, 140) withImage:@"Arrow.png" andRotation:0.5];
-        buttonUpRight.name = @"upright";
-        [myCamera addChild: buttonUpRight];
-       
+        if(!useSwipeGestures){
+            // TODO: remove this
+            useMovementButtons = TRUE;
+            
+            plpButton *buttonRight = [[plpButton alloc] initAtPosition:CGPointMake(300, -50) withImage:@"Arrow.png" andRotation:0];
+            buttonRight.name = @"right";
+            [myCamera addChild: buttonRight];
+            
+            plpButton *buttonLeft = [[plpButton alloc] initAtPosition:CGPointMake(-300, -50) withImage:@"Arrow.png" andRotation:3.14159];
+            buttonLeft.name = @"left";
+            [myCamera addChild: buttonLeft];
+            
+            
+            plpButton *buttonUp = [[plpButton alloc] initAtPosition:CGPointMake(0, 160) withImage:@"Arrow.png" andRotation:3.14159/2];
+            buttonUp.name = @"up";
+            [myCamera addChild: buttonUp];
+            
+            plpButton *buttonUpRight = [[plpButton alloc] initAtPosition:CGPointMake(280, 140) withImage:@"Arrow.png" andRotation:0.5];
+            buttonUpRight.name = @"upright";
+            [myCamera addChild: buttonUpRight];
+        }
         
         // Actions
         SKAction *walkRight = [SKAction runBlock:^{
@@ -101,8 +106,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [self addChild: soundController];
         [self->soundController initSounds];
         platformNodes = [NSMutableArray array];
-        
-//        crateSound = [SKAction playSoundFileNamed:@"Sounds/fx_caisse_short.wav" waitForCompletion:YES];
 
         // This speed gets higher when Edgar does a long jump.
         // He could also walk faster or slower with new items.
@@ -1885,13 +1888,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
-    
     
     // We get touches events before the update() function.
     // On detecte les mouvements et la position du personnage avant de transmettre à update().
     
-    if([Edgar hasControl]==TRUE) // && spriteView.paused == NO => plutot: faire variable plus globale
+    if([Edgar hasControl]==TRUE)
     {
         for (UITouch *touch in touches) {
             touchStartPosition = [touch locationInNode:self];
@@ -1977,7 +1978,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 }
             }
             
-            if(!cheatsEnabled && touch.tapCount == 7)
+            if(enableDebug && !cheatsEnabled && touch.tapCount == 5)
             {
                 cheatsEnabled = TRUE;
                 SKLabelNode *cheatEnabledMessage = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];

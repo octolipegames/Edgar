@@ -22,31 +22,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
-#import <SpriteKit/SpriteKit.h>
 
-
-@interface plpViewController : UIViewController
+@interface plpPrefsViewController : UIViewController
 {
-    SKScene * myScene;
-    BOOL gamePaused;
-    BOOL runningOniPad;
+    BOOL valuesDidChange;
 }
+@property (weak, nonatomic) IBOutlet UISwitch *swipeSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *debugSwitch;
 
--(void)saveCurrentProgress;
-
-@property (weak, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet UIButton *prefsButton;
-@property (weak, nonatomic) IBOutlet UIButton *soundButton;
-@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
-@property (weak, nonatomic) IBOutlet UIButton *suicideButton;
-@property (weak, nonatomic) IBOutlet UIButton *creditsButton;
-
-@property (weak, nonatomic) IBOutlet UITextView *creditsText;
-@property (nonatomic, strong) IBOutlet UIImageView *MenuBackground;
-
-
-/*@property (nonatomic, retain) SKScene * myScene;
-
-+ (id)sharedManager;*/
 
 @end

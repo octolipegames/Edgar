@@ -279,6 +279,7 @@
     
     self.playButton.hidden = YES;
     self.soundButton.hidden = YES;
+    self.prefsButton.hidden = YES;
     self.creditsButton.hidden = YES;
     self.creditsText.hidden = YES;
 
@@ -464,6 +465,7 @@
         
         self.playButton.hidden = NO;
         self.soundButton.hidden = NO;
+        self.prefsButton.hidden = NO;
         self.creditsButton.hidden = NO;
         
         self.pauseButton.hidden = YES;
@@ -478,7 +480,7 @@
 }
 
 - (IBAction)soundButton:(id)sender {
-    NSLog(@"opened");
+//    NSLog(@"opened");
 }
 
 

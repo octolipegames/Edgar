@@ -61,6 +61,10 @@ float contextVelocityX;
     SKAction *moveRightAction;
     SKAction *moveUp;
     
+    // Prefs
+    BOOL useSwipeGestures;
+    BOOL enableDebug;
+    
     // Audio
     plpSoundController *soundController;
     SKAction *takeCellSound;
