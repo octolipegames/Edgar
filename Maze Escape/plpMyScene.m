@@ -64,6 +64,28 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         self.camera = myCamera;
         [self addChild:myCamera];
         
+        // BUTTONS //
+
+        useMovementButtons = TRUE;
+
+        plpButton *buttonRight = [[plpButton alloc] initAtPosition:CGPointMake(300, -50) withImage:@"Arrow.png" andRotation:0];
+        buttonRight.name = @"right";
+        [myCamera addChild: buttonRight];
+        
+        plpButton *buttonLeft = [[plpButton alloc] initAtPosition:CGPointMake(-300, -50) withImage:@"Arrow.png" andRotation:3.14159];
+        buttonLeft.name = @"left";
+        [myCamera addChild: buttonLeft];
+       
+        
+        plpButton *buttonUp = [[plpButton alloc] initAtPosition:CGPointMake(0, 160) withImage:@"Arrow.png" andRotation:3.14159/2];
+        buttonUp.name = @"up";
+        [myCamera addChild: buttonUp];
+        
+        plpButton *buttonUpRight = [[plpButton alloc] initAtPosition:CGPointMake(280, 140) withImage:@"Arrow.png" andRotation:0.5];
+        buttonUpRight.name = @"upright";
+        [myCamera addChild: buttonUpRight];
+       
+        
         // Actions
         SKAction *walkRight = [SKAction runBlock:^{
             [self->Edgar.physicsBody setVelocity:CGVectorMake(self->EdgarVelocity + contextVelocityX, self->Edgar.physicsBody.velocity.dy)];        }];
@@ -1863,6 +1885,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
+    
+    
     // We get touches events before the update() function.
     // On detecte les mouvements et la position du personnage avant de transmettre à update().
     
@@ -1871,6 +1896,23 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         for (UITouch *touch in touches) {
             touchStartPosition = [touch locationInNode:self];
             
+            if(useMovementButtons){
+                SKNode *touchedNode = [self nodeAtPoint:touchStartPosition];
+                if([touchedNode.name isEqual: @"right"]){
+                    moveRightRequested = true;
+                }else if([touchedNode.name isEqual: @"left"]){
+                    moveLeftRequested = true;
+                }else if([touchedNode.name isEqual: @"upright"]){
+                    moveRightRequested = true;
+                    moveUpRequested = true;
+                    bigJumpRequested = true;
+                }
+                if([touchedNode.name isEqual: @"up"]){
+                    NSLog(@"jump");
+                    moveUpRequested = true;
+                    bigJumpRequested = true;
+                }
+            }
             // Contrôles alternatifs pour le simulateur iOS | Alternate controls for the iOS simulator
             if(USE_ALTERNATE_CONTROLS==1)
             {
@@ -1962,6 +2004,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         for (UITouch *touch in touches) {
             CGPoint endPosition = [touch locationInNode:self];
 
+            if(useMovementButtons){
+                SKNode *touchedNode = [self nodeAtPoint:touchStartPosition];
+                if([touchedNode.name isEqual: @"right"]){
+                    moveRightRequested = false;
+                }else if([touchedNode.name isEqual: @"left"]){
+                    moveLeftRequested = false;
+                }
+            }
+            
             if(endPosition.y - 10 > touchStartPosition.y)
             {
                 moveUpRequested = TRUE;

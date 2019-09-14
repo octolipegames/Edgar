@@ -30,6 +30,7 @@
 #import "plpPlatform.h"
 #import "plpItem.h"
 #import "plpSoundController.h"
+#import "plpButton.h"
 
 #define LAST_LEVEL_INDEX 8
 #define SEMAPHORE_LEVEL_INDEX 5
@@ -76,6 +77,7 @@ float contextVelocityX;
     
     // Input
     CGPoint touchStartPosition;
+    BOOL useMovementButtons;
     BOOL waitForTap;
     BOOL isJumping;
     BOOL ignoreNextTap;
