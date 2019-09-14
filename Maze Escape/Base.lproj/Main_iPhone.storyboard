@@ -113,13 +113,13 @@ Music and sound FX: © Guillaume Carel
                                     <action selector="playButtonClicked:" destination="LVB-YS-i5n" eventType="touchUpInside" id="Ryp-Kf-1S1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njq-8M-sCv" userLabel="Audio">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njq-8M-sCv" userLabel="Audio Button">
                                 <rect key="frame" x="528" y="25" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="XdC-cV-U5t"/>
                                     <constraint firstAttribute="width" constant="40" id="wTH-MN-fjH"/>
                                 </constraints>
-                                <state key="normal" image="SoundButton.png">
+                                <state key="normal" image="sound.png">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -128,9 +128,18 @@ Music and sound FX: © Guillaume Carel
                                     <segue destination="yhh-pS-joL" kind="modal" animates="NO" id="3Rg-Pt-Ro1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mmF-2h-SVO" userLabel="Prefs Button">
+                                <rect key="frame" x="328" y="25" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="2oH-9Z-Jda"/>
+                                    <constraint firstAttribute="width" secondItem="mmF-2h-SVO" secondAttribute="height" multiplier="1:1" id="HqM-Rg-g4I"/>
+                                </constraints>
+                                <state key="normal" image="gear.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="hBq-SW-Aka" firstAttribute="leading" secondItem="mmF-2h-SVO" secondAttribute="trailing" constant="42.5" id="0yz-QR-JBi"/>
                             <constraint firstItem="nMO-WS-ykg" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="94" id="1vg-rx-1sz"/>
                             <constraint firstItem="Njq-8M-sCv" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="25" id="6Z2-ab-AFB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yo3-0O-95n" secondAttribute="trailing" constant="-20" id="9vI-lf-tr2"/>
@@ -141,6 +150,7 @@ Music and sound FX: © Guillaume Carel
                             <constraint firstItem="hBq-SW-Aka" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="8" id="Lgj-Fh-MrT"/>
                             <constraint firstItem="yo3-0O-95n" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" id="O3p-c5-Gyb"/>
                             <constraint firstItem="hBq-SW-Aka" firstAttribute="centerX" secondItem="bdc-N1-crn" secondAttribute="centerX" id="UXE-uF-DG0"/>
+                            <constraint firstItem="mmF-2h-SVO" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" constant="25" id="ge2-eM-ERW"/>
                             <constraint firstItem="aq6-QR-X9y" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" id="h7B-gh-iYh"/>
                             <constraint firstItem="Njq-8M-sCv" firstAttribute="leading" secondItem="hBq-SW-Aka" secondAttribute="trailing" constant="42.5" id="jVF-J0-0jW"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="nMO-WS-ykg" secondAttribute="bottom" constant="20" id="pCp-vC-jB8"/>
@@ -246,8 +256,9 @@ Music and sound FX: © Guillaume Carel
     </scenes>
     <resources>
         <image name="Play.png" width="173" height="173"/>
-        <image name="SoundButton.png" width="200" height="200"/>
+        <image name="gear.png" width="100" height="100"/>
         <image name="menuButton.png" width="84" height="99"/>
         <image name="repeatButton.png" width="104" height="96"/>
+        <image name="sound.png" width="100" height="100"/>
     </resources>
 </document>
