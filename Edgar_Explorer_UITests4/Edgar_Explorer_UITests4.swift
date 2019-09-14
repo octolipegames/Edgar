@@ -18,7 +18,7 @@ class Edgar_Explorer_UITests4: XCTestCase {
         print("Test log")
         
         let app = XCUIApplication()
-        setupSnapshot(app)
+        setupSnapshot(app: app)
         app.launch()
         
         
@@ -64,7 +64,7 @@ class Edgar_Explorer_UITests4: XCTestCase {
 //        app.buttons["Resume"].tap()
         app.buttons["New Game"].tap()
         
-        let menuElement = app.otherElements.containingType(.Button, identifier:"Menu").element
+        let menuElement = app.otherElements.containing(.button, identifier:"Menu").element
 /*
         menuElement.tapWithNumberOfTaps(7, numberOfTouches: 1)
         sleep(1)
@@ -84,7 +84,7 @@ class Edgar_Explorer_UITests4: XCTestCase {
         menuElement.swipeUp()
         menuElement.tap()
         
-        snapshot("train")
+        snapshot(name: "train")
         
         sleep(1)
         
@@ -104,15 +104,15 @@ class Edgar_Explorer_UITests4: XCTestCase {
         menuElement.swipeLeft()
         
         menuElement.swipeUp()
-        snapshot("game02")
+        snapshot(name: "game02")
         
         menuElement.swipeUp()
         menuElement.swipeUp()
         
-        snapshot("game03")
+        snapshot(name: "game03")
         
         menuElement.swipeUp()
-        snapshot("game04")
+        snapshot(name: "game04")
         
         menuElement.swipeUp()
         
