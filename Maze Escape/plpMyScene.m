@@ -73,22 +73,35 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             // TODO: remove this
             useMovementButtons = TRUE;
             
-            plpButton *buttonRight = [[plpButton alloc] initAtPosition:CGPointMake(300, -50) withImage:@"Arrow.png" andRotation:0];
+            plpButton *buttonRight = [[plpButton alloc] initAtPosition:CGPointMake(300, -120) withImage:@"Arrow.png" andRotation:0];
             buttonRight.name = @"right";
             [myCamera addChild: buttonRight];
             
-            plpButton *buttonLeft = [[plpButton alloc] initAtPosition:CGPointMake(-300, -50) withImage:@"Arrow.png" andRotation:3.14159];
+            plpButton *buttonLeft = [[plpButton alloc] initAtPosition:CGPointMake(-300, -120) withImage:@"Arrow.png" andRotation:3.14159];
             buttonLeft.name = @"left";
             [myCamera addChild: buttonLeft];
             
             
-            plpButton *buttonUp = [[plpButton alloc] initAtPosition:CGPointMake(0, 160) withImage:@"Arrow.png" andRotation:3.14159/2];
+            plpButton *buttonUp = [[plpButton alloc] initAtPosition:CGPointMake(0, 140) withImage:@"Arrow.png" andRotation:3.14159/2];
             buttonUp.name = @"up";
             [myCamera addChild: buttonUp];
             
-            plpButton *buttonUpRight = [[plpButton alloc] initAtPosition:CGPointMake(280, 140) withImage:@"Arrow.png" andRotation:0.5];
+            plpButton *buttonUpRight = [[plpButton alloc] initAtPosition:CGPointMake(300, 80) withImage:@"Arrow.png" andRotation:0.8];
             buttonUpRight.name = @"upright";
             [myCamera addChild: buttonUpRight];
+            
+            plpButton *buttonUpLeft = [[plpButton alloc] initAtPosition:CGPointMake(-300, 80) withImage:@"Arrow.png" andRotation:3.14159-0.8];
+            buttonUpLeft.name = @"upleft";
+            [myCamera addChild: buttonUpLeft];
+            
+            plpButton *buttonMiddleRight = [[plpButton alloc] initAtPosition:CGPointMake(300, -20) withImage:@"Arrow.png" andRotation:0.5];
+            buttonMiddleRight.name = @"middleright";
+            [myCamera addChild: buttonMiddleRight];
+            
+            plpButton *buttonMiddleLeft = [[plpButton alloc] initAtPosition:CGPointMake(-300, -20) withImage:@"Arrow.png" andRotation:3.14159-0.5];
+            buttonMiddleLeft.name = @"middleleft";
+            [myCamera addChild: buttonMiddleLeft];
+            
         }
         
         // Actions
@@ -174,12 +187,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKSpriteNode *lowerCurtain = [upperCurtain copy];
     upperCurtain.anchorPoint = CGPointMake(0.5, 0);
     upperCurtain.position = CGPointMake(0, halfHeight);
-    upperCurtain.zPosition = 20;
+    upperCurtain.zPosition = 40;
     upperCurtain.name = @"upperCurtain";
     
     lowerCurtain.anchorPoint = CGPointMake(0.5, 1);
     lowerCurtain.position = CGPointMake(0, -halfHeight);
-    lowerCurtain.zPosition = 20;
+    lowerCurtain.zPosition = 40;
     lowerCurtain.name = @"lowerCurtain";
     [myCamera addChild:upperCurtain];
     [myCamera addChild:lowerCurtain];
@@ -288,6 +301,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [containerView addSubview:myButtonNo];
     [inputTextField becomeFirstResponder];
 }
+
+/*- (BOOL)multiTouchEnabled{
+    return TRUE;
+}*/
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextfield {
     [theTextfield resignFirstResponder];
@@ -1117,12 +1134,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKSpriteNode *lowerCurtain = [upperCurtain copy];
     upperCurtain.anchorPoint = CGPointMake(0.5, 0);
     upperCurtain.position = CGPointMake(0, 0);
-    upperCurtain.zPosition = 20;
+    upperCurtain.zPosition = 40;
     upperCurtain.name = @"upperCurtain";
     
     lowerCurtain.anchorPoint = CGPointMake(0.5, 1);
     lowerCurtain.position = CGPointMake(0, 0);
-    lowerCurtain.zPosition = 20;
+    lowerCurtain.zPosition = 40;
     lowerCurtain.name = @"lowerCurtain";
     [myCamera addChild:upperCurtain];
     [myCamera addChild:lowerCurtain];
@@ -1167,13 +1184,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     displayTime.fontSize = 30;
     displayTime.fontColor = [SKColor whiteColor];
     displayTime.position = CGPointMake(screenCenterX, 10);
-    displayTime.zPosition = 30;
+    displayTime.zPosition = 42;
     
     SKLabelNode *displayTime2 = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
     displayTime2.fontSize = 24;
     displayTime2.fontColor = [SKColor whiteColor];
     displayTime2.position = CGPointMake(screenCenterX, -30);
-    displayTime2.zPosition = 30;
+    displayTime2.zPosition = 42;
     
     NSLog(@"Screen center x: %f", screenCenterX);
     
@@ -1213,12 +1230,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKSpriteNode *lowerCurtain = [upperCurtain copy];
     upperCurtain.anchorPoint = CGPointMake(0.5, 0);
     upperCurtain.position = CGPointMake(0, halfHeight);
-    upperCurtain.zPosition = 20;
+    upperCurtain.zPosition = 40;
     upperCurtain.name = @"upperCurtain";
     
     lowerCurtain.anchorPoint = CGPointMake(0.5, 1);
     lowerCurtain.position = CGPointMake(0, -halfHeight);
-    lowerCurtain.zPosition = 20;
+    lowerCurtain.zPosition = 40;
     lowerCurtain.name = @"lowerCurtain";
     [myCamera addChild:upperCurtain];
     [myCamera addChild:lowerCurtain];
@@ -1897,7 +1914,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         for (UITouch *touch in touches) {
             touchStartPosition = [touch locationInNode:self];
             
-            if(useMovementButtons){
+            if(!useSwipeGestures){
                 SKNode *touchedNode = [self nodeAtPoint:touchStartPosition];
                 if([touchedNode.name isEqual: @"right"]){
                     moveRightRequested = true;
@@ -1907,7 +1924,18 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     moveRightRequested = true;
                     moveUpRequested = true;
                     bigJumpRequested = true;
+                }else if([touchedNode.name isEqual: @"upleft"]){
+                    moveLeftRequested = true;
+                    moveUpRequested = true;
+                    bigJumpRequested = true;
+                }else if([touchedNode.name isEqual: @"middleright"]){
+                    moveRightRequested = true;
+                    moveUpRequested = true;
+                }else if([touchedNode.name isEqual: @"middleleft"]){
+                    moveLeftRequested = true;
+                    moveUpRequested = true;
                 }
+                
                 if([touchedNode.name isEqual: @"up"]){
                     NSLog(@"jump");
                     moveUpRequested = true;
@@ -2002,38 +2030,38 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if([Edgar hasControl]){
+        
         for (UITouch *touch in touches) {
             CGPoint endPosition = [touch locationInNode:self];
 
-            if(useMovementButtons){
+            if(!useSwipeGestures){
+                
                 SKNode *touchedNode = [self nodeAtPoint:touchStartPosition];
-                if([touchedNode.name isEqual: @"right"]){
-                    moveRightRequested = false;
-                }else if([touchedNode.name isEqual: @"left"]){
-                    moveLeftRequested = false;
+                if(! [touchedNode.name isEqual: @"up"]){
+                    stopRequested = true;
                 }
-            }
-            
-            if(endPosition.y - 10 > touchStartPosition.y)
-            {
-                moveUpRequested = TRUE;
-                if(endPosition.y - 130 > touchStartPosition.y)
+                
+            }else{
+                if(endPosition.y - 10 > touchStartPosition.y)
                 {
-                    bigJumpRequested = TRUE;
+                    moveUpRequested = TRUE;
+                    if(endPosition.y - 130 > touchStartPosition.y)
+                    {
+                        bigJumpRequested = TRUE;
+                    }
+                }
+                
+                if(endPosition.x -30 > touchStartPosition.x)
+                {
+                    moveRightRequested = TRUE;
+                }
+                else if(endPosition.x + 30 < touchStartPosition.x)
+                {
+                    moveLeftRequested = TRUE;
+                }else if (!moveUpRequested){
+                    stopRequested = TRUE;
                 }
             }
-            
-            if(endPosition.x -30 > touchStartPosition.x)
-            {
-                moveRightRequested = TRUE;
-            }
-            else if(endPosition.x + 30 < touchStartPosition.x)
-            {
-                moveLeftRequested = TRUE;
-            }else if (!moveUpRequested){
-                stopRequested = TRUE;
-            }
-            
 
             // Contrôles alternatifs pour le simulateur iOS | Alternate controls for the iOS simulator
             if(USE_ALTERNATE_CONTROLS==1)
