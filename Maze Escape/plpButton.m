@@ -32,7 +32,9 @@
     if (self = [super initWithImageNamed:image])
     {
         self.position = position;
+        self.zPosition = 28;
         self.zRotation = rotation;
+        self.alpha = 0.6;
 //        self.userInteractionEnabled = YES;
 //        self.exclusiveTouch = YES;
         
