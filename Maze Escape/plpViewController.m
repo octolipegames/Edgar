@@ -185,7 +185,6 @@
 {
     self.pauseButton.hidden = NO;
     self.suicideButton.hidden = NO;
- 
     
     if(gamePaused == FALSE){
         SKView * skView = (SKView *)self.view;
