@@ -71,7 +71,40 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         if(!useSwipeGestures){
             // TODO: remove this
-            useMovementButtons = TRUE;
+           
+            SKShapeNode *horizontalLine = [SKShapeNode node];
+            CGMutablePathRef pathToDraw = CGPathCreateMutable();
+            
+            // -400 = left bound, -200 = bottom bound
+            CGPathMoveToPoint(pathToDraw, NULL, -400, -200);
+            CGPathAddLineToPoint(pathToDraw, NULL, 400, -200);
+            horizontalLine.path = pathToDraw;
+            [horizontalLine setStrokeColor:[SKColor whiteColor]];
+            SKShapeNode *horizontalLineTop = [horizontalLine copy];
+            
+            [horizontalLine setPosition:(CGPointMake(0, HUD_VERTICAL_THIRD))];
+            [horizontalLineTop setPosition:CGPointMake(0, HUD_VERTICAL_THIRD*2)];
+            
+            
+            SKShapeNode *verticalLineLeft = [SKShapeNode node];
+            CGMutablePathRef verticalPath = CGPathCreateMutable();
+            
+            // from bottom bound to top bound
+            CGPathMoveToPoint(verticalPath, NULL, 0, -200);
+            CGPathAddLineToPoint(verticalPath, NULL, 0, 200);
+            verticalLineLeft.path = verticalPath;
+            [verticalLineLeft setStrokeColor:[SKColor whiteColor]];
+            SKShapeNode *verticalLineRight = [verticalLineLeft copy];
+            
+            [verticalLineLeft setPosition:(CGPointMake(-HUD_VERTICAL_THIRD, 0))];
+            [verticalLineRight setPosition:CGPointMake(HUD_VERTICAL_THIRD, 0)];
+            
+            [myCamera addChild:horizontalLine];
+            [myCamera addChild:horizontalLineTop];
+            
+            [myCamera addChild: verticalLineLeft];
+            [myCamera addChild: verticalLineRight];
+            
             
             plpButton *buttonRight = [[plpButton alloc] initAtPosition:CGPointMake(300, -120) withImage:@"Arrow.png" andRotation:0];
             buttonRight.name = @"right";
@@ -1878,7 +1911,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         if(contactNode.physicsBody.categoryBitMask == PhysicsCategorySensors)
         {
-            if(![contactNode.name isEqualToString:@"finish"])
+            if( (![contactNode.name isEqualToString:@"finish"]) && (![contactNode.name isEqualToString:@"endLevelLiftNode"]) )
             {
                 SKNode* helpNode;
                 
@@ -1912,49 +1945,33 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if([Edgar hasControl]==TRUE)
     {
         for (UITouch *touch in touches) {
-            touchStartPosition = [touch locationInNode:self];
             
-            if(!useSwipeGestures){
-                SKNode *touchedNode = [self nodeAtPoint:touchStartPosition];
-                if([touchedNode.name isEqual: @"right"]){
-                    moveRightRequested = true;
-                }else if([touchedNode.name isEqual: @"left"]){
-                    moveLeftRequested = true;
-                }else if([touchedNode.name isEqual: @"upright"]){
-                    moveRightRequested = true;
-                    moveUpRequested = true;
-                    bigJumpRequested = true;
-                }else if([touchedNode.name isEqual: @"upleft"]){
-                    moveLeftRequested = true;
-                    moveUpRequested = true;
-                    bigJumpRequested = true;
-                }else if([touchedNode.name isEqual: @"middleright"]){
-                    moveRightRequested = true;
-                    moveUpRequested = true;
-                }else if([touchedNode.name isEqual: @"middleleft"]){
-                    moveLeftRequested = true;
-                    moveUpRequested = true;
-                }
-                
-                if([touchedNode.name isEqual: @"up"]){
-                    NSLog(@"jump");
-                    moveUpRequested = true;
-                    bigJumpRequested = true;
-                }
-            }
-            // Contrôles alternatifs pour le simulateur iOS | Alternate controls for the iOS simulator
-            if(USE_ALTERNATE_CONTROLS==1)
-            {
-                if(!movingLeft && !movingRight)
+            if(useSwipeGestures){
+                // store start position to get gesture in "touch end"
+                touchStartPosition = [touch locationInNode:self];
+            }else{
+                touchStartPosition = [touch locationInNode: myCamera];
+                if( !movingRight && touchStartPosition.x > HUD_HORIZONTAL_SPAN)
                 {
-                    if(touchStartPosition.x > 400)
-                    {
-                        moveRightRequested = true;
-                    } else if (touchStartPosition.x < 400){
-                        moveLeftRequested = true;
-                    }
-                    ignoreNextTap = TRUE;
+                    moveRightRequested = true;
+                    stopRequested = false;
+                } else if ( !movingLeft && touchStartPosition.x < -HUD_HORIZONTAL_SPAN){
+                    moveLeftRequested = true;
+                    stopRequested = false;
                 }
+                if(touchStartPosition.y > HUD_VERTICAL_SPAN){
+                    bigJumpRequested = true;
+                    moveUpRequested = true;
+                    stopRequested = false;
+                }else if(touchStartPosition.y > -HUD_VERTICAL_SPAN){
+                    moveUpRequested = true;
+                    stopRequested = false;
+                }else{
+                    if(!moveRightRequested && !moveLeftRequested){
+                        // show HUD?
+                    }
+                }
+                    
             }
             
             if(cheatsEnabled == TRUE)
@@ -2032,16 +2049,30 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if([Edgar hasControl]){
         
         for (UITouch *touch in touches) {
-            CGPoint endPosition = [touch locationInNode:self];
 
             if(!useSwipeGestures){
+                //stopRequested = true;
+                CGPoint endPosition = [touch locationInNode: myCamera];
+                float delay_s = 0.1;
+
+                if(endPosition.y > -HUD_VERTICAL_SPAN){
+                    delay_s = .2;
+                }
+                dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * delay_s);
                 
-                SKNode *touchedNode = [self nodeAtPoint:touchStartPosition];
-                if(! [touchedNode.name isEqual: @"up"]){
-                    stopRequested = true;
+                // if player isnt asking to move now...
+                if(!self->moveLeftRequested && !self->moveRightRequested){
+                    dispatch_after(delay, dispatch_get_main_queue(), ^(void){
+                        // and not a few milliseconds later
+                        if(!self->moveLeftRequested && !self->moveRightRequested){
+                            self->stopRequested = true;
+                        }
+                    });
                 }
                 
             }else{
+                CGPoint endPosition = [touch locationInNode:self];
+
                 if(endPosition.y - 10 > touchStartPosition.y)
                 {
                     moveUpRequested = TRUE;
@@ -2060,22 +2091,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     moveLeftRequested = TRUE;
                 }else if (!moveUpRequested){
                     stopRequested = TRUE;
-                }
-            }
-
-            // Contrôles alternatifs pour le simulateur iOS | Alternate controls for the iOS simulator
-            if(USE_ALTERNATE_CONTROLS==1)
-            {
-                if((ignoreNextTap==FALSE) && (movingLeft || movingRight))
-                {
-                    if(endPosition.x > 400)
-                    {
-                        moveRightRequested = true;
-                    } else if (endPosition.x < 400){
-                        moveLeftRequested = true;
-                    }
-                }else{
-                    ignoreNextTap = FALSE;
                 }
             }
         }

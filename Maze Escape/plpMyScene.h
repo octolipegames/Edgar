@@ -37,6 +37,9 @@
 #define FIRST_DARK_LEVEL 6
 #define USE_ALTERNATE_CONTROLS 0
 #define DEFAULT_EDGAR_VELOCITY 150
+#define HUD_VERTICAL_THIRD 400/3
+#define HUD_VERTICAL_SPAN 400/6
+#define HUD_HORIZONTAL_SPAN 800/6
 
 float contextVelocityX;
 
@@ -81,7 +84,6 @@ float contextVelocityX;
     
     // Input
     CGPoint touchStartPosition;
-    BOOL useMovementButtons;
     BOOL waitForTap;
     BOOL isJumping;
     BOOL ignoreNextTap;
