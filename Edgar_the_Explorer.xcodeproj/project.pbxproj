@@ -14,8 +14,7 @@
 		DA03CBDA199F4C4700406720 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA03CBD8199F4C4700406720 /* InfoPlist.strings */; };
 		DA03CBDC199F4C4700406720 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03CBDB199F4C4700406720 /* main.m */; };
 		DA03CBE0199F4C4700406720 /* plpAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03CBDF199F4C4700406720 /* plpAppDelegate.m */; };
-		DA03CBE3199F4C4700406720 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA03CBE1199F4C4700406720 /* Main_iPhone.storyboard */; };
-		DA03CBE6199F4C4700406720 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA03CBE4199F4C4700406720 /* Main_iPad.storyboard */; };
+		DA03CBE3199F4C4700406720 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA03CBE1199F4C4700406720 /* Main.storyboard */; };
 		DA03CBE9199F4C4700406720 /* plpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03CBE8199F4C4700406720 /* plpViewController.m */; };
 		DA03CBEC199F4C4700406720 /* plpMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03CBEB199F4C4700406720 /* plpMyScene.m */; };
 		DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA03CBEF199F4C4700406720 /* Images.xcassets */; };
@@ -90,8 +89,7 @@
 		DA03CBDD199F4C4700406720 /* Edgar_the_Explorer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Edgar_the_Explorer-Prefix.pch"; sourceTree = "<group>"; };
 		DA03CBDE199F4C4700406720 /* plpAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpAppDelegate.h; sourceTree = "<group>"; };
 		DA03CBDF199F4C4700406720 /* plpAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpAppDelegate.m; sourceTree = "<group>"; };
-		DA03CBE2199F4C4700406720 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		DA03CBE5199F4C4700406720 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		DA03CBE2199F4C4700406720 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DA03CBE7199F4C4700406720 /* plpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpViewController.h; sourceTree = "<group>"; };
 		DA03CBE8199F4C4700406720 /* plpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpViewController.m; sourceTree = "<group>"; };
 		DA03CBEA199F4C4700406720 /* plpMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpMyScene.h; sourceTree = "<group>"; };
@@ -226,8 +224,7 @@
 				DAE713D71C0FA6D600ED9139 /* UI */,
 				DA10C1A21D5BEBBD00579F1F /* Level_objects_img */,
 				DABCE3481D5BE8A900C277BB /* Levels */,
-				DA03CBE1199F4C4700406720 /* Main_iPhone.storyboard */,
-				DA03CBE4199F4C4700406720 /* Main_iPad.storyboard */,
+				DA03CBE1199F4C4700406720 /* Main.storyboard */,
 				DA60EAA31B7F38E100A3F927 /* Sounds */,
 				DA10C1A61D5BFB6400579F1F /* edgar.atlas */,
 				DAB5E1411C21DD2800809756 /* edgarsaute.atlas */,
@@ -454,9 +451,8 @@
 				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
 				DAE713DB1C0FA87500ED9139 /* Play.png in Resources */,
 				DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */,
-				DA03CBE6199F4C4700406720 /* Main_iPad.storyboard in Resources */,
 				DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */,
-				DA03CBE3199F4C4700406720 /* Main_iPhone.storyboard in Resources */,
+				DA03CBE3199F4C4700406720 /* Main.storyboard in Resources */,
 				DA03CBDA199F4C4700406720 /* InfoPlist.strings in Resources */,
 				DA9BC04E23072C1B00ACC878 /* SoundButton.png in Resources */,
 				DA60EAA41B7F38E100A3F927 /* Sounds in Resources */,
@@ -551,20 +547,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		DA03CBE1199F4C4700406720 /* Main_iPhone.storyboard */ = {
+		DA03CBE1199F4C4700406720 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				DA03CBE2199F4C4700406720 /* Base */,
 			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		DA03CBE4199F4C4700406720 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DA03CBE5199F4C4700406720 /* Base */,
-			);
-			name = Main_iPad.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		DA03CBFF199F4C4700406720 /* InfoPlist.strings */ = {
