@@ -49,11 +49,11 @@
 		DA9BC04E23072C1B00ACC878 /* SoundButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9BC04D23072C1B00ACC878 /* SoundButton.png */; };
 		DA9BC0502307335600ACC878 /* plpSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC04F2307335600ACC878 /* plpSoundViewController.m */; };
 		DA9BC0522307336600ACC878 /* plpSoundViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC0512307336500ACC878 /* plpSoundViewController.h */; };
-		DAA06F8023253C2700A413DC /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA06F7F23253C2700A413DC /* Arrow.png */; };
 		DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAB5E1411C21DD2800809756 /* edgarsaute.atlas */; };
 		DABCE3491D5BE8A900C277BB /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = DABCE3481D5BE8A900C277BB /* Levels */; };
 		DAC49B1C232CF63400C72985 /* plpPrefsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC49B1A232CF63400C72985 /* plpPrefsViewController.m */; };
 		DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAD058511A08288200DAE3E8 /* monstre.atlas */; };
+		DAD1509F233161C800334FF3 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD1509E233161C800334FF3 /* Arrow.png */; };
 		DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DADBE5191C0A5E9A004469EA /* Media.xcassets */; };
 		DAE713DB1C0FA87500ED9139 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE713DA1C0FA87500ED9139 /* Play.png */; };
 		DAF2CB141B83B8B000FC7FF1 /* plpTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */; };
@@ -133,12 +133,12 @@
 		DA9BC04D23072C1B00ACC878 /* SoundButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoundButton.png; path = "External-media/SoundButton.png"; sourceTree = SOURCE_ROOT; };
 		DA9BC04F2307335600ACC878 /* plpSoundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpSoundViewController.m; sourceTree = "<group>"; };
 		DA9BC0512307336500ACC878 /* plpSoundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpSoundViewController.h; sourceTree = "<group>"; };
-		DAA06F7F23253C2700A413DC /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = "External-media/Arrow.png"; sourceTree = SOURCE_ROOT; };
 		DAB5E1411C21DD2800809756 /* edgarsaute.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgarsaute.atlas; sourceTree = "<group>"; };
 		DABCE3481D5BE8A900C277BB /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = "<group>"; };
 		DAC49B1A232CF63400C72985 /* plpPrefsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpPrefsViewController.m; sourceTree = "<group>"; };
 		DAC49B1B232CF63400C72985 /* plpPrefsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpPrefsViewController.h; sourceTree = "<group>"; };
 		DAD058511A08288200DAE3E8 /* monstre.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = monstre.atlas; sourceTree = "<group>"; };
+		DAD1509E233161C800334FF3 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = "External-media/Arrow.png"; sourceTree = SOURCE_ROOT; };
 		DADBE5191C0A5E9A004469EA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		DAE713DA1C0FA87500ED9139 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
 		DAF2CB121B83B8B000FC7FF1 /* plpTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpTrain.h; sourceTree = "<group>"; };
@@ -323,8 +323,8 @@
 				DA519C5B232CE8BD00B4F594 /* gear.png */,
 				DA519C5C232CE8BD00B4F594 /* sound.png */,
 				DA9BC04D23072C1B00ACC878 /* SoundButton.png */,
+				DAD1509E233161C800334FF3 /* Arrow.png */,
 				DA9ADE411D5C05A800254A58 /* menuButton.png */,
-				DAA06F7F23253C2700A413DC /* Arrow.png */,
 				DA9ADE421D5C05A800254A58 /* repeatButton.png */,
 				DA984E361C0B478A00B13A08 /* LaunchScreen960.png */,
 				DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */,
@@ -446,8 +446,8 @@
 				DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */,
 				DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */,
 				DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */,
-				DAA06F8023253C2700A413DC /* Arrow.png in Resources */,
 				DA519C5D232CE8BE00B4F594 /* gear.png in Resources */,
+				DAD1509F233161C800334FF3 /* Arrow.png in Resources */,
 				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
 				DAE713DB1C0FA87500ED9139 /* Play.png in Resources */,
 				DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */,

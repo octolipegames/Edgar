@@ -32,9 +32,8 @@
     if (self = [super initWithImageNamed:image])
     {
         self.position = position;
-        self.zPosition = 28;
         self.zRotation = rotation;
-        self.alpha = 0.6;
+        self.alpha = 0.4;
 //        self.userInteractionEnabled = YES;
 //        self.exclusiveTouch = YES;
         
@@ -42,7 +41,7 @@
 //        actionTouchUp = [SKAction scaleBy:1.25 duration:0.1];
 
     }
-    [self setScale: 0.5];
+//    [self setScale: 0.8];
     return self;
 }
 

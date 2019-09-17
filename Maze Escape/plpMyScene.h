@@ -40,6 +40,8 @@
 #define HUD_VERTICAL_THIRD 400/3
 #define HUD_VERTICAL_SPAN 400/6
 #define HUD_HORIZONTAL_SPAN 800/6
+#define BUTTON_HORIZONTAL_SPAN HUD_HORIZONTAL_SPAN*1.8
+#define BUTTON_VERTICAL_SPAN (HUD_VERTICAL_THIRD*0.5)-200
 
 float contextVelocityX;
 
@@ -50,6 +52,7 @@ float contextVelocityX;
     SKPhysicsBody *EdgarCircleBody;
     JSTileMap *myLevel;
     SKNode *myWorld;
+    SKNode *HUD;
     SKCameraNode *myCamera;
     SKSpriteNode *myFinishRectangle;
     

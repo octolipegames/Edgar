@@ -72,6 +72,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if(!useSwipeGestures){
             // TODO: remove this
            
+            HUD = [SKNode node];
+            HUD.name = @"HUD";
+            HUD.zPosition = 28;
+            [myCamera addChild:HUD];
+            
             SKShapeNode *horizontalLine = [SKShapeNode node];
             CGMutablePathRef pathToDraw = CGPathCreateMutable();
             
@@ -99,42 +104,41 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             [verticalLineLeft setPosition:(CGPointMake(-HUD_VERTICAL_THIRD, 0))];
             [verticalLineRight setPosition:CGPointMake(HUD_VERTICAL_THIRD, 0)];
             
-            [myCamera addChild:horizontalLine];
-            [myCamera addChild:horizontalLineTop];
+            [HUD addChild:horizontalLine];
+            [HUD addChild:horizontalLineTop];
             
-            [myCamera addChild: verticalLineLeft];
-            [myCamera addChild: verticalLineRight];
+            [HUD addChild: verticalLineLeft];
+            [HUD addChild: verticalLineRight];
             
             
-            plpButton *buttonRight = [[plpButton alloc] initAtPosition:CGPointMake(300, -120) withImage:@"Arrow.png" andRotation:0];
+            plpButton *buttonRight = [[plpButton alloc] initAtPosition:CGPointMake(BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN) withImage:@"Arrow.png" andRotation:0];
             buttonRight.name = @"right";
-            [myCamera addChild: buttonRight];
+            [HUD addChild: buttonRight];
             
-            plpButton *buttonLeft = [[plpButton alloc] initAtPosition:CGPointMake(-300, -120) withImage:@"Arrow.png" andRotation:3.14159];
+            plpButton *buttonLeft = [[plpButton alloc] initAtPosition:CGPointMake(-BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN) withImage:@"Arrow.png" andRotation:3.14159];
             buttonLeft.name = @"left";
-            [myCamera addChild: buttonLeft];
+            [HUD addChild: buttonLeft];
             
             
-            plpButton *buttonUp = [[plpButton alloc] initAtPosition:CGPointMake(0, 140) withImage:@"Arrow.png" andRotation:3.14159/2];
+            plpButton *buttonUp = [[plpButton alloc] initAtPosition:CGPointMake(0, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD*2) withImage:@"Arrow.png" andRotation:3.14159/2];
             buttonUp.name = @"up";
-            [myCamera addChild: buttonUp];
+            [HUD addChild: buttonUp];
             
-            plpButton *buttonUpRight = [[plpButton alloc] initAtPosition:CGPointMake(300, 80) withImage:@"Arrow.png" andRotation:0.8];
+            plpButton *buttonUpRight = [[plpButton alloc] initAtPosition:CGPointMake(BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD*2) withImage:@"Arrow.png" andRotation:0.8];
             buttonUpRight.name = @"upright";
-            [myCamera addChild: buttonUpRight];
+            [HUD addChild: buttonUpRight];
             
-            plpButton *buttonUpLeft = [[plpButton alloc] initAtPosition:CGPointMake(-300, 80) withImage:@"Arrow.png" andRotation:3.14159-0.8];
+            plpButton *buttonUpLeft = [[plpButton alloc] initAtPosition:CGPointMake(-BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD*2) withImage:@"Arrow.png" andRotation:3.14159-0.8];
             buttonUpLeft.name = @"upleft";
-            [myCamera addChild: buttonUpLeft];
+            [HUD addChild: buttonUpLeft];
             
-            plpButton *buttonMiddleRight = [[plpButton alloc] initAtPosition:CGPointMake(300, -20) withImage:@"Arrow.png" andRotation:0.5];
+            plpButton *buttonMiddleRight = [[plpButton alloc] initAtPosition:CGPointMake(BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD) withImage:@"Arrow.png" andRotation:0.5];
             buttonMiddleRight.name = @"middleright";
-            [myCamera addChild: buttonMiddleRight];
+            [HUD addChild: buttonMiddleRight];
             
-            plpButton *buttonMiddleLeft = [[plpButton alloc] initAtPosition:CGPointMake(-300, -20) withImage:@"Arrow.png" andRotation:3.14159-0.5];
+            plpButton *buttonMiddleLeft = [[plpButton alloc] initAtPosition:CGPointMake(-BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD) withImage:@"Arrow.png" andRotation:3.14159-0.5];
             buttonMiddleLeft.name = @"middleleft";
-            [myCamera addChild: buttonMiddleLeft];
-            
+            [HUD addChild: buttonMiddleLeft];
         }
         
         // Actions
@@ -1188,6 +1192,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }];
     
     [myWorld runAction: openCurtains];
+    
+    if(nextLevelIndex > 0){
+        [HUD runAction: [SKAction fadeOutWithDuration: 5] completion:^{
+            [self->HUD removeAllChildren];
+        }];
+    }
 }
 
 
@@ -1273,8 +1283,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [myCamera addChild:upperCurtain];
     [myCamera addChild:lowerCurtain];
 
-    
-
     // The three actions of the level transition are written in reverse order here:
 
     // 3. Third action: open curtains
@@ -1286,6 +1294,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
             self->additionalLevelTime = 0;
+
             //   levelTransitioning = FALSE; -> too late, may cause unexpected behaviours
         }];
     }];
@@ -1654,16 +1663,52 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             
             if([contactNode.name isEqualToString:@"walk"])
             {
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeRight.png"];
+                if(useSwipeGestures){
+                    helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeRight.png"];
+                }else{
+                    for (SKNode* theNode in [HUD children]) {
+                        [theNode setAlpha: 0.2];
+                    }
+                    
+                    SKNode *moveRight = [HUD childNodeWithName:@"right"];
+                    SKAction *fadeIn = [SKAction fadeAlphaTo: 1 duration: .5];
+                    SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
+                    [moveRight runAction: [SKAction repeatActionForever: [SKAction sequence:@[fadeIn, fadeOut]]]];
+                }
             }else if([contactNode.name isEqualToString:@"jump"])
             {
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
+                if(useSwipeGestures){
+                    helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
+                }else{
+                    SKNode *moveRight = [HUD childNodeWithName:@"right"];
+                    [moveRight removeAllActions];
+                    [moveRight setAlpha: 0.2];
+                    SKNode *middleRight = [HUD childNodeWithName:@"middleright"];
+                    SKAction *fadeIn = [SKAction fadeAlphaTo: 1 duration: .5];
+                    SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
+                    [middleRight runAction: [SKAction repeatActionForever: [SKAction sequence:@[fadeIn, fadeOut]]]];                }
             }else if([contactNode.name isEqualToString:@"stop"])
             {
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/tap.png"];
-                [helpNode runAction:[SKAction sequence:@[[SKAction waitForDuration:.5], [SKAction fadeAlphaTo:0 duration:1]]]];
+                if(useSwipeGestures){
+                    helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/tap.png"];
+                    [helpNode runAction:[SKAction sequence:@[[SKAction waitForDuration:.5], [SKAction fadeAlphaTo:0 duration:1]]]];
+                }else{
+                    SKNode *middleRight = [HUD childNodeWithName:@"middleright"];
+                    [middleRight removeAllActions];
+                    [middleRight setAlpha: 0.2];
+                    SKNode *upRight = [HUD childNodeWithName:@"upright"];
+                    SKAction *fadeIn = [SKAction fadeAlphaTo: 1 duration: .5];
+                    SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
+                    [upRight runAction: [SKAction repeatActionForever: [SKAction sequence:@[fadeIn, fadeOut]]]];                }
             }else if([contactNode.name isEqualToString:@"explainTrain"])
             {
+                SKNode *upRight = [HUD childNodeWithName:@"upright"];
+                [upRight removeAllActions];
+                [upRight setAlpha: 0.2];
+                [HUD runAction: [SKAction fadeOutWithDuration: 5] completion:^{
+                    [self->HUD removeAllChildren];
+                }];
+                
                 [contactNode setName: NULL];
                 SKLabelNode *explainTrainNode = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
                 explainTrainNode.name = @"explainText";
