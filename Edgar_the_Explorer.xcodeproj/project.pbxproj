@@ -29,7 +29,11 @@
 		DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A61D5BFB6400579F1F /* edgar.atlas */; };
 		DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */; };
 		DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */; };
+		DA519C5D232CE8BE00B4F594 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5B232CE8BD00B4F594 /* gear.png */; };
+		DA519C5E232CE8BE00B4F594 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5C232CE8BD00B4F594 /* sound.png */; };
 		DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4A191B81133F009507F9 /* plpHero.m */; };
+		DA5B7C98232C2E320009ECE6 /* plpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B7C97232C2E320009ECE6 /* plpButton.m */; };
+		DA5B7C9A232C2E450009ECE6 /* plpButton.h in Sources */ = {isa = PBXBuildFile; fileRef = DA5B7C99232C2E440009ECE6 /* plpButton.h */; };
 		DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */ = {isa = PBXBuildFile; fileRef = DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */; };
 		DA5CF4D11B73E907005A5C91 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5CF4D01B73E907005A5C91 /* libz.dylib */; };
 		DA5CF4E11B73EB84005A5C91 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5CF4DC1B73EB6E005A5C91 /* JSTileMap.m */; };
@@ -43,12 +47,13 @@
 		DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */ = {isa = PBXBuildFile; fileRef = DA984E361C0B478A00B13A08 /* LaunchScreen960.png */; };
 		DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9ADE411D5C05A800254A58 /* menuButton.png */; };
 		DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9ADE421D5C05A800254A58 /* repeatButton.png */; };
-		DA9BC04C230724A900ACC878 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9BC04B230724A900ACC878 /* sound.png */; };
 		DA9BC04E23072C1B00ACC878 /* SoundButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9BC04D23072C1B00ACC878 /* SoundButton.png */; };
 		DA9BC0502307335600ACC878 /* plpSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC04F2307335600ACC878 /* plpSoundViewController.m */; };
 		DA9BC0522307336600ACC878 /* plpSoundViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC0512307336500ACC878 /* plpSoundViewController.h */; };
+		DAA06F8023253C2700A413DC /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA06F7F23253C2700A413DC /* Arrow.png */; };
 		DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAB5E1411C21DD2800809756 /* edgarsaute.atlas */; };
 		DABCE3491D5BE8A900C277BB /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = DABCE3481D5BE8A900C277BB /* Levels */; };
+		DAC49B1C232CF63400C72985 /* plpPrefsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC49B1A232CF63400C72985 /* plpPrefsViewController.m */; };
 		DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAD058511A08288200DAE3E8 /* monstre.atlas */; };
 		DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DADBE5191C0A5E9A004469EA /* Media.xcassets */; };
 		DAE713DB1C0FA87500ED9139 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE713DA1C0FA87500ED9139 /* Play.png */; };
@@ -103,8 +108,12 @@
 		DA1BE6EE1B81256000DA2E47 /* plpEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpEnemy.h; sourceTree = "<group>"; };
 		DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpEnemy.m; sourceTree = "<group>"; };
 		DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen1136.png; sourceTree = "<group>"; };
+		DA519C5B232CE8BD00B4F594 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = "External-media/gear.png"; sourceTree = SOURCE_ROOT; };
+		DA519C5C232CE8BD00B4F594 /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sound.png; path = "External-media/sound.png"; sourceTree = SOURCE_ROOT; };
 		DA5B4A181B81133F009507F9 /* plpHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpHero.h; sourceTree = "<group>"; };
 		DA5B4A191B81133F009507F9 /* plpHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpHero.m; sourceTree = "<group>"; };
+		DA5B7C97232C2E320009ECE6 /* plpButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpButton.m; sourceTree = "<group>"; };
+		DA5B7C99232C2E440009ECE6 /* plpButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpButton.h; sourceTree = "<group>"; };
 		DA5CF4CE1B73E8CC005A5C91 /* JSTileMap */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JSTileMap; sourceTree = "<group>"; };
 		DA5CF4D01B73E907005A5C91 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DA5CF4DB1B73EB6E005A5C91 /* JSTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTileMap.h; sourceTree = "<group>"; };
@@ -123,12 +132,14 @@
 		DA984E361C0B478A00B13A08 /* LaunchScreen960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen960.png; sourceTree = "<group>"; };
 		DA9ADE411D5C05A800254A58 /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		DA9ADE421D5C05A800254A58 /* repeatButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repeatButton.png; sourceTree = "<group>"; };
-		DA9BC04B230724A900ACC878 /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sound.png; path = "External-media/sound.png"; sourceTree = SOURCE_ROOT; };
 		DA9BC04D23072C1B00ACC878 /* SoundButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoundButton.png; path = "External-media/SoundButton.png"; sourceTree = SOURCE_ROOT; };
 		DA9BC04F2307335600ACC878 /* plpSoundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpSoundViewController.m; sourceTree = "<group>"; };
 		DA9BC0512307336500ACC878 /* plpSoundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpSoundViewController.h; sourceTree = "<group>"; };
+		DAA06F7F23253C2700A413DC /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = "External-media/Arrow.png"; sourceTree = SOURCE_ROOT; };
 		DAB5E1411C21DD2800809756 /* edgarsaute.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgarsaute.atlas; sourceTree = "<group>"; };
 		DABCE3481D5BE8A900C277BB /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = "<group>"; };
+		DAC49B1A232CF63400C72985 /* plpPrefsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpPrefsViewController.m; sourceTree = "<group>"; };
+		DAC49B1B232CF63400C72985 /* plpPrefsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpPrefsViewController.h; sourceTree = "<group>"; };
 		DAD058511A08288200DAE3E8 /* monstre.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = monstre.atlas; sourceTree = "<group>"; };
 		DADBE5191C0A5E9A004469EA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		DAE713DA1C0FA87500ED9139 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
@@ -226,6 +237,8 @@
 				DA03CBE8199F4C4700406720 /* plpViewController.m */,
 				DA9BC0512307336500ACC878 /* plpSoundViewController.h */,
 				DA9BC04F2307335600ACC878 /* plpSoundViewController.m */,
+				DAC49B1B232CF63400C72985 /* plpPrefsViewController.h */,
+				DAC49B1A232CF63400C72985 /* plpPrefsViewController.m */,
 				DA03CBEA199F4C4700406720 /* plpMyScene.h */,
 				DA03CBEB199F4C4700406720 /* plpMyScene.m */,
 				DA60FCB5223EBB88005276C6 /* plpSoundController.h */,
@@ -270,6 +283,8 @@
 		DA1E7C6B1C120ED300147FA2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DA5B7C99232C2E440009ECE6 /* plpButton.h */,
+				DA5B7C97232C2E320009ECE6 /* plpButton.m */,
 				DAF381B21B9E2E21008B4D5D /* plpItem.h */,
 				DAF381B31B9E2E21008B4D5D /* plpItem.m */,
 				DAF2CB121B83B8B000FC7FF1 /* plpTrain.h */,
@@ -308,9 +323,11 @@
 		DAE713D71C0FA6D600ED9139 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DA519C5B232CE8BD00B4F594 /* gear.png */,
+				DA519C5C232CE8BD00B4F594 /* sound.png */,
 				DA9BC04D23072C1B00ACC878 /* SoundButton.png */,
 				DA9ADE411D5C05A800254A58 /* menuButton.png */,
-				DA9BC04B230724A900ACC878 /* sound.png */,
+				DAA06F7F23253C2700A413DC /* Arrow.png */,
 				DA9ADE421D5C05A800254A58 /* repeatButton.png */,
 				DA984E361C0B478A00B13A08 /* LaunchScreen960.png */,
 				DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */,
@@ -431,8 +448,9 @@
 				DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */,
 				DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */,
 				DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */,
-				DA9BC04C230724A900ACC878 /* sound.png in Resources */,
 				DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */,
+				DAA06F8023253C2700A413DC /* Arrow.png in Resources */,
+				DA519C5D232CE8BE00B4F594 /* gear.png in Resources */,
 				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
 				DAE713DB1C0FA87500ED9139 /* Play.png in Resources */,
 				DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */,
@@ -445,6 +463,7 @@
 				DA10C1A51D5BF3F900579F1F /* UI_img in Resources */,
 				DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */,
 				DABCE3491D5BE8A900C277BB /* Levels in Resources */,
+				DA519C5E232CE8BE00B4F594 /* sound.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,11 +490,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA5CF4E21B73EB8C005A5C91 /* LFCGzipUtility.m in Sources */,
+				DAC49B1C232CF63400C72985 /* plpPrefsViewController.m in Sources */,
 				DA9BC0522307336600ACC878 /* plpSoundViewController.h in Sources */,
 				DA5CF4E11B73EB84005A5C91 /* JSTileMap.m in Sources */,
 				DAF381B41B9E2E21008B4D5D /* plpItem.m in Sources */,
 				DA03CBDC199F4C4700406720 /* main.m in Sources */,
 				DA60FCB4223EBB6A005276C6 /* plpSoundController.m in Sources */,
+				DA5B7C9A232C2E450009ECE6 /* plpButton.h in Sources */,
 				DA03CBE0199F4C4700406720 /* plpAppDelegate.m in Sources */,
 				DA03CBE9199F4C4700406720 /* plpViewController.m in Sources */,
 				DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */,
@@ -484,6 +505,7 @@
 				DA03CBEC199F4C4700406720 /* plpMyScene.m in Sources */,
 				DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */,
 				DA60FCB6223EBB88005276C6 /* plpSoundController.h in Sources */,
+				DA5B7C98232C2E320009ECE6 /* plpButton.m in Sources */,
 				DA9BC0502307335600ACC878 /* plpSoundViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
