@@ -34,6 +34,18 @@
 }
 @end
 
+dispatch_source_t CreateDispatchTimer(double interval, dispatch_queue_t queue, dispatch_block_t block)
+{
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    if (timer)
+    {
+        dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, interval * NSEC_PER_SEC), interval * NSEC_PER_SEC, (1ull * NSEC_PER_SEC) / 10);
+        dispatch_source_set_event_handler(timer, block);
+        dispatch_resume(timer);
+    }
+    return timer;
+}
+
 @implementation plpMyScene
 
 NSArray *_monstreWalkingFrames;
@@ -643,10 +655,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     SKTexture *semaphoreRed = [SKTexture textureWithImageNamed:@"Level_objects_img/FeuRouge.png"];
                     SKAction *setGreen = [SKAction setTexture:semaphoreGreen];
                     SKAction *setRed = [SKAction setTexture:semaphoreRed];
-                    SKAction *wait = [SKAction waitForDuration:2];
-                    SKAction *changeTexture = [SKAction sequence:@[setGreen, wait, setRed, wait]];
+                    SKAction *waitShort = [SKAction waitForDuration:2];
+                    SKAction *waitLong = [SKAction waitForDuration:4];
+                    SKAction *changeTexture = [SKAction sequence:@[waitShort, setGreen, waitShort, setRed, waitLong]];
                     
-                    [myItem runAction:[SKAction repeatActionForever:changeTexture]];
+                    [myItem runAction: setRed completion: ^{
+                        [myItem runAction:[SKAction repeatActionForever:changeTexture]];
+                    }];
+                    
                 }
                 else
                 {
@@ -1863,7 +1879,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             /* SND: train runs */
             plpTrain *theTrain = (plpTrain *)contactNode;
             [theTrain setHeroAbove];
-            [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed:200];
+            [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed: 100]; // previous max speed: 200
             return;
         }
         
@@ -1981,6 +1997,23 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 }
 
 
+- (void)startTimerWithDelay:(double) secondsToFire
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    _timer = CreateDispatchTimer(secondsToFire, queue, ^{
+        self->stopRequested = TRUE;
+    });
+}
+
+- (void)cancelTimer
+{
+    if (_timer) {
+        dispatch_source_cancel(_timer);
+        _timer = nil;
+    }
+}
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -1995,6 +2028,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 // store start position to get gesture in "touch end"
                 touchStartPosition = [touch locationInNode:self];
             }else{
+                [self cancelTimer];
                 touchStartPosition = [touch locationInNode: myCamera];
                 if( !movingRight && touchStartPosition.x > HUD_HORIZONTAL_SPAN)
                 {
@@ -2103,17 +2137,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 if(endPosition.y > -HUD_VERTICAL_SPAN){
                     delay_s = .2;
                 }
-                dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * delay_s);
                 
-                // if player isnt asking to move now...
-                if(!self->moveLeftRequested && !self->moveRightRequested){
-                    dispatch_after(delay, dispatch_get_main_queue(), ^(void){
-                        // and not a few milliseconds later
-                        if(!self->moveLeftRequested && !self->moveRightRequested){
-                            self->stopRequested = true;
-                        }
-                    });
-                }
+                [self startTimerWithDelay: delay_s];
                 
             }else{
                 CGPoint endPosition = [touch locationInNode:self];

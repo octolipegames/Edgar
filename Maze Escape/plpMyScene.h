@@ -86,6 +86,7 @@ float contextVelocityX;
     NSMutableArray *platformNodes;
     
     // Input
+    dispatch_source_t _timer;
     CGPoint touchStartPosition;
     BOOL waitForTap;
     BOOL isJumping;
