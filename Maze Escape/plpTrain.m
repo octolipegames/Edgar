@@ -39,8 +39,8 @@
     self = [super initWithTexture:mainTexture];
     
     SKPhysicsBody *mainBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(74, 5) center:CGPointMake(0, -2)];
-    SKPhysicsBody *parapet1 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4, 6) center:CGPointMake(36, 4)];
-    SKPhysicsBody *parapet2 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4, 6) center:CGPointMake(-36, 4)];
+    SKPhysicsBody *parapet1 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4, 8) center:CGPointMake(36, 4)];
+    SKPhysicsBody *parapet2 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4, 8) center:CGPointMake(-36, 4)];
     
     self.physicsBody = [SKPhysicsBody bodyWithBodies:@[mainBody, parapet1, parapet2]];
     
@@ -133,7 +133,11 @@
     [trainSound runAction: [SKAction play]];
     
     SKAction *accelerate;
-    if([self getVelocityX] < 0) // if the train already runs left
+    
+    // Temporary test - no acceleration to the left
+    BOOL enableRunLeft = false;
+    
+    if( (enableRunLeft) && ([self getVelocityX] < 0)) // if the train already runs left
     {
         accelerate = [SKAction runBlock:^{
             float newSpeed = self->rightWheelNode.physicsBody.angularVelocity + acceleration;
