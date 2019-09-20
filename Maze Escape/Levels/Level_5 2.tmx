@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="41" height="10" tilewidth="100" tileheight="100" nextobjectid="20">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="41" height="10" tilewidth="100" tileheight="100" nextobjectid="19">
  <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
   <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
  </tileset>
@@ -8,16 +8,16 @@
  </tileset>
  <layer name="Fond" width="41" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYIAAaTIwMQBZvSyJfHR70NUQYssg8XmI0EcOhuknNwwlkdg8JOgjJhywhSM93UgslsFiLikA3d+0cCMhc3HFAbIbsZmF7g9scYiuBpseSvxOTB4gJZ8QUovsd1rEEzXjmhg38qLx1QbAjQMBSHErAO1yI3g=
+   eJxjYIAAaTIwMQBZvSyJfHR70NUQYssg8XmI0EcOhuknNwxlkNg8JOgjJhywhSM5bpQk042khAG6ueQCWrmRkLm44gDZXbJYzEJ3O7Y4RFeDTQ8l8UNMHiAlnxBSi+x3WsQTNeOaGDfyovHVBsCNAwFIcSsA1TMjKg==
   </data>
  </layer>
  <layer name="Solide" width="41" height="10">
   <data encoding="base64" compression="zlib">
-   eJy9VO0Kg0AM6/31wMmmbo/g3v8Fh2AxZFEjwxWCH5drc2m1jYj2Qrx+AOf6R0wHqGJP6nvCu8bMl3gb/OQ43u1prJAT144wLPwenrdqu+eeYu0tenhmxlQ4dc/OImrc81rp7wyO8w0wivCCZzFj7nuzXNUc83nYX9yH9zgPbmDuG4D1qpozRqEvPR5J22NDA9YtBNaoosS3P7jGPegEN89TQOc91h6yJo4r/90OqoDifQCFKhZ7
+   eJy9lOEOgyAMhMtfSZybOvcI7v1fcCHBeDkPLFtck4uI0H60xd7M+gv1+kHs6x+2niiKPRvfAnNdwX9p3hP/ndd4cldjjI5z1uJP2ddcid3id6st5vDbfpsb4rf2IjLWcq34B8cazx1gBXrnPKKlunf5qfqYz8P3DvfhGPvBa+j7BmJeFTPpKfgGMU5sY4EB4wYSMyoLdswPfuMaKL575kPOh+01ZCa2K//dHkUhte4DgWQWYA==
   </data>
  </layer>
  <objectgroup name="Objets">
-  <object id="1" name="uranium" type="Item" x="1434.5" y="240.167" width="29" height="29">
+  <object id="1" name="uranium" type="Item" x="1434.5" y="341.5" width="29" height="29">
    <ellipse/>
   </object>
   <object id="2" name="Start" x="203" y="274" width="88" height="106"/>
@@ -28,6 +28,15 @@
   </object>
   <object id="8" name="train" type="train" x="325.333" y="302.667" width="60" height="60">
    <ellipse/>
+  </object>
+  <object id="10" name="verticalPlatform" x="1709" y="282" width="87" height="110">
+   <properties>
+    <property name="moveUpFirst" value="1"/>
+    <property name="movementDuration" value="1"/>
+    <property name="noEmergencyStop" value="0"/>
+    <property name="x_limit" value="802"/>
+    <property name="y_limit" value="430"/>
+   </properties>
   </object>
   <object id="13" name="semaphore" type="semaphore" x="419" y="177" width="60" height="60"/>
   <object id="14" name="train" type="train" x="2718" y="123" width="60" height="60">
@@ -46,7 +55,7 @@
     <property name="noEmergencyStop" value="0"/>
    </properties>
   </object>
-  <object id="17" name="verticalPlatform" x="1710" y="286.667" width="86" height="311.333">
+  <object id="17" name="verticalPlatform" x="1710" y="399" width="86" height="199">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="1"/>
@@ -60,15 +69,6 @@
     <property name="seconds" value="17"/>
    </properties>
    <ellipse/>
-  </object>
-  <object id="19" name="verticalPlatform" x="508" y="285" width="87" height="110">
-   <properties>
-    <property name="moveUpFirst" value="1"/>
-    <property name="movementDuration" value="2"/>
-    <property name="noEmergencyStop" value="0"/>
-    <property name="x_limit" value="802"/>
-    <property name="y_limit" value="430"/>
-   </properties>
   </object>
  </objectgroup>
 </map>
