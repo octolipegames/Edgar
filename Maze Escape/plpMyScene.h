@@ -109,8 +109,7 @@ float contextVelocityX;
     float screenCenterX;
     
     // Game data
-    int deathCount;
-    int globalCounter;
+    NSInteger lifeCount;
     int nextLevelIndex;
     double initialTime;
     double additionalSavedTime;

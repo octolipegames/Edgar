@@ -80,14 +80,36 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         useSwipeGestures = [defaults boolForKey:@"useSwipeGestures"];
         enableDebug = [defaults boolForKey:@"enableDebug"];
+        lifeCount = [defaults integerForKey:@"lifeCount"];
+        if(lifeCount == 0){ // not set
+            lifeCount = 5;
+        }
+
+        HUD = [SKNode node];
+        HUD.name = @"HUD";
+        HUD.zPosition = 28;
+        [myCamera addChild:HUD];
+
+        /*SKSpriteNode *binders = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"classeurs-ui.png"] size: CGSizeMake(29, 26)];
+        [binders setPosition: CGPointMake(-300, 180)];
+        [HUD addChild: binders];*/
+        
+        SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"lampe-test-ui.png"] size: CGSizeMake(46/3, 86/3)];
+        [HUD addChild: edgarLife];
+        [edgarLife setPosition: CGPointMake(-320, 180)];
+        
+        for(int i = 0; i < lifeCount; i++){
+            SKSpriteNode *lifeCopy = [edgarLife copy];
+            [lifeCopy setPosition: CGPointMake(-320 + (i*20), 180)];
+            [HUD addChild: lifeCopy];
+        }
         
         if(!useSwipeGestures){
             // TODO: remove this
            
-            HUD = [SKNode node];
-            HUD.name = @"HUD";
-            HUD.zPosition = 28;
-            [myCamera addChild:HUD];
+            SKNode *touchIndicator = [SKNode node];
+            touchIndicator.name = @"touchIndicator";
+            [HUD addChild: touchIndicator];
             
             SKShapeNode *horizontalLine = [SKShapeNode node];
             CGMutablePathRef pathToDraw = CGPathCreateMutable();
@@ -116,41 +138,41 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             [verticalLineLeft setPosition:(CGPointMake(-HUD_VERTICAL_THIRD, 0))];
             [verticalLineRight setPosition:CGPointMake(HUD_VERTICAL_THIRD, 0)];
             
-            [HUD addChild:horizontalLine];
-            [HUD addChild:horizontalLineTop];
+            [touchIndicator addChild:horizontalLine];
+            [touchIndicator addChild:horizontalLineTop];
             
-            [HUD addChild: verticalLineLeft];
-            [HUD addChild: verticalLineRight];
+            [touchIndicator addChild: verticalLineLeft];
+            [touchIndicator addChild: verticalLineRight];
             
             
             plpButton *buttonRight = [[plpButton alloc] initAtPosition:CGPointMake(BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN) withImage:@"Arrow.png" andRotation:0];
             buttonRight.name = @"right";
-            [HUD addChild: buttonRight];
+            [touchIndicator addChild: buttonRight];
             
             plpButton *buttonLeft = [[plpButton alloc] initAtPosition:CGPointMake(-BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN) withImage:@"Arrow.png" andRotation:3.14159];
             buttonLeft.name = @"left";
-            [HUD addChild: buttonLeft];
+            [touchIndicator addChild: buttonLeft];
             
             
             plpButton *buttonUp = [[plpButton alloc] initAtPosition:CGPointMake(0, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD*2) withImage:@"Arrow.png" andRotation:3.14159/2];
             buttonUp.name = @"up";
-            [HUD addChild: buttonUp];
+            [touchIndicator addChild: buttonUp];
             
             plpButton *buttonUpRight = [[plpButton alloc] initAtPosition:CGPointMake(BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD*2) withImage:@"Arrow.png" andRotation:0.8];
             buttonUpRight.name = @"upright";
-            [HUD addChild: buttonUpRight];
+            [touchIndicator addChild: buttonUpRight];
             
             plpButton *buttonUpLeft = [[plpButton alloc] initAtPosition:CGPointMake(-BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD*2) withImage:@"Arrow.png" andRotation:3.14159-0.8];
             buttonUpLeft.name = @"upleft";
-            [HUD addChild: buttonUpLeft];
+            [touchIndicator addChild: buttonUpLeft];
             
             plpButton *buttonMiddleRight = [[plpButton alloc] initAtPosition:CGPointMake(BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD) withImage:@"Arrow.png" andRotation:0.5];
             buttonMiddleRight.name = @"middleright";
-            [HUD addChild: buttonMiddleRight];
+            [touchIndicator addChild: buttonMiddleRight];
             
             plpButton *buttonMiddleLeft = [[plpButton alloc] initAtPosition:CGPointMake(-BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD) withImage:@"Arrow.png" andRotation:3.14159-0.5];
             buttonMiddleLeft.name = @"middleleft";
-            [HUD addChild: buttonMiddleLeft];
+            [touchIndicator addChild: buttonMiddleLeft];
         }
         
         // Actions
@@ -1210,8 +1232,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [myWorld runAction: openCurtains];
     
     if(nextLevelIndex > 0){
-        [HUD runAction: [SKAction fadeOutWithDuration: 5] completion:^{
-            [self->HUD removeAllChildren];
+        SKNode *touchIndicator = [HUD childNodeWithName:@"//touchIndicator"];
+        [touchIndicator runAction: [SKAction fadeOutWithDuration: 5] completion:^{
+            [touchIndicator removeAllChildren];
+            [touchIndicator removeFromParent];
+            //[self->HUD removeAllChildren];
         }];
     }
 }
