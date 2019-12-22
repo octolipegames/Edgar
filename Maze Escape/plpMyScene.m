@@ -81,10 +81,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         useSwipeGestures = [defaults boolForKey:@"useSwipeGestures"];
         enableDebug = [defaults boolForKey:@"enableDebug"];
         lifeCount = [defaults integerForKey:@"lifeCount"];
+        
         if(lifeCount == 0){ // not set
             lifeCount = 5;
         }
-
+        
         HUD = [SKNode node];
         HUD.name = @"HUD";
         HUD.zPosition = 28;
@@ -94,7 +95,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [binders setPosition: CGPointMake(-300, 180)];
         [HUD addChild: binders];*/
         
-        SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"lampe-test-ui.png"] size: CGSizeMake(46/3, 86/3)];
+        /*SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"lampe-test-ui.png"] size: CGSizeMake(46/3, 86/3)];
         [HUD addChild: edgarLife];
         [edgarLife setPosition: CGPointMake(-320, 180)];
         
@@ -102,7 +103,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             SKSpriteNode *lifeCopy = [edgarLife copy];
             [lifeCopy setPosition: CGPointMake(-320 + (i*20), 180)];
             [HUD addChild: lifeCopy];
-        }
+        }*/
         
         if(!useSwipeGestures){
             // TODO: remove this
@@ -525,7 +526,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             {
                 SKSpriteNode* node = [monLayer tileAtCoord:pt];
                 [node setSize:CGSizeMake(101.0f, 101.0f)];
-                node.physicsBody = [SKPhysicsBody bodyWithTexture:node.texture size:node.frame.size];
+                
+                NSLog(@"Texture size: %f, %f", node.frame.size.height, node.frame.size.width);
+                node.physicsBody = [SKPhysicsBody bodyWithTexture:node.texture alphaThreshold: 0.2 size:node.frame.size];
+                // DEBUG node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:node.frame.size];
                 node.physicsBody.dynamic = NO;
                 node.physicsBody.categoryBitMask = PhysicsCategoryTiles;
                 node.physicsBody.friction = 0.5;
@@ -1431,6 +1435,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }
 
     }
+    
+    if(enableDebug == TRUE && !self.view.showsPhysics){
+        NSLog(@"Debug enabled -- displaying physics, fps, node count");
+        self.view.showsPhysics = YES;
+        self.view.showsFPS = YES;
+        self.view.showsNodeCount = YES;
+    }
+    
     levelTransitioning = FALSE;
 }
 
@@ -1457,7 +1469,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 if(contact.collisionImpulse > 40000){
                     [self->soundController playTrainImpactSound];
                 }
-                //NSLog(@"Collision impulse is: %f", contact.collisionImpulse);
+                // NSLog(@"Collision impulse is: %f", contact.collisionImpulse);
                 // NSLog(@"Object vs object");
             }
             
