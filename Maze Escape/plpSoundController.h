@@ -32,7 +32,7 @@
 }
 
 -(id)init;
-- (BOOL)isHeadsetPluggedIn;
+//- (BOOL)isHeadsetPluggedIn;
 
 - (void) getStoredVolumes;
 - (void) updateVolumes;

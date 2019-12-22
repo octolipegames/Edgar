@@ -25,12 +25,15 @@
     
     if(self){
         // TODO check for silent mode, headphones etc. here
-        self.muteSoundFX = FALSE;
-        self.muteMusic = FALSE;
-        
+//        self.muteSoundFX = FALSE;
+//        self.muteMusic = FALSE;
+        self.muteSoundFX = TRUE;
+        self.muteMusic = TRUE;
+//        [self setMuteSoundFX: TRUE];
+//        [self setMuteMusic: TRUE];
         self->pushingCrate = FALSE;
 
-        [self updateVolumes];
+//        [self updateVolumes];
     }
     else{
         return nil;
@@ -49,11 +52,14 @@
         
         self->musicVolume = savedMusicVolume;
         if(savedMusicVolume == 0){
-            self.muteMusic = TRUE;
+            NSLog(@"music is muted");
+            [self setMuteMusic: TRUE];
         }
         self->fxVolume = savedFxVolume;
         if(savedFxVolume == 0){
-            self.muteSoundFX = TRUE;
+            NSLog(@"fx are muted");
+            [self setMuteSoundFX: TRUE];
+//            self.muteSoundFX = TRUE;
         }
     } else {
         NSLog(@"(soundController) No saved volumes found in prefs");
@@ -65,22 +71,24 @@
 
 - (void) updateVolumes{
     [self getStoredVolumes];
-    self.audioPlayer.volume = self->musicVolume;
-    self.jumpAudioPlayer.volume = self->fxVolume;
-    self.alienAudioPlayer.volume = self->fxVolume;
-    self.crateAudioPlayer.volume = self->fxVolume;
-    self.takeCellAudioPlayer.volume = self->musicVolume;
-    self.liftReadyAudioPlayer.volume = self->musicVolume;
-    self.takeLiftAudioPlayer.volume = self->musicVolume;
-    self.trainImpactAudioPlayer.volume = self->musicVolume;
-    self.footstepAudioPlayer.volume = self->musicVolume;
+    if(!self -> muteSoundFX){
+        self.audioPlayer.volume = self->musicVolume;
+        self.jumpAudioPlayer.volume = self->fxVolume;
+        self.alienAudioPlayer.volume = self->fxVolume;
+        self.crateAudioPlayer.volume = self->fxVolume;
+        self.takeCellAudioPlayer.volume = self->musicVolume;
+        self.liftReadyAudioPlayer.volume = self->musicVolume;
+        self.takeLiftAudioPlayer.volume = self->musicVolume;
+        self.trainImpactAudioPlayer.volume = self->musicVolume;
+        self.footstepAudioPlayer.volume = self->musicVolume;
+    }
 }
 
 - (float) getFxVolume{
     return self->fxVolume;
 }
 
-- (BOOL)isHeadsetPluggedIn {
+/*- (BOOL)isHeadsetPluggedIn {
     AVAudioSessionRouteDescription* route = [[AVAudioSession sharedInstance] currentRoute];
     for (AVAudioSessionPortDescription* desc in [route outputs]) {
         if ([[desc portType] isEqualToString:AVAudioSessionPortHeadphones])
@@ -88,7 +96,7 @@
             return YES;
     }
     return NO;
-}
+}*/
 
 -(void)startPlaying
 {
@@ -102,7 +110,10 @@
 -(void)playTune:(NSString*)filename loops:(int)loops
 {
     NSLog(@"playTune called");
-    if( !self->muteMusic ){
+    if( self -> muteMusic){
+        NSLog(@"Music muted - we dont play");
+        return;
+    } else {
         NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"mp3"];
         NSError *error = nil;
         
