@@ -135,7 +135,7 @@ float contextVelocityX;
 -(void)computeSceneCenter;
 -(void)setNearHero;
 
+// vs weak?
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
-@property(nonatomic, weak) SKNode *listener;
 
 @end
