@@ -21,12 +21,13 @@
 		DA03CBF7199F4C4700406720 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBF6199F4C4700406720 /* XCTest.framework */; };
 		DA03CBF8199F4C4700406720 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBCD199F4C4700406720 /* Foundation.framework */; };
 		DA03CBF9199F4C4700406720 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBD1199F4C4700406720 /* UIKit.framework */; };
-		DA03CC01199F4C4700406720 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA03CBFF199F4C4700406720 /* InfoPlist.strings */; };
-		DA03CC03199F4C4700406720 /* Maze_EscapeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03CC02199F4C4700406720 /* Maze_EscapeTests.m */; };
 		DA10C1A31D5BEBBD00579F1F /* Level_objects_img in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A21D5BEBBD00579F1F /* Level_objects_img */; };
 		DA10C1A51D5BF3F900579F1F /* UI_img in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A41D5BF3F900579F1F /* UI_img */; };
 		DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A61D5BFB6400579F1F /* edgar.atlas */; };
 		DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */; };
+		DA2429B6233960A10027DB3E /* EdgarLife-ui.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2429B4233960A10027DB3E /* EdgarLife-ui.png */; };
+		DA2429B7233960A10027DB3E /* classeurs-ui.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2429B5233960A10027DB3E /* classeurs-ui.png */; };
+		DA2429B9233965E50027DB3E /* lampe-test-ui.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2429B8233965E50027DB3E /* lampe-test-ui.png */; };
 		DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */; };
 		DA519C5D232CE8BE00B4F594 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5B232CE8BD00B4F594 /* gear.png */; };
 		DA519C5E232CE8BE00B4F594 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5C232CE8BD00B4F594 /* sound.png */; };
@@ -40,8 +41,6 @@
 		DA60EAA41B7F38E100A3F927 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = DA60EAA31B7F38E100A3F927 /* Sounds */; };
 		DA60FCB4223EBB6A005276C6 /* plpSoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60FCB3223EBB6A005276C6 /* plpSoundController.m */; };
 		DA60FCB6223EBB88005276C6 /* plpSoundController.h in Sources */ = {isa = PBXBuildFile; fileRef = DA60FCB5223EBB88005276C6 /* plpSoundController.h */; };
-		DA73B8501D02328400ED027D /* Edgar_Explorer_UITests4.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73B84F1D02328400ED027D /* Edgar_Explorer_UITests4.swift */; };
-		DA73B8581D0232A300ED027D /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73B8571D0232A300ED027D /* SnapshotHelper.swift */; };
 		DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7485461B86FF5100920C84 /* plpPlatform.m */; };
 		DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */ = {isa = PBXBuildFile; fileRef = DA984E361C0B478A00B13A08 /* LaunchScreen960.png */; };
 		DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9ADE411D5C05A800254A58 /* menuButton.png */; };
@@ -97,14 +96,14 @@
 		DA03CBEF199F4C4700406720 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DA03CBF5199F4C4700406720 /* Edgar_the_ExplorerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_the_ExplorerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA03CBF6199F4C4700406720 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		DA03CBFE199F4C4700406720 /* Maze EscapeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Maze EscapeTests-Info.plist"; sourceTree = "<group>"; };
-		DA03CC00199F4C4700406720 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DA03CC02199F4C4700406720 /* Maze_EscapeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Maze_EscapeTests.m; sourceTree = "<group>"; };
 		DA10C1A21D5BEBBD00579F1F /* Level_objects_img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Level_objects_img; sourceTree = "<group>"; };
 		DA10C1A41D5BF3F900579F1F /* UI_img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UI_img; sourceTree = "<group>"; };
 		DA10C1A61D5BFB6400579F1F /* edgar.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgar.atlas; sourceTree = "<group>"; };
 		DA1BE6EE1B81256000DA2E47 /* plpEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpEnemy.h; sourceTree = "<group>"; };
 		DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpEnemy.m; sourceTree = "<group>"; };
+		DA2429B4233960A10027DB3E /* EdgarLife-ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EdgarLife-ui.png"; path = "UI_img/EdgarLife-ui.png"; sourceTree = "<group>"; };
+		DA2429B5233960A10027DB3E /* classeurs-ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "classeurs-ui.png"; path = "UI_img/classeurs-ui.png"; sourceTree = "<group>"; };
+		DA2429B8233965E50027DB3E /* lampe-test-ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lampe-test-ui.png"; path = "UI_img/lampe-test-ui.png"; sourceTree = "<group>"; };
 		DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen1136.png; sourceTree = "<group>"; };
 		DA519C5B232CE8BD00B4F594 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = "External-media/gear.png"; sourceTree = SOURCE_ROOT; };
 		DA519C5C232CE8BD00B4F594 /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sound.png; path = "External-media/sound.png"; sourceTree = SOURCE_ROOT; };
@@ -122,9 +121,6 @@
 		DA60FCB3223EBB6A005276C6 /* plpSoundController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpSoundController.m; sourceTree = "<group>"; };
 		DA60FCB5223EBB88005276C6 /* plpSoundController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpSoundController.h; sourceTree = "<group>"; };
 		DA73B84D1D02328300ED027D /* Edgar_Explorer_UITests4.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_Explorer_UITests4.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA73B84F1D02328400ED027D /* Edgar_Explorer_UITests4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edgar_Explorer_UITests4.swift; sourceTree = "<group>"; };
-		DA73B8511D02328400ED027D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA73B8571D0232A300ED027D /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		DA7485451B86FF5100920C84 /* plpPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpPlatform.h; sourceTree = "<group>"; };
 		DA7485461B86FF5100920C84 /* plpPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpPlatform.m; sourceTree = "<group>"; };
 		DA984E361C0B478A00B13A08 /* LaunchScreen960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen960.png; sourceTree = "<group>"; };
@@ -185,8 +181,6 @@
 			children = (
 				DADBE5191C0A5E9A004469EA /* Media.xcassets */,
 				DA03CBD5199F4C4700406720 /* Maze Escape */,
-				DA03CBFC199F4C4700406720 /* Maze EscapeTests */,
-				DA73B84E1D02328400ED027D /* Edgar_Explorer_UITests4 */,
 				DA03CBCC199F4C4700406720 /* Frameworks */,
 				DA03CBCB199F4C4700406720 /* Products */,
 			);
@@ -259,24 +253,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DA03CBFC199F4C4700406720 /* Maze EscapeTests */ = {
-			isa = PBXGroup;
-			children = (
-				DA03CC02199F4C4700406720 /* Maze_EscapeTests.m */,
-				DA03CBFD199F4C4700406720 /* Supporting Files */,
-			);
-			path = "Maze EscapeTests";
-			sourceTree = "<group>";
-		};
-		DA03CBFD199F4C4700406720 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DA03CBFE199F4C4700406720 /* Maze EscapeTests-Info.plist */,
-				DA03CBFF199F4C4700406720 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		DA1E7C6B1C120ED300147FA2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,19 +283,12 @@
 			path = decor;
 			sourceTree = "<group>";
 		};
-		DA73B84E1D02328400ED027D /* Edgar_Explorer_UITests4 */ = {
-			isa = PBXGroup;
-			children = (
-				DA73B8571D0232A300ED027D /* SnapshotHelper.swift */,
-				DA73B84F1D02328400ED027D /* Edgar_Explorer_UITests4.swift */,
-				DA73B8511D02328400ED027D /* Info.plist */,
-			);
-			path = Edgar_Explorer_UITests4;
-			sourceTree = "<group>";
-		};
 		DAE713D71C0FA6D600ED9139 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DA2429B8233965E50027DB3E /* lampe-test-ui.png */,
+				DA2429B5233960A10027DB3E /* classeurs-ui.png */,
+				DA2429B4233960A10027DB3E /* EdgarLife-ui.png */,
 				DA519C5B232CE8BD00B4F594 /* gear.png */,
 				DA519C5C232CE8BD00B4F594 /* sound.png */,
 				DA9BC04D23072C1B00ACC878 /* SoundButton.png */,
@@ -442,12 +411,14 @@
 				DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */,
 				DA10C1A31D5BEBBD00579F1F /* Level_objects_img in Resources */,
 				DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */,
+				DA2429B9233965E50027DB3E /* lampe-test-ui.png in Resources */,
 				DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */,
 				DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */,
 				DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */,
 				DA5CF4CF1B73E8CC005A5C91 /* JSTileMap in Resources */,
 				DA519C5D232CE8BE00B4F594 /* gear.png in Resources */,
 				DAD1509F233161C800334FF3 /* Arrow.png in Resources */,
+				DA2429B6233960A10027DB3E /* EdgarLife-ui.png in Resources */,
 				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
 				DAE713DB1C0FA87500ED9139 /* Play.png in Resources */,
 				DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */,
@@ -458,6 +429,7 @@
 				DA60EAA41B7F38E100A3F927 /* Sounds in Resources */,
 				DA10C1A51D5BF3F900579F1F /* UI_img in Resources */,
 				DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */,
+				DA2429B7233960A10027DB3E /* classeurs-ui.png in Resources */,
 				DABCE3491D5BE8A900C277BB /* Levels in Resources */,
 				DA519C5E232CE8BE00B4F594 /* sound.png in Resources */,
 			);
@@ -467,7 +439,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA03CC01199F4C4700406720 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,7 +481,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA03CC03199F4C4700406720 /* Maze_EscapeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,8 +488,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA73B8501D02328400ED027D /* Edgar_Explorer_UITests4.swift in Sources */,
-				DA73B8581D0232A300ED027D /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,14 +521,6 @@
 				DA03CBE2199F4C4700406720 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		DA03CBFF199F4C4700406720 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DA03CC00199F4C4700406720 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
