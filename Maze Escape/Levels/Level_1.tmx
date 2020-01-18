@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="26" height="6" tilewidth="100" tileheight="100" nextobjectid="33">
- <tileset firstgid="1" name="Lvl1_fond_smaller" tilewidth="100" tileheight="100">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="6" tilewidth="100" tileheight="100" infinite="0" nextlayerid="6" nextobjectid="37">
+ <tileset firstgid="1" name="Lvl1_fond_smaller" tilewidth="100" tileheight="100" tilecount="40" columns="10">
   <image source="Lvl1_fond_smaller.png" width="1000" height="400"/>
  </tileset>
- <tileset firstgid="41" name="Lvl1_solides_smaller" tilewidth="100" tileheight="100">
+ <tileset firstgid="41" name="Lvl1_solides_smaller" tilewidth="100" tileheight="100" tilecount="32" columns="8">
   <image source="Lvl1_solides_smaller.png" width="800" height="400"/>
  </tileset>
- <layer name="Fond" width="26" height="6">
+ <layer id="1" name="Fond" width="26" height="6">
   <data encoding="base64" compression="zlib">
-   eJyt0EkKgDAMBdA6rRx2zrPdeglx4/1P5C9WCCFVFwYedQj5pEpd5TE+BBCq/ypmGeY9gRQyqK2GPPNv0r9ayLmZnBwKKKGy/S109jQGMityZPAcxfYZYYIZlod70GTWW872YofVQQtz6Z496f2ScwhcJfUaJ4n5Dw4=
+   eAGtj0kOwjAQBM12YrmFJaxJrnwCceH/L6JazkhN5ORES5UZTzvTckpZM4oz57yAZbb/8l2zxTN03sAWdnDqqa0fzkqe7ri0N1BeBXs4wBF0/wyXvqq/QWStrI9ZVKwf+XvuOA9ooIUxdRjaJ8XeYc1uSi+aKd74zxEix3f7O6/231SGPOV8CjAqqnRXsy+J+Q8O
   </data>
  </layer>
- <layer name="Solide" width="26" height="6">
+ <layer id="2" name="Solide" width="26" height="6">
   <data encoding="base64" compression="zlib">
-   eJzjZmBg4EbDmkCsBcTaQKwDxB4UYF2oGSBz0YEhEBsBsTEQmwCxKRY1ZljEQMAVDeOzhxJgjmYnzB4nAtiFAXeYwAAyG5c95ABYmBADdCi0B5cfXZHMRsYANRwSGQ==
+   eAGlkUsKgDAMRLPvSfwt/O9FwfufyBloIARSqg480iRthrZJRJKjQd6CDvTg/sGQZ9DDa0RhAjNYwAq8Nl/I+YVoKfkEI6rKu9lFP/U5sC5xoh+9m45kXxX5aP9N1HepOcP/JV9En+iO7OlsGx81HBIZ
   </data>
  </layer>
- <objectgroup name="Objets">
+ <objectgroup id="3" name="Objets">
   <object id="15" name="uranium" type="Item" x="2334.9" y="438.49" width="29" height="29">
    <ellipse/>
   </object>
@@ -36,5 +36,17 @@
   </object>
   <object id="28" name="arbre" type="arbre" x="40" y="17" width="253" height="285"/>
   <object id="30" name="Caissezz" type="Caisse" x="1619" y="436" width="60" height="60"/>
+ </objectgroup>
+ <objectgroup id="4" name="CollisionPolygons">
+  <object id="33" x="530" y="4">
+   <polygon points="0,0 -24,86 48,94 104,116 224,134 242,126 308,136 308,188 324,192 324,138 362,140 358,4"/>
+  </object>
+  <object id="34" x="4" y="308">
+   <polygon points="0,0 1496,-8 1494,194 2400,194 2400,-48 2454,286 2,288"/>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="CollisionRectangles">
+  <object id="35" x="6" y="308" width="1494" height="286"/>
+  <object id="36" x="330" y="160" width="64" height="116"/>
  </objectgroup>
 </map>

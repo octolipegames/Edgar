@@ -183,8 +183,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if(myLevel)
         {
             [myWorld addChild: myLevel];
-            [self addStoneBlocks:myLevel];
-            [self loadAssets:myLevel];
+            [self addCollisionLayer: myLevel];
+            [self loadAssets: myLevel];
         }
         else
         {
@@ -487,8 +487,52 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     return myTileMap;
 }
 
--(void)addStoneBlocks: (JSTileMap*) tileMap
+-(void)addCollisionLayer: (JSTileMap*) tileMap
 {
+    BOOL useCollisionGroup = FALSE;
+    NSMutableArray *bodyArray;
+    
+    TMXObjectGroup *collisionRectangles = [tileMap groupNamed:@"CollisionRectangles"]; // Objets
+    if(collisionRectangles){
+//        useCollisionGroup = TRUE;
+        for (NSDictionary *collisionRectangle in [collisionRectangles objects]) {
+            NSLog(@"Rectangle found");
+            SKPhysicsBody *rectangleBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake([collisionRectangle[@"width"] floatValue], [collisionRectangle[@"height"] floatValue]) center:CGPointMake([collisionRectangle[@"x"] floatValue], [collisionRectangle[@"y"] floatValue])];
+            
+            SKShapeNode *stupidRectangle = [SKShapeNode shapeNodeWithRect:CGRectMake([collisionRectangle[@"width"] floatValue], [collisionRectangle[@"height"] floatValue], [collisionRectangle[@"x"] floatValue], [collisionRectangle[@"y"] floatValue]) cornerRadius:0];
+//            [stupidRectangle setPosition: CGPointMake()];
+            [myLevel addChild: stupidRectangle];
+            
+            NSLog(@"Rectangle values: %f, %f", [collisionRectangle[@"y"] floatValue], [collisionRectangle[@"height"] floatValue]);
+            [bodyArray addObject: rectangleBody];
+        }
+
+        
+        SKPhysicsBody *levelBodies = [SKPhysicsBody bodyWithBodies: bodyArray];
+        myLevel.physicsBody = levelBodies;
+        myLevel.physicsBody.dynamic = NO;
+        myLevel.physicsBody.categoryBitMask = PhysicsCategoryTiles;
+        myLevel.physicsBody.friction = 0.5;
+        myLevel.physicsBody.restitution = 0;
+    }else{
+        NSLog(@"No collision layer found in the tilemap.");
+    }
+    
+    TMXObjectGroup *collisionPolygons = [tileMap groupNamed:@"CollisionPolygons"]; // Objets
+    if(collisionPolygons){
+//        useCollisionGroup = TRUE;
+        for (NSDictionary *collisionPolygon in [collisionPolygons objects]) {
+            NSLog(@"Polygon found");
+            // shapeNodeWithPath
+            // bodyWithRectangleOfSize:(CGSize)s
+            // center:(CGPoint)center;
+        }
+    }else{
+        NSLog(@"No collision layer found in the tilemap.");
+    }
+
+    
+    
     TMXLayer* monLayer = [tileMap layerNamed:@"Solide"];
     
     for (int a = 0; a < tileMap.mapSize.width; a++)
@@ -499,7 +543,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             
             NSInteger gid = [monLayer tileGidAt:[monLayer pointForCoord:pt]];
             
-            if (gid != 0)
+            if (gid != 0 && !useCollisionGroup)
             {
                 SKSpriteNode* node = [monLayer tileAtCoord:pt];
                 [node setSize:CGSizeMake(101.0f, 101.0f)];
@@ -1367,8 +1411,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     myWorld.position = CGPointMake(0, 0);
     [myWorld addChild: myLevel];
     
-    [self addStoneBlocks:myLevel];
-    [self loadAssets:myLevel];
+    [self addCollisionLayer: myLevel];
+    [self loadAssets: myLevel];
     Edgar.position = startPosition;
     myCamera.position = startPosition;
     
@@ -2055,6 +2099,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             
             if(cheatsEnabled == TRUE)
             {
+                self.view.showsPhysics = YES;
+                self.view.showsFPS = YES;
+                self.view.showsNodeCount = YES;
                 if(touch.tapCount == 4)
                 {
                     if(!self.view.showsPhysics)
