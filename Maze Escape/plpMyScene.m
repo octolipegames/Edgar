@@ -526,12 +526,27 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         for (NSDictionary *collisionPolygon in [collisionPolygons objects]) {
             NSLog(@"Polygon found");
             NSArray *coordinates = [[collisionPolygon[@"polygonPoints"] stringValue] componentsSeparatedByString:@" "];
-            //NSArray *keys=[collisionPolygon allKeys];
-            NSLog(@"Coordinates: %@", coordinates);
+            
+            // NSLog(@"Coordinates: %@", coordinates);
+            
+            CGMutablePathRef path = CGPathCreateMutable();
+            CGPathMoveToPoint(path, nil, 0, 0);
+            for (NSString *coordinate in coordinates){
+                NSArray *xy = [coordinate componentsSeparatedByString:@","];
+                CGPathAddLineToPoint(path, nil, [xy[0] floatValue], -[xy[1] floatValue]);
+            }
+            
+            // create polygonal body according to tilemap
+            SKPhysicsBody *polygonBody = [SKPhysicsBody bodyWithPolygonFromPath: path];
+            polygonBody.dynamic = NO;
+            polygonBody.categoryBitMask = PhysicsCategoryTiles;
+            polygonBody.collisionBitMask = 0;
 
-            // shapeNodeWithPath
-            // bodyWithRectangleOfSize:(CGSize)s
-            // center:(CGPoint)center;
+            // attach body to node
+            SKNode *collisionNode = [SKNode node];
+            [collisionNode setPosition: [self convertPosition: collisionPolygon]];
+            collisionNode.physicsBody = polygonBody;
+            [tileMap addChild: collisionNode];
         }
     }else{
         NSLog(@"No collision layer found in the tilemap.");
