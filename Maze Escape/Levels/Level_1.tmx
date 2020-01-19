@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="6" tilewidth="100" tileheight="100" infinite="0" nextlayerid="6" nextobjectid="40">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="6" tilewidth="100" tileheight="100" infinite="0" nextlayerid="6" nextobjectid="54">
  <tileset firstgid="1" name="Lvl1_fond_smaller" tilewidth="100" tileheight="100" tilecount="40" columns="10">
   <image source="Lvl1_fond_smaller.png" width="1000" height="400"/>
  </tileset>
@@ -8,7 +8,7 @@
  </tileset>
  <layer id="1" name="Fond" width="26" height="6">
   <data encoding="base64" compression="zlib">
-   eAGtj0kOwjAQBM12YrmFJaxJrnwCceH/L6JazkhN5ORES5UZTzvTckpZM4oz57yAZbb/8l2zxTN03sAWdnDqqa0fzkqe7ri0N1BeBXs4wBF0/wyXvqq/QWStrI9ZVKwf+XvuOA9ooIUxdRjaJ8XeYc1uSi+aKd74zxEix3f7O6/231SGPOV8CjAqqnRXsy+J+Q8O
+   eAGtj8sOglAMRKvISmWH+AQfW3/CuPH/v8gzgSaVFFZOctLSKZ1cM7NFwpJZASv4l9Yciln63sAWKjgMHEM/nmWedqJ011FeDTtoYA/aP8F5qOpb8Kwy9D7zivWj+J4O5wo3uMOUHhi6J/ndce1dsxfNHG/85wSeE2/Hd17Cf3MZ8pTzSWCUKtvV7AuMZQ8P
   </data>
  </layer>
  <layer id="2" name="Solide" width="26" height="6">
@@ -39,14 +39,18 @@
  </objectgroup>
  <objectgroup id="4" name="CollisionPolygons">
   <object id="33" x="530" y="4">
-   <polygon points="0,0 -24,86 48,94 104,116 224,134 242,126 308,136 308,188 324,192 324,138 362,140 358,4"/>
+   <polygon points="-1,-4 -24,88 13.5655,96.2138 48,94 104,116 224,134 248,119 308,131 308,188 324,192 324,134 362,140 438.957,97.4339 901.504,95.8188 902.018,194.537 917.532,195.418 918.21,-4.31477 642.5,-3"/>
   </object>
  </objectgroup>
  <objectgroup id="5" name="CollisionRectangles">
-  <object id="35" x="8.88178e-16" y="300" width="1500" height="300"/>
-  <object id="36" x="294" y="136" width="64" height="116"/>
+  <object id="35" x="8.88178e-16" y="300" width="1490" height="300"/>
   <object id="37" x="2328" y="-610"/>
-  <object id="38" x="252" y="68" width="64" height="116"/>
-  <object id="39" x="352" y="212" width="64" height="116"/>
+  <object id="45" x="1450" y="0" width="550" height="100"/>
+  <object id="47" x="2000" y="0" width="600" height="200"/>
+  <object id="48" x="2030" y="200" width="18" height="200"/>
+  <object id="49" x="1500" y="500" width="1100" height="100"/>
+  <object id="50" x="2300" y="200" width="300" height="200"/>
+  <object id="51" x="2400" y="400" width="200" height="100"/>
+  <object id="52" x="100" y="0" width="500" height="100"/>
  </objectgroup>
 </map>

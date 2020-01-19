@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="17" height="5" tilewidth="100" tileheight="100" nextobjectid="19">
- <tileset firstgid="1" name="ElementsTiles-01-01.png" tilewidth="100" tileheight="100">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="17" height="5" tilewidth="100" tileheight="100" infinite="0" nextlayerid="6" nextobjectid="35">
+ <tileset firstgid="1" name="ElementsTiles-01-01.png" tilewidth="100" tileheight="100" tilecount="39" columns="13">
   <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
  </tileset>
- <layer name="Fond" width="17" height="5">
+ <layer id="1" name="Fond" width="17" height="5">
   <data encoding="base64" compression="zlib">
-   eJxjYKAOkAZiWSiNzJbEIwfDyGaAsBSaPDEY3QxyMD6gDFXDg+QvGBtdPwBPBQWg
+   eAFjYKAOkAYaIwvEIBqZLYnGR5aDqQUqAQMYXwrIg7GJpaFGkKwP2XyYGdhoZaibeKA0yF8wNswMmD4ATwUFoA==
   </data>
  </layer>
- <layer name="Solide" width="17" height="5">
+ <layer id="2" name="Solide" width="17" height="5">
   <data encoding="base64" compression="zlib">
-   eJzjY2Bg4KMCxgYYcYgjAwk8ZnBBzQDJcSOJIdMwgM1NAkTYDwPcOMwgBwMA06cCxw==
+   eAHjY2Bg4KMCBhqBARgxRDAFJIBCMPvRZbmAAiAzQPLcUEmQGAjAaAgPYQbMLBAtAJMkggaZj6yXEjYA06cCxw==
   </data>
  </layer>
- <objectgroup name="Objets">
+ <objectgroup id="4" name="CollisionRectangles">
+  <object id="19" x="0" y="0" width="1700" height="100"/>
+  <object id="20" x="-2" y="401" width="1700" height="100"/>
+  <object id="22" x="0" y="100" width="100" height="300"/>
+  <object id="23" x="646" y="100" width="54" height="200"/>
+  <object id="24" x="700" y="200" width="100" height="100"/>
+  <object id="25" x="800" y="280" width="100" height="20"/>
+  <object id="27" x="1040" y="240" width="20" height="20"/>
+  <object id="29" x="1500" y="100" width="200" height="20"/>
+  <object id="30" x="1600" y="120" width="100" height="260"/>
+  <object id="31" x="1500" y="380" width="200" height="20"/>
+  <object id="33" x="1240" y="240" width="20" height="20"/>
+  <object id="34" x="540" y="240" width="20" height="20"/>
+ </objectgroup>
+ <objectgroup id="5" name="CollisionPolygons">
+  <object id="32" x="100" y="300">
+   <polygon points="0,0 300,0.666667 400,100.667 -0.666667,100.333"/>
+  </object>
+ </objectgroup>
+ <objectgroup id="3" name="Objets">
   <object id="1" name="Start" x="104.997" y="194" width="88" height="106"/>
   <object id="6" name="uranium" type="Item" x="732.5" y="140.5" width="29" height="29">
    <ellipse/>
