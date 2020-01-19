@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="6" tilewidth="100" tileheight="100" infinite="0" nextlayerid="6" nextobjectid="37">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="6" tilewidth="100" tileheight="100" infinite="0" nextlayerid="6" nextobjectid="40">
  <tileset firstgid="1" name="Lvl1_fond_smaller" tilewidth="100" tileheight="100" tilecount="40" columns="10">
   <image source="Lvl1_fond_smaller.png" width="1000" height="400"/>
  </tileset>
@@ -13,7 +13,7 @@
  </layer>
  <layer id="2" name="Solide" width="26" height="6">
   <data encoding="base64" compression="zlib">
-   eAGlkUsKgDAMRLPvSfwt/O9FwfufyBloIARSqg480iRthrZJRJKjQd6CDvTg/sGQZ9DDa0RhAjNYwAq8Nl/I+YVoKfkEI6rKu9lFP/U5sC5xoh+9m45kXxX5aP9N1HepOcP/JV9En+iO7OlsGx81HBIZ
+   eAHjZsAEmkAhLSDWBmIdIPagAOtCzeAG0ujAEChgBMTGQGwCxKZAjA7M0AWgfFcgjYzx2YPDCKKEzZFUgeyD2eMEZOPDLkB5XOEGMxIkDwO47IHJk0LDwoUYPaD4BWFyAMgeXH4EycHMRqYBy4UR7Q==
   </data>
  </layer>
  <objectgroup id="3" name="Objets">
@@ -41,12 +41,12 @@
   <object id="33" x="530" y="4">
    <polygon points="0,0 -24,86 48,94 104,116 224,134 242,126 308,136 308,188 324,192 324,138 362,140 358,4"/>
   </object>
-  <object id="34" x="4" y="308">
-   <polygon points="0,0 1496,-8 1494,194 2400,194 2400,-48 2454,286 2,288"/>
-  </object>
  </objectgroup>
  <objectgroup id="5" name="CollisionRectangles">
-  <object id="35" x="6" y="308" width="1494" height="286"/>
-  <object id="36" x="330" y="160" width="64" height="116"/>
+  <object id="35" x="8.88178e-16" y="300" width="1500" height="300"/>
+  <object id="36" x="294" y="136" width="64" height="116"/>
+  <object id="37" x="2328" y="-610"/>
+  <object id="38" x="252" y="68" width="64" height="116"/>
+  <object id="39" x="352" y="212" width="64" height="116"/>
  </objectgroup>
 </map>

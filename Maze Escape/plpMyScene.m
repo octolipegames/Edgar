@@ -65,6 +65,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 -(id)initWithSize:(CGSize)size{
     if (self = [super initWithSize:size]) {
         self.physicsWorld.contactDelegate = self;
+        
         self.size = CGSizeMake(800, 400);// => moitie de la largeur = 400 // En fait, coordonnees: 754 x 394 (?)
         
         myWorld = [SKNode node];         // Creation du "monde" sur lequel tout est fixe
@@ -225,7 +226,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     // We clean the UI
     SKNode *theTrophy = [myCamera childNodeWithName:@"trophy"];
     [theTrophy removeFromParent];
-    [myCamera setScale:1];
+    
+    [myCamera setScale: 1];
     
     [self->soundController doVolumeFade];
     
@@ -492,37 +494,41 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     BOOL useCollisionGroup = FALSE;
     NSMutableArray *bodyArray;
     
+    // Remove after debug
+    self.view.showsPhysics = YES;
+    self.view.showsFPS = YES;
+    self.view.showsNodeCount = YES;
+
+    
     TMXObjectGroup *collisionRectangles = [tileMap groupNamed:@"CollisionRectangles"]; // Objets
     if(collisionRectangles){
-//        useCollisionGroup = TRUE;
+        useCollisionGroup = TRUE;
         for (NSDictionary *collisionRectangle in [collisionRectangles objects]) {
-            NSLog(@"Rectangle found");
-            SKPhysicsBody *rectangleBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake([collisionRectangle[@"width"] floatValue], [collisionRectangle[@"height"] floatValue]) center:CGPointMake([collisionRectangle[@"x"] floatValue], [collisionRectangle[@"y"] floatValue])];
             
-            SKShapeNode *stupidRectangle = [SKShapeNode shapeNodeWithRect:CGRectMake([collisionRectangle[@"width"] floatValue], [collisionRectangle[@"height"] floatValue], [collisionRectangle[@"x"] floatValue], [collisionRectangle[@"y"] floatValue]) cornerRadius:0];
-//            [stupidRectangle setPosition: CGPointMake()];
-            [myLevel addChild: stupidRectangle];
-            
-            NSLog(@"Rectangle values: %f, %f", [collisionRectangle[@"y"] floatValue], [collisionRectangle[@"height"] floatValue]);
-            [bodyArray addObject: rectangleBody];
-        }
+            // create rectangular body according to tilemap
+            SKPhysicsBody *rectangleBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake([collisionRectangle[@"width"] floatValue], [collisionRectangle[@"height"] floatValue])];
+            rectangleBody.dynamic = NO;
+            rectangleBody.categoryBitMask = PhysicsCategoryTiles;
+            rectangleBody.collisionBitMask = 0;
 
-        
-        SKPhysicsBody *levelBodies = [SKPhysicsBody bodyWithBodies: bodyArray];
-        myLevel.physicsBody = levelBodies;
-        myLevel.physicsBody.dynamic = NO;
-        myLevel.physicsBody.categoryBitMask = PhysicsCategoryTiles;
-        myLevel.physicsBody.friction = 0.5;
-        myLevel.physicsBody.restitution = 0;
+            // node containing the body
+            SKNode *collisionNode = [SKNode node];
+            [collisionNode setPosition: [self convertPosition: collisionRectangle]];
+            collisionNode.physicsBody = rectangleBody;
+            [tileMap addChild: collisionNode];
+        }
     }else{
         NSLog(@"No collision layer found in the tilemap.");
     }
     
     TMXObjectGroup *collisionPolygons = [tileMap groupNamed:@"CollisionPolygons"]; // Objets
     if(collisionPolygons){
-//        useCollisionGroup = TRUE;
         for (NSDictionary *collisionPolygon in [collisionPolygons objects]) {
             NSLog(@"Polygon found");
+            NSArray *coordinates = [[collisionPolygon[@"polygonPoints"] stringValue] componentsSeparatedByString:@" "];
+            //NSArray *keys=[collisionPolygon allKeys];
+            NSLog(@"Coordinates: %@", coordinates);
+
             // shapeNodeWithPath
             // bodyWithRectangleOfSize:(CGSize)s
             // center:(CGPoint)center;
@@ -547,7 +553,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             {
                 SKSpriteNode* node = [monLayer tileAtCoord:pt];
                 [node setSize:CGSizeMake(101.0f, 101.0f)];
-                node.physicsBody = [SKPhysicsBody bodyWithTexture:node.texture size:node.frame.size];
+                // node.physicsBody = [SKPhysicsBody bodyWithTexture:node.texture size:node.frame.size];
+                node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(100, 100)];
                 node.physicsBody.dynamic = NO;
                 node.physicsBody.categoryBitMask = PhysicsCategoryTiles;
                 node.physicsBody.friction = 0.5;
@@ -562,6 +569,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
 }
 
+// input: Tilemap rectangle, output: rectangle center
 -(CGPoint) convertPosition:(NSDictionary*)objectDictionary
 {
     CGPoint thePoint = CGPointMake([objectDictionary[@"x"] floatValue] + ([objectDictionary[@"width"] floatValue]/2),
@@ -2099,9 +2107,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             
             if(cheatsEnabled == TRUE)
             {
-                self.view.showsPhysics = YES;
-                self.view.showsFPS = YES;
-                self.view.showsNodeCount = YES;
                 if(touch.tapCount == 4)
                 {
                     if(!self.view.showsPhysics)

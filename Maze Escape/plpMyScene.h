@@ -120,7 +120,7 @@ float contextVelocityX;
 }
 
 -(void)loadAssets:(JSTileMap*) tileMap;
--(void)addStoneBlocks:(JSTileMap*) tileMap;
+-(void)addCollisionLayer:(JSTileMap*) tileMap;
 -(void)resetGameData;
 -(void)EdgarDiesOf:(int)deathType;
 -(void)resetEdgar;
