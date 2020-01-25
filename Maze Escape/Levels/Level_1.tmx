@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="6" tilewidth="100" tileheight="100" infinite="0" nextlayerid="6" nextobjectid="54">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="6" tilewidth="100" tileheight="100" infinite="0" nextlayerid="6" nextobjectid="55">
  <tileset firstgid="1" name="Lvl1_fond_smaller" tilewidth="100" tileheight="100" tilecount="40" columns="10">
   <image source="Lvl1_fond_smaller.png" width="1000" height="400"/>
  </tileset>
@@ -35,7 +35,6 @@
    </properties>
   </object>
   <object id="28" name="arbre" type="arbre" x="40" y="17" width="253" height="285"/>
-  <object id="30" name="Caissezz" type="Caisse" x="1619" y="436" width="60" height="60"/>
  </objectgroup>
  <objectgroup id="4" name="CollisionPolygons">
   <object id="33" x="530" y="4">
@@ -44,7 +43,6 @@
  </objectgroup>
  <objectgroup id="5" name="CollisionRectangles">
   <object id="35" x="8.88178e-16" y="300" width="1490" height="300"/>
-  <object id="37" x="2328" y="-610"/>
   <object id="45" x="1450" y="0" width="550" height="100"/>
   <object id="47" x="2000" y="0" width="600" height="200"/>
   <object id="48" x="2030" y="200" width="18" height="200"/>
@@ -52,5 +50,6 @@
   <object id="50" x="2300" y="200" width="300" height="200"/>
   <object id="51" x="2400" y="400" width="200" height="100"/>
   <object id="52" x="100" y="0" width="500" height="100"/>
+  <object id="54" x="1700" y="300" width="100" height="100"/>
  </objectgroup>
 </map>
