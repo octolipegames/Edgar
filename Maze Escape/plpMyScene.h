@@ -36,7 +36,7 @@
 #define SEMAPHORE_LEVEL_INDEX 5
 #define FIRST_DARK_LEVEL 6
 #define USE_ALTERNATE_CONTROLS 0
-#define DEFAULT_EDGAR_VELOCITY 150
+#define DEFAULT_EDGAR_VELOCITY 450 // was 150
 #define HUD_VERTICAL_THIRD 400/3
 #define HUD_VERTICAL_SPAN 400/6
 #define HUD_HORIZONTAL_SPAN 800/6
@@ -44,6 +44,7 @@
 #define BUTTON_VERTICAL_SPAN (HUD_VERTICAL_THIRD*0.5)-200
 
 float contextVelocityX;
+
 
 @interface plpMyScene : SKScene <SKPhysicsContactDelegate>
 {

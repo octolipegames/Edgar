@@ -22,6 +22,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 #import "plpMyScene.h"
+float x3 = 3;
 
 //´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
 //
@@ -66,10 +67,16 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if (self = [super initWithSize:size]) {
         self.physicsWorld.contactDelegate = self;
         
-        self.size = CGSizeMake(800, 400);// => moitie de la largeur = 400 // En fait, coordonnees: 754 x 394 (?)
+        // self.size = CGSizeMake(800, 400); // zoom for debug
+        self.size = CGSizeMake(800 * x3, 400 * x3);// => moitie de la largeur = 400 * x3 // En fait, coordonnees: 754 x 394 (?)
+        NSLog(@"Size: (%f, %f)", self.size.width, self.size.height);
+        
+        // 
+        self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f);
         
         myWorld = [SKNode node];         // Creation du "monde" sur lequel tout est fixe
         myWorld.name = @"world";
+        
         [self addChild:myWorld];
         
         myCamera = [SKCameraNode node];
@@ -93,9 +100,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             SKShapeNode *horizontalLine = [SKShapeNode node];
             CGMutablePathRef pathToDraw = CGPathCreateMutable();
             
-            // -400 = left bound, -200 = bottom bound
-            CGPathMoveToPoint(pathToDraw, NULL, -400, -200);
-            CGPathAddLineToPoint(pathToDraw, NULL, 400, -200);
+            // -400 * x3 = left bound, -200 * x3 = bottom bound
+            CGPathMoveToPoint(pathToDraw, NULL, -400 * x3, -200 * x3);
+            CGPathAddLineToPoint(pathToDraw, NULL, 400 * x3, -200 * x3);
             horizontalLine.path = pathToDraw;
             [horizontalLine setStrokeColor:[SKColor whiteColor]];
             SKShapeNode *horizontalLineTop = [horizontalLine copy];
@@ -108,8 +115,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             CGMutablePathRef verticalPath = CGPathCreateMutable();
             
             // from bottom bound to top bound
-            CGPathMoveToPoint(verticalPath, NULL, 0, -200);
-            CGPathAddLineToPoint(verticalPath, NULL, 0, 200);
+            CGPathMoveToPoint(verticalPath, NULL, 0, -200 * x3);
+            CGPathAddLineToPoint(verticalPath, NULL, 0, 200 * x3);
             verticalLineLeft.path = verticalPath;
             [verticalLineLeft setStrokeColor:[SKColor whiteColor]];
             SKShapeNode *verticalLineRight = [verticalLineLeft copy];
@@ -172,7 +179,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
         // This speed gets higher when Edgar does a long jump.
         // He could also walk faster or slower with new items.
-        EdgarVelocity = 140;
+        EdgarVelocity = 140 * x3;
         
         
         moveLeftAction = [SKAction repeatActionForever:[SKAction sequence:@[walkLeft, wait]]];
@@ -232,9 +239,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [self->soundController doVolumeFade];
     
     // Curtains
-    float halfHeight = 200;
+    float halfHeight = 200 * x3;
     
-    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
+    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800 * x3, 250 * x3) ];
     SKSpriteNode *lowerCurtain = [upperCurtain copy];
     upperCurtain.anchorPoint = CGPointMake(0.5, 0);
     upperCurtain.position = CGPointMake(0, halfHeight);
@@ -285,7 +292,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     // custom size because the keyboard takes up half the screen
-    [containerView setFrame:CGRectMake(50, 5, self.view.bounds.size.width-100, self.view.bounds.size.height/2-10)];
+    [containerView setFrame:CGRectMake(50, 5, self.view.bounds.size.width-100 * x3, (self.view.bounds.size.height/2-10)*x3)];
     
     UITextView *usernameTextView = [[UITextView alloc] init];
     usernameTextView.text = [NSString stringWithFormat:@"Choose a name"];
@@ -383,7 +390,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKSpriteNode *trophy = [SKSpriteNode spriteNodeWithTexture:trophyTexture];
     trophy.name = @"trophy";
     
-    [containerView setFrame:CGRectMake(50, 5, self.view.bounds.size.width-100, self.view.bounds.size.height/3)]; // upper half of the screen
+    [containerView setFrame:CGRectMake(50*x3, 5*x3, self.view.bounds.size.width - (100 * x3), self.view.bounds.size.height/3)]; // upper half of the screen
 
     if(!myTextView)
     {
@@ -423,7 +430,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [trophy setScale: 0.5];
     // Position: bottom left
     [trophy setPosition: CGPointMake(10 - trophy.size.width/2, 40 - trophy.size.height/2)];
-    [trophy setZPosition: 100];
+    [trophy setZPosition: 100 * x3];
     [myCamera addChild: trophy];
 }
 
@@ -458,8 +465,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     JSTileMap *myTileMap;
     NSArray *levelFiles = [NSArray arrayWithObjects:
                            @"Levels/Level_0_tuto.tmx",
-                           @"Levels/Level_1.tmx",
                            @"Levels/Level_2.tmx",
+                           // @"Levels/Level_2_sd.tmx",
+                           //@"Levels/Level_1.tmx",
+                           
+                           //@"Levels/Level_2_x3.tmx",
                            @"Levels/Level_3.tmx",
                            @"Levels/Level_4.tmx",
                            @"Levels/Level_5.tmx",
@@ -485,7 +495,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         NSLog(@"Next level out of the “levelFiles” array");
         return false;
     }
-    
     return myTileMap;
 }
 
@@ -553,7 +562,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
 
     
-    
+    /*
     TMXLayer* monLayer = [tileMap layerNamed:@"Solide"];
     
     for (int a = 0; a < tileMap.mapSize.width; a++)
@@ -567,9 +576,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if (gid != 0 && !useCollisionGroup)
             {
                 SKSpriteNode* node = [monLayer tileAtCoord:pt];
-                [node setSize:CGSizeMake(101.0f, 101.0f)];
+                // [node setSize:CGSizeMake(100 * x3.0f, 100 * x3.0f)];
+                [node setSize:CGSizeMake(300 * x3.0f, 300 * x3.0f)];
                 // node.physicsBody = [SKPhysicsBody bodyWithTexture:node.texture size:node.frame.size];
-                node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(100, 100)];
+                node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(300 * x3, 300 * x3)];
                 node.physicsBody.dynamic = NO;
                 node.physicsBody.categoryBitMask = PhysicsCategoryTiles;
                 node.physicsBody.friction = 0.5;
@@ -581,7 +591,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 }
             }
         }
-    }
+    }*/
 }
 
 // input: Tilemap rectangle, output: rectangle center
@@ -1156,31 +1166,31 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         // The camera position will stay at the same place if none of the following conditions is met
         CGPoint newCameraPosition = myCamera.position;
         
-        if(xDistance < -100) // a gauche
+        if(xDistance < -100 * x3) // a gauche
         {
-            newCameraPosition.x = Edgar.position.x + 100;
+            newCameraPosition.x = Edgar.position.x + 100 * x3;
             [myCamera setPosition:CGPointMake(newCameraPosition.x, myCamera.position.y)];
         }
-        else if(xDistance > 100) // a droite
+        else if(xDistance > 100 * x3) // a droite
         {
-            newCameraPosition.x = Edgar.position.x - 100;
+            newCameraPosition.x = Edgar.position.x - 100 * x3;
             [myCamera setPosition:CGPointMake(newCameraPosition.x, myCamera.position.y)];
         }
-        if(yDistance < -100)
+        if(yDistance < -100 * x3)
         {
-            newCameraPosition.y = Edgar.position.y + 100;
+            newCameraPosition.y = Edgar.position.y + 100 * x3;
             [myCamera setPosition:CGPointMake(myCamera.position.x, newCameraPosition.y)];
         }
-        else if(yDistance > 100)
+        else if(yDistance > 100 * x3)
         {
-            newCameraPosition.y = Edgar.position.y - 100;
+            newCameraPosition.y = Edgar.position.y - 100 * x3;
             [myCamera setPosition:CGPointMake(myCamera.position.x, newCameraPosition.y)];
         }
         myCamera.position = CGPointMake(roundf(newCameraPosition.x), roundf(newCameraPosition.y));
     }
     /* Detect if Edgar will crash -- currently disabled
     if(![Edgar.physicsBody isResting]){
-        if(Edgar.physicsBody.velocity.dy < -1400){
+        if(Edgar.physicsBody.velocity.dy < -1400 * x3){
             gonnaCrash = TRUE;
         }
     }*/
@@ -1189,14 +1199,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 - (void)setNearHero
 {
     // Loop through platformnodes and
-    // toggles "heroNear" for those in a box of 500x500 pixels near the hero.
+    // toggles "heroNear" for those in a box of 500 * x3x500 * x3 pixels near the hero.
     for (plpPlatform *platformNode in platformNodes) {
         
         // For debug
         /* float distance = fabs(Edgar.position.y - audioNode.parent.position.y);
          // NSLog(@"Position is %f", audioNode.parent.position.x); */
 
-        if( (fabs(Edgar.position.x - platformNode.position.x) < 500) && (fabs(Edgar.position.y - platformNode.position.y) < 500) ){
+        if( (fabs(Edgar.position.x - platformNode.position.x) < 500 * x3) && (fabs(Edgar.position.y - platformNode.position.y) < 500 * x3) ){
             [platformNode setHeroNear];
         } else {
             [platformNode setHeroAway];
@@ -1248,9 +1258,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 
 -(void)doFirstOpening{
-    float halfHeight = 200;
+    float halfHeight = 200 * x3;
     
-    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
+    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800 * x3, 250) ];
     SKSpriteNode *lowerCurtain = [upperCurtain copy];
     upperCurtain.anchorPoint = CGPointMake(0.5, 0);
     upperCurtain.position = CGPointMake(0, 0);
@@ -1285,7 +1295,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 
 -(void)doLevelTransition_sameLevel:(BOOL)repeatingLevel{
-    float halfHeight = 200;
+    float halfHeight = 200 * x3;
     
     // A. Save to additionalTime; we call saveInitialTime when the curtains open again (we don't count time between levels, it wouldn't be fair!)
     
@@ -1352,7 +1362,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     
     
-    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800, 250) ];
+    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800 * x3, 250) ];
     SKSpriteNode *lowerCurtain = [upperCurtain copy];
     upperCurtain.anchorPoint = CGPointMake(0.5, 0);
     upperCurtain.position = CGPointMake(0, halfHeight);
@@ -1496,7 +1506,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             // React only if we need to render a sound
             if(userNode.physicsBody.categoryBitMask == PhysicsCategoryObjects){
-                if(contact.collisionImpulse > 40000){
+                if(contact.collisionImpulse > 40000 * x3){
                     [self->soundController playTrainImpactSound];
                 }
                 //NSLog(@"Collision impulse is: %f", contact.collisionImpulse);
@@ -1603,12 +1613,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 beam.name = @"beam";
                 
                 CGPoint referencePoint = [myLevel childNodeWithName:@"referencePoint"].position;
-                CGPoint referencePointAlien = CGPointMake(referencePoint.x, referencePoint.y-90); // ddd precedemment: -100
+                CGPoint referencePointAlien = CGPointMake(referencePoint.x, referencePoint.y-90); // ddd precedemment: -100 * x3
                 
                 SKAction *waitAction = [SKAction waitForDuration: 1];
                 
                 SKAction *createAlien = [SKAction runBlock:^{
-                    alienVessel.position = CGPointMake(self->Edgar.position.x, self->Edgar.position.y+400);
+                    alienVessel.position = CGPointMake(self->Edgar.position.x, self->Edgar.position.y+400 * x3);
                     [self->myLevel addChild: alienVessel];
                     
                     [alienVessel addChild: beam];
@@ -1654,12 +1664,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         self->Edgar.physicsBody.affectedByGravity = false;
                         self->Edgar->rectangleNode.physicsBody.affectedByGravity = false;
                         self->freeCamera = TRUE;
-                        [self->myCamera runAction:[SKAction moveToY:self->Edgar.position.y+200 duration:1]];
+                        [self->myCamera runAction:[SKAction moveToY:self->Edgar.position.y+200 * x3 duration:1]];
                         self->nextLevelIndex = 1;
                         [self runAction: beamSound];
                     }];
                     
-                    SKAction *flyAway = [SKAction runAction:[SKAction moveTo:CGPointMake(2000, 2000) duration:4] onChildWithName:@"//alienVessel"];
+                    SKAction *flyAway = [SKAction runAction:[SKAction moveTo:CGPointMake(2000 * x3, 2000 * x3) duration:4] onChildWithName:@"//alienVessel"];
                     [flyAway setTimingMode: SKActionTimingEaseIn];
                     SKAction *flyAwaySound = [SKAction playSoundFileNamed:@"Sounds/fx_vaisseau_part.wav" waitForCompletion:NO];
                     
@@ -1674,7 +1684,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     
                     SKAction *finalMessage = [SKAction runBlock:^{
                         self->containerView = [[UIView alloc] init];
-                        [self->containerView setFrame: CGRectMake(50, 50, self.view.bounds.size.width-100, self.view.bounds.size.height-100)]; // coordinates origin is upper left
+                        [self->containerView setFrame: CGRectMake(50, 50, self.view.bounds.size.width-100 * x3, self.view.bounds.size.height-100 * x3)]; // coordinates origin is upper left
                         
                         self->containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
                         
@@ -1811,7 +1821,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 }
                 helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/showUranium.png"];
                 [helpNode setPosition:[myLevel childNodeWithName:@"uranium"].position];
-                [helpNode setSize:CGSizeMake(100, 100)];
+                [helpNode setSize:CGSizeMake(100 * x3, 100 * x3)];
                 [helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
                 [myLevel addChild: helpNode];
                 
@@ -1856,7 +1866,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 helpNode.name = @"helpNode";
                 if(!helpNode.position.x)
                 {
-                    [helpNode setPosition:CGPointMake(screenCenterX+30, -100.0f)];
+                    [helpNode setPosition:CGPointMake((screenCenterX+30)*x3, -100.0f * x3)];
                     [myCamera addChild: helpNode];
                 }
             }
@@ -1887,7 +1897,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }else if([contactNode.name isEqualToString: @"timeBonus"])
         {
             SKSpriteNode *bonusDisplayNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/Time_bonus.png"];
-            [bonusDisplayNode setSize:CGSizeMake(600, 111)];
+            [bonusDisplayNode setSize:CGSizeMake(600 * x3, 111)];
             [bonusDisplayNode setPosition:CGPointMake(screenCenterX, 0)];
             [bonusDisplayNode setZPosition: 30]; // devdev
             
@@ -1906,7 +1916,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             [bonusLabel setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
             
             bonusLabel.fontColor = [SKColor colorWithRed:0 green:.8 blue:.5 alpha:1];
-            bonusLabel.position = CGPointMake(screenCenterX, 0); // should be ~ 100 for an iPad air -> find a way to do it better
+            bonusLabel.position = CGPointMake(screenCenterX, 0); // should be ~ 100 * x3 for an iPad air -> find a way to do it better
             bonusLabel.zPosition = 30;
             bonusLabel.text = [NSString stringWithFormat:@"Bonus! -%d seconds", theBonusSeconds];
             bonusLabel.alpha = 0;
@@ -1946,7 +1956,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             /* SND: train runs */
             plpTrain *theTrain = (plpTrain *)contactNode;
             [theTrain setHeroAbove];
-            [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed: 100]; // previous max speed: 200
+            [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed: 100 * x3]; // previous max speed: 200 * x3
             return;
         }
         
@@ -2177,7 +2187,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 [cheatEnabledMessage setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
                 
                 cheatEnabledMessage.fontColor = [SKColor redColor];
-                cheatEnabledMessage.position = CGPointMake(screenCenterX, 0); // should be ~ 100 for an iPad air -> find a way to do it better
+                cheatEnabledMessage.position = CGPointMake(screenCenterX, 0); // should be ~ 100 * x3 for an iPad air -> find a way to do it better
                 cheatEnabledMessage.zPosition = 30;
                 cheatEnabledMessage.text = @"Cheater! Time penalty";
                 cheatEnabledMessage.alpha = 0;
@@ -2291,13 +2301,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         if(bigJumpRequested)
         {
-            [Edgar.physicsBody applyImpulse: CGVectorMake(0, 45000)]; // auparavant 50000 puis 45000 puis 48000
+            [Edgar.physicsBody applyImpulse: CGVectorMake(0, 120000)]; // auparavant 500 * x300 * x3 puis 4500 * x30 puis 4800 * x30
             bigJumpRequested = FALSE;
         }
         else
         {
-            EdgarVelocity = 250;
-            [Edgar.physicsBody applyImpulse: CGVectorMake(0, 25000)];        }
+            EdgarVelocity = 250 * x3;
+            [Edgar.physicsBody applyImpulse: CGVectorMake(0, 80000)];        }
         
         if(movingLeft||movingRight)
         {
@@ -2309,8 +2319,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 - (void) computeSceneCenter
 {
-    float theScale = 400 / self.view.bounds.size.height; // usually 1.25
-    screenCenterX = 400 - ((self.view.bounds.size.width * theScale)/2);
+    float theScale = 400 * x3 / self.view.bounds.size.height; // usually 1.25
+    screenCenterX = 400 * x3 - ((self.view.bounds.size.width * theScale)/2);
 }
 
 @end
