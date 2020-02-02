@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="16" height="7" tilewidth="100" tileheight="100" nextobjectid="17">
+ <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
+  <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
+ </tileset>
+ <tileset firstgid="40" name="decoTuto_green" tilewidth="100" tileheight="100">
+  <image source="decoTuto_green.png" width="300" height="200"/>
+ </tileset>
+ <layer name="Fond" width="16" height="7">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAcaJCIidGviUe/FgXuo8T9hMzXRmLrQGldAnopBQABZQdo
+  </data>
+ </layer>
+ <layer name="Solide" width="16" height="7">
+  <data encoding="base64" compression="zlib">
+   eJzjY2Bg4KMQkwrw6ecm0wxi3UeJ+ynxP6VhjAsDAAclA5o=
+  </data>
+ </layer>
+ <objectgroup name="Objets">
+  <object id="1" name="Start" x="116" y="194" width="88" height="106"/>
+  <object id="2" name="uranium" type="Item" x="1334.5" y="241.5" width="29" height="29">
+   <ellipse/>
+  </object>
+  <object id="3" name="endLevelLift" x="142.5" y="478" width="105" height="122">
+   <properties>
+    <property name="nextLevel" value="_Level02_v1_100px"/>
+   </properties>
+  </object>
+  <object id="4" name="sensor" x="317" y="176" width="93" height="123">
+   <properties>
+    <property name="nodename" value="jump"/>
+   </properties>
+  </object>
+  <object id="6" name="sensor" x="113.5" y="176.5" width="93" height="123">
+   <properties>
+    <property name="nodename" value="walk"/>
+   </properties>
+  </object>
+  <object id="7" name="sensor" x="900" y="95.5" width="307" height="509.5">
+   <properties>
+    <property name="nodename" value="showUranium"/>
+   </properties>
+  </object>
+  <object id="13" name="train" type="train" x="703" y="237" width="60" height="60">
+   <ellipse/>
+  </object>
+  <object id="14" name="sensor" x="498.507" y="175.5" width="109.493" height="123">
+   <properties>
+    <property name="nodename" value="stop"/>
+   </properties>
+  </object>
+  <object id="15" name="sensor" x="618" y="176.5" width="75" height="123">
+   <properties>
+    <property name="nodename" value="explainTrain"/>
+   </properties>
+  </object>
+  <object id="16" name="sensor" x="376" y="397.015" width="510" height="203.485">
+   <properties>
+    <property name="nodename" value="showMenu"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
