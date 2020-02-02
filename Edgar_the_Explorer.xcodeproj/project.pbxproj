@@ -212,7 +212,6 @@
 		DA03CBD5199F4C4700406720 /* Maze Escape */ = {
 			isa = PBXGroup;
 			children = (
-				DA6940781A0934AD00C47ECF /* decor */,
 				DAD058511A08288200DAE3E8 /* monstre.atlas */,
 				DA10C1A41D5BF3F900579F1F /* UI_img */,
 				DAE713D71C0FA6D600ED9139 /* UI */,
@@ -274,13 +273,6 @@
 				DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */,
 			);
 			name = Classes;
-			sourceTree = "<group>";
-		};
-		DA6940781A0934AD00C47ECF /* decor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = decor;
 			sourceTree = "<group>";
 		};
 		DAE713D71C0FA6D600ED9139 /* UI */ = {
