@@ -465,9 +465,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     JSTileMap *myTileMap;
     NSArray *levelFiles = [NSArray arrayWithObjects:
                            @"Levels/Level_0_tuto.tmx",
-                           @"Levels/Level_2.tmx",
                            // @"Levels/Level_2_sd.tmx",
-                           //@"Levels/Level_1.tmx",
+                           @"Levels/Level_1.tmx",
+                           @"Levels/Level_2.tmx",
                            
                            //@"Levels/Level_2_x3.tmx",
                            @"Levels/Level_3.tmx",

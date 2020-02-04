@@ -33,7 +33,7 @@
 
 - (id)initAtPosition:(CGPoint)position{
     
-    facingEdgar = [SKTexture textureWithImageNamed:@"facingEdgar_x3.png"];
+    facingEdgar = [SKTexture textureWithImageNamed:@"FacingEdgar_x3.png"];
     //facingEdgar = [SKTexture textureWithImageNamed:@"Level_objects_img/facingEdgar.png"];
     self = [super initWithTexture:facingEdgar];
     
@@ -41,13 +41,13 @@
         float _x3 = 3;
 
         //self.size = CGSizeMake(59, 74); // ratio 1,25 / avant: 47, 73 = ratio 1,574
-        self.size = CGSizeMake(145, 225);
+        self.size = CGSizeMake(226, 236);
         // *3 = 180, 225
         
         NSMutableArray *walkFrames = [NSMutableArray array];
         SKTextureAtlas *EdgarAnimatedAtlas = [SKTextureAtlas atlasNamed:@"edgar"];
 
-        SKTextureAtlas *EdgarJumpAtlas = [SKTextureAtlas atlasNamed:@"edgarsaute"];
+        //SKTextureAtlas *EdgarJumpAtlas = [SKTextureAtlas atlasNamed:@"edgarsaute"];
         NSMutableArray *jumpFrames = [NSMutableArray array];
 
         for (int i=1; i <= 3; i++) {
@@ -57,15 +57,19 @@
         }
         [walkFrames addObject:[EdgarAnimatedAtlas textureNamed:@"EdgarMarche2_x3"]];
         
-        for (int i=1; i<=3; i++){
-            NSString *textureName = [NSString stringWithFormat:@"Saut%d-01", i];
-            SKTexture *temp = [EdgarJumpAtlas textureNamed:textureName];
+        /*for (int i=1; i<=3; i++){
+            NSString *textureName = [NSString stringWithFormat:@"EdgarSaute%d_x3", i];
+            SKTexture *temp = [EdgarAnimatedAtlas textureNamed:textureName];
             [jumpFrames addObject:temp];
-        }
-
-        [jumpFrames addObject:[EdgarJumpAtlas textureNamed:@"Saut3-01"]];
-        [jumpFrames addObject:[EdgarJumpAtlas textureNamed:@"Saut2-01"]];
-        [jumpFrames addObject:[EdgarJumpAtlas textureNamed:@"Saut1-01"]];
+        }*/
+        
+        [jumpFrames addObject:[EdgarAnimatedAtlas textureNamed:@"EdgarSaute1_x3"]];
+        [jumpFrames addObject:[EdgarAnimatedAtlas textureNamed:@"EdgarSaute2_x3"]];
+        [jumpFrames addObject:[EdgarAnimatedAtlas textureNamed:@"EdgarSaute3_x3"]];
+        
+        [jumpFrames addObject:[EdgarAnimatedAtlas textureNamed:@"EdgarSaute3_x3"]];
+        [jumpFrames addObject:[EdgarAnimatedAtlas textureNamed:@"EdgarSaute2_x3"]];
+        [jumpFrames addObject:[EdgarAnimatedAtlas textureNamed:@"EdgarSaute1_x3"]];
 
         _EdgarWalkingFrames = walkFrames;
         _EdgarJumpingFrames = jumpFrames;
@@ -73,7 +77,7 @@
         self.name = @"Edgar";
         self.position = position;
         
-        SKPhysicsBody *topCircleBody = [SKPhysicsBody bodyWithCircleOfRadius: 21*_x3 center:CGPointMake(0, 18*_x3)]; // until March 18, 2016: center= (0, 18) // 0, 22
+        SKPhysicsBody *topCircleBody = [SKPhysicsBody bodyWithCircleOfRadius: 21*_x3 center:CGPointMake(0, 16*_x3)]; // until March 18, 2016: center= (0, 18) // 0, 22
         SKPhysicsBody *rectangleBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(28*_x3, 36*_x3) center:CGPointMake(0, -2*_x3)];
 
         topCircleBody.categoryBitMask = 1;
@@ -88,7 +92,7 @@
         
         
         // bottom circle
-        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:17*_x3 center:CGPointMake(0, -20*_x3)]; // -20
+        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:17*_x3 center:CGPointMake(0, -22*_x3)]; // -20
         self.physicsBody.mass = 50 * 3;
         self.physicsBody.friction = 0.6;
         self.physicsBody.friction = 0.1;
