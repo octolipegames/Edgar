@@ -72,7 +72,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         NSLog(@"Size: (%f, %f)", self.size.width, self.size.height);
         
         // 
-        self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f);
+        self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f*2);
         
         myWorld = [SKNode node];         // Creation du "monde" sur lequel tout est fixe
         myWorld.name = @"world";
@@ -2301,7 +2301,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         if(bigJumpRequested)
         {
-            [Edgar.physicsBody applyImpulse: CGVectorMake(0, 120000)]; // auparavant 500 * x300 * x3 puis 4500 * x30 puis 4800 * x30
+            [Edgar.physicsBody applyImpulse: CGVectorMake(0, 210000)]; // auparavant 500 * x300 * x3 puis 4500 * x30 puis 4800 * x30
             bigJumpRequested = FALSE;
         }
         else
