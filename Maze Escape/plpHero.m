@@ -101,12 +101,25 @@
         self.physicsBody.restitution = 0;
         self.physicsBody.allowsRotation = NO;
         
+        self->lives = 5;
 
         [self addChild: rectangleNode];
 
         [self giveControl];
     }
     return self;
+}
+
+-(int)getLives
+{
+    return lives;
+}
+-(void)removeLife
+{
+    lives = lives - 1;
+    if (lives < 1){
+        // TODO
+    }
 }
 
 -(void)walkingEdgar

@@ -34,8 +34,11 @@
     BOOL boolHasControl;
     BOOL isInfected;
     BOOL hasUranium;
+    int lives;
 }
 
+-(int)getLives;
+-(void)removeLife;
 -(id)initAtPosition:(CGPoint)position;
 -(void)walkingEdgar;
 -(void)jumpingEdgar;
