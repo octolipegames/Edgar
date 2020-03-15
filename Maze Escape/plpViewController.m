@@ -133,8 +133,23 @@
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [containerView removeFromSuperview];
     
+    if(self.MenuBackground)
+    {
+        [self.MenuBackground removeFromSuperview];
+        self.MenuBackground = nil;
+    }
+    
+    SKView * skView = (SKView *)self.view;
+    SKScene *introScene = [plpIntroScene sceneWithSize:skView.bounds.size];
+    
+    // SKScene *introScene = [plpMyScene sceneWithSize:skView.bounds.size];
+    [skView presentScene: introScene];
+    
+    /*
+    
     [self newGameWithTutorial: TRUE];
     [(plpMyScene*)myScene computeSceneCenter];
+    */
 }
 
 - (IBAction)skipTutorial:(id)sender {

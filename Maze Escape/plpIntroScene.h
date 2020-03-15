@@ -1,8 +1,8 @@
 //
-//  plpViewController.h
-//
+//  plpIntroScene.h
 //  Edgar The Explorer
 //
+
 //  Copyright (c) 2014-2016 Filipe Mathez and Paul Ronga
 //
 //  This program is free software; you can redistribute it and/or modify it
@@ -21,32 +21,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-#import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
-#import "plpIntroScene.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface plpViewController : UIViewController
+@interface plpIntroScene : SKScene <SKPhysicsContactDelegate>
 {
-    SKScene * myScene;
-    BOOL gamePaused;
-    BOOL runningOniPad;
+    SKSpriteNode *animationNode;
+    NSMutableArray *animationFrames;
+    int currentFrame;
 }
-
--(void)saveCurrentProgress;
-
-@property (weak, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet UIButton *prefsButton;
-@property (weak, nonatomic) IBOutlet UIButton *soundButton;
-@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
-@property (weak, nonatomic) IBOutlet UIButton *suicideButton;
-@property (weak, nonatomic) IBOutlet UIButton *creditsButton;
-
-@property (weak, nonatomic) IBOutlet UITextView *creditsText;
-@property (nonatomic, strong) IBOutlet UIImageView *MenuBackground;
-
-
-/*@property (nonatomic, retain) SKScene * myScene;
-
-+ (id)sharedManager;*/
 
 @end
