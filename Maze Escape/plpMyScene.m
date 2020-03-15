@@ -88,19 +88,41 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         useSwipeGestures = [defaults boolForKey:@"useSwipeGestures"];
         enableDebug = [defaults boolForKey:@"enableDebug"];
+        lifeCount = 5; //[defaults integerForKey:@"lifeCount"];
+        
+
+        
+        HUD = [SKNode node];
+        HUD.name = @"HUD";
+        HUD.zPosition = 28;
+        [myCamera addChild:HUD];
+        
+        // Sprite atlas: cf. https://stackoverflow.com/questions/49866298/using-a-sprite-atlas-texture-atlas-or-asset-catalog-in-spritekit-projects
+        SKTextureAtlas *ObjectsAtlas = [SKTextureAtlas atlasNamed:@"Sprites"];
+        SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[ObjectsAtlas textureNamed:@"Lamp_big"] size: CGSizeMake(43, 100)];
+
+        
+        [HUD addChild: edgarLife];
+        [edgarLife setPosition: CGPointMake(-320 * x3, 480)];
+        
+        for(int i = 0; i < lifeCount; i++){
+            SKSpriteNode *lifeCopy = [edgarLife copy];
+            [lifeCopy setPosition: CGPointMake(-320 * x3 + (i * 80), 480)];
+            [HUD addChild: lifeCopy];
+        }
+
         
         if(!useSwipeGestures){
             // TODO: remove this
            
-            HUD = [SKNode node];
-            HUD.name = @"HUD";
-            HUD.zPosition = 28;
-            [myCamera addChild:HUD];
+            SKNode *touchIndicator = [SKNode node];
+            touchIndicator.name = @"touchIndicator";
+            [HUD addChild: touchIndicator];
             
             SKShapeNode *horizontalLine = [SKShapeNode node];
             CGMutablePathRef pathToDraw = CGPathCreateMutable();
             
-            // -400 * x3 = left bound, -200 * x3 = bottom bound
+            // -400 = left bound, -200 = bottom bound
             CGPathMoveToPoint(pathToDraw, NULL, -400 * x3, -200 * x3);
             CGPathAddLineToPoint(pathToDraw, NULL, 400 * x3, -200 * x3);
             horizontalLine.path = pathToDraw;
@@ -115,8 +137,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             CGMutablePathRef verticalPath = CGPathCreateMutable();
             
             // from bottom bound to top bound
-            CGPathMoveToPoint(verticalPath, NULL, 0, -200 * x3);
-            CGPathAddLineToPoint(verticalPath, NULL, 0, 200 * x3);
+            CGPathMoveToPoint(verticalPath, NULL, 0, -200);
+            CGPathAddLineToPoint(verticalPath, NULL, 0, 200);
             verticalLineLeft.path = verticalPath;
             [verticalLineLeft setStrokeColor:[SKColor whiteColor]];
             SKShapeNode *verticalLineRight = [verticalLineLeft copy];
@@ -124,41 +146,41 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             [verticalLineLeft setPosition:(CGPointMake(-HUD_VERTICAL_THIRD, 0))];
             [verticalLineRight setPosition:CGPointMake(HUD_VERTICAL_THIRD, 0)];
             
-            [HUD addChild:horizontalLine];
-            [HUD addChild:horizontalLineTop];
+            [touchIndicator addChild:horizontalLine];
+            [touchIndicator addChild:horizontalLineTop];
             
-            [HUD addChild: verticalLineLeft];
-            [HUD addChild: verticalLineRight];
+            [touchIndicator addChild: verticalLineLeft];
+            [touchIndicator addChild: verticalLineRight];
             
             
             plpButton *buttonRight = [[plpButton alloc] initAtPosition:CGPointMake(BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN) withImage:@"Arrow.png" andRotation:0];
             buttonRight.name = @"right";
-            [HUD addChild: buttonRight];
+            [touchIndicator addChild: buttonRight];
             
             plpButton *buttonLeft = [[plpButton alloc] initAtPosition:CGPointMake(-BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN) withImage:@"Arrow.png" andRotation:3.14159];
             buttonLeft.name = @"left";
-            [HUD addChild: buttonLeft];
+            [touchIndicator addChild: buttonLeft];
             
             
             plpButton *buttonUp = [[plpButton alloc] initAtPosition:CGPointMake(0, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD*2) withImage:@"Arrow.png" andRotation:3.14159/2];
             buttonUp.name = @"up";
-            [HUD addChild: buttonUp];
+            [touchIndicator addChild: buttonUp];
             
             plpButton *buttonUpRight = [[plpButton alloc] initAtPosition:CGPointMake(BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD*2) withImage:@"Arrow.png" andRotation:0.8];
             buttonUpRight.name = @"upright";
-            [HUD addChild: buttonUpRight];
+            [touchIndicator addChild: buttonUpRight];
             
             plpButton *buttonUpLeft = [[plpButton alloc] initAtPosition:CGPointMake(-BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD*2) withImage:@"Arrow.png" andRotation:3.14159-0.8];
             buttonUpLeft.name = @"upleft";
-            [HUD addChild: buttonUpLeft];
+            [touchIndicator addChild: buttonUpLeft];
             
             plpButton *buttonMiddleRight = [[plpButton alloc] initAtPosition:CGPointMake(BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD) withImage:@"Arrow.png" andRotation:0.5];
             buttonMiddleRight.name = @"middleright";
-            [HUD addChild: buttonMiddleRight];
+            [touchIndicator addChild: buttonMiddleRight];
             
             plpButton *buttonMiddleLeft = [[plpButton alloc] initAtPosition:CGPointMake(-BUTTON_HORIZONTAL_SPAN, BUTTON_VERTICAL_SPAN+HUD_VERTICAL_THIRD) withImage:@"Arrow.png" andRotation:3.14159-0.5];
             buttonMiddleLeft.name = @"middleleft";
-            [HUD addChild: buttonMiddleLeft];
+            [touchIndicator addChild: buttonMiddleLeft];
         }
         
         // Actions
@@ -692,6 +714,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             for (NSDictionary *monTree in treeArray) {
                 plpItem *myItem;
+                
+                // TODO
+                // SKTextureAtlas *ObjectsAtlas = [SKTextureAtlas atlasNamed:@"Sprites"];
+                // myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withTexture:[ObjectsAtlas textureNamed:@"Tree"] andRadius: 22];
+                
                 myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withTexture:@"Level_objects_img/arbre-09.png" andRadius: 22];
                 
                 //                float waitBeforeStart = [montree[@"waitBeforeStart"] floatValue];
@@ -1286,11 +1313,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     [myWorld runAction: openCurtains];
     
-    if(nextLevelIndex > 0){
-        [HUD runAction: [SKAction fadeOutWithDuration: 5] completion:^{
-            [self->HUD removeAllChildren];
-        }];
-    }
+    SKNode *touchIndicator = [HUD childNodeWithName:@"//touchIndicator"];
+    [touchIndicator runAction: [SKAction fadeOutWithDuration: 5] completion:^{
+        [touchIndicator removeAllChildren];
+        [touchIndicator removeFromParent];
+        //[self->HUD removeAllChildren];
+    }];
 }
 
 

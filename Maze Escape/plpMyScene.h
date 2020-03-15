@@ -37,11 +37,11 @@
 #define FIRST_DARK_LEVEL 6
 #define USE_ALTERNATE_CONTROLS 0
 #define DEFAULT_EDGAR_VELOCITY 450 // was 150
-#define HUD_VERTICAL_THIRD 400/3
-#define HUD_VERTICAL_SPAN 400/6
-#define HUD_HORIZONTAL_SPAN 800/6
+#define HUD_VERTICAL_THIRD 1200/3
+#define HUD_VERTICAL_SPAN 1200/6
+#define HUD_HORIZONTAL_SPAN 2400/6
 #define BUTTON_HORIZONTAL_SPAN HUD_HORIZONTAL_SPAN*1.8
-#define BUTTON_VERTICAL_SPAN (HUD_VERTICAL_THIRD*0.5)-200
+#define BUTTON_VERTICAL_SPAN (HUD_VERTICAL_THIRD*0.5)-600
 
 float contextVelocityX;
 
@@ -71,6 +71,8 @@ float contextVelocityX;
     // Prefs
     BOOL useSwipeGestures;
     BOOL enableDebug;
+    NSInteger lifeCount;
+    NSInteger binderCount;
     
     // Audio
     plpSoundController *soundController;
