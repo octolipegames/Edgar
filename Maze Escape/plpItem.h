@@ -28,6 +28,7 @@
     int secondsBonus;
 }
 
+- (id)initAtPosition:(CGPoint)position withSprite:(SKTexture*)texture andRadius:(int) radius;
 - (id)initAtPosition:(CGPoint)position withTexture:(NSString*)textureString andRadius:(int) radius;
 - (void) setSeconds: (int) theSeconds;
 - (int) getSeconds;

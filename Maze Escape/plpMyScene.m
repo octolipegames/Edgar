@@ -88,7 +88,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         useSwipeGestures = [defaults boolForKey:@"useSwipeGestures"];
         enableDebug = [defaults boolForKey:@"enableDebug"];
-        lifeCount = 5; //[defaults integerForKey:@"lifeCount"];
+        lifeCount = 2; //[defaults integerForKey:@"lifeCount"];
         
 
         
@@ -104,10 +104,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         [HUD addChild: edgarLife];
         [edgarLife setPosition: CGPointMake(-320 * x3, 480)];
+        [edgarLife setName: @"life0"];
         
         for(int i = 0; i < lifeCount; i++){
             SKSpriteNode *lifeCopy = [edgarLife copy];
             [lifeCopy setPosition: CGPointMake(-320 * x3 + (i * 80), 480)];
+            [lifeCopy setName: [NSString stringWithFormat:@"life%d", i]];
             [HUD addChild: lifeCopy];
         }
 
@@ -716,10 +718,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 plpItem *myItem;
                 
                 // TODO
-                // SKTextureAtlas *ObjectsAtlas = [SKTextureAtlas atlasNamed:@"Sprites"];
-                // myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withTexture:[ObjectsAtlas textureNamed:@"Tree"] andRadius: 22];
+                SKTextureAtlas *ObjectsAtlas = [SKTextureAtlas atlasNamed:@"Sprites"];
                 
-                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withTexture:@"Level_objects_img/arbre-09.png" andRadius: 22];
+                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withSprite:[ObjectsAtlas textureNamed:@"Tree"] andRadius: 22 * x3];
+                
+                // myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withTexture:@"Level_objects_img/arbre-09.png" andRadius: 22];
                 
                 //                float waitBeforeStart = [montree[@"waitBeforeStart"] floatValue];
                 if(myItem)
@@ -1127,9 +1130,22 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 // Called when the user restarts a level (upper right button)
 - (void)EdgarDiesOf:(int)deathType
 {
-    //  Deaths and death count disabled in current version / Décompte des morts désactivé dans la version actuelle
+    lifeCount--;
+    NSLog(@"Current life count: %ld | death type: %d", (long)lifeCount, deathType);
+    SKNode *lostLife = [HUD childNodeWithName: [NSString stringWithFormat:@"life%d", (int) lifeCount ]];
+    SKAction *blink = [SKAction sequence:@[
+      [SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.4],
+      [SKAction waitForDuration:0.5],
+      [SKAction colorizeWithColorBlendFactor:0.0 duration:0.4]]];
     
-    if(!levelTransitioning) // Check if restart level is currently disabled
+    [lostLife runAction: [SKAction repeatAction: blink count: 2] completion:^{
+        [lostLife removeFromParent];
+    }];
+    
+    if(lifeCount < 1){
+        // game over
+        NSLog(@"Game over");
+    }else if(!levelTransitioning) // Check if restart level is currently disabled
     {
         [Edgar removeControl];
         levelTransitioning = TRUE;

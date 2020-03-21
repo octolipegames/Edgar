@@ -33,6 +33,16 @@
 
 @implementation plpItem
 
+- (id)initAtPosition:(CGPoint)position withSprite:(SKTexture*)texture andRadius:(int) radius
+{
+    self = [super initWithTexture: texture];
+    // radius = 22 for uranium, 5 for time bonus
+    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius: radius center:CGPointMake(0, 0)];
+    self.physicsBody.dynamic = NO;
+    self.position = position;
+
+    return self;
+}
 
 - (id)initAtPosition:(CGPoint)position withTexture:(NSString*)textureString andRadius:(int) radius
 {

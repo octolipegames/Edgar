@@ -112,7 +112,6 @@ float contextVelocityX;
     float screenCenterX;
     
     // Game data
-    int deathCount;
     int globalCounter;
     int nextLevelIndex;
     double initialTime;
