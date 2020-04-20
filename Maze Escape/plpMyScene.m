@@ -1303,7 +1303,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 -(void)doFirstOpening{
     float halfHeight = 200 * x3;
     
-    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800 * x3, 250) ];
+    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800 * x3, 250 * x3) ];
     SKSpriteNode *lowerCurtain = [upperCurtain copy];
     upperCurtain.anchorPoint = CGPointMake(0.5, 0);
     upperCurtain.position = CGPointMake(0, 0);
@@ -1406,7 +1406,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     
     
-    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800 * x3, 250) ];
+    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800 * x3, 250 * x3) ];
     SKSpriteNode *lowerCurtain = [upperCurtain copy];
     upperCurtain.anchorPoint = CGPointMake(0.5, 0);
     upperCurtain.position = CGPointMake(0, halfHeight);
