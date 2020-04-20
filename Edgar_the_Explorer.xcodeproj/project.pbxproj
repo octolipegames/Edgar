@@ -28,7 +28,10 @@
 		DA2429B6233960A10027DB3E /* EdgarLife-ui.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2429B4233960A10027DB3E /* EdgarLife-ui.png */; };
 		DA2429B7233960A10027DB3E /* classeurs-ui.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2429B5233960A10027DB3E /* classeurs-ui.png */; };
 		DA2429B9233965E50027DB3E /* lampe-test-ui.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2429B8233965E50027DB3E /* lampe-test-ui.png */; };
+		DA259370241C0F960055695F /* plpIntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DA25936F241C0F960055695F /* plpIntroScene.m */; };
 		DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */; };
+		DA29F9C723EE9AD500CF4F22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA29F9C623EE9AD500CF4F22 /* LaunchScreen.storyboard */; };
+		DA29F9CB23EE9F2100CF4F22 /* Logo_Launch_Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */; };
 		DA519C5D232CE8BE00B4F594 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5B232CE8BD00B4F594 /* gear.png */; };
 		DA519C5E232CE8BE00B4F594 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5C232CE8BD00B4F594 /* sound.png */; };
 		DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4A191B81133F009507F9 /* plpHero.m */; };
@@ -50,6 +53,7 @@
 		DA9BC0522307336600ACC878 /* plpSoundViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC0512307336500ACC878 /* plpSoundViewController.h */; };
 		DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAB5E1411C21DD2800809756 /* edgarsaute.atlas */; };
 		DABCE3491D5BE8A900C277BB /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = DABCE3481D5BE8A900C277BB /* Levels */; };
+		DAC45078241ECBF300BFBE9C /* scenes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA824556241AEA95007843AD /* scenes.atlas */; };
 		DAC49B1C232CF63400C72985 /* plpPrefsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC49B1A232CF63400C72985 /* plpPrefsViewController.m */; };
 		DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAD058511A08288200DAE3E8 /* monstre.atlas */; };
 		DAD1509F233161C800334FF3 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD1509E233161C800334FF3 /* Arrow.png */; };
@@ -104,7 +108,10 @@
 		DA2429B4233960A10027DB3E /* EdgarLife-ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EdgarLife-ui.png"; path = "UI_img/EdgarLife-ui.png"; sourceTree = "<group>"; };
 		DA2429B5233960A10027DB3E /* classeurs-ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "classeurs-ui.png"; path = "UI_img/classeurs-ui.png"; sourceTree = "<group>"; };
 		DA2429B8233965E50027DB3E /* lampe-test-ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lampe-test-ui.png"; path = "UI_img/lampe-test-ui.png"; sourceTree = "<group>"; };
+		DA25936F241C0F960055695F /* plpIntroScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpIntroScene.m; sourceTree = "<group>"; };
 		DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen1136.png; sourceTree = "<group>"; };
+		DA29F9C623EE9AD500CF4F22 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_Launch_Screen.png; sourceTree = "<group>"; };
 		DA519C5B232CE8BD00B4F594 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = "External-media/gear.png"; sourceTree = SOURCE_ROOT; };
 		DA519C5C232CE8BD00B4F594 /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sound.png; path = "External-media/sound.png"; sourceTree = SOURCE_ROOT; };
 		DA5B4A181B81133F009507F9 /* plpHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpHero.h; sourceTree = "<group>"; };
@@ -123,6 +130,7 @@
 		DA73B84D1D02328300ED027D /* Edgar_Explorer_UITests4.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_Explorer_UITests4.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA7485451B86FF5100920C84 /* plpPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpPlatform.h; sourceTree = "<group>"; };
 		DA7485461B86FF5100920C84 /* plpPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpPlatform.m; sourceTree = "<group>"; };
+		DA824556241AEA95007843AD /* scenes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = scenes.atlas; sourceTree = "<group>"; };
 		DA984E361C0B478A00B13A08 /* LaunchScreen960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen960.png; sourceTree = "<group>"; };
 		DA9ADE411D5C05A800254A58 /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		DA9ADE421D5C05A800254A58 /* repeatButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repeatButton.png; sourceTree = "<group>"; };
@@ -131,6 +139,7 @@
 		DA9BC0512307336500ACC878 /* plpSoundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpSoundViewController.h; sourceTree = "<group>"; };
 		DAB5E1411C21DD2800809756 /* edgarsaute.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgarsaute.atlas; sourceTree = "<group>"; };
 		DABCE3481D5BE8A900C277BB /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = "<group>"; };
+		DAC45077241EC07A00BFBE9C /* plpIntroScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpIntroScene.h; sourceTree = "<group>"; };
 		DAC49B1A232CF63400C72985 /* plpPrefsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpPrefsViewController.m; sourceTree = "<group>"; };
 		DAC49B1B232CF63400C72985 /* plpPrefsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpPrefsViewController.h; sourceTree = "<group>"; };
 		DAD058511A08288200DAE3E8 /* monstre.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = monstre.atlas; sourceTree = "<group>"; };
@@ -212,12 +221,15 @@
 		DA03CBD5199F4C4700406720 /* Maze Escape */ = {
 			isa = PBXGroup;
 			children = (
+				DA29F9C523EE955400CF4F22 /* Images */,
 				DAD058511A08288200DAE3E8 /* monstre.atlas */,
 				DA10C1A41D5BF3F900579F1F /* UI_img */,
 				DAE713D71C0FA6D600ED9139 /* UI */,
 				DA10C1A21D5BEBBD00579F1F /* Level_objects_img */,
 				DABCE3481D5BE8A900C277BB /* Levels */,
 				DA03CBE1199F4C4700406720 /* Main.storyboard */,
+				DA29F9C623EE9AD500CF4F22 /* LaunchScreen.storyboard */,
+				DA824556241AEA95007843AD /* scenes.atlas */,
 				DA60EAA31B7F38E100A3F927 /* Sounds */,
 				DA10C1A61D5BFB6400579F1F /* edgar.atlas */,
 				DAB5E1411C21DD2800809756 /* edgarsaute.atlas */,
@@ -229,6 +241,8 @@
 				DA9BC04F2307335600ACC878 /* plpSoundViewController.m */,
 				DAC49B1B232CF63400C72985 /* plpPrefsViewController.h */,
 				DAC49B1A232CF63400C72985 /* plpPrefsViewController.m */,
+				DAC45077241EC07A00BFBE9C /* plpIntroScene.h */,
+				DA25936F241C0F960055695F /* plpIntroScene.m */,
 				DA03CBEA199F4C4700406720 /* plpMyScene.h */,
 				DA03CBEB199F4C4700406720 /* plpMyScene.m */,
 				DA60FCB5223EBB88005276C6 /* plpSoundController.h */,
@@ -273,6 +287,14 @@
 				DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		DA29F9C523EE955400CF4F22 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		DAE713D71C0FA6D600ED9139 /* UI */ = {
@@ -402,6 +424,8 @@
 			files = (
 				DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */,
 				DA10C1A31D5BEBBD00579F1F /* Level_objects_img in Resources */,
+				DAC45078241ECBF300BFBE9C /* scenes.atlas in Resources */,
+				DA29F9CB23EE9F2100CF4F22 /* Logo_Launch_Screen.png in Resources */,
 				DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */,
 				DA2429B9233965E50027DB3E /* lampe-test-ui.png in Resources */,
 				DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */,
@@ -413,6 +437,7 @@
 				DA2429B6233960A10027DB3E /* EdgarLife-ui.png in Resources */,
 				DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */,
 				DAE713DB1C0FA87500ED9139 /* Play.png in Resources */,
+				DA29F9C723EE9AD500CF4F22 /* LaunchScreen.storyboard in Resources */,
 				DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */,
 				DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */,
 				DA03CBE3199F4C4700406720 /* Main.storyboard in Resources */,
@@ -457,6 +482,7 @@
 				DA60FCB4223EBB6A005276C6 /* plpSoundController.m in Sources */,
 				DA5B7C9A232C2E450009ECE6 /* plpButton.h in Sources */,
 				DA03CBE0199F4C4700406720 /* plpAppDelegate.m in Sources */,
+				DA259370241C0F960055695F /* plpIntroScene.m in Sources */,
 				DA03CBE9199F4C4700406720 /* plpViewController.m in Sources */,
 				DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */,
 				DAF2CB141B83B8B000FC7FF1 /* plpTrain.m in Sources */,
@@ -624,7 +650,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -649,7 +674,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
