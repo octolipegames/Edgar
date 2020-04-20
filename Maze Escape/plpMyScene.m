@@ -525,7 +525,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 -(void)addCollisionLayer: (JSTileMap*) tileMap
 {
     BOOL useCollisionGroup = FALSE;
-    NSMutableArray *bodyArray;
     
     // Remove after debug
     self.view.showsPhysics = YES;
