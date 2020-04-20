@@ -1,52 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="41" height="10" tilewidth="100" tileheight="100" nextobjectid="20">
- <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
-  <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
+<?xml version="1.0" ?><map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="left-up" compressionlevel="0" width="41" height="10" tilewidth="300" tileheight="300" infinite="0" nextlayerid="5" nextobjectid="37">
+ <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="300" tileheight="300" tilecount="39" columns="13">
+  <image source="Tiles_x3.png" width="3900" height="900" name="Tiles_x3"/>
  </tileset>
- <tileset firstgid="40" name="rail_textures" tilewidth="100" tileheight="100">
+ <tileset firstgid="40" name="rail_textures" tilewidth="300" tileheight="300" tilecount="16" columns="4">
   <image source="rail_textures.png" width="400" height="400"/>
  </tileset>
- <layer name="Fond" width="41" height="10">
+ <layer id="1" name="Fond" width="41" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYIAAaTIwMQBZvSyJfHR70NUQYssg8XmI0EcOhuknNwwlkdg8JOgjJhywhSM93UgslsFiLikA3d+0cCMhc3HFAbIbsZmF7g9scYiuBpseSvxOTB4gJZ8QUovsd1rEEzXjmhg38qLx1QbAjQMBSHErAO1yI3g=
+   eAHNUUEOgDAI8wH6AKNe/f8TXeOakGaMcXCRxACztGVbljeOkrJfHe0my3mJRtRzlgLo7UxUn1UPuLXWPQ7qZTI9FPr0/UFnN3PWY+SBusB5tXIU6FSPqu/1eCfdHV5HQ+9AuTzd7HmP13sD7qBa5OJ/ZGIsF85stHrOIZPXnkW16rXwIxjORVh6xF6c+VvOeNxkj1v6r3azHnGXsyOz1wPtciN4
   </data>
  </layer>
- <layer name="Solide" width="41" height="10">
+ <layer id="2" name="Solide" width="41" height="10">
   <data encoding="base64" compression="zlib">
-   eJy9VO0Kg0AM6/31wMmmbo/g3v8Fh2AxZFEjwxWCH5drc2m1jYj2Qrx+AOf6R0wHqGJP6nvCu8bMl3gb/OQ43u1prJAT144wLPwenrdqu+eeYu0tenhmxlQ4dc/OImrc81rp7wyO8w0wivCCZzFj7nuzXNUc83nYX9yH9zgPbmDuG4D1qpozRqEvPR5J22NDA9YtBNaoosS3P7jGPegEN89TQOc91h6yJo4r/90OqoDifQCFKhZ7
+   eAHFkmsKwkAMhNe/ClV8H0Hvf0EzSz8YQ2wXQQxsk2wmk2naqbU2/fDcg/vbk3UF1c/tEROWzq5QgM6b1bZzvMTltecAHszIPk1KD12j3oHZKlJb85fO1Np57lFeaREM/hGvuTJ5drimxeu9OT1G5lbaP91ljY5Lo3vq+hQfClDGOCdxxuR8E7x+pzHK2aNyTN9d/6V89R8zEzy85N7nsf8PYNe8c+8DzPE+ZqDV82sAnUN97Fg1eqTtpGJhzJTXHv0Invl158buuWOmctXyN0Cf6mB5J+HReYxYs9WfNcXVm6HxXx797istL4UqFns=
   </data>
  </layer>
- <objectgroup name="Objets">
-  <object id="1" name="uranium" type="Item" x="1434.5" y="240.167" width="29" height="29">
+ <objectgroup id="3" name="Objets">
+  <object id="1" name="uranium" type="Item" x="4303.5" y="720" width="87" height="87">
    <ellipse/>
   </object>
-  <object id="2" name="Start" x="203" y="274" width="88" height="106"/>
-  <object id="3" name="endLevelLift" x="2997" y="678" width="105" height="122">
+  <object id="2" name="Start" x="609" y="822" width="264" height="318"/>
+  <object id="3" name="endLevelLift" x="8991" y="2034" width="315" height="366">
    <properties>
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
   </object>
-  <object id="8" name="train" type="train" x="325.333" y="302.667" width="60" height="60">
+  <object id="8" name="train" type="train" x="975" y="909" width="180" height="180">
    <ellipse/>
   </object>
-  <object id="13" name="semaphore" type="semaphore" x="419" y="177" width="60" height="60"/>
-  <object id="14" name="train" type="train" x="2718" y="123" width="60" height="60">
+  <object id="13" name="semaphore" type="semaphore" x="1257" y="531" width="180" height="180"/>
+  <object id="14" name="train" type="train" x="8154" y="369" width="180" height="180">
    <ellipse/>
   </object>
-  <object id="15" name="platform" x="2602" y="190" width="95" height="8">
+  <object id="15" name="platform" x="7806" y="570" width="285" height="24">
    <properties>
     <property name="movementDuration" value="2"/>
     <property name="x_limit" value="2400"/>
    </properties>
   </object>
-  <object id="16" name="verticalPlatform" x="3902" y="297" width="95" height="600">
+  <object id="16" name="verticalPlatform" x="11706" y="891" width="285" height="1800">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="2"/>
     <property name="noEmergencyStop" value="0"/>
    </properties>
   </object>
-  <object id="17" name="verticalPlatform" x="1710" y="286.667" width="86" height="311.333">
+  <object id="17" name="verticalPlatform" x="5130" y="861" width="258" height="933">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="1"/>
@@ -55,13 +54,13 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
-  <object id="18" name="timeBonus" x="638" y="502" width="20" height="20">
+  <object id="18" name="timeBonus" x="1914" y="1506" width="60" height="60">
    <properties>
     <property name="seconds" value="17"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="19" name="verticalPlatform" x="508" y="285" width="87" height="110">
+  <object id="19" name="verticalPlatform" x="1524" y="855" width="261" height="330">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="2"/>
@@ -70,5 +69,24 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup id="4" name="CollisionRectangles">
+  <object id="20" x="0" y="0" width="7200" height="300"/>
+  <object id="21" x="0" y="300" width="360" height="900"/>
+  <object id="22" x="360" y="300" width="240" height="300"/>
+  <object id="23" x="0" y="1200" width="60" height="900"/>
+  <object id="24" x="0" y="2100" width="300" height="900"/>
+  <object id="25" x="300" y="2700" width="9000" height="300"/>
+  <object id="26" x="600" y="1140" width="300" height="420"/>
+  <object id="27" x="900" y="1158" width="600" height="342"/>
+  <object id="28" x="300" y="1500" width="300" height="60"/>
+  <object id="29" x="1500" y="1200" width="2400" height="300"/>
+  <object id="30" x="1800" y="858" width="3000" height="342"/>
+  <object id="31" x="2700" y="1500" width="1200" height="300"/>
+  <object id="32" x="8100" y="1500" width="2400" height="300"/>
+  <object id="33" x="10650" y="1500" width="1050" height="300"/>
+  <object id="34" x="11400" y="900" width="300" height="600"/>
+  <object id="35" x="11700" y="0" width="600" height="300"/>
+  <object id="36" x="12000" y="300" width="300" height="2700"/>
  </objectgroup>
 </map>
