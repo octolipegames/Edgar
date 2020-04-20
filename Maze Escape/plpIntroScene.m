@@ -32,7 +32,6 @@
         self.size = CGSizeMake(2400, 1200);
         
         SKCameraNode *myCamera = [SKCameraNode node];
-        float x3 = 3;
         
         self.camera = myCamera;
         [self addChild:myCamera];
@@ -43,7 +42,7 @@
         currentFrame = 0;
         for (int i = 0; i <= 3; i++) {
             NSString *textureName = [NSString stringWithFormat:@"scene1_%02d", i];
-            NSLog(textureName);
+            //NSLog(textureName);
             SKTexture *temp = [scenesAtlas textureNamed:textureName];
             [animationFrames addObject: temp];
         }
