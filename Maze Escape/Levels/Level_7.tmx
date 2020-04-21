@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="15" height="12" tilewidth="100" tileheight="100" nextobjectid="35">
- <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="100" tileheight="100">
-  <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="left-up" width="15" height="12" tilewidth="300" tileheight="300" infinite="0" nextlayerid="5" nextobjectid="51">
+ <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="300" tileheight="300" tilecount="39" columns="13">
+  <image source="Tiles_x3.png" width="3900" height="900"/>
  </tileset>
- <layer name="Fond" width="15" height="12">
+ <layer id="1" name="Fond" width="15" height="12">
   <data encoding="base64" compression="zlib">
    eJxjYKAMSAOxLJQmlo2slxQsiaSXhwz96HrVydCLTw0PEkYWo7VeZCwF9ReyXmqEFa31qqPpJdVOmH8BuXYOXg==
   </data>
  </layer>
- <layer name="Solide" width="15" height="12">
+ <layer id="2" name="Solide" width="15" height="12">
   <data encoding="base64" compression="zlib">
    eJzjY2Bg4KMAkwIYKdALA8h6JaCYAY0vgSYHY9PKXmwAWQ1MLxeUz4gFE2MvqYAabiYFgPyHHMcwwE9AH7L/KUmLIAwAtVoEjg==
   </data>
  </layer>
- <objectgroup name="Objets">
-  <object id="1" name="Start" x="214" y="685" width="88" height="106"/>
-  <object id="2" name="endLevelLift" x="992.5" y="178" width="105" height="122">
+ <objectgroup id="3" name="Objets">
+  <object id="1" name="Start" x="642" y="2055" width="264" height="318"/>
+  <object id="2" name="endLevelLift" x="2977.5" y="534" width="315" height="366">
    <properties>
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
   </object>
-  <object id="3" name="uranium" type="Item" x="1334.5" y="242.5" width="29" height="29">
+  <object id="3" name="uranium" type="Item" x="4003.5" y="727.5" width="87" height="87">
    <ellipse/>
   </object>
-  <object id="12" name="verticalPlatform" x="101" y="300" width="97" height="205">
+  <object id="12" name="verticalPlatform" x="303" y="900" width="291" height="615">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
@@ -31,14 +31,14 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
-  <object id="13" name="verticalPlatform" x="1300" y="500" width="97" height="305">
+  <object id="13" name="verticalPlatform" x="3900" y="1500" width="291" height="915">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
     <property name="y_limit" value="430"/>
    </properties>
   </object>
-  <object id="14" name="verticalPlatform" x="801" y="497" width="95" height="191">
+  <object id="14" name="verticalPlatform" x="2403" y="1491" width="285" height="573">
    <properties>
     <property name="idleDuration" value=".5"/>
     <property name="moveUpFirst" value="1"/>
@@ -46,7 +46,7 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
-  <object id="15" name="verticalPlatform" x="1001" y="497" width="95" height="191">
+  <object id="15" name="verticalPlatform" x="3003" y="1491" width="285" height="573">
    <properties>
     <property name="idleDuration" value=".1"/>
     <property name="moveUpFirst" value="1"/>
@@ -54,7 +54,7 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
-  <object id="16" name="verticalPlatform" x="901" y="497" width="95" height="191">
+  <object id="16" name="verticalPlatform" x="2703" y="1491" width="285" height="573">
    <properties>
     <property name="idleDuration" value=".1"/>
     <property name="moveUpFirst" value="0"/>
@@ -62,41 +62,56 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
-  <object id="17" name="alien1" type="alien" x="925.672" y="457.152" width="59.1045" height="36.9403">
+  <object id="17" name="alien1" type="alien" x="2778" y="1371" width="177" height="111">
    <properties>
     <property name="moveX" value="-10"/>
    </properties>
   </object>
-  <object id="19" name="platform" x="495" y="300" width="101" height="10">
+  <object id="19" name="platform" x="1485" y="900" width="303" height="30">
    <properties>
     <property name="movementDuration" value=".5"/>
     <property name="x_limit" value="404"/>
    </properties>
   </object>
-  <object id="22" name="platform" x="402" y="800" width="101" height="10">
+  <object id="22" name="platform" x="1206" y="2400" width="303" height="30">
    <properties>
     <property name="movementDuration" value="2"/>
     <property name="x_limit" value="696"/>
    </properties>
   </object>
-  <object id="23" name="platform" x="994" y="800" width="101" height="10">
+  <object id="23" name="platform" x="2982" y="2400" width="303" height="30">
    <properties>
     <property name="movementDuration" value="2"/>
     <property name="x_limit" value="800"/>
    </properties>
   </object>
-  <object id="31" name="timeBonus" x="138" y="588" width="20" height="20">
+  <object id="31" name="timeBonus" x="414" y="1764" width="60" height="60">
    <properties>
     <property name="seconds" value="25"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="34" name="verticalPlatform" x="101" y="799.5" width="97" height="297.5">
+  <object id="34" name="verticalPlatform" x="303" y="2398.5" width="291" height="892.5">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
     <property name="y_limit" value="430"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup id="4" name="CollisionRectangles">
+  <object id="35" x="0" y="3300" width="4500" height="300"/>
+  <object id="36" x="0" y="0" width="4500" height="300"/>
+  <object id="37" x="0" y="300" width="300" height="3000"/>
+  <object id="40" x="4200" y="300" width="300" height="3000"/>
+  <object id="41" x="900" y="3000" width="300" height="300"/>
+  <object id="43" x="3900" y="300" width="300" height="300"/>
+  <object id="44" x="600" y="900" width="600" height="60"/>
+  <object id="45" x="600" y="1500" width="600" height="60"/>
+  <object id="46" x="600" y="2400" width="600" height="60"/>
+  <object id="47" x="3300" y="1500" width="600" height="60"/>
+  <object id="48" x="3300" y="2400" width="600" height="60"/>
+  <object id="49" x="3600" y="900" width="600" height="60"/>
+  <object id="50" x="1800" y="900" width="1500" height="60"/>
  </objectgroup>
 </map>

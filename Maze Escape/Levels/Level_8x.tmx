@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="left-up" compressionlevel="0" width="17" height="20" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="36">
+<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="left-up" compressionlevel="0" width="17" height="20" tilewidth="100" tileheight="100" infinite="0" nextlayerid="4" nextobjectid="20">
  <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="300" tileheight="300" tilecount="39" columns="13">
-  <image source="Tiles_x3.png" width="3900" height="900"/>
+  <image source="ElementsTiles-01-01.png" width="1300" height="300"/>
  </tileset>
  <tileset firstgid="40" name="elementsFin-02" tilewidth="300" tileheight="300" tilecount="48" columns="8">
-  <image source="elementsFin-02.png" width="2400" height="1800"/>
+  <image source="elementsFin-02.png" width="2400" height="1200"/>
  </tileset>
  <tileset firstgid="88" name="Lvl1_fond_smaller" tilewidth="300" tileheight="300" tilecount="40" columns="10">
   <image source="Lvl1_fond_smaller.png" width="3000" height="1200"/>
@@ -20,87 +20,61 @@
   </data>
  </layer>
  <objectgroup id="3" name="Objets">
-  <object id="1" name="verticalPlatform" x="906" y="2697" width="288" height="891">
+  <object id="1" name="verticalPlatform" x="302" y="899" width="96" height="297.468">
    <properties>
     <property name="moveUpFirst" value="0"/>
     <property name="movementDuration" value="1.5"/>
     <property name="noEmergencyStop" value="1"/>
    </properties>
   </object>
-  <object id="2" name="Start" x="330" y="5382" width="264" height="318"/>
-  <object id="4" name="verticalPlatform" x="606" y="4800" width="288" height="891">
+  <object id="2" name="Start" x="110" y="1794" width="88" height="106"/>
+  <object id="4" name="verticalPlatform" x="202" y="1600" width="96" height="297.167">
    <properties>
     <property name="moveUpFirst" value="0"/>
     <property name="movementDuration" value="2"/>
    </properties>
   </object>
-  <object id="5" name="sensor" x="1524" y="1392" width="858" height="828">
+  <object id="5" name="sensor" x="508" y="464" width="286" height="276">
    <properties>
     <property name="nodename" value="finalAnimationSensor"/>
    </properties>
   </object>
-  <object id="8" name="Startzz" x="1161" y="1620" width="264" height="318"/>
-  <object id="9" name="sensor" x="3255" y="1404" width="363" height="816">
+  <object id="8" name="Startzz" x="387" y="540" width="88" height="106"/>
+  <object id="9" name="sensor" x="1085" y="468" width="121" height="272">
    <properties>
     <property name="nodename" value="finalAnimationSensor2"/>
    </properties>
   </object>
-  <object id="13" name="sensor" x="3225" y="1245" width="93" height="93" rotation="2.51375">
+  <object id="13" name="sensor" x="1074.84" y="414.784" width="31.3592" height="31.3592" rotation="2.51375">
    <properties>
     <property name="nodename" value="referencePoint"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="15" name="verticalPlatform" x="906" y="3894" width="288" height="1191">
+  <object id="15" name="verticalPlatform" x="302" y="1298.41" width="96" height="396.623">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="2"/>
     <property name="noEmergencyStop" value="1"/>
    </properties>
   </object>
-  <object id="16" name="verticalPlatform" x="306" y="3003" width="288" height="1488">
+  <object id="16" name="verticalPlatform" x="102" y="1000.94" width="96" height="495.779">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
    </properties>
   </object>
-  <object id="17" name="verticalPlatform" x="603" y="2103" width="294" height="591">
+  <object id="17" name="verticalPlatform" x="201" y="701" width="98" height="196.762">
    <properties>
     <property name="moveUpFirst" value="0"/>
     <property name="movementDuration" value="3"/>
     <property name="noEmergencyStop" value="1"/>
    </properties>
   </object>
-  <object id="18" name="alien1" type="alien" x="366" y="1980" width="177" height="111">
+  <object id="18" name="alien1" type="alien" x="121.861" y="659.541" width="59.1045" height="36.9403">
    <properties>
     <property name="moveX" value="95"/>
    </properties>
-  </object>
- </objectgroup>
- <objectgroup id="4" name="CollisionRectangles">
-  <object id="20" x="300" y="5700" width="900" height="300"/>
-  <object id="21" x="0" y="600" width="300" height="5400"/>
-  <object id="22" x="1200" y="2100" width="3900" height="3900"/>
-  <object id="23" x="300" y="540" width="1200" height="960"/>
-  <object id="24" x="900" y="5400" width="300" height="60"/>
-  <object id="26" x="300" y="5100" width="300" height="60"/>
-  <object id="27" x="600" y="4200" width="300" height="60"/>
-  <object id="28" x="600" y="3300" width="300" height="60"/>
-  <object id="29" x="300" y="2100" width="300" height="300"/>
-  <object id="30" x="600" y="3900" width="300" height="300"/>
- </objectgroup>
- <objectgroup id="5" name="CollisionPolygons">
-  <object id="31" x="1500" y="1498">
-   <polygon points="0,0 0,34 92,24 98,-2 106,-16 442,-18 598,-40 658,-78 666,-64 772,-62 824,-70 822,-80 898,-84 864,-296 674,-630 440,-822 142,-942 0,-954"/>
-  </object>
-  <object id="32" x="600" y="3000">
-   <polygon points="0,0 300,300 0,300"/>
-  </object>
-  <object id="33" x="300" y="4500">
-   <polygon points="0,0 300,300 0,300"/>
-  </object>
-  <object id="35" x="1200" y="5100">
-   <polygon points="0,0 0,300 -300,300"/>
   </object>
  </objectgroup>
 </map>
