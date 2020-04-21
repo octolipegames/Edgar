@@ -1360,15 +1360,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     
     SKLabelNode *displayTime = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
-    displayTime.fontSize = 30;
+    displayTime.fontSize = 30 * x3;
     displayTime.fontColor = [SKColor whiteColor];
-    displayTime.position = CGPointMake(screenCenterX, 10);
+    displayTime.position = CGPointMake(screenCenterX, 10 * x3);
     displayTime.zPosition = 42;
     
     SKLabelNode *displayTime2 = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
-    displayTime2.fontSize = 24;
+    displayTime2.fontSize = 24 * x3;
     displayTime2.fontColor = [SKColor whiteColor];
-    displayTime2.position = CGPointMake(screenCenterX, -30);
+    displayTime2.position = CGPointMake(screenCenterX, -30 * x3);
     displayTime2.zPosition = 42;
     
     NSLog(@"Screen center x: %f", screenCenterX);
@@ -2344,14 +2344,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         if(bigJumpRequested)
         {
+            // Long touch: could be managed with applyForce
             [Edgar.physicsBody applyImpulse: CGVectorMake(0, 400000)]; // auparavant 500 * x300 * x3 puis 4500 * x30 puis 4800 * x30
-            
             bigJumpRequested = FALSE;
         }
         else
         {
             EdgarVelocity = DEFAULT_EDGAR_VELOCITY * 1.8;
-            [Edgar.physicsBody applyImpulse: CGVectorMake(0, 200000)];        }
+            [Edgar.physicsBody applyImpulse: CGVectorMake(0, 200000)];
+        }
         
         if(movingLeft||movingRight)
         {
