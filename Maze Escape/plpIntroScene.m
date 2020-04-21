@@ -89,8 +89,15 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     NSLog(@"Touch event!");
     currentFrame++;
-    if(currentFrame <= [animationFrames count]){
+    if(currentFrame < [animationFrames count]){
         [animationNode setTexture: animationFrames[currentFrame]];
+    } else {
+        NSLog(@"Launch Game");
+        SKView *spriteView = (SKView *)self.view;
+        
+        SKScene *myScene = [plpMyScene sceneWithSize: spriteView.bounds.size];
+        myScene.scaleMode = SKSceneScaleModeAspectFill;
+        [spriteView presentScene:myScene];
     }
     
 }

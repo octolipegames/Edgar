@@ -23,6 +23,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "plpMyScene.h"
 
 @interface plpIntroScene : SKScene <SKPhysicsContactDelegate>
 {
