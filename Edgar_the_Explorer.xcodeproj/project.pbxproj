@@ -44,6 +44,7 @@
 		DA60EAA41B7F38E100A3F927 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = DA60EAA31B7F38E100A3F927 /* Sounds */; };
 		DA60FCB4223EBB6A005276C6 /* plpSoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60FCB3223EBB6A005276C6 /* plpSoundController.m */; };
 		DA60FCB6223EBB88005276C6 /* plpSoundController.h in Sources */ = {isa = PBXBuildFile; fileRef = DA60FCB5223EBB88005276C6 /* plpSoundController.h */; };
+		DA614A75245DB3D5006AD8CF /* Arbre_x3.png in Resources */ = {isa = PBXBuildFile; fileRef = DA614A74245DB3D5006AD8CF /* Arbre_x3.png */; };
 		DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7485461B86FF5100920C84 /* plpPlatform.m */; };
 		DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */ = {isa = PBXBuildFile; fileRef = DA984E361C0B478A00B13A08 /* LaunchScreen960.png */; };
 		DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9ADE411D5C05A800254A58 /* menuButton.png */; };
@@ -127,6 +128,7 @@
 		DA60EAA31B7F38E100A3F927 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		DA60FCB3223EBB6A005276C6 /* plpSoundController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpSoundController.m; sourceTree = "<group>"; };
 		DA60FCB5223EBB88005276C6 /* plpSoundController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpSoundController.h; sourceTree = "<group>"; };
+		DA614A74245DB3D5006AD8CF /* Arbre_x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arbre_x3.png; sourceTree = "<group>"; };
 		DA73B84D1D02328300ED027D /* Edgar_Explorer_UITests4.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_Explorer_UITests4.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA7485451B86FF5100920C84 /* plpPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpPlatform.h; sourceTree = "<group>"; };
 		DA7485461B86FF5100920C84 /* plpPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpPlatform.m; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */,
+				DA614A74245DB3D5006AD8CF /* Arbre_x3.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				DA03CBE3199F4C4700406720 /* Main.storyboard in Resources */,
 				DA03CBDA199F4C4700406720 /* InfoPlist.strings in Resources */,
 				DA9BC04E23072C1B00ACC878 /* SoundButton.png in Resources */,
+				DA614A75245DB3D5006AD8CF /* Arbre_x3.png in Resources */,
 				DA60EAA41B7F38E100A3F927 /* Sounds in Resources */,
 				DA10C1A51D5BF3F900579F1F /* UI_img in Resources */,
 				DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */,
