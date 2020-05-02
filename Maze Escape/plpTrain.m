@@ -35,16 +35,17 @@
 
 - (id)initAtPosition:(CGPoint)position withMainTexture:(NSString*)textureString andWheelTexture:(NSString*)wheelTextureString
 {
+    float _x3 = 3;
     SKTexture *mainTexture = [SKTexture textureWithImageNamed:textureString];
     self = [super initWithTexture:mainTexture];
     
-    SKPhysicsBody *mainBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(74, 5) center:CGPointMake(0, -2)];
-    SKPhysicsBody *parapet1 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4, 8) center:CGPointMake(36, 4)];
-    SKPhysicsBody *parapet2 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4, 8) center:CGPointMake(-36, 4)];
+    SKPhysicsBody *mainBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(74*_x3, 5*_x3) center:CGPointMake(0, -2*_x3)];
+    SKPhysicsBody *parapet1 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4*_x3, 8*_x3) center:CGPointMake(36*_x3, 4*_x3)];
+    SKPhysicsBody *parapet2 = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(4*_x3, 8*_x3) center:CGPointMake(-36*_x3, 4*_x3)];
     
     self.physicsBody = [SKPhysicsBody bodyWithBodies:@[mainBody, parapet1, parapet2]];
     
-    SKTexture *baseTexture = [SKTexture textureWithImageNamed:@"Level_objects_img/ChariotBase.png"];
+    SKTexture *baseTexture = [SKTexture textureWithImageNamed:@"ChariotBase.png"];
     SKSpriteNode *base = [SKSpriteNode spriteNodeWithTexture:baseTexture];
     base.position = CGPointMake(0, -12);
     
@@ -53,22 +54,22 @@
     //    self.physicsBody = [SKPhysicsBody bodyWithTexture: mainTexture alphaThreshold: 0.5 size: CGSizeMake(74, 11)]; -> due to a SpriteKit bug, this doesn't work properly with collision detection. See: http://stackoverflow.com/questions/24228274/why-are-didbegincontact-called-multiple-times
     
     self.position = position;
-    self.physicsBody.density = 5000;
+    self.physicsBody.density = 5000*_x3;
     self.physicsBody.restitution = 0;
     
     SKTexture *textureRoue = [SKTexture textureWithImageNamed:wheelTextureString];
     
     leftWheelNode = [SKSpriteNode spriteNodeWithTexture:textureRoue];
-    leftWheelNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9.5 center:CGPointMake(0, 0)];
-    leftWheelNode.position = CGPointMake(-20, -19);
-    leftWheelNode.physicsBody.density = 5000; // 500;
+    leftWheelNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9.5*_x3 center:CGPointMake(0, 0)];
+    leftWheelNode.position = CGPointMake(-20*_x3, -19*_x3);
+    leftWheelNode.physicsBody.density = 5000*_x3; // 500;
     leftWheelNode.physicsBody.restitution = 0;
     [self addChild: leftWheelNode];
     
     rightWheelNode = [SKSpriteNode spriteNodeWithTexture:textureRoue];
-    rightWheelNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9.5 center:CGPointMake(0, 0)];
-    rightWheelNode.position = CGPointMake(20, -19);
-    rightWheelNode.physicsBody.density = 5000; // 500;
+    rightWheelNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:9.5*_x3 center:CGPointMake(0, 0)];
+    rightWheelNode.position = CGPointMake(20*_x3, -19*_x3);
+    rightWheelNode.physicsBody.density = 5000*_x3; // 500;
     rightWheelNode.physicsBody.restitution = 0;
     [self addChild: rightWheelNode];
     
