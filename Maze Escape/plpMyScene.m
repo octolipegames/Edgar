@@ -97,9 +97,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         HUD.zPosition = 28;
         [myCamera addChild:HUD];
         
-        // Sprite atlas: cf. https://stackoverflow.com/questions/49866298/using-a-sprite-atlas-texture-atlas-or-asset-catalog-in-spritekit-projects
-        SKTextureAtlas *ObjectsAtlas = [SKTextureAtlas atlasNamed:@"Sprites"];
-        SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[ObjectsAtlas textureNamed:@"Lamp_big"] size: CGSizeMake(43, 100)];
+        SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Vie"] size: CGSizeMake(43, 100)];
 
         
         [HUD addChild: edgarLife];
@@ -113,7 +111,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             [HUD addChild: lifeCopy];
         }
 
-        
         if(!useSwipeGestures){
             // TODO: remove this
            
@@ -246,6 +243,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [self.physicsWorld addJoint:pinEdgar];
         
         [self doFirstOpening];
+        
+        [self showGameOver];
+//        [self showTrophy];
     }
     
     return self;
@@ -391,6 +391,56 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextfield {
     [theTextfield resignFirstResponder];
     return YES;
+}
+
+- (void)showGameOver {
+    SKTexture *trophyTexture = [SKTexture textureWithImageNamed:@"GameOver.png"];
+    SKSpriteNode *trophy = [SKSpriteNode spriteNodeWithTexture:trophyTexture];
+    trophy.name = @"trophy";
+    
+    [containerView setFrame:CGRectMake(50*x3, 5*x3, self.view.bounds.size.width - (100 * x3), self.view.bounds.size.height/3)]; // upper half of the screen
+
+    if(!myTextView)
+    {
+        myTextView = [[UITextView alloc] init];
+    }
+    
+    myTextView.text = [NSString stringWithFormat:@"Asdf"];
+    myTextView.textColor = [UIColor whiteColor];
+    myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+    myTextView.editable = NO;
+    [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
+    
+    float outsideMargin = 60;
+    float insideMargin = 30;
+    float buttonsVerticalPosition = containerView.bounds.size.height-50;
+    float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
+    float buttonNewGamePositionX = containerView.bounds.size.width/2 - buttonWidth/2;
+    
+    [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, 35)];
+    
+    UIButton *myButtonClose  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    myButtonClose.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+    
+    [myButtonClose setBackgroundColor: [UIColor whiteColor]];
+    
+    [myButtonClose setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+    [[myButtonClose layer] setMasksToBounds:YES];
+    [[myButtonClose layer] setCornerRadius:5.0f];
+    
+    [myButtonClose setTitle: @"Play again" forState:UIControlStateNormal];
+    [myButtonClose addTarget: self
+                      action: @selector(playAgainButtonClicked:)
+            forControlEvents: UIControlEventTouchUpInside];
+    
+    [containerView addSubview:myTextView];
+    [containerView addSubview:myButtonClose];
+    
+    // Position: bottom left
+    //[trophy setPosition: CGPointMake(10 - trophy.size.width/2, 40 - trophy.size.height/2)];
+    [trophy setPosition: CGPointMake(0, 0)];
+    [trophy setZPosition: 100];
+    [myCamera addChild: trophy];
 }
 
 - (void)showTrophy {
@@ -716,18 +766,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             for (NSDictionary *monTree in treeArray) {
                 plpItem *myItem;
                 
-                // TODO
-                SKTextureAtlas *ObjectsAtlas = [SKTextureAtlas atlasNamed:@"Sprites"];
+                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withTexture:@"Arbre_x3.png" andRadius: 22];
                 
-                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withSprite:[ObjectsAtlas textureNamed:@"Tree"] andRadius: 22 * x3];
-                
-                // myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monTree] withTexture:@"Level_objects_img/arbre-09.png" andRadius: 22];
-                
-                //                float waitBeforeStart = [montree[@"waitBeforeStart"] floatValue];
                 if(myItem)
                 {
-                    //                    myItem.physicsBody.categoryBitMask = PhysicsCategoryItems;
-                    myItem.physicsBody = [SKPhysicsBody bodyWithTexture: myItem.texture alphaThreshold: 0.5 size: CGSizeMake(253, 285)];
+                    myItem.physicsBody = [SKPhysicsBody bodyWithTexture: myItem.texture alphaThreshold: 0.5 size: CGSizeMake(760, 852)];
                     myItem.physicsBody.categoryBitMask = PhysicsCategoryTiles;
                     myItem.physicsBody.dynamic = NO;
                     [tileMap addChild:myItem];
@@ -860,7 +903,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         for (NSDictionary *theTrain in trainObjectMarker) {
 //            trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"Level_objects_img/ChariotSocle.png" andWheelTexture:@"Level_objects_img/RoueChariot-03.png"];
-            trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"Level_objects_img/ChariotSocle.png" andWheelTexture:@"Level_objects_img/RoueChariot-03.png"];
+            trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"ChariotParoi.png" andWheelTexture:@"ChariotRoue.png"];
             
             
             if(trainNode)
@@ -881,10 +924,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 [trainNode getRightWheel].physicsBody.categoryBitMask = PhysicsCategoryObjects;
                 [trainNode getRightWheel].physicsBody.contactTestBitMask = PhysicsCategoryEdgar|PhysicsCategoryObjects|PhysicsCategoryTiles;
                 
-                SKPhysicsJointPin *pinGauche = [SKPhysicsJointPin jointWithBodyA:[trainNode getLeftWheel].physicsBody bodyB:trainNode.physicsBody anchor:CGPointMake(trainNode.position.x-20, trainNode.position.y-19)];
+                SKPhysicsJointPin *pinGauche = [SKPhysicsJointPin jointWithBodyA:[trainNode getLeftWheel].physicsBody bodyB:trainNode.physicsBody anchor:CGPointMake(trainNode.position.x-20*x3, trainNode.position.y-19*x3)];
                 [self.physicsWorld addJoint:pinGauche];
                 
-                SKPhysicsJointPin *pinDroit = [SKPhysicsJointPin jointWithBodyA:[trainNode getRightWheel].physicsBody bodyB:trainNode.physicsBody anchor:CGPointMake(trainNode.position.x+20, trainNode.position.y-19)];
+                SKPhysicsJointPin *pinDroit = [SKPhysicsJointPin jointWithBodyA:[trainNode getRightWheel].physicsBody bodyB:trainNode.physicsBody anchor:CGPointMake(trainNode.position.x+20*x3, trainNode.position.y-19*x3)];
                 [self.physicsWorld addJoint:pinDroit];
             }
         }
@@ -1144,6 +1187,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if(lifeCount < 1){
         // game over
         NSLog(@"Game over");
+        [self showGameOver];
     }else if(!levelTransitioning) // Check if restart level is currently disabled
     {
         [Edgar removeControl];
