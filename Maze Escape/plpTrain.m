@@ -47,7 +47,7 @@
     
     SKTexture *baseTexture = [SKTexture textureWithImageNamed:@"ChariotBase.png"];
     SKSpriteNode *base = [SKSpriteNode spriteNodeWithTexture:baseTexture];
-    base.position = CGPointMake(0, -12);
+    base.position = CGPointMake(0, -36);
     
     [self addChild: base];
     
