@@ -27,7 +27,7 @@
     <property name="noEmergencyStop" value="1"/>
    </properties>
   </object>
-  <object id="2" name="Start" x="330" y="5382" width="264" height="318"/>
+  <object id="2" name="Startz" x="330" y="5382" width="264" height="318"/>
   <object id="4" name="verticalPlatform" x="606" y="4800" width="288" height="891">
    <properties>
     <property name="moveUpFirst" value="0"/>
@@ -39,7 +39,7 @@
     <property name="nodename" value="finalAnimationSensor"/>
    </properties>
   </object>
-  <object id="8" name="Startzz" x="1161" y="1620" width="264" height="318"/>
+  <object id="8" name="Start" x="1161" y="1620" width="264" height="318"/>
   <object id="9" name="sensor" x="3255" y="1404" width="363" height="816">
    <properties>
     <property name="nodename" value="finalAnimationSensor2"/>

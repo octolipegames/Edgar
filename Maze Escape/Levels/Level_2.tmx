@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="17" height="5" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="35">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="17" height="5" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="39">
  <tileset firstgid="1" name="Tiles_x3" tilewidth="300" tileheight="300" tilecount="39" columns="13">
   <image source="Tiles_x3.png" width="3900" height="900"/>
  </tileset>
@@ -10,7 +10,7 @@
  </layer>
  <layer id="2" name="Solide" width="17" height="5">
   <data encoding="base64" compression="zlib">
-   eAHjY2Bg4KMCBhqBAcQwRLALwOzHJgsyAyTPjU0SSQxmBjItgCRPiAkyH1kvJWwAzzMCuw==
+   eAHjY2Bg4KMCBhqBAcQwRLALwOxHl+UCCoDMAMlzQyVBYiAAoyE87H4QgElCaZgZaMJgLkgO5g5KaQDnWwLk
   </data>
  </layer>
  <objectgroup id="4" name="CollisionRectangles">
@@ -26,6 +26,7 @@
   <object id="31" x="4500" y="1140" width="600" height="60"/>
   <object id="33" x="3720" y="720" width="60" height="60"/>
   <object id="34" x="1620" y="720" width="60" height="60"/>
+  <object id="37" x="2400" y="1140" width="300" height="60"/>
  </objectgroup>
  <objectgroup id="5" name="CollisionPolygons">
   <object id="32" x="300" y="900">
@@ -34,7 +35,7 @@
  </objectgroup>
  <objectgroup id="3" name="Objets">
   <object id="1" name="Start" x="315" y="582" width="264" height="318"/>
-  <object id="6" name="uranium" type="Item" x="2197.5" y="421.5" width="87" height="87">
+  <object id="6" name="uranium" type="Item" x="2200" y="421.5" width="87" height="87">
    <ellipse/>
   </object>
   <object id="7" name="endLevelLift" x="4056" y="828" width="315" height="366">
@@ -45,6 +46,12 @@
   <object id="13" x="4371" y="384" width="3">
    <ellipse/>
   </object>
-  <object id="17" name="Caisse" type="Caisse" x="2784" y="1008" width="180" height="180"/>
+  <object id="17" name="Caisse" type="Caisse" x="3432.48" y="1004.97" width="180" height="180"/>
+  <object id="35" name="file" x="1566.67" y="1096.97">
+   <point/>
+  </object>
+  <object id="38" name="file" x="2869.7" y="1084.85">
+   <point/>
+  </object>
  </objectgroup>
 </map>
