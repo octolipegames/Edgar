@@ -125,7 +125,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
             {
                 contextVelocityX = 0;
             }
-            [self->platformSound runAction: [SKAction stop]];
+            if(self->heroNear){
+                [self->platformSound runAction: [SKAction stop]];
+            }
         }];
 
         if(isVertical) // vertical movement
