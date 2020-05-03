@@ -180,7 +180,7 @@
 
 -(void)addMasque
 {
-    SKSpriteNode *masque = [SKSpriteNode spriteNodeWithImageNamed:@"Level_objects_img/masque_120.png"];
+    SKSpriteNode *masque = [SKSpriteNode spriteNodeWithImageNamed:@"ShadowMask.png"];
     masque.name = @"masque";
     masque.size = CGSizeMake(3600, 2400); // avant x3: 1200, 800
     [self addChild: masque];
