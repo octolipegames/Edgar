@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" image="Logo_Launch_Screen.png" translatesAutoresizingMaskIntoConstraints="NO" id="w9k-S1-Bln">
-                                <rect key="frame" x="44" y="23.5" width="808" height="346"/>
+                                <rect key="frame" x="144" y="66" width="608" height="261"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="w9k-S1-Bln" secondAttribute="height" multiplier="7:3" id="T7Q-yM-15D"/>
                                 </constraints>
@@ -27,7 +27,7 @@
                         <constraints>
                             <constraint firstItem="w9k-S1-Bln" firstAttribute="centerY" secondItem="Bcu-3y-fUS" secondAttribute="centerY" id="0Xo-zQ-4YZ"/>
                             <constraint firstItem="w9k-S1-Bln" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="BXd-be-Shj"/>
-                            <constraint firstItem="w9k-S1-Bln" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="m4w-Qw-bpq"/>
+                            <constraint firstItem="w9k-S1-Bln" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="100" id="m4w-Qw-bpq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                     </view>
