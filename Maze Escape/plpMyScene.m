@@ -244,7 +244,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         [self doFirstOpening];
         
-        [self showGameOver];
+//        [self showGameOver];
 //        [self showTrophy];
     }
     
@@ -316,7 +316,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     // custom size because the keyboard takes up half the screen
-    [containerView setFrame:CGRectMake(50, 5, self.view.bounds.size.width-100 * x3, (self.view.bounds.size.height/2-10)*x3)];
+    [containerView setFrame:CGRectMake(50, 5, self.view.bounds.size.width-100, (self.view.bounds.size.height/2-10))];
     
     UITextView *usernameTextView = [[UITextView alloc] init];
     usernameTextView.text = [NSString stringWithFormat:@"Choose a name"];
@@ -445,17 +445,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 - (void)showTrophy {
     NSString *rankingString = @"Snail Edgar.";
-    SKTexture *trophyTexture = [SKTexture textureWithImageNamed:@"UI_img/Trophy1-03.png"];
+    SKTexture *trophyTexture = [SKTexture textureWithImageNamed:@"TropheeSnail_x3.png"];
     
     float totalTime = [self getTotalTime];
     if(totalTime < 600) // 10 minutes
     {
-        rankingString = @"King Edgar. Congrats, boss.";
-        trophyTexture = [SKTexture textureWithImageNamed:@"UI_img/Trophy3-03.png"];
+        rankingString = @"Congrats, you’re the boss.";
+        trophyTexture = [SKTexture textureWithImageNamed:@"TropheeElite_x3.png"];
     }else if(totalTime < 1200) // 20 minutes
     {
-        rankingString = @"Knight Edgar. Very good.";
-        trophyTexture = [SKTexture textureWithImageNamed:@"UI_img/Trophy2-03.png"];
+        rankingString = @"Good job!";
+        trophyTexture = [SKTexture textureWithImageNamed:@"TropheeExplorer_x3.png"];
     }else{
         rankingString = @"Snail Edgar.";
     }
@@ -1184,22 +1184,19 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [lostLife removeFromParent];
     }];
     
-    if(lifeCount < 1){
-        // game over
+    if(levelTransitioning){
+        NSLog(@"Restart level disabled at this time");
+    }else if(lifeCount < 1){
+        // game over -- for testing
         NSLog(@"Game over");
         [self showGameOver];
-    }else if(!levelTransitioning) // Check if restart level is currently disabled
-    {
+    }else{
         [Edgar removeControl];
         levelTransitioning = TRUE;
         [myFinishRectangle removeFromParent];
         myFinishRectangle = nil;
         [self doLevelTransition_sameLevel:YES];
         [Edgar giveControl];
-    }
-    else
-    {
-        NSLog(@"Restart level disabled at this time");
     }
 }
 
@@ -1342,8 +1339,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     myTextView.text = [myTextView.text stringByAppendingString:onlineRankSentence];
 }
 
-
--(void)doFirstOpening{
+-(void)openCurtains{
     float halfHeight = 200 * x3;
     
     SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800 * x3, 250 * x3) ];
@@ -1362,7 +1358,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     SKAction *openupperCurtain = [SKAction moveToY:halfHeight duration: .5];
     SKAction *openlowerCurtain = [SKAction moveToY:-halfHeight duration: .5];
-    SKAction *openCurtains = [SKAction runBlock:^{
+    SKAction *openCurtainsAnimation = [SKAction runBlock:^{
         [upperCurtain runAction: openupperCurtain];
         [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
@@ -1370,7 +1366,29 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }];
     }];
     
-    [myWorld runAction: openCurtains];
+    [myWorld runAction: openCurtainsAnimation];
+}
+
+-(void)closeCurtains{
+    SKSpriteNode *lowerCurtain = (SKSpriteNode*)[myCamera childNodeWithName:@"lowerCurtain"];
+    SKSpriteNode *upperCurtain = (SKSpriteNode*)[myCamera childNodeWithName:@"upperCurtain"];
+    if(upperCurtain && lowerCurtain){
+        [upperCurtain runAction: [SKAction moveToY:-20 duration: .5]];
+        [lowerCurtain runAction: [SKAction moveToY:20 duration: .5] completion:^
+        {
+            [upperCurtain removeFromParent];
+            [lowerCurtain removeFromParent];
+            /*[spinner removeFromSuperview];
+            [self->myWorld runAction: presentScore];*/
+        }];
+    } else {
+        NSLog(@"Error: curtains not found");
+    }
+    
+}
+
+-(void)doFirstOpening{
+    [self openCurtains];
     
     SKNode *touchIndicator = [HUD childNodeWithName:@"//touchIndicator"];
     [touchIndicator runAction: [SKAction fadeOutWithDuration: 5] completion:^{
@@ -1382,6 +1400,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 
 -(void)doLevelTransition_sameLevel:(BOOL)repeatingLevel{
+    
     float halfHeight = 200 * x3;
     
     // A. Save to additionalTime; we call saveInitialTime when the curtains open again (we don't count time between levels, it wouldn't be fair!)
@@ -1401,8 +1420,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [spinner startAnimating];
     [self.view addSubview:spinner];
 
-    
-    
     SKLabelNode *displayTime = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
     displayTime.fontSize = 30 * x3;
     displayTime.fontColor = [SKColor whiteColor];
@@ -1469,7 +1486,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
     SKAction *openupperCurtain = [SKAction moveToY:halfHeight duration: .5];
     SKAction *openlowerCurtain = [SKAction moveToY:-halfHeight duration: .5];
-    SKAction *openCurtains = [SKAction runBlock:^{
+    SKAction *openCurtainsAnimation = [SKAction runBlock:^{
         [upperCurtain runAction: openupperCurtain];
         [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
@@ -1487,7 +1504,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         SKAction *timeVanish = [SKAction sequence: @[[SKAction fadeAlphaTo:1 duration:.3], [SKAction waitForDuration:1.5],[SKAction fadeAlphaTo:0 duration:1], [SKAction removeFromParent]]];
         [displayTime runAction:timeVanish];
         [displayTime2 runAction:timeVanish completion:^{
-            [self->myWorld runAction: openCurtains];
+            [self->myWorld runAction: openCurtainsAnimation];
         }];
         [self startLevel];
         // [NSThread detachNewThreadSelector:@selector(startLevel) toTarget:self withObject:nil];
@@ -1692,10 +1709,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
                 // First animation
                 SKNode *alienVessel;
-                alienVessel = [SKSpriteNode spriteNodeWithImageNamed:@"Level_objects_img/UFO1-02.png"];
+                alienVessel = [SKSpriteNode spriteNodeWithImageNamed:@"UFO_x3.png"];
                 alienVessel.name = @"alienVessel";
                 
-                SKSpriteNode *beam = [SKSpriteNode spriteNodeWithImageNamed:@"Level_objects_img/rayonb.png"];
+                SKSpriteNode *beam = [SKSpriteNode spriteNodeWithImageNamed:@"Rayon_x3.png"];
                 beam.alpha = 0;
                 beam.name = @"beam";
                 
@@ -1771,7 +1788,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     
                     SKAction *finalMessage = [SKAction runBlock:^{
                         self->containerView = [[UIView alloc] init];
-                        [self->containerView setFrame: CGRectMake(50, 50, self.view.bounds.size.width-100 * x3, self.view.bounds.size.height-100 * x3)]; // coordinates origin is upper left
+                        [self->containerView setFrame: CGRectMake(50, 50, self.view.bounds.size.width-100, self.view.bounds.size.height-100)]; // coordinates origin is upper left
                         
                         self->containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
                         
