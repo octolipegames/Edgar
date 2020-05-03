@@ -24,6 +24,7 @@
 		DA10C1A31D5BEBBD00579F1F /* Level_objects_img in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A21D5BEBBD00579F1F /* Level_objects_img */; };
 		DA10C1A51D5BF3F900579F1F /* UI_img in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A41D5BF3F900579F1F /* UI_img */; };
 		DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A61D5BFB6400579F1F /* edgar.atlas */; };
+		DA1A0F87245F32A40070CA08 /* Pile.png in Resources */ = {isa = PBXBuildFile; fileRef = DA1A0F86245F32A40070CA08 /* Pile.png */; };
 		DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */; };
 		DA2429B6233960A10027DB3E /* EdgarLife-ui.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2429B4233960A10027DB3E /* EdgarLife-ui.png */; };
 		DA2429B7233960A10027DB3E /* classeurs-ui.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2429B5233960A10027DB3E /* classeurs-ui.png */; };
@@ -65,13 +66,14 @@
 		DADBE51A1C0A5E9A004469EA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DADBE5191C0A5E9A004469EA /* Media.xcassets */; };
 		DAE713DB1C0FA87500ED9139 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE713DA1C0FA87500ED9139 /* Play.png */; };
 		DAF2CB141B83B8B000FC7FF1 /* plpTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */; };
+		DAF37DFF245F2A4900D55AF9 /* ShadowMask.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF37DFE245F2A4900D55AF9 /* ShadowMask.png */; };
 		DAF381B41B9E2E21008B4D5D /* plpItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF381B31B9E2E21008B4D5D /* plpItem.m */; };
 		DAF6AD6F245EDBD100D7D6D2 /* UFO_x3.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF6AD6E245EDBD100D7D6D2 /* UFO_x3.png */; };
 		DAF6AD71245EDCCF00D7D6D2 /* Rayon_x3.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF6AD70245EDCCF00D7D6D2 /* Rayon_x3.png */; };
 		DAF6AD75245EE1EA00D7D6D2 /* TropheeExplorer_x3.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF6AD72245EE1EA00D7D6D2 /* TropheeExplorer_x3.png */; };
 		DAF6AD76245EE1EA00D7D6D2 /* TropheeSnail_x3.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF6AD73245EE1EA00D7D6D2 /* TropheeSnail_x3.png */; };
 		DAF6AD77245EE1EA00D7D6D2 /* TropheeElite_x3.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF6AD74245EE1EA00D7D6D2 /* TropheeElite_x3.png */; };
-		DAF6AD79245EE54300D7D6D2 /* Collectionable.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF6AD78245EE54300D7D6D2 /* Collectionable.png */; };
+		DAF6AD79245EE54300D7D6D2 /* Collectionnable.png in Resources */ = {isa = PBXBuildFile; fileRef = DAF6AD78245EE54300D7D6D2 /* Collectionnable.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,7 @@
 		DA10C1A21D5BEBBD00579F1F /* Level_objects_img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Level_objects_img; sourceTree = "<group>"; };
 		DA10C1A41D5BF3F900579F1F /* UI_img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UI_img; sourceTree = "<group>"; };
 		DA10C1A61D5BFB6400579F1F /* edgar.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgar.atlas; sourceTree = "<group>"; };
+		DA1A0F86245F32A40070CA08 /* Pile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pile.png; sourceTree = "<group>"; };
 		DA1BE6EE1B81256000DA2E47 /* plpEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpEnemy.h; sourceTree = "<group>"; };
 		DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpEnemy.m; sourceTree = "<group>"; };
 		DA2429B4233960A10027DB3E /* EdgarLife-ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "EdgarLife-ui.png"; path = "UI_img/EdgarLife-ui.png"; sourceTree = "<group>"; };
@@ -164,7 +167,7 @@
 		DAE713DA1C0FA87500ED9139 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
 		DAF2CB121B83B8B000FC7FF1 /* plpTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpTrain.h; sourceTree = "<group>"; };
 		DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpTrain.m; sourceTree = "<group>"; };
-		DAF37DFD245F106700D55AF9 /* Pile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pile.png; sourceTree = "<group>"; };
+		DAF37DFE245F2A4900D55AF9 /* ShadowMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShadowMask.png; sourceTree = "<group>"; };
 		DAF381B21B9E2E21008B4D5D /* plpItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpItem.h; sourceTree = "<group>"; };
 		DAF381B31B9E2E21008B4D5D /* plpItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpItem.m; sourceTree = "<group>"; };
 		DAF6AD6E245EDBD100D7D6D2 /* UFO_x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UFO_x3.png; sourceTree = "<group>"; };
@@ -172,7 +175,7 @@
 		DAF6AD72245EE1EA00D7D6D2 /* TropheeExplorer_x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TropheeExplorer_x3.png; sourceTree = "<group>"; };
 		DAF6AD73245EE1EA00D7D6D2 /* TropheeSnail_x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TropheeSnail_x3.png; sourceTree = "<group>"; };
 		DAF6AD74245EE1EA00D7D6D2 /* TropheeElite_x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TropheeElite_x3.png; sourceTree = "<group>"; };
-		DAF6AD78245EE54300D7D6D2 /* Collectionable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Collectionable.png; sourceTree = "<group>"; };
+		DAF6AD78245EE54300D7D6D2 /* Collectionnable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Collectionnable.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,20 +317,21 @@
 		DA29F9C523EE955400CF4F22 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DA1A0F86245F32A40070CA08 /* Pile.png */,
 				DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */,
 				DA614A74245DB3D5006AD8CF /* Arbre_x3.png */,
 				DA614A7D245DB64D006AD8CF /* ChariotBase.png */,
 				DA614A7C245DB64D006AD8CF /* ChariotParoi.png */,
 				DA614A82245DB89E006AD8CF /* Vie.png */,
 				DA614A84245DB9F3006AD8CF /* GameOver.png */,
-				DAF6AD78245EE54300D7D6D2 /* Collectionable.png */,
+				DAF6AD78245EE54300D7D6D2 /* Collectionnable.png */,
 				DA614A7E245DB64D006AD8CF /* ChariotRoue.png */,
-				DAF37DFD245F106700D55AF9 /* Pile.png */,
 				DAF6AD6E245EDBD100D7D6D2 /* UFO_x3.png */,
 				DAF6AD70245EDCCF00D7D6D2 /* Rayon_x3.png */,
 				DAF6AD74245EE1EA00D7D6D2 /* TropheeElite_x3.png */,
 				DAF6AD72245EE1EA00D7D6D2 /* TropheeExplorer_x3.png */,
 				DAF6AD73245EE1EA00D7D6D2 /* TropheeSnail_x3.png */,
+				DAF37DFE245F2A4900D55AF9 /* ShadowMask.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -476,6 +480,7 @@
 				DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */,
 				DAF6AD75245EE1EA00D7D6D2 /* TropheeExplorer_x3.png in Resources */,
 				DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */,
+				DAF37DFF245F2A4900D55AF9 /* ShadowMask.png in Resources */,
 				DA03CBE3199F4C4700406720 /* Main.storyboard in Resources */,
 				DA614A7F245DB64D006AD8CF /* ChariotParoi.png in Resources */,
 				DAF6AD77245EE1EA00D7D6D2 /* TropheeElite_x3.png in Resources */,
@@ -484,7 +489,7 @@
 				DA9BC04E23072C1B00ACC878 /* SoundButton.png in Resources */,
 				DA614A85245DB9F3006AD8CF /* GameOver.png in Resources */,
 				DA614A75245DB3D5006AD8CF /* Arbre_x3.png in Resources */,
-				DAF6AD79245EE54300D7D6D2 /* Collectionable.png in Resources */,
+				DAF6AD79245EE54300D7D6D2 /* Collectionnable.png in Resources */,
 				DA614A80245DB64D006AD8CF /* ChariotBase.png in Resources */,
 				DA60EAA41B7F38E100A3F927 /* Sounds in Resources */,
 				DA10C1A51D5BF3F900579F1F /* UI_img in Resources */,
@@ -493,6 +498,7 @@
 				DA2429B7233960A10027DB3E /* classeurs-ui.png in Resources */,
 				DABCE3491D5BE8A900C277BB /* Levels in Resources */,
 				DA614A83245DB89E006AD8CF /* Vie.png in Resources */,
+				DA1A0F87245F32A40070CA08 /* Pile.png in Resources */,
 				DA519C5E232CE8BE00B4F594 /* sound.png in Resources */,
 				DAF6AD71245EDCCF00D7D6D2 /* Rayon_x3.png in Resources */,
 			);
