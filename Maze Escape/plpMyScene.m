@@ -860,7 +860,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         for (NSDictionary *monItem in tabItem) {
             plpItem *myItem;
-            myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monItem] withTexture:@"Level_objects_img/pile.png" andRadius: 22];
+            myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monItem] withTexture:@"Pile.png" andRadius: 66];
             if(myItem)
             {
                 myItem.name = @"uranium";
@@ -874,22 +874,20 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }
     }
     
-    NSArray *tabBonus;
-    if((tabBonus=[group objectsNamed:@"timeBonus"]))
+    NSArray *fileGroup;
+    if((fileGroup=[group objectsNamed:@"file"]))
     {
-        for (NSDictionary *monBonus in tabBonus) {
-            plpItem *myBonus;
-            myBonus = [[plpItem alloc] initAtPosition:[self convertPosition:monBonus] withTexture:@"Level_objects_img/timeBonus.png" andRadius: 8];
-            if(myBonus)
+        for (NSDictionary *filePosition in fileGroup) {
+            plpItem *myFile = [[plpItem alloc] initAtPosition:[self convertPosition: filePosition] withTexture:@"Collectionnable.png" andRadius: 8];
+            if(myFile)
             {
-                myBonus.name = @"timeBonus";
-                myBonus.physicsBody.categoryBitMask = PhysicsCategoryItems;
-                [myBonus setSeconds: [monBonus[@"seconds"] intValue]];
-                [tileMap addChild:myBonus];
+                myFile.name = @"file";
+                myFile.physicsBody.categoryBitMask = PhysicsCategoryItems;
+                [tileMap addChild: myFile];
             }
             else
             {
-                NSLog(@"Error while creating a bonus.");
+                NSLog(@"Error while adding a file to the map.");
             }
         }
     }
@@ -1998,39 +1996,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     [helpNode removeFromParent];
                 }
             }
-        }else if([contactNode.name isEqualToString: @"timeBonus"])
+        }else if([contactNode.name isEqualToString: @"file"])
         {
-            SKSpriteNode *bonusDisplayNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/Time_bonus.png"];
-            [bonusDisplayNode setSize:CGSizeMake(600 * x3, 111)];
-            [bonusDisplayNode setPosition:CGPointMake(screenCenterX, 0)];
-            [bonusDisplayNode setZPosition: 30]; // devdev
-            
-            int theBonusSeconds = 30;
-            [myCamera addChild: bonusDisplayNode];
-            [bonusDisplayNode runAction:[SKAction sequence:@[[SKAction fadeAlphaTo: 1 duration: .5], [SKAction waitForDuration: 1], [SKAction fadeAlphaTo: 0 duration: 1.5], [SKAction removeFromParent]]]];
-            
-            
-            /*
-             
-            // [No SKLabel for now]
-             
-            int theBonusSeconds = [(plpItem *)contactNode getSeconds];
-            SKLabelNode *bonusLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-            bonusLabel.fontSize = 36;
-            [bonusLabel setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
-            
-            bonusLabel.fontColor = [SKColor colorWithRed:0 green:.8 blue:.5 alpha:1];
-            bonusLabel.position = CGPointMake(screenCenterX, 0); // should be ~ 100 * x3 for an iPad air -> find a way to do it better
-            bonusLabel.zPosition = 30;
-            bonusLabel.text = [NSString stringWithFormat:@"Bonus! -%d seconds", theBonusSeconds];
-            bonusLabel.alpha = 0;
-            [myCamera addChild: bonusLabel];
-            
-            [bonusLabel runAction:[SKAction sequence:@[[SKAction fadeAlphaTo: 1 duration: .5], [SKAction waitForDuration: 5], [SKAction fadeAlphaTo: 0 duration: .5], [SKAction removeFromParent]]]];
-            */
-            
-            
-            initialTime -= theBonusSeconds;
+            NSLog(@"File collected!");
+            // TODO: increment score
             [(plpItem *)contactNode removeFromParent];
         }
     }
