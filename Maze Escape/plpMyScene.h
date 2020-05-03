@@ -34,7 +34,7 @@
 
 #define LAST_LEVEL_INDEX 8
 #define SEMAPHORE_LEVEL_INDEX 5
-#define FIRST_DARK_LEVEL 6
+#define FIRST_DARK_LEVEL 3
 #define USE_ALTERNATE_CONTROLS 0
 #define DEFAULT_EDGAR_VELOCITY 450 // was 150
 #define HUD_VERTICAL_THIRD 1200/3
@@ -72,7 +72,7 @@ float contextVelocityX;
     BOOL useSwipeGestures;
     BOOL enableDebug;
     NSInteger lifeCount;
-    NSInteger binderCount;
+    NSInteger fileCount;
     
     // Audio
     plpSoundController *soundController;
@@ -110,6 +110,7 @@ float contextVelocityX;
     UITextView *myTextView;
     BOOL runningOniPad;
     float screenCenterX;
+    SKLabelNode *fileCountLabel;
     
     // Game data
     int globalCounter;

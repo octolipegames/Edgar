@@ -88,7 +88,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         useSwipeGestures = [defaults boolForKey:@"useSwipeGestures"];
         enableDebug = [defaults boolForKey:@"enableDebug"];
-        lifeCount = 2; //[defaults integerForKey:@"lifeCount"];
+        // TODO: use defaults
+        lifeCount = 3; //[defaults integerForKey:@"lifeCount"];
+        fileCount = 0;
         
 
         
@@ -97,19 +99,36 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         HUD.zPosition = 28;
         [myCamera addChild:HUD];
         
+        // Show life count
         SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Vie"] size: CGSizeMake(43, 100)];
 
-        
         [HUD addChild: edgarLife];
-        [edgarLife setPosition: CGPointMake(-320 * x3, 480)];
+        [edgarLife setPosition: CGPointMake(-320 * x3, 540)];
         [edgarLife setName: @"life0"];
         
         for(int i = 0; i < lifeCount; i++){
             SKSpriteNode *lifeCopy = [edgarLife copy];
-            [lifeCopy setPosition: CGPointMake(-320 * x3 + (i * 80), 480)];
+            [lifeCopy setPosition: CGPointMake(-320 * x3 + (i * 80), 540)];
             [lifeCopy setName: [NSString stringWithFormat:@"life%d", i]];
             [HUD addChild: lifeCopy];
         }
+        
+        // Show file count
+        SKSpriteNode *file = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Collectionnable"] size: CGSizeMake(100, 100)];
+        [file setPosition: CGPointMake(-600, 540)];
+        [HUD addChild: file];
+        
+        fileCountLabel = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+        fileCountLabel.fontSize = 30 * x3;
+        fileCountLabel.fontColor = [SKColor whiteColor];
+        fileCountLabel.position = CGPointMake(-490, 540);
+        fileCountLabel.zPosition = 10;
+        [fileCountLabel setName: @"fileCountLabel"];
+        
+        [fileCountLabel setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeLeft];
+        [fileCountLabel setVerticalAlignmentMode:SKLabelVerticalAlignmentModeCenter];
+        fileCountLabel.text = [ [NSString alloc] initWithFormat: @"× %ld", (long) fileCount];
+        [HUD addChild: fileCountLabel];
 
         if(!useSwipeGestures){
             // TODO: remove this
@@ -250,7 +269,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     return self;
 }
-
 
 - (void)playAgain{
     NSLog(@"playAgain called");
@@ -2000,6 +2018,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             NSLog(@"File collected!");
             // TODO: increment score
+            fileCount++;
+            fileCountLabel.text = [ [NSString alloc] initWithFormat: @"× %ld", (long) fileCount];
             [(plpItem *)contactNode removeFromParent];
         }
     }
