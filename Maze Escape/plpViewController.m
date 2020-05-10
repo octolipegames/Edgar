@@ -228,7 +228,7 @@
         gamePaused = FALSE;
         if(doTutorial == TRUE)
         {
-            [(plpMyScene*)myScene resumeFromLevel:0];
+            [(plpMyScene*)myScene resumeFromLevel: 0];
         }
     }
 }
