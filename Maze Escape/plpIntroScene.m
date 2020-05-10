@@ -83,18 +83,23 @@
         animationNode.zPosition = 20;
         [self addChild: animationNode];
         
+        SKShapeNode *labelBackground = [SKShapeNode shapeNodeWithRectOfSize: CGSizeMake( 2400, 300) ];
+        [labelBackground setFillColor: [UIColor blackColor] ];
+        [labelBackground setPosition: CGPointMake(0, -300)];
+        [self addChild: labelBackground];
+        
         subtitleNode = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
         subtitleNode.fontSize = 90;
         subtitleNode.fontColor = [SKColor whiteColor];
-        subtitleNode.position = CGPointMake(0, -50);
+        subtitleNode.position = CGPointMake(0, 10);
         subtitleNode.zPosition = 42;
         subtitleNode.text = @"Aliens experiments have been forbidden for years";
-        [self addChild: subtitleNode];
+        [labelBackground addChild: subtitleNode];
     }
 }
 
 -(void)playScene2{
-    SKVideoNode *videoNode = [SKVideoNode videoNodeWithFileNamed:@"intro-car.mp4"];
+    SKVideoNode *videoNode = [SKVideoNode videoNodeWithFileNamed:@"intro-car.mov"];
     videoNode.size = CGSizeMake(2400, 1200);
     videoNode.position = CGPointMake(0, 0);
     videoNode.zPosition = 20;
@@ -109,11 +114,12 @@
         NSLog(@"continue");
         
         NSArray *subtitleTexts = @[@"1",
-                               @"However, some scientists still keep aliens in cages in the name of science!",
-                               @"Green Alien must make sure that Bionic Labs Inc stops illegals aliens experiments",
-                               @"We need someone to infiltrate Bionic Labs Inc and collect evidence. Any volonteers?"];
+                               @"(2) However, some scientists still keep aliens in cages in the name of science!",
+                               @"(3) Green Alien must make sure that Bionic Labs Inc stops illegals aliens experiments",
+                               @"(4) We need someone to infiltrate Bionic Labs Inc and collect evidence. Any volonteers?"];
         
         [animationNode setTexture: animationFrames[currentFrame]];
+        NSLog(@"%@", subtitleTexts[currentFrame]);
         [subtitleNode setText: subtitleTexts[currentFrame]];
     } else if(currentFrame == [animationFrames count]) {
         NSLog(@"create video!");
