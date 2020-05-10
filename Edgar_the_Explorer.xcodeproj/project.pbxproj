@@ -57,6 +57,7 @@
 		DA9BC04E23072C1B00ACC878 /* SoundButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9BC04D23072C1B00ACC878 /* SoundButton.png */; };
 		DA9BC0502307335600ACC878 /* plpSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC04F2307335600ACC878 /* plpSoundViewController.m */; };
 		DA9BC0522307336600ACC878 /* plpSoundViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC0512307336500ACC878 /* plpSoundViewController.h */; };
+		DAB204E024620AE70077DC4D /* v_mic_devant.mov in Resources */ = {isa = PBXBuildFile; fileRef = DAB204DF24620AE70077DC4D /* v_mic_devant.mov */; };
 		DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAB5E1411C21DD2800809756 /* edgarsaute.atlas */; };
 		DABCE3491D5BE8A900C277BB /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = DABCE3481D5BE8A900C277BB /* Levels */; };
 		DAC45078241ECBF300BFBE9C /* scenes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA824556241AEA95007843AD /* scenes.atlas */; };
@@ -150,12 +151,15 @@
 		DA7485451B86FF5100920C84 /* plpPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpPlatform.h; sourceTree = "<group>"; };
 		DA7485461B86FF5100920C84 /* plpPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpPlatform.m; sourceTree = "<group>"; };
 		DA824556241AEA95007843AD /* scenes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = scenes.atlas; sourceTree = "<group>"; };
+		DA8A5F7B246345DA005E272D /* intro-car.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "intro-car.mp4"; path = "External-media/animation/intro-car.mp4"; sourceTree = SOURCE_ROOT; };
 		DA984E361C0B478A00B13A08 /* LaunchScreen960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen960.png; sourceTree = "<group>"; };
 		DA9ADE411D5C05A800254A58 /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		DA9ADE421D5C05A800254A58 /* repeatButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repeatButton.png; sourceTree = "<group>"; };
 		DA9BC04D23072C1B00ACC878 /* SoundButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoundButton.png; path = "External-media/SoundButton.png"; sourceTree = SOURCE_ROOT; };
 		DA9BC04F2307335600ACC878 /* plpSoundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpSoundViewController.m; sourceTree = "<group>"; };
 		DA9BC0512307336500ACC878 /* plpSoundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpSoundViewController.h; sourceTree = "<group>"; };
+		DAB204DD246207150077DC4D /* IMG_0197.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMG_0197.mp4; sourceTree = "<group>"; };
+		DAB204DF24620AE70077DC4D /* v_mic_devant.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = v_mic_devant.mov; sourceTree = "<group>"; };
 		DAB5E1411C21DD2800809756 /* edgarsaute.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgarsaute.atlas; sourceTree = "<group>"; };
 		DABCE3481D5BE8A900C277BB /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = "<group>"; };
 		DAC45077241EC07A00BFBE9C /* plpIntroScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpIntroScene.h; sourceTree = "<group>"; };
@@ -185,9 +189,9 @@
 			files = (
 				DA5CF4D11B73E907005A5C91 /* libz.dylib in Frameworks */,
 				DA03CBD0199F4C4700406720 /* CoreGraphics.framework in Frameworks */,
+				DA03CBCE199F4C4700406720 /* Foundation.framework in Frameworks */,
 				DA03CBD2199F4C4700406720 /* UIKit.framework in Frameworks */,
 				DA03CBD4199F4C4700406720 /* SpriteKit.framework in Frameworks */,
-				DA03CBCE199F4C4700406720 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +251,7 @@
 		DA03CBD5199F4C4700406720 /* Maze Escape */ = {
 			isa = PBXGroup;
 			children = (
+				DAB204DC2462070B0077DC4D /* Videos */,
 				DA29F9C523EE955400CF4F22 /* Images */,
 				DAD058511A08288200DAE3E8 /* monstre.atlas */,
 				DA10C1A41D5BF3F900579F1F /* UI_img */,
@@ -334,6 +339,16 @@
 				DAF37DFE245F2A4900D55AF9 /* ShadowMask.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		DAB204DC2462070B0077DC4D /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				DAB204DD246207150077DC4D /* IMG_0197.mp4 */,
+				DAB204DF24620AE70077DC4D /* v_mic_devant.mov */,
+				DA8A5F7B246345DA005E272D /* intro-car.mp4 */,
+			);
+			path = Videos;
 			sourceTree = "<group>";
 		};
 		DAE713D71C0FA6D600ED9139 /* UI */ = {
@@ -467,6 +482,7 @@
 				DA29F9CB23EE9F2100CF4F22 /* Logo_Launch_Screen.png in Resources */,
 				DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */,
 				DA2429B9233965E50027DB3E /* lampe-test-ui.png in Resources */,
+				DAB204E024620AE70077DC4D /* v_mic_devant.mov in Resources */,
 				DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */,
 				DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */,
 				DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */,
