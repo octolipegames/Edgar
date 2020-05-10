@@ -42,14 +42,11 @@
         currentFrame = 0;
         for (int i = 0; i <= 3; i++) {
             NSString *textureName = [NSString stringWithFormat:@"scene1_%02d", i];
-            //NSLog(textureName);
             SKTexture *temp = [scenesAtlas textureNamed:textureName];
             [animationFrames addObject: temp];
         }
         
-        
-        /*
-        SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800 * x3, 250 * x3) ];
+        SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(2400, 750) ];
         SKSpriteNode *lowerCurtain = [upperCurtain copy];
         upperCurtain.anchorPoint = CGPointMake(0.5, 0);
         upperCurtain.position = CGPointMake(0, self.size.height/2);
@@ -61,40 +58,71 @@
         lowerCurtain.zPosition = 40;
         lowerCurtain.name = @"lowerCurtain";
         [myCamera addChild:upperCurtain];
-        [myCamera addChild:lowerCurtain];*/
+        [myCamera addChild:lowerCurtain];
         
-        animationNode = [[SKSpriteNode alloc] initWithTexture: animationFrames[0]];
+        SKAction *openupperCurtain = [SKAction moveToY:600 duration: .5];
+        SKAction *openlowerCurtain = [SKAction moveToY:-600 duration: .5];
+        SKAction *openCurtainsAnimation = [SKAction runBlock:^{
+            [upperCurtain runAction: openupperCurtain];
+            [lowerCurtain runAction: openlowerCurtain completion:^{
+                [self playScene1];
+            }];
+        }];
         
-        if (animationNode) {
-            NSLog(@"animationNode created");
-            animationNode.size = CGSizeMake(2400, 1200);
-            animationNode.position = CGPointMake(0, 0);
-            animationNode.zPosition = 20;
-
-            [self addChild: animationNode];
-            
-            
-            
-            /*[animationNode runAction: [SKAction repeatActionForever:
-                [SKAction animateWithTextures: animationFrames
-                timePerFrame: 0.1f
-                resize:NO
-                restore:YES]] withKey:@"scene1"];*/
-        }
+        [self runAction: openCurtainsAnimation];
     }
     return self;
 }
 
+-(void)playScene1{
+    animationNode = [[SKSpriteNode alloc] initWithTexture: animationFrames[0]];
+    if (animationNode) {
+        NSLog(@"animationNode created");
+        animationNode.size = CGSizeMake(2400, 1200);
+        animationNode.position = CGPointMake(0, 0);
+        animationNode.zPosition = 20;
+        [self addChild: animationNode];
+        
+        subtitleNode = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+        subtitleNode.fontSize = 90;
+        subtitleNode.fontColor = [SKColor whiteColor];
+        subtitleNode.position = CGPointMake(0, -50);
+        subtitleNode.zPosition = 42;
+        subtitleNode.text = @"Aliens experiments have been forbidden for years";
+        [self addChild: subtitleNode];
+    }
+}
+
+-(void)playScene2{
+    SKVideoNode *videoNode = [SKVideoNode videoNodeWithFileNamed:@"intro-car.mp4"];
+    videoNode.size = CGSizeMake(2400, 1200);
+    videoNode.position = CGPointMake(0, 0);
+    videoNode.zPosition = 20;
+    [self addChild: videoNode];
+    [videoNode play];
+}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     NSLog(@"Touch event!");
     currentFrame++;
     if(currentFrame < [animationFrames count]){
+        NSLog(@"continue");
+        
+        NSArray *subtitleTexts = @[@"1",
+                               @"However, some scientists still keep aliens in cages in the name of science!",
+                               @"Green Alien must make sure that Bionic Labs Inc stops illegals aliens experiments",
+                               @"We need someone to infiltrate Bionic Labs Inc and collect evidence. Any volonteers?"];
+        
         [animationNode setTexture: animationFrames[currentFrame]];
+        [subtitleNode setText: subtitleTexts[currentFrame]];
+    } else if(currentFrame == [animationFrames count]) {
+        NSLog(@"create video!");
+        [animationNode removeFromParent];
+        [subtitleNode removeFromParent];
+        [self playScene2];
     } else {
         NSLog(@"Launch Game");
         SKView *spriteView = (SKView *)self.view;
-        
         SKScene *myScene = [plpMyScene sceneWithSize: spriteView.bounds.size];
         myScene.scaleMode = SKSceneScaleModeAspectFill;
         [spriteView presentScene:myScene];
