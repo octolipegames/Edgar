@@ -83,15 +83,18 @@
         animationNode.zPosition = 20;
         [self addChild: animationNode];
         
-        SKShapeNode *labelBackground = [SKShapeNode shapeNodeWithRectOfSize: CGSizeMake( 2400, 300) ];
+        SKShapeNode *labelBackground = [SKShapeNode shapeNodeWithRectOfSize: CGSizeMake( 2400, 200) ];
+        [labelBackground setStrokeColor: [UIColor blackColor] ];
         [labelBackground setFillColor: [UIColor blackColor] ];
-        [labelBackground setPosition: CGPointMake(0, -300)];
+        [labelBackground setPosition: CGPointMake(0, -400)];
+        [labelBackground setZPosition: 40];
+        [labelBackground setName: @"subtitle-background"];
         [self addChild: labelBackground];
         
         subtitleNode = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
-        subtitleNode.fontSize = 90;
+        subtitleNode.fontSize = 76;
         subtitleNode.fontColor = [SKColor whiteColor];
-        subtitleNode.position = CGPointMake(0, 10);
+        subtitleNode.position = CGPointMake(0, 0);
         subtitleNode.zPosition = 42;
         subtitleNode.text = @"Aliens experiments have been forbidden for years";
         [labelBackground addChild: subtitleNode];
@@ -123,6 +126,7 @@
         [subtitleNode setText: subtitleTexts[currentFrame]];
     } else if(currentFrame == [animationFrames count]) {
         NSLog(@"create video!");
+        [ [self childNodeWithName:@"subtitle-background"] removeFromParent];
         [animationNode removeFromParent];
         [subtitleNode removeFromParent];
         [self playScene2];
