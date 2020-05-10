@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="left-up" compressionlevel="0" width="15" height="14" tilewidth="300" tileheight="300" infinite="0" nextlayerid="5" nextobjectid="48">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="left-up" compressionlevel="0" width="15" height="14" tilewidth="300" tileheight="300" infinite="0" nextlayerid="5" nextobjectid="56">
  <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="300" tileheight="300" tilecount="39" columns="13">
   <image source="Tiles_x3.png" width="3900" height="900"/>
+ </tileset>
+ <tileset firstgid="40" name="Tiles_x3_spikes" tilewidth="300" tileheight="300" tilecount="6" columns="2">
+  <image source="Tiles_x3_spikes.png" width="600" height="900"/>
  </tileset>
  <layer id="1" name="Fond" width="15" height="14">
   <data encoding="base64" compression="zlib">
@@ -10,7 +13,7 @@
  </layer>
  <layer id="2" name="Solide" width="15" height="14">
   <data encoding="base64" compression="zlib">
-   eAGtj0EKwDAIBNNrD+m1/39p3YIwiBoIWTA2ulPNHGPcFtKVxN9Ijmk1xY7IvvYDRSd6yHYMe3qf3hbZh6bkW4yLLPfxfsz0kI2+1f0Uy32qmfScmlvNquqc6/soZ4p9spm/qzm7mz+llwQZ
+   eAHVkMEKgDAMQ+vVw7z6E/7/79kIgYd0RXYzkFWWZC4bEbEnha3gIxTLyD1xBcyeeYDYgR5muww19VO3d/agqfhWxmCW95F+gfbTw6x1T/s0K3TZys89Zv0f63+68+xt3Mk6+7rn1+ns6rwBLngFtw==
   </data>
  </layer>
  <objectgroup id="3" name="Objets">
@@ -99,11 +102,6 @@
     <property name="x_limit" value="1950"/>
    </properties>
   </object>
-  <object id="25" name="alien1" type="alien" x="2346" y="2310" width="117" height="72">
-   <properties>
-    <property name="moveX" value="-10"/>
-   </properties>
-  </object>
   <object id="32" name="platform" x="1204.5" y="1158" width="303" height="30">
    <properties>
     <property name="idleDuration" value=".5"/>
@@ -111,6 +109,12 @@
     <property name="x_limit" value="984"/>
    </properties>
   </object>
+  <object id="48" x="3450" y="1200" width="150" height="300"/>
+  <object id="49" x="4050" y="900" width="150" height="300"/>
+  <object id="50" x="1050" y="0" width="150" height="300"/>
+  <object id="51" x="1350" y="0" width="150" height="300"/>
+  <object id="54" name="spikes" x="1809.09" y="1748.48" width="875.758" height="36.3636"/>
+  <object id="55" name="spikes" x="1810.61" y="2654.55" width="875.758" height="36.3636"/>
  </objectgroup>
  <objectgroup id="4" name="CollisionRectangles">
   <object id="34" x="0" y="0" width="300" height="4200"/>
@@ -125,6 +129,8 @@
   <object id="43" x="600" y="1500" width="600" height="60"/>
   <object id="44" x="3300" y="600" width="600" height="60"/>
   <object id="45" x="600" y="600" width="600" height="60"/>
-  <object id="46" x="900" y="1200" width="300" height="300"/>
+  <object id="46" x="975" y="1200" width="150" height="300"/>
+  <object id="52" x="1800" y="1800" width="900" height="60"/>
+  <object id="53" x="1800" y="2700" width="900" height="60"/>
  </objectgroup>
 </map>
