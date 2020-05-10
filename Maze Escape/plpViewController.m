@@ -139,6 +139,10 @@
         self.MenuBackground = nil;
     }
     
+
+    self.pauseButton.hidden = NO;
+    self.suicideButton.hidden = NO;
+    
     SKView * skView = (SKView *)self.view;
     SKScene *introScene = [plpIntroScene sceneWithSize:skView.bounds.size];
     
