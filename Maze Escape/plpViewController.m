@@ -195,7 +195,7 @@
     {
         [self resumePausedGame];
     }else{
-        [self loadSavedGame:clicked.tag];
+        [self loadSavedGame: clicked.tag];
     }
     [(plpMyScene*)myScene computeSceneCenter];
 }
@@ -206,9 +206,10 @@
     self.suicideButton.hidden = NO;
     
     if(gamePaused == FALSE){
-        SKView * skView = (SKView *)self.view;
-        myScene = [plpMyScene sceneWithSize:skView.bounds.size];
-        myScene.scaleMode = SKSceneScaleModeAspectFill;
+        // TODO: voir les repercussions
+        // SKView * skView = (SKView *)self.view;
+        // myScene = [plpMyScene sceneWithSize:skView.bounds.size];
+        // myScene.scaleMode = SKSceneScaleModeAspectFill;
     }
     
     if(self.MenuBackground)
@@ -223,7 +224,7 @@
 
     if(doTutorial == FALSE)
     {
-        [(plpMyScene*)myScene resumeFromLevel:1];
+        [(plpMyScene*)myScene resumeFromLevel: 1];
     }
     
     if(gamePaused == TRUE)
@@ -269,7 +270,7 @@
             NSLog(@"Warning: no total time found");
         }
     }
-    [(plpMyScene*)myScene resumeFromLevel:startLevel];
+    [(plpMyScene*)myScene resumeFromLevel: startLevel];
 }
 
 - (void)resumePausedGame
@@ -308,6 +309,7 @@
     
     if(savedLevel == 0)
     {
+        NSLog(@"TUTORIAL - saved level was 0");
         if(gamePaused == TRUE) // Player is still doing tutorial
         {
             [self resumePausedGame];
@@ -378,7 +380,8 @@
     [containerView setFrame: CGRectMake(50, 40, self.view.bounds.size.width-100, self.view.bounds.size.height-90)];
     
     UITextView *myTextView = [[UITextView alloc] init];
-    myTextView.text = [NSString stringWithFormat:@"Dear Edgar,\nThank you for enrolling at GreenAlien. Your first task is to inspect an underground laboratory which does illegal in vivo alien testing.\nIn each room, you will find a plutonium cell. Collect it to activate the elevator and gain access to the next room.\nBut first, use our training room to get ready."];
+    /*myTextView.text = [NSString stringWithFormat:@"Dear Edgar,\nThank you for enrolling at GreenAlien. Your first task is to inspect an underground laboratory which does illegal in vivo alien testing.\nIn each room, you will find a plutonium cell. Collect it to activate the elevator and gain access to the next room.\nBut first, use our training room to get ready."];*/
+    [myTextView setText: @"(Un peu de texte ici, ou enlever ce dialogue tout simplement?)"];
     myTextView.textColor = [UIColor whiteColor];
     myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
     myTextView.editable = NO;
