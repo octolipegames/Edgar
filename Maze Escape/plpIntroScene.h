@@ -28,7 +28,8 @@
 @interface plpIntroScene : SKScene <SKPhysicsContactDelegate>
 {
     SKSpriteNode *animationNode;
-    SKLabelNode *subtitleNode;
+    SKLabelNode *subtitleNodeTop;
+    SKLabelNode *subtitleNodeBottom;
     NSMutableArray *animationFrames;
     int currentFrame;
 }

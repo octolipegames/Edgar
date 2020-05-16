@@ -91,18 +91,26 @@
         [labelBackground setName: @"subtitle-background"];
         [self addChild: labelBackground];
         
-        subtitleNode = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
-        subtitleNode.fontSize = 76;
-        subtitleNode.fontColor = [SKColor whiteColor];
-        subtitleNode.position = CGPointMake(0, 0);
-        subtitleNode.zPosition = 42;
-        subtitleNode.text = @"Aliens experiments have been forbidden for years";
-        [labelBackground addChild: subtitleNode];
+        subtitleNodeTop = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+        subtitleNodeTop.fontSize = 76;
+        subtitleNodeTop.fontColor = [SKColor whiteColor];
+        subtitleNodeTop.position = CGPointMake(0, 20);
+        subtitleNodeTop.zPosition = 42;
+        subtitleNodeTop.text = @"Aliens experiments have been";
+        [labelBackground addChild: subtitleNodeTop];
+        
+        subtitleNodeBottom = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+        subtitleNodeBottom.fontSize = 76;
+        subtitleNodeBottom.fontColor = [SKColor whiteColor];
+        subtitleNodeBottom.position = CGPointMake(0, -70);
+        subtitleNodeBottom.zPosition = 42;
+        subtitleNodeBottom.text = @"forbidden for years.";
+        [labelBackground addChild: subtitleNodeBottom];
     }
 }
 
 -(void)playScene2{
-    SKVideoNode *videoNode = [SKVideoNode videoNodeWithFileNamed:@"intro-car.mov"];
+    SKVideoNode *videoNode = [SKVideoNode videoNodeWithFileNamed:@"introScene2.mov"];
     videoNode.size = CGSizeMake(2400, 1200);
     videoNode.position = CGPointMake(0, 0);
     videoNode.zPosition = 20;
@@ -116,19 +124,24 @@
     if(currentFrame < [animationFrames count]){
         NSLog(@"continue");
         
-        NSArray *subtitleTexts = @[@"1",
-                               @"(2) However, some scientists still keep aliens in cages in the name of science!",
-                               @"(3) Green Alien must make sure that Bionic Labs Inc stops illegals aliens experiments",
-                               @"(4) We need someone to infiltrate Bionic Labs Inc and collect evidence. Any volonteers?"];
+        NSArray *subtitleTextsTop = @[@"1",
+                               @"However, some scientists still keep aliens",
+                               @"Green Alien must make sure that Bionic Labs Inc",
+                               @"We need someone to infiltrate their laboratories"];
+        NSArray *subtitleTextsBottom = @[@"1",
+                               @"in cages in the name of science!",
+                               @"stops illegals aliens experiments.",
+                               @"and collect evidence. Any volonteers?"];
         
         [animationNode setTexture: animationFrames[currentFrame]];
-        NSLog(@"%@", subtitleTexts[currentFrame]);
-        [subtitleNode setText: subtitleTexts[currentFrame]];
+        NSLog(@"%@", subtitleTextsTop[currentFrame]);
+        [subtitleNodeTop setText: subtitleTextsTop[currentFrame]];
+        [subtitleNodeBottom setText: subtitleTextsBottom[currentFrame]];
     } else if(currentFrame == [animationFrames count]) {
         NSLog(@"create video!");
         [ [self childNodeWithName:@"subtitle-background"] removeFromParent];
         [animationNode removeFromParent];
-        [subtitleNode removeFromParent];
+        [subtitleNodeTop removeFromParent];
         [self playScene2];
     } else {
         NSLog(@"Launch Game");
