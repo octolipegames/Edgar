@@ -808,7 +808,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             for (NSDictionary *monSemaphore in semaphoreArray) {
                 plpItem *myItem;
-                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monSemaphore] withTexture:@"Level_objects_img/FeuVert.png" andRadius:22];
+                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monSemaphore] withTexture:@"Images/FeuVert.png" andRadius:22];
                 //                float waitBeforeStart = [monSemaphore[@"waitBeforeStart"] floatValue];
                 if(myItem)
                 {
@@ -816,8 +816,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     [tileMap addChild:myItem];
                     // action
                     
-                    SKTexture *semaphoreGreen = [SKTexture textureWithImageNamed:@"Level_objects_img/FeuVert.png"];
-                    SKTexture *semaphoreRed = [SKTexture textureWithImageNamed:@"Level_objects_img/FeuRouge.png"];
+                    SKTexture *semaphoreGreen = [SKTexture textureWithImageNamed:@"Images/FeuVert.png"];
+                    SKTexture *semaphoreRed = [SKTexture textureWithImageNamed:@"Images/FeuRouge.png"];
                     SKAction *setGreen = [SKAction setTexture:semaphoreGreen];
                     SKAction *setRed = [SKAction setTexture:semaphoreRed];
                     SKAction *waitShort = [SKAction waitForDuration:2];
@@ -971,12 +971,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if([theVerticalPlatform[@"moveUpFirst"] intValue] == 1)
             {
                 verticalPlatformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([theVerticalPlatform[@"x"] floatValue], [theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue]-8)
-                                                                  withSize:CGSizeMake([theVerticalPlatform[@"width"] floatValue], 8)
+                                                                  withSize:CGSizeMake([theVerticalPlatform[@"width"] floatValue], 24)
                                                               withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] andIdleDuration:idleDuration];
             }else{
                 verticalPlatformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([theVerticalPlatform[@"x"] floatValue], [theVerticalPlatform[@"y"] floatValue])
-                                                                  withSize:CGSizeMake([theVerticalPlatform[@"width"] floatValue], 8)
-                                                              withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue] -8 andIdleDuration:idleDuration];
+                                                                  withSize:CGSizeMake([theVerticalPlatform[@"width"] floatValue], 24)
+                                                              withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue] -24 andIdleDuration:idleDuration];
             }
             
             if(verticalPlatformNode)
