@@ -70,8 +70,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         // self.size = CGSizeMake(800, 400); // zoom for debug
         self.size = CGSizeMake(800 * x3, 400 * x3);// => moitie de la largeur = 400 * x3 // En fait, coordonnees: 754 x 394 (?)
         NSLog(@"Size: (%f, %f)", self.size.width, self.size.height);
-        
-        // 
         self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f * 3);
         
         myWorld = [SKNode node];         // Creation du "monde" sur lequel tout est fixe
@@ -848,7 +846,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         CGFloat width = [final[@"width"] floatValue];
         CGFloat height = [final[@"height"] floatValue];
         
-        SKTexture *textureCaisse = [SKTexture textureWithImageNamed:@"Level_objects_img/ascenseurF-01.png"];
+        SKTexture *textureCaisse = [SKTexture textureWithImageNamed:@"ascenseurF-01.png"];
         endLevelLiftNode = [SKSpriteNode spriteNodeWithTexture:textureCaisse size: CGSizeMake(width, height)];
         
         endLevelLiftNode.name = @"endLevelLiftNode";
@@ -1664,7 +1662,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if([contactNode.name isEqualToString:@"endLevelLiftNode"] && [Edgar hasItem])
         {
             if(!liftReady){
-                SKAction *greenDoor = [SKAction setTexture:[SKTexture textureWithImageNamed:@"Level_objects_img/ascenseurO-01.png"]];
+                SKAction *greenDoor = [SKAction setTexture:[SKTexture textureWithImageNamed:@"ascenseurO-01.png"]];
                 [self->soundController playLiftReadySound];
                 [contactNode runAction:greenDoor];
                 liftReady = true;

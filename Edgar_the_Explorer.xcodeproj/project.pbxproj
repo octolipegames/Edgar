@@ -21,6 +21,8 @@
 		DA03CBF7199F4C4700406720 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBF6199F4C4700406720 /* XCTest.framework */; };
 		DA03CBF8199F4C4700406720 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBCD199F4C4700406720 /* Foundation.framework */; };
 		DA03CBF9199F4C4700406720 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03CBD1199F4C4700406720 /* UIKit.framework */; };
+		DA0500132472F18300F2DC3D /* ascenseurO-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0500112472F18300F2DC3D /* ascenseurO-01.png */; };
+		DA0500142472F18300F2DC3D /* ascenseurF-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0500122472F18300F2DC3D /* ascenseurF-01.png */; };
 		DA10C1A31D5BEBBD00579F1F /* Level_objects_img in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A21D5BEBBD00579F1F /* Level_objects_img */; };
 		DA10C1A51D5BF3F900579F1F /* UI_img in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A41D5BF3F900579F1F /* UI_img */; };
 		DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A61D5BFB6400579F1F /* edgar.atlas */; };
@@ -33,6 +35,7 @@
 		DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */ = {isa = PBXBuildFile; fileRef = DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */; };
 		DA29F9C723EE9AD500CF4F22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA29F9C623EE9AD500CF4F22 /* LaunchScreen.storyboard */; };
 		DA29F9CB23EE9F2100CF4F22 /* Logo_Launch_Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */; };
+		DA3F41222470945A00FDCE1A /* introScene2.mov in Resources */ = {isa = PBXBuildFile; fileRef = DA3F41212470945A00FDCE1A /* introScene2.mov */; };
 		DA519C5D232CE8BE00B4F594 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5B232CE8BD00B4F594 /* gear.png */; };
 		DA519C5E232CE8BE00B4F594 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5C232CE8BD00B4F594 /* sound.png */; };
 		DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4A191B81133F009507F9 /* plpHero.m */; };
@@ -57,7 +60,6 @@
 		DA9BC04E23072C1B00ACC878 /* SoundButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9BC04D23072C1B00ACC878 /* SoundButton.png */; };
 		DA9BC0502307335600ACC878 /* plpSoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC04F2307335600ACC878 /* plpSoundViewController.m */; };
 		DA9BC0522307336600ACC878 /* plpSoundViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC0512307336500ACC878 /* plpSoundViewController.h */; };
-		DAB204E024620AE70077DC4D /* v_mic_devant.mov in Resources */ = {isa = PBXBuildFile; fileRef = DAB204DF24620AE70077DC4D /* v_mic_devant.mov */; };
 		DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAB5E1411C21DD2800809756 /* edgarsaute.atlas */; };
 		DABCE3491D5BE8A900C277BB /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = DABCE3481D5BE8A900C277BB /* Levels */; };
 		DAC45078241ECBF300BFBE9C /* scenes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA824556241AEA95007843AD /* scenes.atlas */; };
@@ -114,6 +116,8 @@
 		DA03CBEF199F4C4700406720 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DA03CBF5199F4C4700406720 /* Edgar_the_ExplorerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_the_ExplorerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA03CBF6199F4C4700406720 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		DA0500112472F18300F2DC3D /* ascenseurO-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ascenseurO-01.png"; sourceTree = "<group>"; };
+		DA0500122472F18300F2DC3D /* ascenseurF-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ascenseurF-01.png"; sourceTree = "<group>"; };
 		DA10C1A21D5BEBBD00579F1F /* Level_objects_img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Level_objects_img; sourceTree = "<group>"; };
 		DA10C1A41D5BF3F900579F1F /* UI_img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UI_img; sourceTree = "<group>"; };
 		DA10C1A61D5BFB6400579F1F /* edgar.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgar.atlas; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 		DA27B8D21C7C3DED0072D2ED /* LaunchScreen1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen1136.png; sourceTree = "<group>"; };
 		DA29F9C623EE9AD500CF4F22 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_Launch_Screen.png; sourceTree = "<group>"; };
+		DA3F41212470945A00FDCE1A /* introScene2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = introScene2.mov; sourceTree = "<group>"; };
 		DA519C5B232CE8BD00B4F594 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = "External-media/gear.png"; sourceTree = SOURCE_ROOT; };
 		DA519C5C232CE8BD00B4F594 /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sound.png; path = "External-media/sound.png"; sourceTree = SOURCE_ROOT; };
 		DA5B4A181B81133F009507F9 /* plpHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpHero.h; sourceTree = "<group>"; };
@@ -151,15 +156,12 @@
 		DA7485451B86FF5100920C84 /* plpPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpPlatform.h; sourceTree = "<group>"; };
 		DA7485461B86FF5100920C84 /* plpPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpPlatform.m; sourceTree = "<group>"; };
 		DA824556241AEA95007843AD /* scenes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = scenes.atlas; sourceTree = "<group>"; };
-		DA8A5F7B246345DA005E272D /* intro-car.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "intro-car.mp4"; path = "External-media/animation/intro-car.mp4"; sourceTree = SOURCE_ROOT; };
 		DA984E361C0B478A00B13A08 /* LaunchScreen960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen960.png; sourceTree = "<group>"; };
 		DA9ADE411D5C05A800254A58 /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		DA9ADE421D5C05A800254A58 /* repeatButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repeatButton.png; sourceTree = "<group>"; };
 		DA9BC04D23072C1B00ACC878 /* SoundButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoundButton.png; path = "External-media/SoundButton.png"; sourceTree = SOURCE_ROOT; };
 		DA9BC04F2307335600ACC878 /* plpSoundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpSoundViewController.m; sourceTree = "<group>"; };
 		DA9BC0512307336500ACC878 /* plpSoundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpSoundViewController.h; sourceTree = "<group>"; };
-		DAB204DD246207150077DC4D /* IMG_0197.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMG_0197.mp4; sourceTree = "<group>"; };
-		DAB204DF24620AE70077DC4D /* v_mic_devant.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = v_mic_devant.mov; sourceTree = "<group>"; };
 		DAB5E1411C21DD2800809756 /* edgarsaute.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgarsaute.atlas; sourceTree = "<group>"; };
 		DABCE3481D5BE8A900C277BB /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = "<group>"; };
 		DAC45077241EC07A00BFBE9C /* plpIntroScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpIntroScene.h; sourceTree = "<group>"; };
@@ -336,6 +338,8 @@
 				DAF6AD74245EE1EA00D7D6D2 /* TropheeElite_x3.png */,
 				DAF6AD72245EE1EA00D7D6D2 /* TropheeExplorer_x3.png */,
 				DAF6AD73245EE1EA00D7D6D2 /* TropheeSnail_x3.png */,
+				DA0500122472F18300F2DC3D /* ascenseurF-01.png */,
+				DA0500112472F18300F2DC3D /* ascenseurO-01.png */,
 				DAF37DFE245F2A4900D55AF9 /* ShadowMask.png */,
 			);
 			path = Images;
@@ -344,9 +348,7 @@
 		DAB204DC2462070B0077DC4D /* Videos */ = {
 			isa = PBXGroup;
 			children = (
-				DAB204DD246207150077DC4D /* IMG_0197.mp4 */,
-				DAB204DF24620AE70077DC4D /* v_mic_devant.mov */,
-				DA8A5F7B246345DA005E272D /* intro-car.mp4 */,
+				DA3F41212470945A00FDCE1A /* introScene2.mov */,
 			);
 			path = Videos;
 			sourceTree = "<group>";
@@ -478,11 +480,11 @@
 			files = (
 				DA984E371C0B478A00B13A08 /* LaunchScreen960.png in Resources */,
 				DA10C1A31D5BEBBD00579F1F /* Level_objects_img in Resources */,
+				DA0500132472F18300F2DC3D /* ascenseurO-01.png in Resources */,
 				DAC45078241ECBF300BFBE9C /* scenes.atlas in Resources */,
 				DA29F9CB23EE9F2100CF4F22 /* Logo_Launch_Screen.png in Resources */,
 				DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */,
 				DA2429B9233965E50027DB3E /* lampe-test-ui.png in Resources */,
-				DAB204E024620AE70077DC4D /* v_mic_devant.mov in Resources */,
 				DA27B8D31C7C3DED0072D2ED /* LaunchScreen1136.png in Resources */,
 				DA03CBF0199F4C4700406720 /* Images.xcassets in Resources */,
 				DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */,
@@ -495,9 +497,11 @@
 				DA29F9C723EE9AD500CF4F22 /* LaunchScreen.storyboard in Resources */,
 				DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */,
 				DAF6AD75245EE1EA00D7D6D2 /* TropheeExplorer_x3.png in Resources */,
+				DA0500142472F18300F2DC3D /* ascenseurF-01.png in Resources */,
 				DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */,
 				DAF37DFF245F2A4900D55AF9 /* ShadowMask.png in Resources */,
 				DA03CBE3199F4C4700406720 /* Main.storyboard in Resources */,
+				DA3F41222470945A00FDCE1A /* introScene2.mov in Resources */,
 				DA614A7F245DB64D006AD8CF /* ChariotParoi.png in Resources */,
 				DAF6AD77245EE1EA00D7D6D2 /* TropheeElite_x3.png in Resources */,
 				DA03CBDA199F4C4700406720 /* InfoPlist.strings in Resources */,
