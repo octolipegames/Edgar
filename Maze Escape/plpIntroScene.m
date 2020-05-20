@@ -109,13 +109,27 @@
     }
 }
 
+-(void)launchGame {
+    NSLog(@"Launch Game");
+    SKView *spriteView = (SKView *)self.view;
+    SKScene *myScene = [plpMyScene sceneWithSize: spriteView.bounds.size];
+    myScene.scaleMode = SKSceneScaleModeAspectFill;
+    [(plpMyScene*)myScene resumeFromLevel: 1];
+    [spriteView presentScene:myScene];
+}
+
 -(void)playScene2{
-    SKVideoNode *videoNode = [SKVideoNode videoNodeWithFileNamed:@"introScene2.mov"];
+    SKVideoNode *videoNode = [SKVideoNode videoNodeWithFileNamed:@"introScene.mov"];
     videoNode.size = CGSizeMake(2400, 1200);
     videoNode.position = CGPointMake(0, 0);
     videoNode.zPosition = 20;
     [self addChild: videoNode];
     [videoNode play];
+    NSTimer *launchGameTimer = [NSTimer scheduledTimerWithTimeInterval: 22.0
+        target: self
+        selector: @selector(launchGame)
+        userInfo: nil
+        repeats: NO];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -144,11 +158,7 @@
         [subtitleNodeTop removeFromParent];
         [self playScene2];
     } else {
-        NSLog(@"Launch Game");
-        SKView *spriteView = (SKView *)self.view;
-        SKScene *myScene = [plpMyScene sceneWithSize: spriteView.bounds.size];
-        myScene.scaleMode = SKSceneScaleModeAspectFill;
-        [spriteView presentScene:myScene];
+        [self launchGame];
     }
     
 }

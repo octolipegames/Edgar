@@ -162,7 +162,7 @@
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [containerView removeFromSuperview];
     
-    [self newGameWithTutorial: FALSE];
+    [self newGameWithIntroduction: FALSE];
     [(plpMyScene*)myScene computeSceneCenter];
 }
 
@@ -200,7 +200,7 @@
     [(plpMyScene*)myScene computeSceneCenter];
 }
 
-- (void)newGameWithTutorial: (BOOL) doTutorial
+- (void)newGameWithIntroduction: (BOOL) doIntroduction
 {
     self.pauseButton.hidden = NO;
     self.suicideButton.hidden = NO;
@@ -222,7 +222,7 @@
     SKView * spriteView = (SKView *)self.view;
     [spriteView presentScene:myScene];
 
-    if(doTutorial == FALSE)
+    if(doIntroduction == FALSE)
     {
         [(plpMyScene*)myScene resumeFromLevel: 1];
     }
@@ -231,9 +231,9 @@
     {
         spriteView.paused = NO;
         gamePaused = FALSE;
-        if(doTutorial == TRUE)
+        if(doIntroduction == TRUE)
         {
-            [(plpMyScene*)myScene resumeFromLevel: 0];
+            [(plpMyScene*)myScene resumeFromLevel: 1];
         }
     }
 }
@@ -349,7 +349,7 @@
         [[buttonNewGame layer] setCornerRadius:5.0f];
         [buttonNewGame setTitle: @"New Game" forState:UIControlStateNormal];
         [buttonNewGame addTarget: self
-                            action: @selector(newGameButtonClicked:)
+                            action: @selector(doTutorial:)
                   forControlEvents: UIControlEventTouchUpInside];
         
         // Right: “Resume”
@@ -505,7 +505,8 @@
 //    NSLog(@"opened");
 }
 
-
+/*
+ // Jamais utilisé? A checker
 -(void)saveCurrentProgress
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -516,7 +517,7 @@
         [defaults synchronize];
     }
 }
-
+ */
 
 - (BOOL)shouldAutorotate
 {

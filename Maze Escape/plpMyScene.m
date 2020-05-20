@@ -86,11 +86,19 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         useSwipeGestures = [defaults boolForKey:@"useSwipeGestures"];
         enableDebug = [defaults boolForKey:@"enableDebug"];
-        // TODO: use defaults
-        lifeCount = 3; //[defaults integerForKey:@"lifeCount"];
-        fileCount = 0;
         
-
+        // Retrieve saved values – todo: debug
+        lifeCount = [defaults integerForKey:@"lifeCount"];
+        fileCount = [defaults integerForKey:@"fileCount"];
+        
+        if (!lifeCount) {
+            NSLog(@"Set life count for 1st time");
+            lifeCount = 3;
+        }
+        if (!fileCount) {
+            NSLog(@"Set file count for 1st time");
+            fileCount = 0;
+        }
         
         HUD = [SKNode node];
         HUD.name = @"HUD";
@@ -712,7 +720,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(nextLevelIndex>1)
     {
-        SKSpriteNode *startLift = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Level_objects_img/ascenseur-start.png"] size: CGSizeMake(88, 106)];
+        SKSpriteNode *startLift = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"ascenseur-start.png"] size: CGSizeMake(366, 313)];
         startLift.position = startPosition;
         [tileMap addChild: startLift];
     }
@@ -756,13 +764,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
     
     // Crate / Caisse
-    SKTexture *textureCaisse = [SKTexture textureWithImageNamed:@"Level_objects_img/box-08.png"];
+    SKTexture *textureCaisse = [SKTexture textureWithImageNamed:@"caisse.png"];
     NSArray *placeCaisse = [group objectsNamed:@"Caisse"];
     for (NSDictionary *optionCaisse in placeCaisse) {
-        CGFloat width = [optionCaisse[@"width"] floatValue];
-        CGFloat height = [optionCaisse[@"height"] floatValue];
+        CGFloat width = 216; //[optionCaisse[@"width"] floatValue];
+        CGFloat height = 216; //[optionCaisse[@"height"] floatValue];
         
         SKSpriteNode *caisse = [SKSpriteNode spriteNodeWithTexture:textureCaisse size: CGSizeMake(width, height)];
+        [caisse setZPosition: 20];
         caisse.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(width-1.5, height-1.5)]; // minus 1.5 so the crate doesn't float over the floor
         caisse.physicsBody.mass = 20; // auparavant: 40
         caisse.physicsBody.friction = 0.1;
@@ -808,7 +817,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             for (NSDictionary *monSemaphore in semaphoreArray) {
                 plpItem *myItem;
-                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monSemaphore] withTexture:@"Images/FeuVert.png" andRadius:22];
+                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monSemaphore] withTexture:@"Feu_vert.png" andRadius:22];
                 //                float waitBeforeStart = [monSemaphore[@"waitBeforeStart"] floatValue];
                 if(myItem)
                 {
@@ -816,8 +825,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     [tileMap addChild:myItem];
                     // action
                     
-                    SKTexture *semaphoreGreen = [SKTexture textureWithImageNamed:@"Images/FeuVert.png"];
-                    SKTexture *semaphoreRed = [SKTexture textureWithImageNamed:@"Images/FeuRouge.png"];
+                    SKTexture *semaphoreGreen = [SKTexture textureWithImageNamed:@"Feu_vert.png"];
+                    SKTexture *semaphoreRed = [SKTexture textureWithImageNamed:@"Feu_rouge.png"];
                     SKAction *setGreen = [SKAction setTexture:semaphoreGreen];
                     SKAction *setRed = [SKAction setTexture:semaphoreRed];
                     SKAction *waitShort = [SKAction waitForDuration:2];
@@ -1578,12 +1587,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKPhysicsJointFixed *pinEdgar = [SKPhysicsJointFixed jointWithBodyA:Edgar.physicsBody bodyB:Edgar->rectangleNode.physicsBody anchor:CGPointMake(Edgar.position.x, Edgar.position.y)];
     [self.physicsWorld addJoint:pinEdgar];
     
+    NSLog(@"Edgar gets control back");
     [Edgar giveControl];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:nextLevelIndex forKey:@"savedLevel"];
+    [defaults setInteger: lifeCount forKey:@"lifeCount"];
+    [defaults setInteger: fileCount forKey:@"fileCount"];
     [defaults setFloat:[self getTotalTime] forKey:@"totalTime"];
     [defaults synchronize];
+    
     NSLog(@"Level saved: %d", nextLevelIndex);
     
     if(nextLevelIndex > 1 && nextLevelIndex < LAST_LEVEL_INDEX)
@@ -1624,8 +1636,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             // React only if we need to render a sound
             if(userNode.physicsBody.categoryBitMask == PhysicsCategoryObjects){
-                if(contact.collisionImpulse > 40000 * x3){
-                    [self->soundController playTrainImpactSound];
+                if(contact.collisionImpulse > 200000){
+                    NSLog(@"Train: huge collision impulse");
+                    // [self->soundController playTrainImpactSound];
                 }
                 //NSLog(@"Collision impulse is: %f", contact.collisionImpulse);
                 // NSLog(@"Object vs object");
@@ -2014,8 +2027,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
         }else if([contactNode.name isEqualToString: @"file"])
         {
-            NSLog(@"File collected!");
-            // TODO: increment score
+            // TODO: store score
             fileCount++;
             fileCountLabel.text = [ [NSString alloc] initWithFormat: @"× %ld", (long) fileCount];
             [(plpItem *)contactNode removeFromParent];
@@ -2033,9 +2045,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             
             // TODO Dans l’idéal: à lier au frottement de la caisse sur le sol
             // Si la caisse bouge assez vite...
-            if(fabs(contactNode.physicsBody.velocity.dx) > 40){
+            if(fabs(contactNode.physicsBody.velocity.dx) > 200){
                 // ... et n’est pas contre le mur de gauche
-                if(contactNode.position.x > 155){
+                if(contactNode.position.x > 310){
                     [soundController playCrateSound];
                 }
             }
@@ -2053,11 +2065,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         if([contactNode isKindOfClass:[plpPlatform class]])
         {
-//            NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 42, contactNode.position.y);
+            NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 126, contactNode.position.y);
             
             // Determine vertical position, check if the platform should stop
-            if(Edgar.position.y - 42 > contactNode.position.y) /// dev: check the height again
+            if(Edgar.position.y - 126 > contactNode.position.y) // dev: check the height again
             {
+                NSLog(@"Hero above!");
                 /* SND: foot on platform */
                 [(plpPlatform *)contactNode setHeroAbove];
             }

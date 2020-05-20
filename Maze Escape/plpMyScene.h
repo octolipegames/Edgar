@@ -32,7 +32,7 @@
 #import "plpSoundController.h"
 #import "plpButton.h"
 
-#define LAST_LEVEL_INDEX 8
+#define LAST_LEVEL_INDEX 7
 #define SEMAPHORE_LEVEL_INDEX 5
 #define FIRST_DARK_LEVEL 3
 #define USE_ALTERNATE_CONTROLS 0
