@@ -32,6 +32,7 @@
     SKLabelNode *subtitleNodeBottom;
     NSMutableArray *animationFrames;
     int currentFrame;
+    NSTimer *launchGameTimer;
 }
 
 @end

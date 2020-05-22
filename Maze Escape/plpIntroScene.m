@@ -125,7 +125,7 @@
     videoNode.zPosition = 20;
     [self addChild: videoNode];
     [videoNode play];
-    NSTimer *launchGameTimer = [NSTimer scheduledTimerWithTimeInterval: 22.0
+    launchGameTimer = [NSTimer scheduledTimerWithTimeInterval: 22.0
         target: self
         selector: @selector(launchGame)
         userInfo: nil
@@ -158,6 +158,7 @@
         [subtitleNodeTop removeFromParent];
         [self playScene2];
     } else {
+        [launchGameTimer invalidate];
         [self launchGame];
     }
     
