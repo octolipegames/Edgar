@@ -83,7 +83,7 @@
         topCircleBody.categoryBitMask = 1;
         rectangleBody.categoryBitMask = 1;
         rectangleNode = [SKSpriteNode node];
-        rectangleNode.physicsBody = [SKPhysicsBody bodyWithBodies:@[topCircleBody, rectangleBody]];
+        rectangleNode.physicsBody = [SKPhysicsBody bodyWithBodies: @[topCircleBody, rectangleBody]];
         rectangleNode.physicsBody.mass = 30 * 3;
         rectangleNode.physicsBody.friction = 0;
         rectangleNode.physicsBody.restitution = 0;
