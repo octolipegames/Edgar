@@ -83,9 +83,11 @@
         animationNode.zPosition = 20;
         [self addChild: animationNode];
         
-        SKShapeNode *labelBackground = [SKShapeNode shapeNodeWithRectOfSize: CGSizeMake( 2400, 200) ];
+        SKShapeNode *labelBackground = [SKShapeNode shapeNodeWithRectOfSize: CGSizeMake( 1800, 200) ];
+        
         [labelBackground setStrokeColor: [UIColor blackColor] ];
         [labelBackground setFillColor: [UIColor blackColor] ];
+        [labelBackground setAlpha: 0.8];
         [labelBackground setPosition: CGPointMake(0, -400)];
         [labelBackground setZPosition: 40];
         [labelBackground setName: @"subtitle-background"];
