@@ -25,7 +25,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "JSTileMap.h"
 #import "plpHero.h"
-#import "plpEnemy.h"
+#import "plpAlien.h"
+#import "plpScientist.h"
 #import "plpTrain.h"
 #import "plpPlatform.h"
 #import "plpItem.h"
@@ -42,6 +43,10 @@
 #define HUD_HORIZONTAL_SPAN 2400/6
 #define BUTTON_HORIZONTAL_SPAN HUD_HORIZONTAL_SPAN*1.8
 #define BUTTON_VERTICAL_SPAN (HUD_VERTICAL_THIRD*0.5)-600
+
+#define DEATH_RESET 0
+#define DEATH_SPIKE 1
+#define DEATH_ENEMY 2
 
 float contextVelocityX;
 

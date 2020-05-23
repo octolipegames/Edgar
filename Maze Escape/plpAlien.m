@@ -21,7 +21,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-#import "plpEnemy.h"
+#import "plpAlien.h"
 
 
 //´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
@@ -32,7 +32,7 @@
 //................................................
 
 
-@implementation plpEnemy
+@implementation plpAlien
 
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withMovement:(float)movement
 {

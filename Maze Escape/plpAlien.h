@@ -23,7 +23,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface plpEnemy : SKSpriteNode{
+@interface plpAlien : SKSpriteNode{
     //SKAudioNode *alienSound;
 }
 

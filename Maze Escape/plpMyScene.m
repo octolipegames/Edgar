@@ -57,7 +57,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     PhysicsCategoryEdgar = 1 << 0,   // 1
     PhysicsCategoryObjects = 1 << 1, // 2
     PhysicsCategoryTiles = 1 << 2,   // 4
-    PhysicsCategoryAliens = 1 << 3,  // 8
+    PhysicsCategoryEnemy = 1 << 3,  // 8
     PhysicsCategorySensors = 1 << 4, // 16
     PhysicsCategoryItems = 1 << 5    // 32
 };
@@ -88,7 +88,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         enableDebug = [defaults boolForKey:@"enableDebug"];
         
         // Retrieve saved values – todo: debug
-        lifeCount = [defaults integerForKey:@"lifeCount"];
+        lifeCount = 3; //[defaults integerForKey:@"lifeCount"];
         fileCount = [defaults integerForKey:@"fileCount"];
         
         if (!lifeCount) {
@@ -254,11 +254,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         Edgar.physicsBody.categoryBitMask = PhysicsCategoryEdgar;
         Edgar.physicsBody.collisionBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles;
-        Edgar.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryAliens|PhysicsCategorySensors|PhysicsCategoryItems;
+        Edgar.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryEnemy|PhysicsCategorySensors|PhysicsCategoryItems;
         
         Edgar->rectangleNode.physicsBody.categoryBitMask = PhysicsCategoryEdgar;
         Edgar->rectangleNode.physicsBody.collisionBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles;
-        Edgar->rectangleNode.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryAliens|PhysicsCategorySensors|PhysicsCategoryItems;
+        Edgar->rectangleNode.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryEnemy|PhysicsCategorySensors|PhysicsCategoryItems;
         
         listensToContactEvents = TRUE;
         
@@ -308,11 +308,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     Edgar = [[plpHero alloc] initAtPosition: CGPointMake(startPosition.x, startPosition.y)];
     Edgar.physicsBody.categoryBitMask = PhysicsCategoryEdgar;
     Edgar.physicsBody.collisionBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles;
-    Edgar.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryAliens|PhysicsCategorySensors|PhysicsCategoryItems;
+    Edgar.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryEnemy|PhysicsCategorySensors|PhysicsCategoryItems;
     
     Edgar->rectangleNode.physicsBody.categoryBitMask = PhysicsCategoryEdgar;
     Edgar->rectangleNode.physicsBody.collisionBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles;
-    Edgar->rectangleNode.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryAliens|PhysicsCategorySensors|PhysicsCategoryItems;
+    Edgar->rectangleNode.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryEnemy|PhysicsCategorySensors|PhysicsCategoryItems;
     
     // Let's go! (tutorial = level 0, first level = 1)
     [self resetGameData];
@@ -564,6 +564,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     NSArray *levelFiles = [NSArray arrayWithObjects:
                            @"Levels/Level_0_tuto.tmx",
                            // @"Levels/Level_2_sd.tmx",
+                           @"Levels/Level_NEW.tmx",
                            @"Levels/Level_1.tmx",
                            @"Levels/Level_2.tmx",
                            
@@ -932,14 +933,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if(trainNode)
             {
                 trainNode.physicsBody.categoryBitMask = PhysicsCategoryObjects;
-                trainNode.physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
+                trainNode.physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryEnemy;
                 trainNode.physicsBody.contactTestBitMask = PhysicsCategoryEdgar|PhysicsCategoryObjects|PhysicsCategoryTiles;
                 
                 [tileMap addChild:trainNode]; // vs myLevel
                 [trainNode setVolume: [soundController getFxVolume]];
                 
-                [trainNode getLeftWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
-                [trainNode getRightWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryAliens;
+                [trainNode getLeftWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryEnemy;
+                [trainNode getRightWheel].physicsBody.collisionBitMask = PhysicsCategoryTiles|PhysicsCategoryObjects|PhysicsCategoryEdgar|PhysicsCategoryEnemy;
                 
                 // DEV: Added on August 14th to solve bug when Edgar gets stuck - tests required [DONE]
                 [trainNode getLeftWheel].physicsBody.categoryBitMask = PhysicsCategoryObjects;
@@ -1036,21 +1037,42 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
     
     // Aliens / Extra-terrestres
+    
+    
+    // Aliens / Extra-terrestres
     NSArray *tabAlien;
     if((tabAlien=[group objectsNamed:@"alien1"]))
     {
         for (NSDictionary *monAlien in tabAlien) {
-            plpEnemy *alien;
-            alien = [[plpEnemy alloc] initAtPosition:[self convertPosition:monAlien] withSize:CGSizeMake([monAlien[@"width"] floatValue], [monAlien[@"height"] floatValue]) withMovement:[monAlien[@"moveX"] floatValue]];
+            plpAlien *alien;
+            alien = [[plpAlien alloc] initAtPosition:[self convertPosition:monAlien] withSize:CGSizeMake([monAlien[@"width"] floatValue], [monAlien[@"height"] floatValue]) withMovement:[monAlien[@"moveX"] floatValue]];
             if(alien)
             {
-                alien.physicsBody.categoryBitMask = PhysicsCategoryAliens;
+                alien.physicsBody.categoryBitMask = PhysicsCategoryEnemy;
                 alien.physicsBody.collisionBitMask = PhysicsCategoryObjects | PhysicsCategoryTiles;
                 [tileMap addChild:alien];
             }
             else
             {
                 NSLog(@"Error while creating the alien.");
+            }
+        }
+    }
+    
+    NSArray *scientistArray;
+    if((scientistArray=[group objectsNamed:@"scientist"]))
+    {
+        for (NSDictionary *scientistPosition in scientistArray) {
+            plpScientist *scientist = [[plpScientist alloc] initAtPosition:[self convertPosition: scientistPosition] withSize:CGSizeMake([scientistPosition[@"width"] floatValue], [scientistPosition[@"height"] floatValue])];
+            if(scientist)
+            {
+                scientist.physicsBody.categoryBitMask = PhysicsCategoryEnemy;
+                scientist.physicsBody.collisionBitMask = PhysicsCategoryObjects | PhysicsCategoryTiles;
+                [tileMap addChild: scientist];
+            }
+            else
+            {
+                NSLog(@"Error while creating the scientist.");
             }
         }
     }
@@ -1195,32 +1217,45 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 // Called when the user restarts a level (upper right button)
 - (void)EdgarDiesOf:(int)deathType
 {
+    if(deathType == DEATH_RESET && levelTransitioning == TRUE){
+        NSLog(@"Restart level disabled at this time");
+        return;
+    }
     lifeCount--;
     NSLog(@"Current life count: %ld | death type: %d", (long)lifeCount, deathType);
-    SKNode *lostLife = [HUD childNodeWithName: [NSString stringWithFormat:@"life%d", (int) lifeCount ]];
+    
+    SKAction *ouch = [SKAction sequence:@[
+      [SKAction colorizeWithColor:[SKColor redColor] colorBlendFactor:1.0 duration: 0.1],
+      [SKAction waitForDuration:0.1],
+      [SKAction colorizeWithColorBlendFactor:0.0 duration: 0.1]]];
+    
     SKAction *blink = [SKAction sequence:@[
-      [SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor:1.0 duration:0.4],
-      [SKAction waitForDuration:0.5],
-      [SKAction colorizeWithColorBlendFactor:0.0 duration:0.4]]];
+      [SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor: 1.0 duration: 0.15],
+      [SKAction waitForDuration: 0.1],
+      [SKAction colorizeWithColorBlendFactor:0.0 duration: 0.15]]];
     
-    [lostLife runAction: [SKAction repeatAction: blink count: 2] completion:^{
-        [lostLife removeFromParent];
-    }];
-    
-    if(levelTransitioning){
-        NSLog(@"Restart level disabled at this time");
-    }else if(lifeCount < 1){
-        // game over -- for testing
-        NSLog(@"Game over");
-        [self showGameOver];
-    }else{
-        [Edgar removeControl];
-        levelTransitioning = TRUE;
-        [myFinishRectangle removeFromParent];
-        myFinishRectangle = nil;
-        [self doLevelTransition_sameLevel:YES];
-        [Edgar giveControl];
+    if(deathType == DEATH_SPIKE){
+        [Edgar.physicsBody applyImpulse: CGVectorMake(0, 100000)];
     }
+    
+    [Edgar runAction: [SKAction repeatAction: ouch count: 2] completion:^{
+        SKNode *lostLife = [self->HUD childNodeWithName: [NSString stringWithFormat:@"life%d", (int) self->lifeCount ]];
+        [lostLife removeFromParent];
+        
+        if(self->lifeCount < 1){
+            // game over -- for testing
+            NSLog(@"Game over");
+            [self showGameOver];
+        }else{
+            [self->Edgar removeControl];
+            self->levelTransitioning = TRUE;
+            [self->myFinishRectangle removeFromParent];
+            self->myFinishRectangle = nil;
+            [self doLevelTransition_sameLevel:YES];
+            [self->Edgar giveControl];
+        }
+        
+    }];
 }
 
 - (void)resetEdgar
@@ -1682,6 +1717,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
         }
         
+        if([contactNode.name isEqualToString:@"spike"]){
+            NSLog(@"spike");
+            [self EdgarDiesOf: DEATH_SPIKE];
+        }
+        
         if([contactNode.name isEqualToString:@"finish"])
         {
             if(!levelTransitioning)
@@ -2091,12 +2131,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }
     }
     
-    if(contactNode.physicsBody.categoryBitMask == PhysicsCategoryAliens)
+    if(contactNode.physicsBody.categoryBitMask == PhysicsCategoryEnemy)
     {
-        if([contactNode isKindOfClass:[plpEnemy class]])
+        if([contactNode isKindOfClass:[plpAlien class]])
         {
             if(![Edgar alreadyInfected])
             {
+                // physicsbody du dessus ou du dessous?
+                
+                
                 /* SND: Edgar gets infected */
                 [soundController playAlienSound];
                 float randomDuration = 1.0f / (1.0f + rand() % 5);
@@ -2105,6 +2148,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     NSLog(@"oki");
                     [self->soundController stopAlienSound];
                 }]]]];
+            }
+        }else if([contactNode isKindOfClass:[plpScientist class]]){
+            if([(plpScientist *)contactNode isDangerous]){
+                // physicsbody du dessus ou du dessous?
+                if(Edgar.position.y - 126 > contactNode.position.y){
+                    [(plpScientist *)contactNode dies];
+                }else{
+                    [self EdgarDiesOf: DEATH_ENEMY];
+                }
             }
         }
     }
