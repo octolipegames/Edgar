@@ -31,10 +31,11 @@
 		DA10C1A51D5BF3F900579F1F /* UI_img in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A41D5BF3F900579F1F /* UI_img */; };
 		DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A61D5BFB6400579F1F /* edgar.atlas */; };
 		DA1A0F87245F32A40070CA08 /* Pile.png in Resources */ = {isa = PBXBuildFile; fileRef = DA1A0F86245F32A40070CA08 /* Pile.png */; };
-		DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */; };
+		DA1BE6F01B81256000DA2E47 /* plpAlien.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE6EF1B81256000DA2E47 /* plpAlien.m */; };
 		DA259370241C0F960055695F /* plpIntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DA25936F241C0F960055695F /* plpIntroScene.m */; };
 		DA29F9C723EE9AD500CF4F22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA29F9C623EE9AD500CF4F22 /* LaunchScreen.storyboard */; };
 		DA29F9CB23EE9F2100CF4F22 /* Logo_Launch_Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */; };
+		DA442BD624797D50004794D4 /* plpScientist.m in Sources */ = {isa = PBXBuildFile; fileRef = DA442BD524797D50004794D4 /* plpScientist.m */; };
 		DA519C5D232CE8BE00B4F594 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5B232CE8BD00B4F594 /* gear.png */; };
 		DA519C5E232CE8BE00B4F594 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5C232CE8BD00B4F594 /* sound.png */; };
 		DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4A191B81133F009507F9 /* plpHero.m */; };
@@ -60,6 +61,8 @@
 		DA9BC0522307336600ACC878 /* plpSoundViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = DA9BC0512307336500ACC878 /* plpSoundViewController.h */; };
 		DAB313FD2475C1EB00E6C40D /* introScene.mov in Resources */ = {isa = PBXBuildFile; fileRef = DAB313FC2475C1EB00E6C40D /* introScene.mov */; };
 		DAB313FF2475C80800E6C40D /* ascenseur-start.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB313FE2475C80800E6C40D /* ascenseur-start.png */; };
+		DAB511E924792A8700F42A68 /* Scientifique_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB511E724792A8600F42A68 /* Scientifique_1.png */; };
+		DAB511EA24792A8700F42A68 /* Scientifique_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DAB511E824792A8700F42A68 /* Scientifique_2.png */; };
 		DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DAB5E1411C21DD2800809756 /* edgarsaute.atlas */; };
 		DABCE3491D5BE8A900C277BB /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = DABCE3481D5BE8A900C277BB /* Levels */; };
 		DAC45078241ECBF300BFBE9C /* scenes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA824556241AEA95007843AD /* scenes.atlas */; };
@@ -126,11 +129,13 @@
 		DA10C1A41D5BF3F900579F1F /* UI_img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UI_img; sourceTree = "<group>"; };
 		DA10C1A61D5BFB6400579F1F /* edgar.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgar.atlas; sourceTree = "<group>"; };
 		DA1A0F86245F32A40070CA08 /* Pile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pile.png; sourceTree = "<group>"; };
-		DA1BE6EE1B81256000DA2E47 /* plpEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpEnemy.h; sourceTree = "<group>"; };
-		DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpEnemy.m; sourceTree = "<group>"; };
+		DA1BE6EE1B81256000DA2E47 /* plpAlien.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpAlien.h; sourceTree = "<group>"; };
+		DA1BE6EF1B81256000DA2E47 /* plpAlien.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpAlien.m; sourceTree = "<group>"; };
 		DA25936F241C0F960055695F /* plpIntroScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpIntroScene.m; sourceTree = "<group>"; };
 		DA29F9C623EE9AD500CF4F22 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_Launch_Screen.png; sourceTree = "<group>"; };
+		DA442BD424797D50004794D4 /* plpScientist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpScientist.h; sourceTree = "<group>"; };
+		DA442BD524797D50004794D4 /* plpScientist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpScientist.m; sourceTree = "<group>"; };
 		DA519C5B232CE8BD00B4F594 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = "External-media/gear.png"; sourceTree = SOURCE_ROOT; };
 		DA519C5C232CE8BD00B4F594 /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sound.png; path = "External-media/sound.png"; sourceTree = SOURCE_ROOT; };
 		DA5B4A181B81133F009507F9 /* plpHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpHero.h; sourceTree = "<group>"; };
@@ -163,6 +168,8 @@
 		DAB313FC2475C1EB00E6C40D /* introScene.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = introScene.mov; sourceTree = "<group>"; };
 		DAB313FE2475C80800E6C40D /* ascenseur-start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ascenseur-start.png"; sourceTree = "<group>"; };
 		DAB314002475C85D00E6C40D /* facingEdgar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facingEdgar.png; sourceTree = "<group>"; };
+		DAB511E724792A8600F42A68 /* Scientifique_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scientifique_1.png; sourceTree = "<group>"; };
+		DAB511E824792A8700F42A68 /* Scientifique_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Scientifique_2.png; sourceTree = "<group>"; };
 		DAB5E1411C21DD2800809756 /* edgarsaute.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = edgarsaute.atlas; sourceTree = "<group>"; };
 		DABCE3481D5BE8A900C277BB /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = "<group>"; };
 		DAC45077241EC07A00BFBE9C /* plpIntroScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plpIntroScene.h; sourceTree = "<group>"; };
@@ -301,22 +308,24 @@
 		DA1E7C6B1C120ED300147FA2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DA5B7C99232C2E440009ECE6 /* plpButton.h */,
-				DA5B7C97232C2E320009ECE6 /* plpButton.m */,
-				DAF381B21B9E2E21008B4D5D /* plpItem.h */,
-				DAF381B31B9E2E21008B4D5D /* plpItem.m */,
-				DAF2CB121B83B8B000FC7FF1 /* plpTrain.h */,
-				DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */,
-				DA1BE6EE1B81256000DA2E47 /* plpEnemy.h */,
-				DA1BE6EF1B81256000DA2E47 /* plpEnemy.m */,
-				DA7485451B86FF5100920C84 /* plpPlatform.h */,
-				DA7485461B86FF5100920C84 /* plpPlatform.m */,
-				DA5B4A181B81133F009507F9 /* plpHero.h */,
-				DA5B4A191B81133F009507F9 /* plpHero.m */,
 				DA5CF4DB1B73EB6E005A5C91 /* JSTileMap.h */,
 				DA5CF4DC1B73EB6E005A5C91 /* JSTileMap.m */,
 				DA5CF4DD1B73EB6E005A5C91 /* LFCGzipUtility.h */,
 				DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */,
+				DA1BE6EE1B81256000DA2E47 /* plpAlien.h */,
+				DA1BE6EF1B81256000DA2E47 /* plpAlien.m */,
+				DA5B7C99232C2E440009ECE6 /* plpButton.h */,
+				DA5B7C97232C2E320009ECE6 /* plpButton.m */,
+				DA5B4A181B81133F009507F9 /* plpHero.h */,
+				DA5B4A191B81133F009507F9 /* plpHero.m */,
+				DAF381B21B9E2E21008B4D5D /* plpItem.h */,
+				DAF381B31B9E2E21008B4D5D /* plpItem.m */,
+				DA7485451B86FF5100920C84 /* plpPlatform.h */,
+				DA7485461B86FF5100920C84 /* plpPlatform.m */,
+				DA442BD424797D50004794D4 /* plpScientist.h */,
+				DA442BD524797D50004794D4 /* plpScientist.m */,
+				DAF2CB121B83B8B000FC7FF1 /* plpTrain.h */,
+				DAF2CB131B83B8B000FC7FF1 /* plpTrain.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -342,6 +351,8 @@
 				DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */,
 				DA1A0F86245F32A40070CA08 /* Pile.png */,
 				DAF6AD70245EDCCF00D7D6D2 /* Rayon_x3.png */,
+				DAB511E724792A8600F42A68 /* Scientifique_1.png */,
+				DAB511E824792A8700F42A68 /* Scientifique_2.png */,
 				DAF37DFE245F2A4900D55AF9 /* ShadowMask.png */,
 				DAF6AD74245EE1EA00D7D6D2 /* TropheeElite_x3.png */,
 				DAF6AD72245EE1EA00D7D6D2 /* TropheeExplorer_x3.png */,
@@ -502,6 +513,7 @@
 				DA0500142472F18300F2DC3D /* ascenseurF-01.png in Resources */,
 				DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */,
 				DA0500172472F4C100F2DC3D /* Feu_rouge.png in Resources */,
+				DAB511E924792A8700F42A68 /* Scientifique_1.png in Resources */,
 				DAF37DFF245F2A4900D55AF9 /* ShadowMask.png in Resources */,
 				DA03CBE3199F4C4700406720 /* Main.storyboard in Resources */,
 				DA614A7F245DB64D006AD8CF /* ChariotParoi.png in Resources */,
@@ -515,6 +527,7 @@
 				DA614A80245DB64D006AD8CF /* ChariotBase.png in Resources */,
 				DA05001E2473001B00F2DC3D /* caisse.png in Resources */,
 				DA60EAA41B7F38E100A3F927 /* Sounds in Resources */,
+				DAB511EA24792A8700F42A68 /* Scientifique_2.png in Resources */,
 				DA10C1A51D5BF3F900579F1F /* UI_img in Resources */,
 				DA614A81245DB64D006AD8CF /* ChariotRoue.png in Resources */,
 				DAD058521A08288200DAE3E8 /* monstre.atlas in Resources */,
@@ -554,6 +567,7 @@
 				DAF381B41B9E2E21008B4D5D /* plpItem.m in Sources */,
 				DA03CBDC199F4C4700406720 /* main.m in Sources */,
 				DA60FCB4223EBB6A005276C6 /* plpSoundController.m in Sources */,
+				DA442BD624797D50004794D4 /* plpScientist.m in Sources */,
 				DA5B7C9A232C2E450009ECE6 /* plpButton.h in Sources */,
 				DA03CBE0199F4C4700406720 /* plpAppDelegate.m in Sources */,
 				DA259370241C0F960055695F /* plpIntroScene.m in Sources */,
@@ -562,7 +576,7 @@
 				DAF2CB141B83B8B000FC7FF1 /* plpTrain.m in Sources */,
 				DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */,
 				DA03CBEC199F4C4700406720 /* plpMyScene.m in Sources */,
-				DA1BE6F01B81256000DA2E47 /* plpEnemy.m in Sources */,
+				DA1BE6F01B81256000DA2E47 /* plpAlien.m in Sources */,
 				DA60FCB6223EBB88005276C6 /* plpSoundController.h in Sources */,
 				DA5B7C98232C2E320009ECE6 /* plpButton.m in Sources */,
 				DA9BC0502307335600ACC878 /* plpSoundViewController.m in Sources */,
