@@ -119,7 +119,7 @@ float contextVelocityX;
     
     // Game data
     int globalCounter;
-    int nextLevelIndex;
+    int currentLevelIndex;
     double initialTime;
     double additionalSavedTime;
     double additionalLevelTime;
@@ -136,7 +136,6 @@ float contextVelocityX;
 -(void)resumeAfterPause;
 -(void)resumeFromLevel:(NSInteger)theLevel;
 -(void)updateVolumes;
--(int)getNextLevelIndex;
 -(void)saveHighScoreForUser:(NSString*)userName;
 -(void)saveInitialTime;
 -(void)saveAdditionalTime:(float)additionalTime;
@@ -145,6 +144,6 @@ float contextVelocityX;
 -(void)setNearHero;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
-@property(nonatomic, weak) SKNode *listener;
+//@property(nonatomic, weak) SKNode *listener;
 
 @end
