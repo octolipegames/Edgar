@@ -88,7 +88,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         enableDebug = [defaults boolForKey:@"enableDebug"];
         
         // Retrieve saved values – todo: debug
-        lifeCount = 3; //[defaults integerForKey:@"lifeCount"];
+        lifeCount = [defaults integerForKey:@"lifeCount"];
         fileCount = [defaults integerForKey:@"fileCount"];
         
         if (!lifeCount) {
@@ -563,12 +563,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     JSTileMap *myTileMap;
     NSArray *levelFiles = [NSArray arrayWithObjects:
                            @"Levels/Level_0_tuto.tmx",
-                           // @"Levels/Level_2_sd.tmx",
-                           @"Levels/Level_NEW.tmx",
+                           // @"Levels/Level_NEW.tmx",
                            @"Levels/Level_1.tmx",
                            @"Levels/Level_2.tmx",
-                           
-                           //@"Levels/Level_2_x3.tmx",
                            @"Levels/Level_3.tmx",
                            @"Levels/Level_4.tmx",
                            @"Levels/Level_5.tmx",
@@ -661,6 +658,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
     
     /*
+     
+    // When SpriteKit had less bugs
+    
     TMXLayer* monLayer = [tileMap layerNamed:@"Solide"];
     
     for (int a = 0; a < tileMap.mapSize.width; a++)
@@ -710,7 +710,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         startPosition = [self convertPosition:startPos];
     }
     
-    if(nextLevelIndex>0) // Fin du niveau 1: on efface l'éventuel reste de flèche d'aide
+    if(currentLevelIndex>0) // Fin du niveau 1: on efface l'éventuel reste de flèche d'aide
     {
         SKNode *theNode;
         if(( theNode = [myCamera childNodeWithName:@"helpNode"]))
@@ -719,9 +719,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }
     }
     
-    if(nextLevelIndex>1)
+    if(currentLevelIndex>1)
     {
-        SKSpriteNode *startLift = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"ascenseur-start.png"] size: CGSizeMake(366, 313)];
+        SKSpriteNode *startLift = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"ascenseur-start.png"] size: CGSizeMake(313, 366)];
         startLift.position = startPosition;
         [tileMap addChild: startLift];
     }
@@ -784,7 +784,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [tileMap addChild: caisse];
     }
     
-    if(nextLevelIndex == 1)
+    if(currentLevelIndex == 1)
     {
         NSArray *treeArray;
         if((treeArray=[group objectsNamed:@"arbre"]))
@@ -808,7 +808,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
         }
     }
-    else if(nextLevelIndex == SEMAPHORE_LEVEL_INDEX)
+    else if(currentLevelIndex == SEMAPHORE_LEVEL_INDEX)
     {
         // semaphore
         NSLog(@"Level including semaphore");
@@ -1177,10 +1177,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 -(void)resumeFromLevel:(NSInteger)theLevel{
     levelTransitioning = TRUE;
-    nextLevelIndex = (int)theLevel;
+    currentLevelIndex = (int)theLevel;
     
     // if level <= 1: new game => reset game data (cheat enabled, time...)
-    if(nextLevelIndex <= 1)
+    if(currentLevelIndex <= 1)
     {
         [self resetGameData];
         [Edgar removeLight];
@@ -1200,11 +1200,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [soundController getStoredVolumes];
 }
 
-- (int) getNextLevelIndex
-{
-    return nextLevelIndex;
-}
-
 - (void) resetGameData
 {
     cheatsEnabled = FALSE;
@@ -1217,6 +1212,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 // Called when the user restarts a level (upper right button)
 - (void)EdgarDiesOf:(int)deathType
 {
+    
     if(deathType == DEATH_RESET && levelTransitioning == TRUE){
         NSLog(@"Restart level disabled at this time");
         return;
@@ -1494,17 +1490,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(repeatingLevel == YES)
     {
-        if(nextLevelIndex == 0)
+        if(currentLevelIndex == 0)
         {
             displayTime.text = [[NSString alloc] initWithFormat:@"Welcome back to the tutorial"];
         }else{
-            displayTime.text = [[NSString alloc] initWithFormat:@"Welcome back to level %d", nextLevelIndex];
+            displayTime.text = [[NSString alloc] initWithFormat:@"Welcome back to level %d", currentLevelIndex];
         }
         displayTime2.text = [[NSString alloc] initWithFormat:@"Your total time: %@", [self getTimeString: totalTime]];
     }
     else
     {
-        if(nextLevelIndex > 1)
+        if(currentLevelIndex > 1)
         {
             displayTime.text = [[NSString alloc]
                                 initWithFormat:@"Total time: %@", [self getTimeString: totalTime]];
@@ -1594,14 +1590,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [myCamera removeAllActions];
     }
     
-    if(nextLevelIndex == LAST_LEVEL_INDEX)
+    if(currentLevelIndex == LAST_LEVEL_INDEX)
     {
         [Edgar removeLight];
         [Edgar removeMasque];
         // [self doVolumeFade]; -> no, we keep the music
     }
     
-    myLevel = [self loadLevel:nextLevelIndex];
+    myLevel = [self loadLevel: currentLevelIndex];
     
     myWorld.position = CGPointMake(0, 0);
     [myWorld addChild: myLevel];
@@ -1626,18 +1622,19 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [Edgar giveControl];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger: currentLevelIndex forKey:@"savedLevel"];
     [defaults setInteger: lifeCount forKey:@"lifeCount"];
     [defaults setInteger: fileCount forKey:@"fileCount"];
     [defaults setFloat:[self getTotalTime] forKey:@"totalTime"];
     [defaults synchronize];
     
-    NSLog(@"Level saved: %d", nextLevelIndex);
+    NSLog(@"Level saved: %d", currentLevelIndex);
     
-    if(nextLevelIndex > 1 && nextLevelIndex < LAST_LEVEL_INDEX)
+    if(currentLevelIndex > 1 && currentLevelIndex < LAST_LEVEL_INDEX)
     {
         [Edgar addLight]; // shadow effect for levels 2-6
         
-        if(nextLevelIndex == FIRST_DARK_LEVEL)
+        if(currentLevelIndex == FIRST_DARK_LEVEL)
         {
             SKNode *lampe = [Edgar childNodeWithName:@"light"];
             [Edgar addMasque];
@@ -1671,7 +1668,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             // React only if we need to render a sound
             if(userNode.physicsBody.categoryBitMask == PhysicsCategoryObjects){
-                if(contact.collisionImpulse > 200000){
+                if(contact.collisionImpulse > 2000000){
                     NSLog(@"Train: huge collision impulse");
                     // [self->soundController playTrainImpactSound];
                 }
@@ -1744,16 +1741,16 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
                     [myFinishRectangle removeFromParent];
                     myFinishRectangle = nil;
-                    nextLevelIndex++;
+                    currentLevelIndex++;
                     
-                    NSLog(@"Loading level %d", nextLevelIndex);
+                    NSLog(@"Loading level %d", currentLevelIndex);
                     
                     [self doLevelTransition_sameLevel:NO];
                 } // end if [Edgar hasItem]
             } // end if !levelTransitioning
         } // end if finish
 
-        if(nextLevelIndex==LAST_LEVEL_INDEX)
+        if(currentLevelIndex==LAST_LEVEL_INDEX)
         {
             if([contactNode.name isEqualToString:@"finalAnimationSensor"] && contactNode != nil)
             {
@@ -1836,7 +1833,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         self->Edgar->rectangleNode.physicsBody.affectedByGravity = false;
                         self->freeCamera = TRUE;
                         [self->myCamera runAction:[SKAction moveToY:self->Edgar.position.y+200 * x3 duration:1]];
-                        self->nextLevelIndex = 1;
+                        self->currentLevelIndex = 1;
                         [self runAction: beamSound];
                     }];
                     
@@ -1914,7 +1911,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     [myLevel runAction:[SKAction sequence:@[createBeam, showBeam, moveEdgar, longWaitAction, vanish, removeBeam, longWaitAction, flyAwaySound, flyAway, longWaitAction, finalMessage]]];
                 }
             } // end if LAST_LEVEL_INDEX
-        }else if(nextLevelIndex==0) // Tutorial level
+        }else if(currentLevelIndex==0) // Tutorial level
         {
             SKSpriteNode *helpNode;
             
@@ -2057,7 +2054,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
             [myLevel childNodeWithName:@"uranium"].hidden = YES;  // <- to simply hide the object
             //            [(plpItem *)contactNode removeFromParent]; // <- if there is a need to remove the item
-            if(nextLevelIndex==0)
+            if(currentLevelIndex==0)
             {
                 SKNode* helpNode;
                 if((helpNode = [myLevel childNodeWithName:@"//helpNode"]))
@@ -2201,7 +2198,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }
     }
     
-    if(nextLevelIndex==0) // Tutorial
+    if(currentLevelIndex==0) // Tutorial
     {
         if(contactNode.physicsBody.categoryBitMask == PhysicsCategorySensors)
         {
@@ -2305,17 +2302,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 }
                 else if(touch.tapCount == 5) // Shortcut to the next level | Raccourci vers le niveau suivant
                 {
-                    if(nextLevelIndex < LAST_LEVEL_INDEX && !levelTransitioning)
+                    if(currentLevelIndex < LAST_LEVEL_INDEX && !levelTransitioning)
                     {
                         levelTransitioning = TRUE;
                         [myFinishRectangle removeFromParent];
                         myFinishRectangle = nil;
-                        nextLevelIndex++;
+                        currentLevelIndex++;
                         self.view.showsPhysics = NO;
                         self.view.showsFPS = NO;
                         self.view.showsNodeCount = NO;
                         
-                        NSLog(@"Loading level %d", nextLevelIndex);
+                        NSLog(@"Loading level %d", currentLevelIndex);
                         [self startLevel];
                     }
                 }
@@ -2326,7 +2323,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         levelTransitioning = TRUE;
                         [myFinishRectangle removeFromParent];
                         myFinishRectangle = nil;
-                        nextLevelIndex = 6;
+                        currentLevelIndex = 6;
                         self.view.showsPhysics = NO;
                         self.view.showsFPS = NO;
                         
@@ -2339,13 +2336,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             {
                 cheatsEnabled = TRUE;
                 SKLabelNode *cheatEnabledMessage = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-                cheatEnabledMessage.fontSize = 36;
+                cheatEnabledMessage.fontSize = 100;
                 [cheatEnabledMessage setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
                 
                 cheatEnabledMessage.fontColor = [SKColor redColor];
                 cheatEnabledMessage.position = CGPointMake(screenCenterX, 0); // should be ~ 100 * x3 for an iPad air -> find a way to do it better
                 cheatEnabledMessage.zPosition = 30;
-                cheatEnabledMessage.text = @"Cheater! Time penalty";
+                cheatEnabledMessage.text = @"Cheats active. Time penalty!";
                 cheatEnabledMessage.alpha = 0;
                 [myCamera addChild: cheatEnabledMessage];
 
