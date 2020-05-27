@@ -505,20 +505,6 @@
 //    NSLog(@"opened");
 }
 
-/*
- // Jamais utilisé? A checker
--(void)saveCurrentProgress
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    int currentLevel = [(plpMyScene*)myScene getNextLevelIndex];
-    if(currentLevel > 0)
-    {
-        [defaults setInteger:currentLevel forKey:@"savedLevel"];
-        [defaults synchronize];
-    }
-}
- */
-
 - (BOOL)shouldAutorotate
 {
     return YES;

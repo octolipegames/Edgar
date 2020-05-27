@@ -27,12 +27,10 @@
 
 @interface plpViewController : UIViewController
 {
-    SKScene * myScene;
+    SKScene *myScene;
     BOOL gamePaused;
     BOOL runningOniPad;
 }
-
--(void)saveCurrentProgress;
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *prefsButton;
