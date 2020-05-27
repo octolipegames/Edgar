@@ -8,7 +8,7 @@
  </tileset>
  <layer id="1" name="Fond" width="16" height="7">
   <data encoding="base64" compression="zlib">
-   eAFjYKAcSAONkAViEI3ORucjq4PZDFIjB8TyUBpmDjINkgfxkdUAuWCArA6dzQNUARNDZoPEYEARyFAGYiUghqkF8UFsmB5JJDZMDVBowAEA/zsF5A==
+   eAFjYKAcSAONkAViEI3ORucjq4PZDNMnDxSQQzIHJg6iYeLIatD1I6uHsXmQzENmg+RhQBHIUAZiJSCG6QPxQWyYHkkkNkwNUGjAAQD7kwXh
   </data>
  </layer>
  <layer id="2" name="Solide" width="16" height="7">
@@ -17,7 +17,7 @@
   </data>
  </layer>
  <objectgroup id="3" name="Objets">
-  <object id="1" name="Start" x="315" y="582" width="264" height="318"/>
+  <object id="1" name="Start" x="392" y="534" width="313" height="366"/>
   <object id="3" name="verticalPlatform" x="2379" y="900" width="330" height="600">
    <properties>
     <property name="moveUpFirst" value="1"/>

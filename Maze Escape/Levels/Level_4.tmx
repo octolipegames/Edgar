@@ -17,7 +17,7 @@
   <object id="1" name="uranium" type="Item" x="4003.5" y="2524.5" width="87" height="87">
    <ellipse/>
   </object>
-  <object id="2" name="Start" x="333" y="582" width="264" height="318"/>
+  <object id="2" name="Start" x="333" y="534" width="313" height="366"/>
   <object id="3" name="endLevelLift" x="2340" y="1434" width="315" height="366">
    <properties>
     <property name="nextLevel" value="_Level02_v1_100px"/>
@@ -27,7 +27,7 @@
   <object id="7" name="platform" x="3288" y="1803" width="303" height="30">
    <properties>
     <property name="movementDuration" value="2"/>
-    <property name="x_limit" value="2700"/>
+    <property name="x_limit" value="280"/>
    </properties>
   </object>
   <object id="8" name="train" type="train" x="804" y="702" width="180" height="180">

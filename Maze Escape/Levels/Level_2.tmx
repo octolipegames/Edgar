@@ -34,7 +34,7 @@
   </object>
  </objectgroup>
  <objectgroup id="3" name="Objets">
-  <object id="1" name="Start" x="315" y="582" width="264" height="318"/>
+  <object id="1" name="Start" x="350" y="534" width="313" height="366"/>
   <object id="6" name="uranium" type="Item" x="2200" y="421.5" width="87" height="87">
    <ellipse/>
   </object>
