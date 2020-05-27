@@ -18,15 +18,8 @@
     float musicVolume;
     float fxVolume;
     
-    SKAction *jumpSound;
-    SKAction *takeCellSound;
-    SKAction *activateLiftSound;
-    SKAction *takeLiftSound;
-    SKAction *liftReadySound;
     SKAction *leftFootstepSound;
     SKAction *rightFootstepSound;
-    SKAction *crateSound;
-    SKAction *trainImpactSound;
     
     SKAudioNode *platformSound;
 }
@@ -50,14 +43,12 @@
 - (void) playTakeLiftSound;
 - (void) playFootstepSound;
 - (void) stopFootstepSound;
-/*- (void) playLeftFootstepSound;
-- (void) playRightFootstepSound;*/
 - (void) playCrateSound;
 - (void) stopCrateSound;
 - (void) playTrainImpactSound;
 - (void) playAlienSound;
 - (void) stopAlienSound;
-//- (id)getPlatformSound;
+- (void) playDeathSound;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *jumpAudioPlayer;
@@ -68,7 +59,7 @@
 @property (strong, nonatomic) AVAudioPlayer *liftReadyAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *takeLiftAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *trainImpactAudioPlayer;
-@property (strong, nonatomic) AVAudioPlayer *footstepAudioPlayer;
+// @property (strong, nonatomic) AVAudioPlayer *footstepAudioPlayer;
 
 @property(nonatomic, weak) SKNode *listener;
 

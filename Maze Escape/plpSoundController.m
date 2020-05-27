@@ -73,7 +73,7 @@
     self.liftReadyAudioPlayer.volume = self->musicVolume;
     self.takeLiftAudioPlayer.volume = self->musicVolume;
     self.trainImpactAudioPlayer.volume = self->musicVolume;
-    self.footstepAudioPlayer.volume = self->musicVolume;
+    // self.footstepAudioPlayer.volume = self->musicVolume;
 }
 
 - (float) getFxVolume{
@@ -157,18 +157,6 @@
     // sons avec AVAudioPlayer
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSError* error = nil;
-    
-        /*
-        NSURL *footstepSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_pas" withExtension:@"wav"];
-        self.footstepAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:footstepSoundURL error:&error];
-        if (error != nil) {
-            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
-        } else {
-            self.footstepAudioPlayer.numberOfLoops = -1;
-            [self.footstepAudioPlayer setVolume:self->fxVolume];
-            [self.footstepAudioPlayer prepareToPlay];
-        }
-        */
 
         NSURL *jumpSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_jump" withExtension:@"wav"];
         self.jumpAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:jumpSoundURL error:&error];
