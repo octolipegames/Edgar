@@ -187,11 +187,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
     float newSpeed;
     if(forward == TRUE)
     {
-        newSpeed = [self calculateSpeedForDuration:theDuration fromPosition:self.position.x toLimit:endXPosition];
+        newSpeed = [self calculateSpeedForDuration:theDuration fromPosition: self.position.x toLimit: endXPosition];
     }else{
-        newSpeed = [self calculateSpeedForDuration:theDuration fromPosition:self.position.x toLimit:initXPosition];
+        newSpeed = [self calculateSpeedForDuration:theDuration fromPosition: self.position.x toLimit: initXPosition];
     }
-    [self.physicsBody setVelocity:CGVectorMake(newSpeed, 0)];
+    [self.physicsBody setVelocity: CGVectorMake(newSpeed, 0)];
     if(heroAbove)
     {
         contextVelocityX = newSpeed;
