@@ -62,7 +62,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     PhysicsCategoryItems = 1 << 5    // 32
 };
 
-
 -(id)initWithSize:(CGSize)size{
     if (self = [super initWithSize:size]) {
         self.physicsWorld.contactDelegate = self;
@@ -88,7 +87,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         enableDebug = [defaults boolForKey:@"enableDebug"];
         
         // Retrieve saved values – todo: debug
-        lifeCount = [defaults integerForKey:@"lifeCount"];
+        lifeCount = 3; //[defaults integerForKey:@"lifeCount"];
         fileCount = [defaults integerForKey:@"fileCount"];
         
         if (!lifeCount) {
@@ -121,19 +120,19 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         // Show file count
         SKSpriteNode *file = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Collectionnable"] size: CGSizeMake(100, 100)];
-        [file setPosition: CGPointMake(-600, 540)];
+        [file setPosition: CGPointMake(-500, 540)];
         [HUD addChild: file];
         
         fileCountLabel = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
         fileCountLabel.fontSize = 30 * x3;
         fileCountLabel.fontColor = [SKColor whiteColor];
-        fileCountLabel.position = CGPointMake(-490, 540);
+        fileCountLabel.position = CGPointMake(-390, 540); // decalage de 110
         fileCountLabel.zPosition = 10;
         [fileCountLabel setName: @"fileCountLabel"];
         
         [fileCountLabel setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeLeft];
         [fileCountLabel setVerticalAlignmentMode:SKLabelVerticalAlignmentModeCenter];
-        fileCountLabel.text = [ [NSString alloc] initWithFormat: @"× %ld", (long) fileCount];
+        fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/20", (long) fileCount];
         [HUD addChild: fileCountLabel];
 
         if(!useSwipeGestures){
@@ -629,7 +628,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if(collisionPolygons){
         for (NSDictionary *collisionPolygon in [collisionPolygons objects]) {
             NSLog(@"Polygon found");
-            NSArray *coordinates = [[collisionPolygon[@"polygonPoints"] stringValue] componentsSeparatedByString:@" "];
+            NSArray *coordinates = [collisionPolygon[@"polygonPoints"] componentsSeparatedByString:@" "];
             
             // NSLog(@"Coordinates: %@", coordinates);
             
@@ -774,7 +773,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         SKSpriteNode *caisse = [SKSpriteNode spriteNodeWithTexture:textureCaisse size: CGSizeMake(width, height)];
         [caisse setZPosition: 20];
         caisse.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(width-1.5, height-1.5)]; // minus 1.5 so the crate doesn't float over the floor
-        caisse.physicsBody.mass = 20; // auparavant: 40
+        caisse.physicsBody.mass = 200; // auparavant: 40
         caisse.physicsBody.friction = 0.1;
         caisse.position = [self convertPosition:optionCaisse];
         caisse.physicsBody.categoryBitMask = PhysicsCategoryObjects;
@@ -904,7 +903,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if((fileGroup=[group objectsNamed:@"file"]))
     {
         for (NSDictionary *filePosition in fileGroup) {
-            plpItem *myFile = [[plpItem alloc] initAtPosition:[self convertPosition: filePosition] withTexture:@"Collectionnable.png" andRadius: 8];
+            plpItem *myFile = [[plpItem alloc] initAtPosition:[self convertPosition: filePosition] withTexture:@"Collectionnable.png" andRadius: 30];
             if(myFile)
             {
                 myFile.name = @"file";
@@ -2066,7 +2065,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             // TODO: store score
             fileCount++;
-            fileCountLabel.text = [ [NSString alloc] initWithFormat: @"× %ld", (long) fileCount];
+            fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/20", (long) fileCount];
             [(plpItem *)contactNode removeFromParent];
         }
     }
@@ -2096,7 +2095,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             /* SND: train runs */
             plpTrain *theTrain = (plpTrain *)contactNode;
             [theTrain setHeroAbove];
-            [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed: 100 * x3]; // previous max speed: 200 * x3
+            [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed: 150]; // previous max speed: 200 * x3
             return;
         }
         
@@ -2139,9 +2138,21 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
                 /* SND: Edgar gets infected */
                 [soundController playAlienSound];
-                float randomDuration = 1.0f / (1.0f + rand() % 5);
-                [Edgar getsInfectedFor: randomDuration];
-                [self runAction: [SKAction sequence:@[[SKAction waitForDuration: randomDuration + 1.5], [SKAction runBlock:^{
+                // float randomDuration = 1.0f / (1.0f + rand() % 5);
+                [Edgar getsInfectedFor: 0.2];
+                
+                SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Vie"] size: CGSizeMake(43, 100)];
+                [edgarLife setPosition: CGPointMake(0, 100)];
+                [edgarLife setScale: 2.0];
+                
+                [edgarLife setName: [NSString stringWithFormat:@"life%ld", (long)lifeCount]];
+                [HUD addChild: edgarLife];
+                [edgarLife runAction: [SKAction moveTo: CGPointMake(-320 * x3 + (lifeCount * 80), 540) duration: 1.0]];
+                [edgarLife runAction: [SKAction scaleTo: 1.0 duration: 1.0]];
+                
+                lifeCount++;
+                
+                [self runAction: [SKAction sequence:@[[SKAction waitForDuration: 0.4], [SKAction runBlock:^{
                     NSLog(@"oki");
                     [self->soundController stopAlienSound];
                 }]]]];
