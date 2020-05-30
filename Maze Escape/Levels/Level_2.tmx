@@ -1,57 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="17" height="5" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="39">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="5" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="45">
  <tileset firstgid="1" name="Tiles_x3" tilewidth="300" tileheight="300" tilecount="39" columns="13">
   <image source="Tiles_x3.png" width="3900" height="900"/>
  </tileset>
- <layer id="1" name="Fond" width="17" height="5">
+ <tileset firstgid="40" name="Tiles_x3_spikes" tilewidth="300" tileheight="300" tilecount="6" columns="2">
+  <image source="Tiles_x3_spikes.png" width="600" height="900"/>
+ </tileset>
+ <layer id="1" name="Fond" width="18" height="5">
   <data encoding="base64" compression="zlib">
-   eAFjYKAOkAYaIwvEIBqZLYnGR5aDqQUqAQMYXwrIg7GJpaFGoFDE6oWpQ9FMAQcADk0EdA==
+   eAFjYKAekAYaBcKyUBqZLYlHDqYPqAQMYHw1IE8diGF8YmmIKZgksfph6jBNIF8EAHqRBMI=
   </data>
  </layer>
- <layer id="2" name="Solide" width="17" height="5">
+ <layer id="2" name="Solide" width="18" height="5">
   <data encoding="base64" compression="zlib">
-   eAHjY2Bg4KMCBhqBAcQwRLALwOxHl+UCCoDMAMlzQyVBYiAAoyE87H4QgElCaZgZaMJgLkgO5g5KaQDnWwLk
+   eAHjY2Bg4KMS1gCagw2IYRNEE9ME8mHuQJOCc0HmgNRww0WwM2DmoNMCaMrxmQOSQ9dPCR8AWT4DQQ==
   </data>
  </layer>
  <objectgroup id="4" name="CollisionRectangles">
-  <object id="19" x="0" y="0" width="5100" height="300"/>
-  <object id="20" x="-6" y="1203" width="5100" height="300"/>
+  <object id="19" x="0" y="0" width="5400" height="300"/>
+  <object id="20" x="0" y="1200" width="5400" height="300"/>
   <object id="22" x="0" y="300" width="300" height="900"/>
-  <object id="23" x="2040.67" y="300" width="59.3333" height="600"/>
-  <object id="24" x="2100" y="600" width="300" height="300"/>
-  <object id="25" x="2400" y="840" width="300" height="60"/>
-  <object id="27" x="3120" y="720" width="60" height="60"/>
-  <object id="29" x="4500" y="300" width="600" height="60"/>
-  <object id="30" x="4800" y="360" width="300" height="780"/>
-  <object id="31" x="4500" y="1140" width="600" height="60"/>
-  <object id="33" x="3720" y="720" width="60" height="60"/>
-  <object id="34" x="1620" y="720" width="60" height="60"/>
-  <object id="37" x="2400" y="1140" width="300" height="60"/>
+  <object id="23" x="2340.67" y="300" width="59.3333" height="600"/>
+  <object id="24" x="2400" y="600" width="300" height="300"/>
+  <object id="25" x="2700" y="840" width="300" height="60"/>
+  <object id="30" x="5100" y="300" width="300" height="840"/>
+  <object id="31" x="4800" y="1140" width="600" height="60"/>
+  <object id="37" x="2700" y="1140" width="300" height="60"/>
+  <object id="40" x="300" y="900" width="300" height="300"/>
+  <object id="43" x="5100" y="600" rotation="180">
+   <polygon points="0,300 300,300 210.667,285.333 109.333,234.667 36,150.667 16,101.333 0,0"/>
+  </object>
  </objectgroup>
  <objectgroup id="5" name="CollisionPolygons">
-  <object id="32" x="300" y="900">
+  <object id="32" x="600" y="900">
    <polygon points="0,0 900,0 1200,300 0,300"/>
+  </object>
+  <object id="42" x="300" y="300">
+   <polygon points="0,0 300,0 210.667,14.6667 109.333,65.3333 36,149.333 16,198.667 0,300"/>
   </object>
  </objectgroup>
  <objectgroup id="3" name="Objets">
-  <object id="1" name="Start" x="350" y="534" width="313" height="366"/>
-  <object id="6" name="uranium" type="Item" x="2200" y="421.5" width="87" height="87">
+  <object id="1" name="Start" x="462.121" y="530.97" width="313" height="366"/>
+  <object id="6" name="uranium" type="Item" x="2500" y="421.5" width="87" height="87">
    <ellipse/>
   </object>
-  <object id="7" name="endLevelLift" x="4056" y="828" width="315" height="366">
+  <object id="7" name="endLevelLift" x="4356" y="828" width="315" height="366">
    <properties>
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
   </object>
-  <object id="13" x="4371" y="384" width="3">
+  <object id="13" x="4671" y="384" width="3">
    <ellipse/>
   </object>
-  <object id="17" name="Caisse" type="Caisse" x="3432.48" y="1004.97" width="180" height="180"/>
-  <object id="35" name="file" x="1566.67" y="1096.97">
-   <point/>
-  </object>
-  <object id="38" name="file" x="2869.7" y="1084.85">
-   <point/>
+  <object id="17" name="Caisse" type="Caisse" x="3732.48" y="1004.97" width="180" height="180"/>
+  <object id="39" name="alien1" type="alien" x="2775.14" y="717.227" width="177" height="111">
+   <properties>
+    <property name="moveX" value="60"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

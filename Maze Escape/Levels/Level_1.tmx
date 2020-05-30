@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="6" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="55">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="6" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="58">
  <tileset firstgid="1" name="Lvl1_fond_smaller" tilewidth="300" tileheight="300" tilecount="40" columns="10">
   <image source="Lvl1_fond_smaller.png" width="3000" height="1200"/>
  </tileset>
@@ -8,19 +8,19 @@
  </tileset>
  <layer id="1" name="Fond" width="26" height="6">
   <data encoding="base64" compression="zlib">
-   eAGtj8sOglAMRKvISmWH+AQfW3/CuPH/v8gzgSaVFFZOctLSKZ1cM7NFwpJZASv4l9Yciln63sAWKjgMHEM/nmWedqJ011FeDTtoYA/aP8F5qOpb8Kwy9D7zivWj+J4O5wo3uMOUHhi6J/ndce1dsxfNHG/85wSeE2/Hd17Cf3MZ8pTzSWCUKtvV7AuMZQ8P
+   eAGtj80OgkAMhBfFk+INxR8U8OpLGC++/xPxDdCkmsLJSb7t0imdbEopZQEremvI4V/asshn6XsHBezhNHF2999e5GnGS3sN5ZVwgCNUoPkLXKeq+w0sa+Pu1rOK9SX/njtOAy10MKcHhvZJttfXerSG88W5xBv/OYPl+N3+nerbv0sZ8pTzCaAVKppVrweOBQ8P
   </data>
  </layer>
  <layer id="2" name="Solide" width="26" height="6">
   <data encoding="base64" compression="zlib">
-   eAHjZsAEmkAhLSDWBmIdIPagAOtCzeAG0ujAEChgBMTGQGwCxKZAjA7M0AWgfFcgjYzx2YPDCKKEzZFUgeyD2eMEZOPDLkB5XOEGMxIkDwO47IHJk0LDwoUYPaD4BWFyAMgeXH4EycHMRqYBy4UR7Q==
+   eAGlkUsKgDAMRN33JP4W/vei4P1P5Ax0IERafwOP6KTNYAzFVSWsCtSgAccP2jgjoHp1MHowgBFMwGv2RnzfUS25nMSIR/ZiTjFPOSuec2zop/amkexLNoeectR/U7WXuzvM5/8lX8Sc1Deyp9m2nrDZEfA=
   </data>
  </layer>
  <objectgroup id="3" name="Objets">
-  <object id="15" name="uranium" type="Item" x="7005" y="1314" width="87" height="87">
+  <object id="15" name="uranium" type="Item" x="7013" y="1034" width="87" height="87">
    <ellipse/>
   </object>
-  <object id="25" name="endLevelLift" x="6270" y="1134" width="315" height="366">
+  <object id="25" name="endLevelLift" x="6466.97" y="1127.94" width="315" height="366">
    <properties>
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
@@ -35,6 +35,7 @@
    </properties>
   </object>
   <object id="28" name="arbre" type="arbre" x="120" y="51" width="759" height="855"/>
+  <object id="56" name="Caisse" type="Caisse" x="6223.33" y="1313.03" width="180" height="180"/>
  </objectgroup>
  <objectgroup id="4" name="CollisionPolygons">
   <object id="33" x="1590" y="12">
@@ -42,14 +43,15 @@
   </object>
  </objectgroup>
  <objectgroup id="5" name="CollisionRectangles">
-  <object id="35" x="0" y="900" width="4470" height="900"/>
+  <object id="35" x="0" y="900" width="4502" height="900"/>
   <object id="45" x="4350" y="0" width="1650" height="300"/>
   <object id="47" x="6000" y="0" width="1800" height="600"/>
   <object id="48" x="6090" y="600" width="54" height="600"/>
   <object id="49" x="4500" y="1500" width="3300" height="300"/>
-  <object id="50" x="6900" y="600" width="900" height="600"/>
-  <object id="51" x="7200" y="1200" width="600" height="300"/>
+  <object id="50" x="7204" y="600" width="596" height="600"/>
+  <object id="51" x="6900" y="1200" width="900" height="300"/>
   <object id="52" x="300" y="0" width="1500" height="300"/>
   <object id="54" x="5100" y="900" width="300" height="300"/>
+  <object id="57" x="6900" y="600" width="300" height="300"/>
  </objectgroup>
 </map>

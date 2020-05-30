@@ -17,7 +17,7 @@
   </data>
  </layer>
  <objectgroup id="3" name="Objets">
-  <object id="1" name="Start" x="330" y="3582" width="264" height="318"/>
+  <object id="1" name="Start" x="330" y="3534" width="313" height="366"/>
   <object id="2" name="endLevelLift" x="607.5" y="210" width="315" height="366">
    <properties>
     <property name="nextLevel" value="_Level02_v1_100px"/>
@@ -49,7 +49,7 @@
   <object id="7" name="platform" x="2685" y="3300" width="300" height="24">
    <properties>
     <property name="decalage" value="problemeCarte"/>
-    <property name="movementDuration" value="2"/>
+    <property name="movementDuration" value="4"/>
     <property name="x_limit" value="1502"/>
    </properties>
   </object>

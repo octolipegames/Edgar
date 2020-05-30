@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="7" tilewidth="300" tileheight="300" infinite="0" nextlayerid="5" nextobjectid="30">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="7" tilewidth="300" tileheight="300" infinite="0" nextlayerid="5" nextobjectid="34">
  <tileset firstgid="1" name="ElementsTiles-01-01.png" tilewidth="300" tileheight="300" tilecount="39" columns="13">
   <image source="Tiles_x3.png" width="3900" height="900"/>
  </tileset>
  <tileset firstgid="40" name="Tiles_x3_spikes" tilewidth="300" tileheight="300" tilecount="6" columns="2">
   <image source="Tiles_x3_spikes.png" width="600" height="900"/>
  </tileset>
- <layer id="1" name="Fond" width="16" height="7">
+ <layer id="1" name="Fond" width="18" height="7">
   <data encoding="base64" compression="zlib">
-   eAFjYKAcSAONkAViEI3ORucjq4PZDNMnDxSQQzIHJg6iYeLIatD1I6uHsXmQzENmg+RhQBHIUAZiJSCG6QPxQWyYHkkkNkwNUGjAAQD7kwXh
+   eAGtjlEKgDAMQ3eAXUDEiXr/O5p8PAhlf1ugJG3T0Nb24VTUpTJXXfv04ecT+luDEXnMzcxnnpqTd+geuanZm8Ej8aleFXv31tweofHAWi1hV04+8QO/BQbv
   </data>
  </layer>
- <layer id="2" name="Solide" width="16" height="7">
+ <layer id="2" name="Solide" width="18" height="7">
   <data encoding="base64" compression="zlib">
-   eAHjY2Bg4KMQA7VjADEMEUwBmL2YMgwMhPRzATXB9EsA2chYC8qHmcsIVQviw9SB2DD9IDY+gMstMP0DSQMAcCkEPg==
+   eAHjY2Bg4KMSBhpDEYC5gyJDgJph5kgA2cgYZC6IDwOMQAZILQjA1HEB2fxADDMDJg9SgwuI4ZKAiiObRQ4bZjw5enHpAQDGtQQ9
   </data>
  </layer>
  <objectgroup id="3" name="Objets">
@@ -37,7 +37,7 @@
   <object id="6" name="uranium" type="Item" x="3103.5" y="1321.5" width="87" height="87">
    <ellipse/>
   </object>
-  <object id="7" name="endLevelLift" x="3840" y="1134" width="315" height="366">
+  <object id="7" name="endLevelLift" x="4740" y="1430" width="315" height="366">
    <properties>
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
@@ -45,24 +45,28 @@
   <object id="13" x="4371" y="384" width="3">
    <ellipse/>
   </object>
-  <object id="28" name="file" x="1100" y="756">
+  <object id="29" name="file" x="1926.64" y="791.576">
    <point/>
   </object>
-  <object id="29" name="file" x="1456" y="1388">
+  <object id="31" name="file" x="4866.67" y="744">
+   <point/>
+  </object>
+  <object id="33" name="file" x="720" y="1382">
    <point/>
   </object>
  </objectgroup>
  <objectgroup id="4" name="CollisionRectangles">
-  <object id="17" x="0" y="1500" width="4800" height="600"/>
-  <object id="18" x="0" y="0" width="4800" height="300"/>
+  <object id="17" x="0" y="1500" width="4500" height="600"/>
+  <object id="18" x="0" y="0" width="5400" height="300"/>
   <object id="19" x="0" y="300" width="300" height="1200"/>
-  <object id="20" x="4500" y="300" width="300" height="1200"/>
+  <object id="20" x="5100" y="300" width="300" height="1800"/>
   <object id="21" x="1800" y="900" width="300" height="60"/>
-  <object id="22" x="2040" y="300" width="60" height="600"/>
   <object id="23" x="300" y="900" width="1200" height="60"/>
   <object id="24" x="3600" y="900" width="600" height="60"/>
-  <object id="25" x="4326" y="724" width="60" height="60"/>
+  <object id="25" x="4320" y="1020" width="60" height="60"/>
   <object id="26" x="2852" y="900" width="448" height="300"/>
   <object id="27" x="2940" y="1200" width="60" height="300"/>
+  <object id="30" x="4576" y="900" width="524" height="300"/>
+  <object id="32" x="4500" y="1800" width="600" height="300"/>
  </objectgroup>
 </map>
