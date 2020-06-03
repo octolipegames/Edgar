@@ -62,12 +62,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     PhysicsCategoryItems = 1 << 5    // 32
 };
 
+
+
 -(id)initWithSize:(CGSize)size{
     if (self = [super initWithSize:size]) {
         self.physicsWorld.contactDelegate = self;
         
         // self.size = CGSizeMake(800, 400); // zoom for debug
-        self.size = CGSizeMake(800 * x3, 400 * x3);// => moitie de la largeur = 400 * x3 // En fait, coordonnees: 754 x 394 (?)
+        self.size = CGSizeMake(2400, 1200);
         NSLog(@"Size: (%f, %f)", self.size.width, self.size.height);
         self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f * 3);
         
@@ -104,16 +106,18 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         HUD.zPosition = 28;
         [myCamera addChild:HUD];
         
+        
         // Show life count
         SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Vie"] size: CGSizeMake(43, 100)];
-
+        edgarLife.anchorPoint = CGPointMake(0, 1);
+        
         [HUD addChild: edgarLife];
-        [edgarLife setPosition: CGPointMake(-320 * x3, 540)];
+        [edgarLife setPosition: CGPointMake(-320 * x3, self.size.height * 0.5)];
         [edgarLife setName: @"life0"];
         
-        for(int i = 0; i < lifeCount; i++){
+        for(int i = 1; i < lifeCount; i++){
             SKSpriteNode *lifeCopy = [edgarLife copy];
-            [lifeCopy setPosition: CGPointMake(-320 * x3 + (i * 80), 540)];
+            [lifeCopy setPosition: CGPointMake(-320 * x3 + (i * 80), self.size.height * 0.5)];
             [lifeCopy setName: [NSString stringWithFormat:@"life%d", i]];
             [HUD addChild: lifeCopy];
         }
@@ -230,23 +234,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         moveLeftAction = [SKAction repeatActionForever:[SKAction sequence:@[walkLeft, wait]]];
         moveRightAction = [SKAction repeatActionForever:[SKAction sequence:@[walkRight, wait]]];
         
-
-        // First call to loadLevel
-        myLevel = [self loadLevel:0];
-        if(myLevel)
-        {
-            [myWorld addChild: myLevel];
-            [self addCollisionLayer: myLevel];
-            [self loadAssets: myLevel];
-        }
-        else
-        {
-            NSLog(@"Could not load level");
-            return FALSE;
-        }
-        
         // We create our character Edgar
-        
         Edgar = [[plpHero alloc] initAtPosition: CGPointMake(startPosition.x, startPosition.y)];
         myCamera.position = startPosition;
         self.listener = Edgar;
@@ -260,16 +248,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         Edgar->rectangleNode.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryEnemy|PhysicsCategorySensors|PhysicsCategoryItems;
         
         listensToContactEvents = TRUE;
-        
-        [myLevel addChild: Edgar];
-        
-        SKPhysicsJointFixed *pinEdgar = [SKPhysicsJointFixed jointWithBodyA:Edgar.physicsBody bodyB:Edgar->rectangleNode.physicsBody anchor:CGPointMake(Edgar.position.x, Edgar.position.y)];
-        [self.physicsWorld addJoint:pinEdgar];
-        
-        [self doFirstOpening];
-        
-//        [self showGameOver];
-//        [self showTrophy];
     }
     
     return self;
@@ -554,6 +532,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 - (JSTileMap*)loadLevel:(int)levelIndex
 {
+    NSLog(@"Frame Height: %f", self.frame.size.height);
+    NSLog(@"Scene Height: %f", self.size.height);
+    NSLog(@"View height and width: %f %f", self.view.bounds.size.height, self.view.bounds.size.width);
+    
     if(levelIndex <= 1) // dev: need to this to the right place
     {
         freeCamera = FALSE;
@@ -598,7 +580,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     BOOL useCollisionGroup = FALSE;
     
     // Remove after debug
-    self.view.showsPhysics = YES;
+    //self.view.showsPhysics = YES;
     self.view.showsFPS = YES;
     self.view.showsNodeCount = YES;
 
