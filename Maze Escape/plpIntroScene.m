@@ -117,7 +117,7 @@
     SKScene *myScene = [plpMyScene sceneWithSize: spriteView.bounds.size];
     myScene.scaleMode = SKSceneScaleModeAspectFill;
     [(plpMyScene*)myScene resumeFromLevel: 1];
-    [spriteView presentScene:myScene];
+    [spriteView presentScene: myScene];
 }
 
 -(void)playScene2{
@@ -135,11 +135,8 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"Touch event!");
     currentFrame++;
     if(currentFrame < [animationFrames count]){
-        NSLog(@"continue");
-        
         NSArray *subtitleTextsTop = @[@"1",
                                @"However, some scientists still keep aliens",
                                @"Green Alien must make sure that Bionic Labs Inc",
@@ -150,7 +147,6 @@
                                @"and collect evidence. Any volonteers?"];
         
         [animationNode setTexture: animationFrames[currentFrame]];
-        NSLog(@"%@", subtitleTextsTop[currentFrame]);
         [subtitleNodeTop setText: subtitleTextsTop[currentFrame]];
         [subtitleNodeBottom setText: subtitleTextsBottom[currentFrame]];
     } else if(currentFrame == [animationFrames count]) {
