@@ -143,6 +143,27 @@
     return self -> muteSoundFX;
 }
 
+- (void)initProjectorSound {
+    
+    if ( self -> muteSoundFX){
+        return;
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
+        NSError* error = nil;
+
+        NSURL *deathSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx2_projecteur" withExtension:@"wav"];
+        self.projectorAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: deathSoundURL error:&error];
+        if (error != nil) {
+            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+        } else {
+            [self.projectorAudioPlayer setVolume:self->fxVolume];
+            [self.projectorAudioPlayer prepareToPlay];
+        }
+    });
+
+}
+
 - (void)initSounds {
     
     if( self -> muteSoundFX){
@@ -175,6 +196,16 @@
             [self.alienAudioPlayer setVolume:self->fxVolume];
             [self.alienAudioPlayer prepareToPlay];
         }
+        
+        NSURL *deathSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx3_mort" withExtension:@"wav"];
+        self.deathAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: deathSoundURL error:&error];
+        if (error != nil) {
+            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+        } else {
+            [self.deathAudioPlayer setVolume:self->fxVolume];
+            // [self.deathAudioPlayer prepareToPlay];
+        }
+        
     
         NSURL *crateSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_caisse_short" withExtension:@"wav"];
         self.crateAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: crateSoundURL error:&error];
@@ -222,6 +253,15 @@
         }
     });
     NSLog(@"Init sounds done");
+}
+
+- (void) playProjectorSound {
+    if ( !self -> muteSoundFX ){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+            [self.jumpAudioPlayer play];
+            [self.jumpAudioPlayer prepareToPlay];
+        });
+    }
 }
 
 - (void) playJumpSound {
@@ -327,6 +367,11 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
             [self.alienAudioPlayer prepareToPlay];
         });
+    }
+}
+- (void) playDeathSound {
+    if ( !self -> muteSoundFX ){
+        [self.deathAudioPlayer play];
     }
 }
 

@@ -24,9 +24,11 @@
 #import <SpriteKit/SpriteKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "plpMyScene.h"
+#import "plpSoundController.h"
 
 @interface plpIntroScene : SKScene <SKPhysicsContactDelegate>
 {
+    plpSoundController *soundController;
     SKSpriteNode *animationNode;
     SKLabelNode *subtitleNodeTop;
     SKLabelNode *subtitleNodeBottom;

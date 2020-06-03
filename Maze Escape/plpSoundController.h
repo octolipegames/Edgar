@@ -36,6 +36,7 @@
 - (void)doVolumeFade;
 
 // Sounds
+- (void) initProjectorSound;
 - (void) initSounds;
 - (void) playJumpSound;
 - (void) playTakeCellSound;
@@ -49,17 +50,19 @@
 - (void) playAlienSound;
 - (void) stopAlienSound;
 - (void) playDeathSound;
+- (void) playProjectorSound;
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *jumpAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *alienAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *crateAudioPlayer;
+@property (strong, nonatomic) AVAudioPlayer *deathAudioPlayer;
 
 @property (strong, nonatomic) AVAudioPlayer *takeCellAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *liftReadyAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *takeLiftAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *trainImpactAudioPlayer;
-// @property (strong, nonatomic) AVAudioPlayer *footstepAudioPlayer;
+@property (strong, nonatomic) AVAudioPlayer *projectorAudioPlayer;
 
 @property(nonatomic, weak) SKNode *listener;
 

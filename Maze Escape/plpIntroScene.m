@@ -83,6 +83,11 @@
         animationNode.zPosition = 20;
         [self addChild: animationNode];
         
+        soundController = [[plpSoundController alloc] init];
+        [self addChild: soundController];
+        [soundController playTune:@"Sounds/intro_talk" loops:-1];
+        [soundController initProjectorSound];
+        
         SKShapeNode *labelBackground = [SKShapeNode shapeNodeWithRectOfSize: CGSizeMake( 1800, 200) ];
         
         [labelBackground setStrokeColor: [UIColor blackColor] ];
@@ -137,6 +142,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     currentFrame++;
     if(currentFrame < [animationFrames count]){
+        [soundController playProjectorSound];
         NSArray *subtitleTextsTop = @[@"1",
                                @"However, some scientists still keep aliens",
                                @"Green Alien must make sure that Bionic Labs Inc",
@@ -151,6 +157,7 @@
         [subtitleNodeBottom setText: subtitleTextsBottom[currentFrame]];
     } else if(currentFrame == [animationFrames count]) {
         NSLog(@"create video!");
+        [soundController doVolumeFade];
         [ [self childNodeWithName:@"subtitle-background"] removeFromParent];
         [animationNode removeFromParent];
         [subtitleNodeTop removeFromParent];
