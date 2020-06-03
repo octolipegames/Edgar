@@ -32,32 +32,6 @@
 
 @implementation plpViewController
 
-/*
-@synthesize myScene;
-
-#pragma mark Singleton Methods
-
-+ (id)sharedManager {
-    NSLog(@"shared Manager");
-    static plpViewController *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-    });
-    return sharedMyManager;
-}
-
-- (id)init {
-    if (self = [super init]) {
-        NSLog(@"init");
-        SKView * skView = (SKView *)self.view;
-        myScene = [plpMyScene sceneWithSize:skView.bounds.size];
-        myScene.scaleMode = SKSceneScaleModeAspectFill;
-    }
-    return self;
-}*/
-
-
 - (void)viewDidLoad
 {
     
@@ -138,44 +112,41 @@
         [self.MenuBackground removeFromSuperview];
         self.MenuBackground = nil;
     }
-    
 
     self.pauseButton.hidden = NO;
     self.suicideButton.hidden = NO;
     
+    if(gamePaused == TRUE){
+        NSLog(@"Game NOT paused!");
+        // If myScene not created (after introScene)
+        if(!myScene){
+            NSLog(@"AND MYSCENE NOT DOES EXIST WTF SHIT");
+            SKView * skView = (SKView *)self.view;
+
+            myScene = skView.scene;
+        }
+        [myScene removeAllChildren];
+        
+        // destroy old game
+        [myScene removeFromParent];
+        myScene = nil;
+        
+        // then
+        gamePaused = FALSE;
+    }
+    
     SKView * skView = (SKView *)self.view;
     SKScene *introScene = [plpIntroScene sceneWithSize:skView.bounds.size];
-    
-    // SKScene *introScene = [plpMyScene sceneWithSize:skView.bounds.size];
     [skView presentScene: introScene];
     
     /*
-    
     [self newGameWithTutorial: TRUE];
     [(plpMyScene*)myScene computeSceneCenter];
     */
 }
 
-- (IBAction)skipTutorial:(id)sender {
-    UIButton *clicked = (UIButton *) sender;
-    UIView *containerView = [clicked superview];
-    [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [containerView removeFromSuperview];
-    
-    [self newGameWithIntroduction: FALSE];
-    [(plpMyScene*)myScene computeSceneCenter];
-}
-
-- (IBAction)newGameButtonClicked:(id)sender {
-    UIButton *clicked = (UIButton *) sender;
-    UIView *containerView = [clicked superview];
-    [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [containerView removeFromSuperview];
-
-    [self displayIntroductionDialog];
-}
-
 - (IBAction)resumeFreezedGame:(id)sender {
+    NSLog(@"resume");
     UIView *container = [(UIGestureRecognizer *)sender view];
     if(container)
     {
@@ -185,6 +156,7 @@
 }
 
 - (IBAction)continueButtonClicked:(id)sender {
+    NSLog(@"continue");
     UIButton *clicked = (UIButton *) sender;
     UIView *containerView = [clicked superview];
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -210,6 +182,9 @@
         // SKView * skView = (SKView *)self.view;
         // myScene = [plpMyScene sceneWithSize:skView.bounds.size];
         // myScene.scaleMode = SKSceneScaleModeAspectFill;
+        NSLog(@"game not paused");
+    }else {
+        NSLog(@"GAME PAUSED");
     }
     
     if(self.MenuBackground)
@@ -220,7 +195,7 @@
     
     // We start the new game
     SKView * spriteView = (SKView *)self.view;
-    [spriteView presentScene:myScene];
+    [spriteView presentScene: myScene];
 
     if(doIntroduction == FALSE)
     {
@@ -285,7 +260,13 @@
     }
     
     SKView * spriteView = (SKView *)self.view;
-    [spriteView presentScene:myScene];
+    
+    // If myScene not created (after introScene)
+    if(!myScene){
+        myScene = spriteView.scene;
+    }
+    
+    [spriteView presentScene: myScene];
     NSLog(@"Resume after a pause");
     spriteView.paused = NO;
     [(plpMyScene*)myScene resumeAfterPause];
@@ -305,7 +286,6 @@
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger savedLevel = [defaults integerForKey:@"savedLevel"];
-    
     
     if(savedLevel == 0)
     {
@@ -450,10 +430,19 @@
         NSLog(@"Already paused"); // tested
     }else{
         NSLog(@"We pause because going to background");
-        gamePaused = TRUE;
+        
 
         [spriteView setPaused:YES];
-        [(plpMyScene*)myScene getsPaused];
+        
+        if([myScene isKindOfClass:[plpMyScene class]]){
+            gamePaused = TRUE;
+            [(plpMyScene*)myScene getsPaused];
+        }else{
+            NSLog(@"intro scene");
+            [myScene removeAllChildren];
+            [myScene removeFromParent];
+            myScene = nil;
+        }
         
         
         UIView *containerView = [[UIView alloc] init];
@@ -478,12 +467,27 @@
 }
 
 - (IBAction)pauseButtonClicked:(id)sender {
-    gamePaused = TRUE;
     
     SKView *spriteView = (SKView *)self.view;
+    
+    // If myScene not created (after introScene)
+    if(!myScene){
+        myScene = spriteView.scene;
+    }
+    
     if(!spriteView.paused){
         [spriteView setPaused:YES];
-        [(plpMyScene*)myScene getsPaused];
+        if([myScene isKindOfClass:[plpMyScene class]]){
+            NSLog(@"Pause...");
+            gamePaused = TRUE;
+            
+            [(plpMyScene*)myScene getsPaused];
+        }else{
+            NSLog(@"intro scene");
+            [myScene removeAllChildren];
+            [myScene removeFromParent];
+            myScene = nil;
+        }
         
         self.playButton.hidden = NO;
         self.soundButton.hidden = NO;
