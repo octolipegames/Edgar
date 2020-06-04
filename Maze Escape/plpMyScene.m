@@ -395,53 +395,65 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 }
 
 - (void)showGameOver {
-    SKTexture *trophyTexture = [SKTexture textureWithImageNamed:@"GameOver.png"];
-    SKSpriteNode *trophy = [SKSpriteNode spriteNodeWithTexture:trophyTexture];
-    trophy.name = @"trophy";
+    SKSpriteNode *lowerCurtain = (SKSpriteNode*)[myCamera childNodeWithName:@"lowerCurtain"];
+    SKSpriteNode *upperCurtain = (SKSpriteNode*)[myCamera childNodeWithName:@"upperCurtain"];
+    [lowerCurtain setColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1]];
+    [upperCurtain setColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1]];
     
-    [containerView setFrame:CGRectMake(50*x3, 5*x3, self.view.bounds.size.width - (100 * x3), self.view.bounds.size.height/3)]; // upper half of the screen
-
-    if(!myTextView)
-    {
-        myTextView = [[UITextView alloc] init];
+    if(upperCurtain && lowerCurtain){
+        [upperCurtain runAction: [SKAction moveToY:-20 duration: 1.2]];
+        [lowerCurtain runAction: [SKAction moveToY:20 duration: 1.2] completion:^
+        {
+            NSLog(@"curtains closed");
+            SKTexture *gameOverTexture = [SKTexture textureWithImageNamed:@"GameOver.png"];
+            SKSpriteNode *gameOverNode = [SKSpriteNode spriteNodeWithTexture: gameOverTexture];
+            gameOverNode.name = @"trophy";
+            [gameOverNode setPosition: CGPointMake(0, 1500)];
+            [gameOverNode setZPosition: 100];
+            [self->myCamera addChild: gameOverNode];
+            [gameOverNode runAction: [SKAction moveTo: CGPointMake(0, 0) duration: .8] completion:^{
+                self->containerView = [[UIView alloc] init];
+                                       [self->containerView setFrame: CGRectMake(50, 50, self.view.bounds.size.width-100, self.view.bounds.size.height-100)]; // coordinates origin is upper left
+                                       
+                self->containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+                
+                float outsideMargin = 60;
+                float insideMargin = 30;
+                float buttonsVerticalPosition = self->containerView.bounds.size.height-50;
+                float buttonWidth = (self->containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
+                float buttonNewGamePositionX = self->containerView.bounds.size.width/2 - buttonWidth/2;
+                
+                //[self->myTextView setFrame: CGRectMake(20, 5, self->containerView.bounds.size.width-40, 35)];
+                
+                UIButton *myButtonClose  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                myButtonClose.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+                
+                [myButtonClose setBackgroundColor: [UIColor whiteColor]];
+                
+                [myButtonClose setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+                [[myButtonClose layer] setMasksToBounds:YES];
+                [[myButtonClose layer] setCornerRadius:5.0f];
+                
+                [myButtonClose setTitle: @"Play again" forState:UIControlStateNormal];
+                [myButtonClose addTarget: self
+                                  action: @selector(playAgainButtonClicked:)
+                        forControlEvents: UIControlEventTouchUpInside];
+                
+                [self->containerView addSubview:self->myTextView];
+                [self->containerView addSubview:myButtonClose];
+            }];
+        }];
     }
+
     
-    myTextView.text = [NSString stringWithFormat:@"Asdf"];
-    myTextView.textColor = [UIColor whiteColor];
-    myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
-    myTextView.editable = NO;
-    [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
     
-    float outsideMargin = 60;
-    float insideMargin = 30;
-    float buttonsVerticalPosition = containerView.bounds.size.height-50;
-    float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
-    float buttonNewGamePositionX = containerView.bounds.size.width/2 - buttonWidth/2;
+    //[containerView setFrame:CGRectMake(50*x3, 5*x3, self.view.bounds.size.width - (100 * x3), self.view.bounds.size.height/3)]; // upper half of the screen
     
-    [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, 35)];
     
-    UIButton *myButtonClose  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    myButtonClose.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+}
+
+- (void)displayPlayAgainButton{
     
-    [myButtonClose setBackgroundColor: [UIColor whiteColor]];
-    
-    [myButtonClose setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
-    [[myButtonClose layer] setMasksToBounds:YES];
-    [[myButtonClose layer] setCornerRadius:5.0f];
-    
-    [myButtonClose setTitle: @"Play again" forState:UIControlStateNormal];
-    [myButtonClose addTarget: self
-                      action: @selector(playAgainButtonClicked:)
-            forControlEvents: UIControlEventTouchUpInside];
-    
-    [containerView addSubview:myTextView];
-    [containerView addSubview:myButtonClose];
-    
-    // Position: bottom left
-    //[trophy setPosition: CGPointMake(10 - trophy.size.width/2, 40 - trophy.size.height/2)];
-    [trophy setPosition: CGPointMake(0, 0)];
-    [trophy setZPosition: 100];
-    [myCamera addChild: trophy];
 }
 
 - (void)showTrophy {
@@ -580,7 +592,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     BOOL useCollisionGroup = FALSE;
     
     // Remove after debug
-    //self.view.showsPhysics = YES;
+    self.view.showsPhysics = YES;
     self.view.showsFPS = YES;
     self.view.showsNodeCount = YES;
 
@@ -1022,11 +1034,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     // Aliens / Extra-terrestres
     NSArray *tabAlien;
-    if((tabAlien=[group objectsNamed:@"alien1"]))
+    if((tabAlien=[group objectsNamed:@"alien"]))
     {
         for (NSDictionary *monAlien in tabAlien) {
             plpAlien *alien;
-            alien = [[plpAlien alloc] initAtPosition:[self convertPosition:monAlien] withSize:CGSizeMake([monAlien[@"width"] floatValue], [monAlien[@"height"] floatValue]) withMovement:[monAlien[@"moveX"] floatValue]];
+            alien = [[plpAlien alloc] initAtPosition:[self convertPosition:monAlien] withSize:CGSizeMake(280, 180) withMovement:[monAlien[@"moveX"] floatValue]];
             if(alien)
             {
                 alien.physicsBody.categoryBitMask = PhysicsCategoryEnemy;
@@ -1054,6 +1066,63 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             else
             {
                 NSLog(@"Error while creating the scientist.");
+            }
+        }
+    }
+    
+    NSArray *trapDoorArray;
+    if((trapDoorArray=[group objectsNamed:@"trapDoor"]))
+    {
+        for (NSDictionary *trapDoorPosition in trapDoorArray) {
+            
+            CGPoint centerPosition = [self convertPosition: trapDoorPosition];
+
+            SKTexture *trapDoorTexture = [SKTexture textureWithImageNamed: @"Trappe.png"];
+            SKSpriteNode *trapDoor = [SKSpriteNode spriteNodeWithTexture: trapDoorTexture];
+            
+            // For rotation
+            trapDoor.anchorPoint = CGPointMake(0.1, 0.5);
+            SKSpriteNode *trapDoorRight = [trapDoor copy];
+            
+            [trapDoor setPosition: CGPointMake(centerPosition.x - 145, centerPosition.y)];
+            
+            trapDoor.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize: CGSizeMake(150, 28) center:CGPointMake(60, 0)];
+            trapDoor.physicsBody.allowsRotation = NO;
+            trapDoor.physicsBody.affectedByGravity = NO;
+            trapDoor.physicsBody.friction = 1.0;
+            trapDoor.physicsBody.linearDamping = 0;
+            trapDoor.physicsBody.mass = 10000000000;
+            trapDoor.physicsBody.categoryBitMask = PhysicsCategoryObjects;
+            [trapDoor setName: @"trapDoorLeft"];
+            
+            trapDoorRight.anchorPoint = CGPointMake(0.9, 0.5);
+            [trapDoorRight setPosition: CGPointMake(centerPosition.x + 145, centerPosition.y)];
+            trapDoorRight.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize: CGSizeMake(150, 28) center:CGPointMake(-60, 0)];
+            trapDoorRight.physicsBody.allowsRotation = NO;
+            trapDoorRight.physicsBody.affectedByGravity = NO;
+            trapDoorRight.physicsBody.friction = 1.0;
+            trapDoorRight.physicsBody.linearDamping = 0;
+            trapDoorRight.physicsBody.mass = 10000000000;
+            trapDoorRight.physicsBody.categoryBitMask = PhysicsCategoryObjects;
+            
+            [trapDoorRight setName: @"trapDoorRight"];
+            
+            SKAudioNode *trapDoorSound = [[SKAudioNode alloc] initWithFileNamed:@"Sounds/fx_elevateur.wav"];
+            trapDoorSound.autoplayLooped = false;
+            trapDoorSound.position = CGPointMake(0, 0);
+            trapDoorSound.positional = true;
+            [trapDoor addChild: trapDoorSound];
+            
+
+            if(trapDoor)
+            {
+                
+                [tileMap addChild: trapDoor];
+                [tileMap addChild: trapDoorRight];
+            }
+            else
+            {
+                NSLog(@"Error while creating trapDoor.");
             }
         }
     }
@@ -1149,7 +1218,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
     
     [self saveInitialTime];
-    [Edgar giveControl];
+    // [Edgar giveControl]; -> when curtains open
     [self->soundController playTune:@"Sounds/Edgar_VF" loops:-1];
     if((movingLeft || movingRight) && !isJumping){
         [self->soundController playFootstepSound];
@@ -1193,7 +1262,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 // Called when the user restarts a level (upper right button)
 - (void)EdgarDiesOf:(int)deathType
 {
-    
+    if(isDying == TRUE){
+        NSLog(@"Already dying");
+        return;
+    }else{
+        isDying = TRUE;
+    }
+    if(lifeCount < 0){
+        NSLog(@"Already died -- can't restart");
+        return;
+    }
+    [soundController playDeathSound];
     if(deathType == DEATH_RESET && levelTransitioning == TRUE){
         NSLog(@"Restart level disabled at this time");
         return;
@@ -1206,11 +1285,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
       [SKAction waitForDuration:0.1],
       [SKAction colorizeWithColorBlendFactor:0.0 duration: 0.1]]];
     
-    SKAction *blink = [SKAction sequence:@[
-      [SKAction colorizeWithColor:[SKColor whiteColor] colorBlendFactor: 1.0 duration: 0.15],
-      [SKAction waitForDuration: 0.1],
-      [SKAction colorizeWithColorBlendFactor:0.0 duration: 0.15]]];
-    
     if(deathType == DEATH_SPIKE){
         [Edgar.physicsBody applyImpulse: CGVectorMake(0, 100000)];
     }
@@ -1222,6 +1296,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if(self->lifeCount < 1){
             // game over -- for testing
             NSLog(@"Game over");
+            [self->Edgar removeControl];
             [self showGameOver];
         }else{
             [self->Edgar removeControl];
@@ -1229,7 +1304,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             [self->myFinishRectangle removeFromParent];
             self->myFinishRectangle = nil;
             [self doLevelTransition_sameLevel:YES];
-            [self->Edgar giveControl];
+            // [self->Edgar giveControl]; -> when curtains open
         }
         
     }];
@@ -1238,6 +1313,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 - (void)resetEdgar
 {
     stopRequested = TRUE;
+    isDying = FALSE;
     liftReady = FALSE;
     [Edgar removeAllActions];
     [Edgar.physicsBody setVelocity:CGVectorMake(0, 0)];
@@ -1248,7 +1324,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [Edgar setScale:1];
     [Edgar resetItem];
     [Edgar resetInfected];
-    [Edgar giveControl]; // ddd voir si ne fait pas doublon
+    // [Edgar giveControl]; // ddd voir si ne fait pas doublon
+    
+    
     [Edgar setSpeed: 1.0];
     isJumping = FALSE;
     gonnaCrash = FALSE;
@@ -1398,28 +1476,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
             [self->soundController playTune:@"Sounds/Edgar_VF" loops:-1];
+            [self->Edgar giveControl];
         }];
     }];
     
     [myWorld runAction: openCurtainsAnimation];
-}
-
--(void)closeCurtains{
-    SKSpriteNode *lowerCurtain = (SKSpriteNode*)[myCamera childNodeWithName:@"lowerCurtain"];
-    SKSpriteNode *upperCurtain = (SKSpriteNode*)[myCamera childNodeWithName:@"upperCurtain"];
-    if(upperCurtain && lowerCurtain){
-        [upperCurtain runAction: [SKAction moveToY:-20 duration: .5]];
-        [lowerCurtain runAction: [SKAction moveToY:20 duration: .5] completion:^
-        {
-            [upperCurtain removeFromParent];
-            [lowerCurtain removeFromParent];
-            /*[spinner removeFromSuperview];
-            [self->myWorld runAction: presentScore];*/
-        }];
-    } else {
-        NSLog(@"Error: curtains not found");
-    }
-    
 }
 
 -(void)doFirstOpening{
@@ -1526,7 +1587,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
             self->additionalLevelTime = 0;
-
+            [self->Edgar giveControl];
             //   levelTransitioning = FALSE; -> too late, may cause unexpected behaviours
         }];
     }];
@@ -1600,7 +1661,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [self.physicsWorld addJoint:pinEdgar];
     
     NSLog(@"Edgar gets control back");
-    [Edgar giveControl];
+    // [Edgar giveControl]; -> when curtains open
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger: currentLevelIndex forKey:@"savedLevel"];
@@ -2113,15 +2174,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         if([contactNode isKindOfClass:[plpAlien class]])
         {
-            if(![Edgar alreadyInfected])
+            if([(plpAlien*)contactNode canGiveLife])
             {
-                // physicsbody du dessus ou du dessous?
-                
-                
-                /* SND: Edgar gets infected */
                 [soundController playAlienSound];
-                // float randomDuration = 1.0f / (1.0f + rand() % 5);
-                [Edgar getsInfectedFor: 0.2];
+                //[Edgar getsInfectedFor: 0.2];
+                SKAction *getPurple = [SKAction sequence:@[
+                [SKAction colorizeWithColor:[SKColor purpleColor] colorBlendFactor:0.8 duration:0.15],
+                [SKAction waitForDuration:.5],
+                [SKAction colorizeWithColorBlendFactor:0.0 duration:0.3]]];
+                [Edgar runAction: getPurple];
                 
                 SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Vie"] size: CGSizeMake(43, 100)];
                 [edgarLife setPosition: CGPointMake(0, 100)];
@@ -2135,7 +2196,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 lifeCount++;
                 
                 [self runAction: [SKAction sequence:@[[SKAction waitForDuration: 0.4], [SKAction runBlock:^{
-                    NSLog(@"oki");
                     [self->soundController stopAlienSound];
                 }]]]];
             }
@@ -2144,6 +2204,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 // physicsbody du dessus ou du dessous?
                 if(Edgar.position.y - 126 > contactNode.position.y){
                     [(plpScientist *)contactNode dies];
+                    
+                    SKSpriteNode *trapDoorLeft = (SKSpriteNode*)[myLevel childNodeWithName:@"trapDoorLeft"];
+                    if(trapDoorLeft){
+                        [trapDoorLeft runAction: [SKAction rotateByAngle: -1.5708 duration: 1]];
+                    }
+                    SKSpriteNode *trapDoorRight = (SKSpriteNode*)[myLevel childNodeWithName:@"trapDoorRight"];
+                    if(trapDoorRight){
+                        [trapDoorRight runAction: [SKAction rotateByAngle: 1.5708 duration: 1]];
+                    }
                 }else{
                     [self EdgarDiesOf: DEATH_ENEMY];
                 }
