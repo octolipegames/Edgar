@@ -42,13 +42,12 @@
         self.size = size;
         self.position = position;
         dangerous = TRUE;
+        
         /*
-        
-        SKPhysicsBody *hitBody = [SKPhysicsBody bodyWithRectangleOfSize: bodySize center: CGPointMake(0, -size.height)];
-        SKPhysicsBody *aggressiveBody = [SKPhysicsBody bodyWithRectangleOfSize: bodySize center: CGPointMake(0, size.height)];
-        
-        self.physicsBody = [SKPhysicsBody bodyWithBodies: @[hitBody, aggressiveBody]];
-        
+        SKAction *mvm1 = [SKAction moveByX: 60 y:0 duration: 2];
+        SKAction *mvm2 = [SKAction moveByX: -60 y:0 duration: 2];
+        SKAction *maNewSequence = [SKAction sequence:@[mvm1, mvm2]];
+        [self runAction:[SKAction repeatActionForever: maNewSequence]];
          */
         
         deadTexture = [SKTexture textureWithImageNamed: @"Scientifique_2.png"];
