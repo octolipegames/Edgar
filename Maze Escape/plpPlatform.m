@@ -71,7 +71,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         self.physicsBody.mass = 20000000000;
         self.physicsBody.allowsRotation = NO;
         self.physicsBody.affectedByGravity = NO;
-        self.physicsBody.friction = 1;
+        self.physicsBody.friction = 1.0;
         self.physicsBody.collisionBitMask = 1;
         self.physicsBody.linearDamping = 0;
         
