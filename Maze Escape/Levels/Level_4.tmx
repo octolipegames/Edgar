@@ -6,9 +6,12 @@
  <tileset firstgid="40" name="Tiles_x3_spikes" tilewidth="300" tileheight="300" tilecount="6" columns="2">
   <image source="Tiles_x3_spikes.png" width="600" height="900"/>
  </tileset>
+ <tileset firstgid="46" name="TilesFleches" tilewidth="300" tileheight="300" tilecount="9" columns="3">
+  <image source="TilesFleches.png" width="900" height="900"/>
+ </tileset>
  <layer id="1" name="Fond" width="15" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYKAMSAO1ywIxiCaWDbMRpgdE8yKZAeOroYmBxGEAWS+xbGS9xLgZ2VxkvcjixLAHk15QmEoBMSi8FYAYm/slgeIDCQB+iQr1
+   eAFjYKAMSAO1ywIxiCaWDbMRpgdE8yKZAeOrAcVM0MSBXDBA1kssG1kvMW5GNhdZL7I4MezBpBcUplJADApvBSDG5n5JoPhAAgCvXQsO
   </data>
  </layer>
  <layer id="2" name="Solide" width="15" height="11">
@@ -35,9 +38,6 @@
   </object>
   <object id="8" name="train" type="train" x="804" y="702" width="180" height="180">
    <ellipse/>
-  </object>
-  <object id="30" name="file" x="3144" y="736">
-   <point/>
   </object>
   <object id="31" name="file" x="4048" y="1724">
    <point/>
