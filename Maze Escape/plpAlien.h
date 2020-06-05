@@ -25,8 +25,10 @@
 
 @interface plpAlien : SKSpriteNode{
     //SKAudioNode *alienSound;
+    BOOL lifeAvailable;
 }
 
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withMovement:(float)movement;
+- (BOOL)canGiveLife;
 
 @end

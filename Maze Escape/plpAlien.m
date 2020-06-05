@@ -37,16 +37,16 @@
 - (id)initAtPosition:(CGPoint)position withSize:(CGSize)size withMovement:(float)movement
 {
     NSMutableArray *monstreMutant = [NSMutableArray array];
-    SKTextureAtlas *monstreAtlas = [SKTextureAtlas atlasNamed:@"monstre"];
+    SKTextureAtlas *monstreAtlas = [SKTextureAtlas atlasNamed:@"alien"];
     for (int i=1; i <= 6; i++) {
-        NSString *laTexture = [NSString stringWithFormat:@"Monstre%d", i];
+        NSString *laTexture = [NSString stringWithFormat:@"alien_0%d", i];
         SKTexture *temp = [monstreAtlas textureNamed:laTexture];
         [monstreMutant addObject:temp];
     }
-    [monstreMutant addObject:[monstreAtlas textureNamed:@"Monstre5"]];
-    [monstreMutant addObject:[monstreAtlas textureNamed:@"Monstre4"]];
-    [monstreMutant addObject:[monstreAtlas textureNamed:@"Monstre3"]];
-    [monstreMutant addObject:[monstreAtlas textureNamed:@"Monstre2"]];
+    [monstreMutant addObject:[monstreAtlas textureNamed:@"alien_05"]];
+    [monstreMutant addObject:[monstreAtlas textureNamed:@"alien_04"]];
+    [monstreMutant addObject:[monstreAtlas textureNamed:@"alien_03"]];
+    [monstreMutant addObject:[monstreAtlas textureNamed:@"alien_02"]];
     
     self = [super initWithTexture:monstreMutant[0]];
 
@@ -75,15 +75,19 @@
             SKAction *maNewSequence = [SKAction sequence:@[mvm1, mvm2]];
             [self runAction:[SKAction repeatActionForever: maNewSequence]];
         }
-        
-        /*alienSound = [[SKAudioNode alloc] initWithFileNamed:@"Sounds/fx_alien.wav"];
-        alienSound.autoplayLooped = true;
-        alienSound.position = CGPointMake(0, 0);
-        alienSound.positional = true;
-        [self addChild: alienSound];*/
+        self->lifeAvailable = TRUE;
     }
     
     return self;
+}
+
+- (BOOL)canGiveLife{
+    if(lifeAvailable == TRUE){
+        lifeAvailable = FALSE;
+        return TRUE;
+    }else{
+        return FALSE;
+    }
 }
 
 @end
