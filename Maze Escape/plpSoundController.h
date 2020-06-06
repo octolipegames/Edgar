@@ -21,6 +21,21 @@
     SKAction *leftFootstepSound;
     SKAction *rightFootstepSound;
     
+    SKAction *jumpSound;
+    SKAction *alienSound;
+    SKAction *deathSound;
+    SKAction *takeCellSound;
+    SKAction *liftReadySound;
+    SKAction *takeLiftSound;
+    SKAction *trainImpactSound;
+    SKAction *projectorSound;
+    
+    SKAction *killScientistSound;
+    SKAction *anxietySound;
+    SKAction *takeFileSound;
+    
+    // SKAction *victorySound;
+    
     SKAudioNode *platformSound;
 }
 
@@ -48,14 +63,21 @@
 - (void) stopCrateSound;
 - (void) playTrainImpactSound;
 - (void) playAlienSound;
-- (void) stopAlienSound;
 - (void) playDeathSound;
 - (void) playProjectorSound;
+- (void) playTakeFileSound;
+
+- (void) playKillScientistSound;
+- (void) playAnxietySound;
+
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+
+@property (strong, nonatomic) AVAudioPlayer *crateAudioPlayer;
+
+/*
 @property (strong, nonatomic) AVAudioPlayer *jumpAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *alienAudioPlayer;
-@property (strong, nonatomic) AVAudioPlayer *crateAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *deathAudioPlayer;
 
 @property (strong, nonatomic) AVAudioPlayer *takeCellAudioPlayer;
@@ -63,6 +85,7 @@
 @property (strong, nonatomic) AVAudioPlayer *takeLiftAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *trainImpactAudioPlayer;
 @property (strong, nonatomic) AVAudioPlayer *projectorAudioPlayer;
+ */
 
 @property(nonatomic, weak) SKNode *listener;
 

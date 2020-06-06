@@ -66,6 +66,10 @@
 - (void) updateVolumes{
     [self getStoredVolumes];
     self.audioPlayer.volume = self->musicVolume;
+    
+    self.crateAudioPlayer.volume = self->fxVolume;
+    /*
+    // lower performance but allows volume control
     self.jumpAudioPlayer.volume = self->fxVolume;
     self.alienAudioPlayer.volume = self->fxVolume;
     self.crateAudioPlayer.volume = self->fxVolume;
@@ -73,6 +77,8 @@
     self.liftReadyAudioPlayer.volume = self->musicVolume;
     self.takeLiftAudioPlayer.volume = self->musicVolume;
     self.trainImpactAudioPlayer.volume = self->musicVolume;
+     
+    */
     // self.footstepAudioPlayer.volume = self->musicVolume;
 }
 
@@ -149,11 +155,15 @@
         return;
     }
     
+    projectorSound = [SKAction playSoundFileNamed:@"Sounds/fx2_projecteur.wav" waitForCompletion: NO];
+
+    /*
+    // allows volume control but lower performance
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSError* error = nil;
 
-        NSURL *deathSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx2_projecteur" withExtension:@"wav"];
-        self.projectorAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: deathSoundURL error:&error];
+        NSURL *projectorSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx2_projecteur" withExtension:@"wav"];
+        self.projectorAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: projectorSoundURL error:&error];
         if (error != nil) {
             NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
         } else {
@@ -161,7 +171,7 @@
             [self.projectorAudioPlayer prepareToPlay];
         }
     });
-
+    */
 }
 
 - (void)initSounds {
@@ -175,7 +185,32 @@
     leftFootstepSound = [SKAction playSoundFileNamed:@"Sounds/fx_pas_gauche.aif" waitForCompletion:YES];
     rightFootstepSound = [SKAction playSoundFileNamed:@"Sounds/fx_pas_droit.aif" waitForCompletion:YES];
 
+    jumpSound = [SKAction playSoundFileNamed:@"Sounds/fx_jump.wav" waitForCompletion: NO];
+    alienSound = [SKAction playSoundFileNamed:@"Sounds/fx_alien.wav" waitForCompletion: NO];
+    deathSound = [SKAction playSoundFileNamed:@"Sounds/fx2_mort.wav" waitForCompletion: NO];
+
+    takeCellSound = [SKAction playSoundFileNamed:@"Sounds/fx_pile.aif" waitForCompletion: NO];
+    liftReadySound = [SKAction playSoundFileNamed:@"Sounds/fx_bouton_porte.wav" waitForCompletion: NO];
+    takeLiftSound = [SKAction playSoundFileNamed:@"Sounds/fx_arrivee_ascenseur.wav" waitForCompletion: NO];
+    trainImpactSound = [SKAction playSoundFileNamed:@"Sounds/fx_chariot_tombe" waitForCompletion: NO];
+    takeFileSound = [SKAction playSoundFileNamed:@"Sounds/fx2_classeur.wav" waitForCompletion: NO];
+    killScientistSound = [SKAction playSoundFileNamed:@"Sounds/fx2_saut_sur_scientifique.wav" waitForCompletion: NO];
+    anxietySound = [SKAction playSoundFileNamed:@"Sounds/fx3_ri_peur.wav" waitForCompletion: NO];
+    takeFileSound = [SKAction playSoundFileNamed:@"Sounds/fx3_classeur+voix.wav" waitForCompletion: NO];
+    
+    NSError* error = nil;
+    NSURL *crateSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_caisse_short" withExtension:@"wav"];
+    self.crateAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: crateSoundURL error:&error];
+    if (error != nil) {
+        NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
+    } else {
+        [self.crateAudioPlayer setVolume:self->fxVolume];
+        [self.crateAudioPlayer prepareToPlay];
+    }
+    
     // sons avec AVAudioPlayer
+    // allows volume control but lower performance
+    /*
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSError* error = nil;
 
@@ -204,16 +239,6 @@
         } else {
             [self.deathAudioPlayer setVolume:self->fxVolume];
             // [self.deathAudioPlayer prepareToPlay];
-        }
-        
-    
-        NSURL *crateSoundURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_caisse_short" withExtension:@"wav"];
-        self.crateAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: crateSoundURL error:&error];
-        if (error != nil) {
-            NSLog(@"Failed to load the sound: %@", [error localizedDescription]);
-        } else {
-            [self.crateAudioPlayer setVolume:self->fxVolume];
-            [self.crateAudioPlayer prepareToPlay];
         }
     
         NSURL *takeCellURL = [[NSBundle mainBundle] URLForResource:@"Sounds/fx_pile" withExtension:@"aif"];
@@ -252,73 +277,71 @@
             [self.trainImpactAudioPlayer prepareToPlay];
         }
     });
+    */
     NSLog(@"Init sounds done");
 }
 
 - (void) playProjectorSound {
     if ( !self -> muteSoundFX ){
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+        [self runAction: projectorSound];
+        /*dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
             [self.jumpAudioPlayer play];
             [self.jumpAudioPlayer prepareToPlay];
-        });
+        });*/
     }
 }
 
 - (void) playJumpSound {
     if ( !self -> muteSoundFX ){
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+        [self runAction: jumpSound];
+        /*dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
             [self.jumpAudioPlayer play];
             [self.jumpAudioPlayer prepareToPlay];
-        });
-        
+        });*/
     }
 }
 
 - (void) playTakeCellSound {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+    [self runAction: takeCellSound];
+    /*dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
         if( !self->muteSoundFX){
             [self.takeCellAudioPlayer play];
         }
-    });
+    });*/
 }
 
 - (void) playLiftReadySound {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-        if ( !self -> muteSoundFX ){
-            [self.liftReadyAudioPlayer play];
-        }
-    });
+    if ( ! self -> muteSoundFX ){
+        [self runAction: liftReadySound];
+    }
 }
 - (void) playTakeLiftSound {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-        if ( !self -> muteSoundFX ){
-            [self.takeLiftAudioPlayer play];
-        }
-    });
+    if ( ! self -> muteSoundFX ){
+        [self runAction: takeLiftSound];
+    }
+}
+
+- (void) playTakeFileSound {
+    if ( ! self -> muteSoundFX ){
+        [self runAction: takeFileSound];
+    }
 }
 
 - (void) playTrainImpactSound {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-        if ( !self -> muteSoundFX ){
-            [self.trainImpactAudioPlayer play];
-        }
-    });
+    if ( ! self -> muteSoundFX ){
+        [self runAction: trainImpactSound];
+    }
 }
 
 - (void) playFootstepSound {
     if ( ! self -> muteSoundFX ){
         [self runAction:[SKAction repeatActionForever:
                          [SKAction sequence: @[rightFootstepSound, leftFootstepSound]]] withKey:@"footstepSound"];
-
-        // [self.footstepAudioPlayer play];
     }
 }
 -(void) stopFootstepSound {
     if ( !self -> muteSoundFX ){
         [self removeActionForKey:@"footstepSound"];
-
-        // [self.footstepAudioPlayer pause];
-        // self.footstepAudioPlayer.currentTime = 0;
     }
 }
 
@@ -358,22 +381,23 @@
 
 - (void) playAlienSound {
     if ( !self -> muteSoundFX ){
-        [self.alienAudioPlayer play];
-    }
-}
-- (void) stopAlienSound {
-    if ( !self -> muteSoundFX ){
-        [self.alienAudioPlayer stop];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-            [self.alienAudioPlayer prepareToPlay];
-        });
+        [self runAction: alienSound];
     }
 }
 - (void) playDeathSound {
     if ( !self -> muteSoundFX ){
-        [self.deathAudioPlayer play];
+        [self runAction: deathSound];
     }
 }
-
+- (void) playKillScientistSound {
+    if ( !self -> muteSoundFX ){
+        [self runAction: killScientistSound];
+    }
+}
+- (void) playAnxietySound {
+    if ( !self -> muteSoundFX ){
+        [self runAction: anxietySound];
+    }
+}
 
 @end
