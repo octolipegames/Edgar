@@ -33,7 +33,7 @@
 #import "plpSoundController.h"
 #import "plpButton.h"
 
-#define LAST_LEVEL_INDEX 7
+#define LAST_LEVEL_INDEX 8
 #define SEMAPHORE_LEVEL_INDEX 5
 #define FIRST_DARK_LEVEL 3
 #define USE_ALTERNATE_CONTROLS 0
@@ -47,6 +47,7 @@
 #define DEATH_RESET 0
 #define DEATH_SPIKE 1
 #define DEATH_ENEMY 2
+#define DEATH_PLATFORM 3
 
 float contextVelocityX;
 
@@ -67,6 +68,10 @@ float contextVelocityX;
     BOOL willLoseContextVelocity;
     float EdgarVelocity;
     CGPoint startPosition;
+    BOOL isEdgarPinned;
+    SKPhysicsJointPin *trainPin;
+    SKPhysicsJointSliding *platformJoint;
+    NSTimer *endContactTimer;
     
     // Character actions:
     SKAction *moveLeftAction;
@@ -77,6 +82,8 @@ float contextVelocityX;
     BOOL useSwipeGestures;
     BOOL enableDebug;
     NSInteger lifeCount;
+    NSInteger levelFileCount;
+    NSInteger levelTotalFileCount;
     NSInteger fileCount;
     
     // Audio
@@ -124,6 +131,7 @@ float contextVelocityX;
     double additionalSavedTime;
     double additionalLevelTime;
     BOOL liftReady;
+    BOOL isDying;
     BOOL cheatsEnabled;
 }
 

@@ -32,11 +32,14 @@
 
 @implementation plpPlatform
 
-typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
+typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categories
 {
-    PhysicsCategoryEdgar = 1 << 0,
-    PhysicsCategoryObjects = 1 << 1,
-    PhysicsCategoryTiles = 1 << 2,
+    PhysicsCategoryEdgar = 1 << 0,   // 1
+    PhysicsCategoryObjects = 1 << 1, // 2
+    PhysicsCategoryTiles = 1 << 2,   // 4
+    PhysicsCategoryEnemy = 1 << 3,  // 8
+    PhysicsCategorySensors = 1 << 4, // 16
+    PhysicsCategoryItems = 1 << 5    // 32
 };
 
 - (float)calculateSpeedForDuration:(float)duration fromPosition:(float)initPosition toLimit:(float)limit
@@ -120,7 +123,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         }
         
         SKAction *stop = [SKAction runBlock:^{
-            [self.physicsBody setVelocity:CGVectorMake(0, 0)];
+            [self.physicsBody setVelocity: CGVectorMake(0, 0)];
+            [self->platformSensor.physicsBody setVelocity: CGVectorMake(0, 0)];
             if(self->heroAbove)
             {
                 contextVelocityX = 0;
@@ -135,6 +139,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
             SKAction *verticalMove1 = [SKAction runBlock:^{
                 float newSpeed = [self calculateSpeedForDuration: self->movementDuration fromPosition:self.position.y toLimit: self->endYPosition];
                 [self.physicsBody setVelocity:CGVectorMake(0, newSpeed)];
+                [self->platformSensor.physicsBody setVelocity: CGVectorMake(0, newSpeed)];
                 
                 // if Hero is nearby (see plpMyScene)
                 if(self->heroNear){
@@ -144,7 +149,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
             
             SKAction *verticalMove2 = [SKAction runBlock:^{
                 float newSpeed = [self calculateSpeedForDuration: self->movementDuration fromPosition:self.position.y toLimit:self->initYPosition];
-                [self.physicsBody setVelocity:CGVectorMake(0, newSpeed)];
+                [self.physicsBody setVelocity: CGVectorMake(0, newSpeed)];
+                [self->platformSensor.physicsBody setVelocity: CGVectorMake(0, newSpeed)];
                 
                 // if Hero is nearby (see plpMyScene)
                 if(self->heroNear){
@@ -179,6 +185,26 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
             [self runAction:[SKAction repeatActionForever: standardSequence]];
         }
     }
+    
+    
+    
+    // (physicsJoint not working)
+     
+    
+    platformSensor = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green: 1                                                                                blue: 1 alpha: .5] size: self.size]; // change alpha e.g. to 0.3 to debug
+    platformSensor.position = CGPointMake(self.size.width / 2, self.size.height);
+    platformSensor.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize: self.size];
+    platformSensor.physicsBody.categoryBitMask = PhysicsCategorySensors;
+    platformSensor.physicsBody.affectedByGravity = FALSE;
+    platformSensor.physicsBody.linearDamping = 0.0;
+    platformSensor.physicsBody.collisionBitMask = 0;
+    [platformSensor setName: @"platformSensor"];
+    [self addChild: platformSensor];
+    
+    SKPhysicsJointFixed *sensorJoint = [SKPhysicsJointFixed jointWithBodyA: self.physicsBody bodyB: platformSensor.physicsBody anchor: CGPointMake(self.position.x + self.size.width / 2, self.position.y)];
+    [self.scene.physicsWorld addJoint: sensorJoint];
+    
+    
     return self;
 }
 
@@ -192,6 +218,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         newSpeed = [self calculateSpeedForDuration:theDuration fromPosition: self.position.x toLimit: initXPosition];
     }
     [self.physicsBody setVelocity: CGVectorMake(newSpeed, 0)];
+    [platformSensor.physicsBody setVelocity: CGVectorMake(newSpeed, 0)];
+    
+    // TODO: changer hauteur pour heroAbove
     if(heroAbove)
     {
         contextVelocityX = newSpeed;
@@ -264,17 +293,20 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
 
         [self setSpeed: 0]; // We pause the animation
         [self.physicsBody setVelocity:CGVectorMake(0, motionSpeed)]; // We invert the direction
+        [platformSensor.physicsBody setVelocity: CGVectorMake(0, motionSpeed)];
         
         SKAction *delay = [SKAction waitForDuration: .5];
 
         [self.scene runAction: delay completion:^
         {
             [self.physicsBody setVelocity:CGVectorMake(0, 0)];
+            [self->platformSensor.physicsBody setVelocity: CGVectorMake(0, 0)];
             [self->platformSound runAction: [SKAction stop] ];
 
             [self.scene runAction: [SKAction waitForDuration: 2] completion:^
             {
                 [self.physicsBody setVelocity:CGVectorMake(0, -self->motionSpeed)];
+                [self->platformSensor.physicsBody setVelocity: CGVectorMake(0, -self->motionSpeed)];
                 [self->platformSound runAction: [SKAction play] ];
 
                 [self.scene runAction: delay completion:^
@@ -318,7 +350,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory)
         emergencyStopTriggered = TRUE; // to avoid simoultaneous calls
         
         [self removeAllActions];
-        [self.physicsBody setVelocity:CGVectorMake(factor*motionSpeed, 0)]; // We invert the direction
+        [self.physicsBody setVelocity: CGVectorMake(factor*motionSpeed, 0)]; // We invert the direction
+        [platformSensor.physicsBody setVelocity: CGVectorMake(factor*motionSpeed, 0)];
         
         SKAction *mvDuration = [SKAction waitForDuration: .3];
         

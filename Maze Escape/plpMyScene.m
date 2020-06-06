@@ -68,7 +68,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if (self = [super initWithSize:size]) {
         self.physicsWorld.contactDelegate = self;
         
-        // self.size = CGSizeMake(800, 400); // zoom for debug
+        // self.size = CGSizeMake(1600, 800); // zoom for debug
         self.size = CGSizeMake(2400, 1200);
         NSLog(@"Size: (%f, %f)", self.size.width, self.size.height);
         self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f * 3);
@@ -136,7 +136,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         [fileCountLabel setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeLeft];
         [fileCountLabel setVerticalAlignmentMode:SKLabelVerticalAlignmentModeCenter];
-        fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/20", (long) fileCount];
+        //fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/20", (long) fileCount];
         [HUD addChild: fileCountLabel];
 
         if(!useSwipeGestures){
@@ -294,9 +294,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     // Let's go! (tutorial = level 0, first level = 1)
     [self resetGameData];
     [self resumeFromLevel:1];
-    [self runAction:[SKAction waitForDuration:2] completion:^{
-        [self->soundController playTune:@"Sounds/Edgar_VF" loops:-1];
-    }];
 }
 
 - (IBAction)playAgainButtonClicked:(id)sender {
@@ -801,7 +798,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
         }
     }
-    else if(currentLevelIndex == SEMAPHORE_LEVEL_INDEX)
+    else if(currentLevelIndex != -1)
     {
         // semaphore
         NSLog(@"Level including semaphore");
@@ -909,7 +906,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 NSLog(@"Error while adding a file to the map.");
             }
         }
+        levelTotalFileCount = [fileGroup count];
+        fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/%lu", (long) levelFileCount, (long)levelTotalFileCount];
     }
+    
 
     
     // Train
@@ -974,12 +974,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if([theVerticalPlatform[@"moveUpFirst"] intValue] == 1)
             {
                 verticalPlatformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([theVerticalPlatform[@"x"] floatValue], [theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue]-8)
-                                                                  withSize:CGSizeMake([theVerticalPlatform[@"width"] floatValue], 24)
+                                                                  withSize:CGSizeMake(296, 28)
                                                               withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] andIdleDuration:idleDuration];
             }else{
                 verticalPlatformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([theVerticalPlatform[@"x"] floatValue], [theVerticalPlatform[@"y"] floatValue])
-                                                                  withSize:CGSizeMake([theVerticalPlatform[@"width"] floatValue], 24)
-                                                              withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue] -24 andIdleDuration:idleDuration];
+                                                                  withSize:CGSizeMake(296, 28)
+                                                              withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue] -28 andIdleDuration:idleDuration];
             }
             
             if(verticalPlatformNode)
@@ -995,6 +995,45 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
                 [verticalPlatformNode setVolume: [soundController getFxVolume]];
                 [platformNodes addObject: verticalPlatformNode];
+            }
+        }
+    }
+    
+    
+    NSArray *horizontalPlatformObjectMarker;
+    if((horizontalPlatformObjectMarker = [group objectsNamed:@"horizontalPlatform"]))
+    {
+        plpPlatform *horizontalPlatformNode;
+       
+        
+        for (NSDictionary *thehorizontalPlatform in horizontalPlatformObjectMarker) {
+            float idleDuration = [thehorizontalPlatform[@"idleDuration"] floatValue];
+            if(!idleDuration) idleDuration = 2;
+            
+            if([thehorizontalPlatform[@"moveLeftFirst"] intValue] == 1)
+            {
+                horizontalPlatformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([thehorizontalPlatform[@"x"] floatValue]  + [thehorizontalPlatform[@"width"] floatValue] -300, [thehorizontalPlatform[@"y"] floatValue])
+                    withSize:CGSizeMake(300, 28)
+                withDuration:[thehorizontalPlatform[@"movementDuration"] floatValue] upToX:[thehorizontalPlatform[@"x"] floatValue] andY:[thehorizontalPlatform[@"y"] floatValue] andIdleDuration:idleDuration];
+            }else{
+                horizontalPlatformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([thehorizontalPlatform[@"x"] floatValue], [thehorizontalPlatform[@"y"] floatValue])
+                                                                  withSize:CGSizeMake(300, 28)
+                                                              withDuration:[thehorizontalPlatform[@"movementDuration"] floatValue] upToX:[thehorizontalPlatform[@"x"] floatValue] + [thehorizontalPlatform[@"width"] floatValue] -300 andY:[thehorizontalPlatform[@"y"] floatValue] andIdleDuration:idleDuration];
+            }
+            
+            if(horizontalPlatformNode)
+            {
+                horizontalPlatformNode.physicsBody.categoryBitMask = PhysicsCategoryObjects;
+                horizontalPlatformNode.physicsBody.collisionBitMask = PhysicsCategoryEdgar | PhysicsCategoryTiles;
+                [tileMap addChild:horizontalPlatformNode];
+                
+                if([thehorizontalPlatform[@"noEmergencyStop"] intValue] == 1)
+                {
+                    [horizontalPlatformNode setNoEmergencyStop];
+                }
+                
+                [horizontalPlatformNode setVolume: [soundController getFxVolume]];
+                [platformNodes addObject: horizontalPlatformNode];
             }
         }
     }
@@ -1211,6 +1250,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 -(void)resumeAfterPause
 {
+    NSLog(@"resume after pause");
     [soundController updateVolumes];
     float fxVolume = [soundController getFxVolume];
     for (plpPlatform *platformNode in platformNodes) {
@@ -1218,7 +1258,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
     
     [self saveInitialTime];
-    // [Edgar giveControl]; -> when curtains open
+    [Edgar giveControl];
     [self->soundController playTune:@"Sounds/Edgar_VF" loops:-1];
     if((movingLeft || movingRight) && !isJumping){
         [self->soundController playFootstepSound];
@@ -1337,6 +1377,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     moveLeftRequested = FALSE;
     moveRightRequested = FALSE;
     listensToContactEvents = TRUE;
+    contextVelocityX = 0;
     EdgarVelocity = DEFAULT_EDGAR_VELOCITY;
 }
 
@@ -1626,6 +1667,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [myLevel removeFromParent]; // signal SIGABRT
     [Edgar removeFromParent];
     [self resetEdgar];
+    levelFileCount = 0;
     
     if([myCamera hasActions]) // on annule effets de zoom, etc.
     {
@@ -1755,13 +1797,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 liftReady = true;
             }
         }
-        
-        if([contactNode.name isEqualToString:@"spike"]){
+        else if([contactNode.name isEqualToString:@"spike"])
+        {
             NSLog(@"spike");
             [self EdgarDiesOf: DEATH_SPIKE];
         }
-        
-        if([contactNode.name isEqualToString:@"finish"])
+        else if([contactNode.name isEqualToString:@"platformSensor"])
+        {
+            NSLog(@"platform sensor...");
+            [(plpPlatform *)contactNode.parent setHeroAbove];
+        }
+        else if([contactNode.name isEqualToString:@"finish"])
         {
             if(!levelTransitioning)
             {
@@ -1823,7 +1869,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 beam.name = @"beam";
                 
                 CGPoint referencePoint = [myLevel childNodeWithName:@"referencePoint"].position;
-                CGPoint referencePointAlien = CGPointMake(referencePoint.x, referencePoint.y-90); // ddd precedemment: -100 * x3
+                CGPoint referencePointAlien = CGPointMake(referencePoint.x, referencePoint.y - 90); // ddd precedemment: -100 * x3
                 
                 SKAction *waitAction = [SKAction waitForDuration: 1];
                 
@@ -2107,8 +2153,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         }else if([contactNode.name isEqualToString: @"file"])
         {
             // TODO: store score
+            [soundController playTakeFileSound];
             fileCount++;
-            fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/20", (long) fileCount];
+            levelFileCount++;
+            fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/%lu", (long) levelFileCount, (long)levelTotalFileCount];
             [(plpItem *)contactNode removeFromParent];
         }
     }
@@ -2136,9 +2184,23 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if([contactNode isKindOfClass:[plpTrain class]])
         {
             /* SND: train runs */
-            plpTrain *theTrain = (plpTrain *)contactNode;
-            [theTrain setHeroAbove];
-            [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed: 150]; // previous max speed: 200 * x3
+            if( (Edgar.position.x + Edgar.frame.size.width > contactNode.position.x) && (Edgar.position.x < contactNode.position.x + contactNode.frame.size.width) ){
+                NSLog(@"adslfkj");
+                
+                plpTrain *theTrain = (plpTrain *)contactNode;
+                [theTrain setHeroAbove];
+            
+                /*
+                // wrong behaviour
+                if(!trainPin){
+                    NSLog(@"Pin");
+                    trainPin = [SKPhysicsJointPin jointWithBodyA: Edgar.physicsBody bodyB: contactNode.physicsBody anchor: contactNode.position];
+                    [self.physicsWorld addJoint: trainPin];
+                    isEdgarPinned = TRUE;
+                }*/
+            
+                [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed: 100]; // previous max speed: 200 * x3
+            }
             return;
         }
         
@@ -2147,11 +2209,25 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 126, contactNode.position.y);
             
             // Determine vertical position, check if the platform should stop
-            if(Edgar.position.y - 126 > contactNode.position.y) // dev: check the height again
+            if(Edgar.position.y - 28 > contactNode.position.y) // dev: check the height again
             {
                 NSLog(@"Hero above!");
+                // isEdgarPinned = TRUE;
+                
+                // [Edgar stickToPlatform];
+                /*platformPin = [SKPhysicsJointPin jointWithBodyA: Edgar.physicsBody bodyB: contactNode.physicsBody anchor: contactNode.position];
+                [self.physicsWorld addJoint: platformPin];
+                isEdgarPinned = TRUE;*/
+                
+                // isEdgarPinned = TRUE;
+
                 /* SND: foot on platform */
-                [(plpPlatform *)contactNode setHeroAbove];
+
+                if(endContactTimer){
+                    [endContactTimer invalidate];
+                    endContactTimer = nil;
+                }
+                // [(plpPlatform *)contactNode setHeroAbove];
             }
             else
             {
@@ -2159,6 +2235,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 {
                     if (Edgar.position.y < contactNode.position.y)
                     {
+                        [self EdgarDiesOf: DEATH_PLATFORM];
                         [(plpPlatform *)contactNode emergencyStop];
                     }
                 }
@@ -2194,16 +2271,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 [edgarLife runAction: [SKAction scaleTo: 1.0 duration: 1.0]];
                 
                 lifeCount++;
-                
-                [self runAction: [SKAction sequence:@[[SKAction waitForDuration: 0.4], [SKAction runBlock:^{
-                    [self->soundController stopAlienSound];
-                }]]]];
             }
         }else if([contactNode isKindOfClass:[plpScientist class]]){
             if([(plpScientist *)contactNode isDangerous]){
                 // physicsbody du dessus ou du dessous?
                 if(Edgar.position.y - 126 > contactNode.position.y){
                     [(plpScientist *)contactNode dies];
+                    [soundController playKillScientistSound];
                     
                     SKSpriteNode *trapDoorLeft = (SKSpriteNode*)[myLevel childNodeWithName:@"trapDoorLeft"];
                     if(trapDoorLeft){
@@ -2219,6 +2293,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
         }
     }
+}
+
+// Called from NSTimer after didEndContact
+-(void)removeContextVelocity
+{
+    NSLog(@"Remove velocity");
+    willLoseContextVelocity = TRUE;
 }
 
 -(void)didEndContact:(SKPhysicsContact *)contact
@@ -2239,7 +2320,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if(contactNode.physicsBody.categoryBitMask == PhysicsCategoryObjects)
     {
         // fin son caisse
-        if([contactNode.name isEqual: @"caisse"]){
+        if([contactNode.name isEqualToString: @"caisse"]){
             [soundController stopCrateSound];
             return;
         }
@@ -2253,12 +2334,24 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             return;
         }
         
-        if([contactNode isKindOfClass:[plpPlatform class]])
+        /*if([contactNode isKindOfClass:[plpPlatform class]])
         {
+            NSLog(@"End contact");
             [(plpPlatform *)contactNode HeroWentAway];
+            willLoseContextVelocity = TRUE; // ou pour effet immédiat:  contextVelocityX = 0;
+        }*/
+    }
+    
+    if(contactNode.physicsBody.categoryBitMask == PhysicsCategorySensors)
+    {
+        if([contactNode.name isEqualToString: @"platformSensor"])
+        {
+            
+            [(plpPlatform *)contactNode.parent HeroWentAway];
             willLoseContextVelocity = TRUE; // ou pour effet immédiat:  contextVelocityX = 0;
         }
     }
+    
     
     if(currentLevelIndex==0) // Tutorial
     {
@@ -2478,13 +2571,28 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
     }
     
+    /*if(isEdgarPinned == TRUE){
+        if(moveUpRequested || moveRightRequested || moveLeftRequested){
+            NSLog(@"remove joint");
+            isEdgarPinned = FALSE;
+        }else{
+            NSLog(@"asdf");
+            [Edgar.physicsBody applyForce: CGVectorMake( 0, -500000)];
+        }
+    }*/
     
     
     if (moveRightRequested == TRUE && !isJumping){ // pas suffisant: ajouter s'il a pied / vitesse verticale
         moveRightRequested = false;
         if((movingRight!=TRUE) || moveUpRequested){ // ddd why "or moveUpRequested"?
             Edgar.xScale = 1.0;
-            [Edgar removeAllActions];
+            
+            // [Edgar removeAllActions];
+            [Edgar removeActionForKey:@"moveRightKey"];
+            [Edgar removeActionForKey:@"moveLeftKey"];
+            [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
+            [Edgar removeActionForKey:@"jumpingInPlaceEdgar"];
+            
             [Edgar walkingEdgar];
             [Edgar runAction:moveRightAction withKey:@"moveRightKey"];
             [self->soundController stopFootstepSound];
@@ -2496,7 +2604,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         moveLeftRequested = false;
         if((movingLeft != TRUE) || moveUpRequested){
             Edgar.xScale = -1.0;
-            [Edgar removeAllActions];
+            // [Edgar removeAllActions];
+            [Edgar removeActionForKey:@"moveRightKey"];
+            [Edgar removeActionForKey:@"moveLeftKey"];
+            [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
+            [Edgar removeActionForKey:@"jumpingInPlaceEdgar"];
+            
             [Edgar walkingEdgar];
             [Edgar runAction: moveLeftAction withKey:@"moveLeftKey"];
             [self->soundController stopFootstepSound];
