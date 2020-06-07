@@ -89,7 +89,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         enableDebug = [defaults boolForKey:@"enableDebug"];
         
         // Retrieve saved values – todo: debug
-        lifeCount = 3; //[defaults integerForKey:@"lifeCount"];
+        lifeCount = 1; //[defaults integerForKey:@"lifeCount"];
         fileCount = [defaults integerForKey:@"fileCount"];
         
         if (!lifeCount) {
@@ -266,8 +266,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     // Curtains
     float halfHeight = 200 * x3;
     
-    SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800 * x3, 250 * x3) ];
-    SKSpriteNode *lowerCurtain = [upperCurtain copy];
+    SKSpriteNode *lowerCurtain = (SKSpriteNode*)[myCamera childNodeWithName:@"lowerCurtain"];
+    SKSpriteNode *upperCurtain = (SKSpriteNode*)[myCamera childNodeWithName:@"upperCurtain"];
+    [lowerCurtain setColor: [UIColor blackColor]];
+    [upperCurtain setColor: [UIColor blackColor]];
+    
+    /*SKSpriteNode *upperCurtain = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake(800 * x3, 250 * x3) ];
+    SKSpriteNode *lowerCurtain = [upperCurtain copy];*/
     upperCurtain.anchorPoint = CGPointMake(0.5, 0);
     upperCurtain.position = CGPointMake(0, halfHeight);
     upperCurtain.zPosition = 40;
@@ -277,8 +282,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     lowerCurtain.position = CGPointMake(0, -halfHeight);
     lowerCurtain.zPosition = 40;
     lowerCurtain.name = @"lowerCurtain";
-    [myCamera addChild:upperCurtain];
-    [myCamera addChild:lowerCurtain];
+    // [myCamera addChild:upperCurtain];
+    // [myCamera addChild:lowerCurtain];
     
     //  We need to make a new Edgar (removed for the final animation)
     Edgar = nil;
@@ -399,28 +404,27 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(upperCurtain && lowerCurtain){
         [upperCurtain runAction: [SKAction moveToY:-20 duration: 1.2]];
-        [lowerCurtain runAction: [SKAction moveToY:20 duration: 1.2] completion:^
+        [lowerCurtain runAction: [SKAction moveToY: 20 duration: 1.2] completion:^
         {
             NSLog(@"curtains closed");
             SKTexture *gameOverTexture = [SKTexture textureWithImageNamed:@"GameOver.png"];
             SKSpriteNode *gameOverNode = [SKSpriteNode spriteNodeWithTexture: gameOverTexture];
             gameOverNode.name = @"trophy";
+            [gameOverNode setSize: CGSizeMake( 1000, 1000 )];
             [gameOverNode setPosition: CGPointMake(0, 1500)];
             [gameOverNode setZPosition: 100];
             [self->myCamera addChild: gameOverNode];
-            [gameOverNode runAction: [SKAction moveTo: CGPointMake(0, 0) duration: .8] completion:^{
+            [gameOverNode runAction: [SKAction moveTo: CGPointMake(0, 120) duration: .8] completion:^
+            {
                 self->containerView = [[UIView alloc] init];
-                                       [self->containerView setFrame: CGRectMake(50, 50, self.view.bounds.size.width-100, self.view.bounds.size.height-100)]; // coordinates origin is upper left
-                                       
-                self->containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+                                       [self->containerView setFrame: CGRectMake(50, 100, self.view.bounds.size.width-100, self.view.bounds.size.height-100)]; // coordinates origin is upper left
                 
                 float outsideMargin = 60;
                 float insideMargin = 30;
                 float buttonsVerticalPosition = self->containerView.bounds.size.height-50;
                 float buttonWidth = (self->containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
                 float buttonNewGamePositionX = self->containerView.bounds.size.width/2 - buttonWidth/2;
-                
-                //[self->myTextView setFrame: CGRectMake(20, 5, self->containerView.bounds.size.width-40, 35)];
+            
                 
                 UIButton *myButtonClose  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
                 myButtonClose.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
@@ -436,8 +440,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                                   action: @selector(playAgainButtonClicked:)
                         forControlEvents: UIControlEventTouchUpInside];
                 
-                [self->containerView addSubview:self->myTextView];
-                [self->containerView addSubview:myButtonClose];
+                [self->containerView addSubview: myButtonClose];
+                [self.view addSubview: self->containerView];
+                NSLog(@"End display game over");
             }];
         }];
     }
@@ -495,7 +500,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, 35)];
     
-    UIButton *myButtonClose  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *myButtonClose  =   [UIButton buttonWithType: UIButtonTypeRoundedRect];
     myButtonClose.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
     
     [myButtonClose setBackgroundColor: [UIColor whiteColor]];
@@ -1334,9 +1339,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [lostLife removeFromParent];
         
         if(self->lifeCount < 1){
-            // game over -- for testing
-            NSLog(@"Game over");
             [self->Edgar removeControl];
+            self->levelTransitioning = TRUE;
             [self showGameOver];
         }else{
             [self->Edgar removeControl];
@@ -1363,7 +1367,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     [Edgar setScale:1];
     [Edgar resetItem];
-    [Edgar resetInfected];
     // [Edgar giveControl]; // ddd voir si ne fait pas doublon
     
     
@@ -2209,40 +2212,21 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 126, contactNode.position.y);
             
             // Determine vertical position, check if the platform should stop
-            if(Edgar.position.y - 28 > contactNode.position.y) // dev: check the height again
+        
+            if([(plpPlatform *)contactNode getIsVertical] == TRUE)
             {
-                NSLog(@"Hero above!");
-                // isEdgarPinned = TRUE;
-                
-                // [Edgar stickToPlatform];
-                /*platformPin = [SKPhysicsJointPin jointWithBodyA: Edgar.physicsBody bodyB: contactNode.physicsBody anchor: contactNode.position];
-                [self.physicsWorld addJoint: platformPin];
-                isEdgarPinned = TRUE;*/
-                
-                // isEdgarPinned = TRUE;
-
-                /* SND: foot on platform */
-
-                if(endContactTimer){
-                    [endContactTimer invalidate];
-                    endContactTimer = nil;
+                // TODO: check this number
+                if (Edgar.position.y < contactNode.position.y + 28)
+                {
+                    [self EdgarDiesOf: DEATH_PLATFORM];
+                    [(plpPlatform *)contactNode emergencyStop];
+                }else{
+                    NSLog(@"Platform contact but no death");
                 }
-                // [(plpPlatform *)contactNode setHeroAbove];
             }
-            else
+            else // If horizontal, also check if a horizontal stop is needed
             {
-                if([(plpPlatform *)contactNode getIsVertical] == TRUE)
-                {
-                    if (Edgar.position.y < contactNode.position.y)
-                    {
-                        [self EdgarDiesOf: DEATH_PLATFORM];
-                        [(plpPlatform *)contactNode emergencyStop];
-                    }
-                }
-                else // If horizontal, also check if a horizontal stop is needed
-                {
-                    [(plpPlatform *)contactNode horizontalEmergencyStop:Edgar.position.x];
-                }
+                [(plpPlatform *)contactNode horizontalEmergencyStop:Edgar.position.x];
             }
         }
     }
@@ -2254,12 +2238,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if([(plpAlien*)contactNode canGiveLife])
             {
                 [soundController playAlienSound];
-                //[Edgar getsInfectedFor: 0.2];
                 SKAction *getPurple = [SKAction sequence:@[
                 [SKAction colorizeWithColor:[SKColor purpleColor] colorBlendFactor:0.8 duration:0.15],
                 [SKAction waitForDuration:.5],
                 [SKAction colorizeWithColorBlendFactor:0.0 duration:0.3]]];
-                [Edgar runAction: getPurple];
+                [Edgar runAction: getPurple withKey: @"collectLife"];
                 
                 SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Vie"] size: CGSizeMake(43, 100)];
                 [edgarLife setPosition: CGPointMake(0, 100)];
@@ -2566,9 +2549,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [Edgar.physicsBody setVelocity: CGVectorMake(0 + contextVelocityX, Edgar.physicsBody.velocity.dy)];
         [Edgar facingEdgar];
         [self->soundController stopFootstepSound];
-        [Edgar removeActionForKey:@"moveRightKey"];
-        [Edgar removeActionForKey:@"moveLeftKey"];
-        [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
+        
+        if([Edgar actionForKey: @"collectLife"] != nil){
+            NSLog(@"collectLife action exists");
+            [Edgar removeActionForKey:@"moveRightKey"];
+            [Edgar removeActionForKey:@"moveLeftKey"];
+            [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
+        }else{
+            [Edgar removeAllActions];
+        }
     }
     
     /*if(isEdgarPinned == TRUE){
@@ -2587,11 +2576,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if((movingRight!=TRUE) || moveUpRequested){ // ddd why "or moveUpRequested"?
             Edgar.xScale = 1.0;
             
-            // [Edgar removeAllActions];
-            [Edgar removeActionForKey:@"moveRightKey"];
-            [Edgar removeActionForKey:@"moveLeftKey"];
-            [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
-            [Edgar removeActionForKey:@"jumpingInPlaceEdgar"];
+            if([Edgar actionForKey: @"collectLife"] != nil){
+                NSLog(@"collectLife action exists");
+                [Edgar removeActionForKey:@"moveRightKey"];
+                [Edgar removeActionForKey:@"moveLeftKey"];
+                [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
+            }else{
+                [Edgar removeAllActions];
+            }
             
             [Edgar walkingEdgar];
             [Edgar runAction:moveRightAction withKey:@"moveRightKey"];
@@ -2604,11 +2596,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         moveLeftRequested = false;
         if((movingLeft != TRUE) || moveUpRequested){
             Edgar.xScale = -1.0;
-            // [Edgar removeAllActions];
-            [Edgar removeActionForKey:@"moveRightKey"];
-            [Edgar removeActionForKey:@"moveLeftKey"];
-            [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
-            [Edgar removeActionForKey:@"jumpingInPlaceEdgar"];
+            if([Edgar actionForKey: @"collectLife"] != nil){
+                NSLog(@"collectLife action exists");
+                [Edgar removeActionForKey:@"moveRightKey"];
+                [Edgar removeActionForKey:@"moveLeftKey"];
+                [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
+            }else{
+                [Edgar removeAllActions];
+            }
             
             [Edgar walkingEdgar];
             [Edgar runAction: moveLeftAction withKey:@"moveLeftKey"];
