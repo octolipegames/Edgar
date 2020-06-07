@@ -130,8 +130,8 @@
     [self runAction:[SKAction repeatActionForever:
                        [SKAction animateWithTextures:_EdgarWalkingFrames
                                         timePerFrame:0.1f
-                                              resize:NO
-                                             restore:YES]] withKey:@"walkingInPlaceEdgar"];
+                                              resize: NO
+                                             restore: NO]] withKey:@"walkingInPlaceEdgar"];
     return;
 }
 
@@ -143,8 +143,8 @@
 {
     [self runAction:[SKAction animateWithTextures:_EdgarJumpingFrames
                                       timePerFrame:0.05f
-                                            resize:NO
-                                           restore:YES] withKey:@"jumpingInPlaceEdgar"];
+                                            resize: NO
+                                           restore: NO] withKey:@"jumpingInPlaceEdgar"];
     return;
 }
 
