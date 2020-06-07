@@ -233,6 +233,7 @@
     SKView * spriteView = (SKView *)self.view;
     [spriteView presentScene:myScene];
     
+    startLevel = 2;
     if(startLevel > 0)
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -287,125 +288,56 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger savedLevel = [defaults integerForKey:@"savedLevel"];
     
-    if(savedLevel == 0)
-    {
-        NSLog(@"TUTORIAL - saved level was 0");
-        if(gamePaused == TRUE) // Player is still doing tutorial
-        {
-            [self resumePausedGame];
-        }else{
-            [self displayIntroductionDialog];  // 1) New game; introduction dialog
-        }
-    }
-    else // 2: savedLevel > 0 => “New Game” or “Resume”
-    {
-        UIView *containerView = [[UIView alloc] init];
-        containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
-        [containerView setFrame: CGRectMake(50, 100, self.view.bounds.size.width-100, self.view.bounds.size.height-200)];
-        
-        // Text: “You were at level 1...”
-        UITextView *myTextView = [[UITextView alloc] init];
-        myTextView.text = [NSString stringWithFormat:@"You were at level %li...", (long)savedLevel];
-        myTextView.textColor = [UIColor whiteColor];
-        myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
-        myTextView.editable = NO;
-        [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
-        [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
-        
-        float outsideMargin = 60;
-        float insideMargin = 30;
-        float buttonsVerticalPosition = containerView.bounds.size.height-50;
-        float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
-        float buttonNewGamePositionX = outsideMargin;
-        float buttonContinuePositionX = buttonWidth + outsideMargin + 2*insideMargin;
-        
-        // Left: “New Game”
-        UIButton *buttonNewGame  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        buttonNewGame.tag = 0;
-        buttonNewGame.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
-        [buttonNewGame setBackgroundColor: [UIColor whiteColor]];
-        [buttonNewGame setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
-        [[buttonNewGame layer] setMasksToBounds:YES];
-        [[buttonNewGame layer] setCornerRadius:5.0f];
-        [buttonNewGame setTitle: @"New Game" forState:UIControlStateNormal];
-        [buttonNewGame addTarget: self
-                            action: @selector(doTutorial:)
-                  forControlEvents: UIControlEventTouchUpInside];
-        
-        // Right: “Resume”
-        UIButton *buttonContinue  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        buttonContinue.tag = savedLevel;
-        buttonContinue.frame      =   CGRectMake(buttonContinuePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
-        [buttonContinue setBackgroundColor: [UIColor whiteColor]];
-        [buttonContinue setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
-        [[buttonContinue layer] setMasksToBounds:YES];
-        [[buttonContinue layer] setCornerRadius:5.0f];
-        [buttonContinue setTitle: @"Resume" forState:UIControlStateNormal];
-        [buttonContinue addTarget: self
-                             action: @selector(continueButtonClicked:)
-                   forControlEvents: UIControlEventTouchUpInside];
-        
-        [self.view addSubview: containerView];
-        [containerView addSubview:myTextView];
-        [containerView addSubview:buttonNewGame];
-        [containerView addSubview:buttonContinue];
-    }
-}
-
-- (void) displayIntroductionDialog
-{
     UIView *containerView = [[UIView alloc] init];
     containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+    [containerView setFrame: CGRectMake(50, 100, self.view.bounds.size.width-100, self.view.bounds.size.height-200)];
     
-    [containerView setFrame: CGRectMake(50, 40, self.view.bounds.size.width-100, self.view.bounds.size.height-90)];
-    
+    // Text: “You were at level 1...”
     UITextView *myTextView = [[UITextView alloc] init];
-    /*myTextView.text = [NSString stringWithFormat:@"Dear Edgar,\nThank you for enrolling at GreenAlien. Your first task is to inspect an underground laboratory which does illegal in vivo alien testing.\nIn each room, you will find a plutonium cell. Collect it to activate the elevator and gain access to the next room.\nBut first, use our training room to get ready."];*/
-    [myTextView setText: @"(Un peu de texte ici, ou enlever ce dialogue tout simplement?)"];
+    myTextView.text = [NSString stringWithFormat:@"You were at level %li...", (long)savedLevel];
     myTextView.textColor = [UIColor whiteColor];
     myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
     myTextView.editable = NO;
     [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
+    [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
     
     float outsideMargin = 60;
     float insideMargin = 30;
     float buttonsVerticalPosition = containerView.bounds.size.height-50;
     float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
-    float leftButtonPositionX = outsideMargin;
-    float rightButtonPositionX = buttonWidth + outsideMargin + 2*insideMargin;
+    float buttonNewGamePositionX = outsideMargin;
+    float buttonContinuePositionX = buttonWidth + outsideMargin + 2*insideMargin;
     
-    [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
+    // Left: “New Game”
+    UIButton *buttonNewGame  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonNewGame.tag = 0;
+    buttonNewGame.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+    [buttonNewGame setBackgroundColor: [UIColor whiteColor]];
+    [buttonNewGame setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+    [[buttonNewGame layer] setMasksToBounds:YES];
+    [[buttonNewGame layer] setCornerRadius:5.0f];
+    [buttonNewGame setTitle: @"New Game" forState:UIControlStateNormal];
+    [buttonNewGame addTarget: self
+                        action: @selector(doTutorial:)
+              forControlEvents: UIControlEventTouchUpInside];
     
-    // Left: “Skip tutorial”
-    UIButton *buttonSkip  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    buttonSkip.tag = 1;
-    buttonSkip.frame      =   CGRectMake(leftButtonPositionX, buttonsVerticalPosition, buttonWidth, 30.0);
-    [buttonSkip setBackgroundColor: [UIColor whiteColor]];
-    [buttonSkip setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
-    [[buttonSkip layer] setMasksToBounds:YES];
-    [[buttonSkip layer] setCornerRadius:5.0f];
-    [buttonSkip setTitle: @"Skip tutorial" forState:UIControlStateNormal];
-    [buttonSkip addTarget: self
-                   action: @selector(skipTutorial:)
-         forControlEvents: UIControlEventTouchUpInside];
-    
-    // Right: “Continue”
-    UIButton *buttonStartTutorial  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    buttonStartTutorial.tag = 0;
-    buttonStartTutorial.frame      =   CGRectMake(rightButtonPositionX, buttonsVerticalPosition, buttonWidth, 30.0);
-    [buttonStartTutorial setBackgroundColor: [UIColor whiteColor]];
-    [buttonStartTutorial setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
-    [[buttonStartTutorial layer] setMasksToBounds:YES];
-    [[buttonStartTutorial layer] setCornerRadius:5.0f];
-    [buttonStartTutorial setTitle: @"Continue" forState:UIControlStateNormal];
-    [buttonStartTutorial addTarget: self
-                            action: @selector(doTutorial:)
-                  forControlEvents: UIControlEventTouchUpInside];
+    // Right: “Resume”
+    UIButton *buttonContinue  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonContinue.tag = savedLevel;
+    buttonContinue.frame      =   CGRectMake(buttonContinuePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+    [buttonContinue setBackgroundColor: [UIColor whiteColor]];
+    [buttonContinue setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+    [[buttonContinue layer] setMasksToBounds:YES];
+    [[buttonContinue layer] setCornerRadius:5.0f];
+    [buttonContinue setTitle: @"Resume" forState:UIControlStateNormal];
+    [buttonContinue addTarget: self
+                         action: @selector(continueButtonClicked:)
+               forControlEvents: UIControlEventTouchUpInside];
     
     [self.view addSubview: containerView];
     [containerView addSubview:myTextView];
-    [containerView addSubview:buttonStartTutorial];
-    [containerView addSubview:buttonSkip];
+    [containerView addSubview:buttonNewGame];
+    [containerView addSubview:buttonContinue];
 }
 
 /* Credits */
@@ -430,7 +362,6 @@
         NSLog(@"Already paused"); // tested
     }else{
         NSLog(@"We pause because going to background");
-        
 
         [spriteView setPaused:YES];
         
@@ -443,7 +374,6 @@
             [myScene removeFromParent];
             myScene = nil;
         }
-        
         
         UIView *containerView = [[UIView alloc] init];
         containerView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:.5];
@@ -459,7 +389,6 @@
         UILabel *scoreLabel = [ [UILabel alloc ] initWithFrame:CGRectMake(0.0, (self.view.bounds.size.height/2)-20, self.view.bounds.size.width, 40.0) ];
         scoreLabel.textAlignment =  NSTextAlignmentCenter;
         scoreLabel.textColor = [UIColor whiteColor];
-        // scoreLabel.backgroundColor = [UIColor blackColor];
         scoreLabel.font = [UIFont fontWithName:@"GillSans" size:42];
         [containerView addSubview:scoreLabel];
         scoreLabel.text = @"Tap to resume";
