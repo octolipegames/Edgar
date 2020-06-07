@@ -81,13 +81,16 @@
         SKPhysicsBody *rectangleBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(28*_x3, 36*_x3) center:CGPointMake(0, -2*_x3)];
 
         topCircleBody.categoryBitMask = 1;
+        topCircleBody.friction = 0;
+        topCircleBody.linearDamping = 0;
+        
         rectangleBody.categoryBitMask = 1;
         rectangleNode = [SKSpriteNode node];
         rectangleNode.physicsBody = [SKPhysicsBody bodyWithBodies: @[topCircleBody, rectangleBody]];
         rectangleNode.physicsBody.mass = 30 * 3;
-        rectangleNode.physicsBody.friction = 0;
-        rectangleNode.physicsBody.restitution = 0;
-        rectangleNode.physicsBody.linearDamping = 0;
+        rectangleNode.physicsBody.friction = 0; // “roughness of the surface”
+        rectangleNode.physicsBody.restitution = 0; // “bounciness”
+        rectangleNode.physicsBody.linearDamping = 0; // “reduces linear velocity”
         rectangleNode.physicsBody.categoryBitMask = 1; // = PhysicsCategoryEdgar
         
         
@@ -219,45 +222,12 @@
       [SKAction colorizeWithColorBlendFactor:0.0 duration:0.15]]];
     [self runAction: ouch];
 }
--(void)getsInfectedFor:(float)randomDuration{
-    if(isInfected == FALSE){
-        [self removeControl];
-        isInfected = TRUE;
-        SKAction *getBlue = [SKAction sequence:@[
-             [SKAction colorizeWithColor:[SKColor blueColor] colorBlendFactor:0.8 duration:0.15],
-             [SKAction waitForDuration:.5],
-             [SKAction colorizeWithColorBlendFactor:0.5 duration:0.15]]];
-        
-        int random_distance = 20 + rand() % 30;
-        
-        // NSLog(@"Random: %d, %f, %d", random_distance, randomDuration, rand() % 5);
-        
-        SKAction *strangeMove = [SKAction sequence:@[
-             [SKAction moveByX:10 y:0 duration:.1],
-             [SKAction moveByX:-random_distance y:0 duration:randomDuration],
-             [SKAction moveByX:random_distance+5 y:0 duration:.1]]];
-        
-        SKAction *giveBackControl = [SKAction runBlock:^{
-            [self giveControl];
-            self->isInfected = FALSE;
-            NSLog(@"Control given back");
-        }];
-        SKAction *getWhite = [SKAction colorizeWithColorBlendFactor:0.0 duration:0.3];
 
-        [self runAction: [SKAction sequence:@[getBlue, strangeMove, getWhite, giveBackControl]]];
-    }
-}
--(BOOL)alreadyInfected{
-    return isInfected;
-}
 -(void)takeItem{
     hasUranium = TRUE;
 }
 -(void)resetItem{
     hasUranium = FALSE;
-}
--(void)resetInfected{
-    isInfected = FALSE;
 }
 
 -(BOOL)hasItem{

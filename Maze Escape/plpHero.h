@@ -31,8 +31,8 @@
     @public SKSpriteNode *rectangleNode;
     @public SKPhysicsBody *circleBody;
     @public SKSpriteNode *circleNode;
+    NSTimer *stickTimer;
     BOOL boolHasControl;
-    BOOL isInfected;
     BOOL hasUranium;
     int lives;
 }
@@ -51,8 +51,6 @@
 -(void)removeControl;
 -(BOOL)hasControl;
 -(void)takeDamage;
--(void)getsInfectedFor:(float)randomDuration;
--(BOOL)alreadyInfected;
 -(void)takeItem;
 -(void)resetItem;
 -(void)resetInfected;
