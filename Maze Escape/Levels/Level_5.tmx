@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="left-up" compressionlevel="0" width="33" height="10" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="106">
+<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="left-up" compressionlevel="0" width="33" height="10" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="109">
  <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="300" tileheight="300" tilecount="39" columns="13">
   <image source="Tiles_x3.png" width="3900" height="900"/>
  </tileset>
@@ -14,12 +14,12 @@
  </tileset>
  <layer id="1" name="Fond" width="33" height="10">
   <data encoding="base64" compression="zlib">
-   eAHFkt0JgDAMhDuADiDiqwsI4v6T2WAPPkJ/8aGBkqS5u1zFEL7YYxo9iVpN1DwKO0xAOGJ6auMR53s/0x6f6cHPevsF72hx6Is1eVen3gbciAfuUv0krZi6w7h8w18P8sJMfdYySazV8pCbk29YhnqvV+u9Xg5LzB0X5jC6I1Z3s7J9m9bu1WFO9Pw3WzqluXmYEfTzAprHHFk=
+   eAHFkt0JgDAMhDuADiDiqwsI4v6T2WAPPmJtKyINSP7uLqcYwhVzTG+fRL3xNLdMzcX12hFHTEttGsRJU7m0E8ayBfu/a/pizbtbo6cJuAE1tVrrI/Fjag7T5jt89ZDzSn3WMuk58pDbk288hnqvV+q9Xg5LzB4P5jCaEatZr2zfpnZ7dJgVPf/Nms7T3jz0CPo5AdnJHNI=
   </data>
  </layer>
  <layer id="2" name="Solide" width="33" height="10">
   <data encoding="base64" compression="zlib">
-   eAHNks0OgkAMhNerJuAF9BHk6Pu/nB3gM5PSoAdNaNKd/sxO62LXWuv+6PfQ3nNm34L3S5Put1btcF4vPwLlT3NqjtU81ZwzRS7jPTwWlze4RMw9cdjvEw4ih2Ue88CFtT3ZQbyssZdvlZb7/AbdJXZUXeZ7MSfXZ6Id8MCr9QjpCZnh6P0c8y3QEuq7yITEc2E90KaGJnmFcIRuyrWD/oe9eYRvYw928XwMFtpcIGcWOf2MVZ9ZcNFS7r1T5PkN0QPRqBDOUfAFz3oPPQ==
+   eAHNks0OgkAMhNerJuBF8RHg6Pu/nB3gI5PSoIkebLI7/ZlO62LXWuu+PI/o9+N6nq98uENo/NKk+6lVO5zX5jFQ52mHnGM1TznnTBHLeAf3xeUNLuHTJw77vcObyGGZxzxwYe1vdhAvaxzFe6Wln9+gXnxH5WW+F3NyfibaBQ+8Wg2XmpAZjl7PPt8CLaG+i0yIPyfWC21yaBJXCEfoplg76H/Y2wl3M/ZgF4/vwUKbBmJmEVPPWNWZBRctxV47RZzfED0QjQrh/Au+AJI5D2U=
   </data>
  </layer>
  <objectgroup id="3" name="Objets">
@@ -33,7 +33,7 @@
    <ellipse/>
   </object>
   <object id="13" name="semaphore" type="semaphore" x="1257" y="531" width="180" height="180"/>
-  <object id="17" name="verticalPlatform" x="5130" y="861" width="258" height="933">
+  <object id="17" name="verticalPlatform" x="5102" y="900" width="296" height="900">
    <properties>
     <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3"/>
@@ -42,13 +42,9 @@
     <property name="y_limit" value="430"/>
    </properties>
   </object>
-  <object id="19" name="verticalPlatform" x="1524" y="855" width="261" height="330">
+  <object id="19" name="verticalPlatform" x="1502" y="855" width="296" height="330">
    <properties>
-    <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="2"/>
-    <property name="noEmergencyStop" value="0"/>
-    <property name="x_limit" value="802"/>
-    <property name="y_limit" value="430"/>
    </properties>
   </object>
   <object id="55" name="sensor" x="2400" y="850" width="910" height="20">
@@ -75,7 +71,7 @@
    <point/>
   </object>
   <object id="97" name="Caisse" type="Caisse" x="5544" y="710" width="180" height="180"/>
-  <object id="98" name="file" x="6128" y="472">
+  <object id="98" name="file" x="5876" y="200">
    <point/>
   </object>
   <object id="100" name="file" x="184" y="1964">
@@ -86,7 +82,7 @@
   </object>
  </objectgroup>
  <objectgroup id="4" name="CollisionRectangles">
-  <object id="20" x="0" y="0" width="7200" height="300"/>
+  <object id="20" x="0" y="0" width="5100" height="300"/>
   <object id="21" x="0" y="300" width="360" height="600"/>
   <object id="23" x="0" y="900" width="60" height="1500"/>
   <object id="24" x="0" y="2400" width="300" height="600"/>
@@ -125,6 +121,8 @@
   <object id="99" x="6300" y="300" width="300" height="1152"/>
   <object id="101" x="1200" y="2640" width="300" height="60"/>
   <object id="103" x="420.25" y="2220" width="60" height="60"/>
+  <object id="106" x="6300" y="0" width="900" height="300"/>
+  <object id="107" x="5100" y="0" width="1200" height="60"/>
  </objectgroup>
  <objectgroup id="5" name="CollisionPolygons">
   <object id="37" x="4800" y="860">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="left-up" width="31" height="13" tilewidth="300" tileheight="300" infinite="0" nextlayerid="5" nextobjectid="150">
+<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="left-up" width="31" height="13" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="154">
  <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="300" tileheight="300" tilecount="39" columns="13">
   <image source="Tiles_x3.png" width="3900" height="900"/>
  </tileset>
@@ -19,34 +19,33 @@
  </layer>
  <layer id="2" name="Solide" width="31" height="13">
   <data encoding="base64" compression="zlib">
-   eJy1lNEKgCAMRaVHA3us/qCgnvv/Pyuh0bhMt2xdOKCh9+ochfBd6WIykmCfB2/OKY29lD0HRilPy6Za1db24FfztGZPME+QI+XNTtl4Dv6+2D/W92+pOdYA/RbFh6/lSHXUFMPTRy39aq0RgX1L30clpw/P/WjMfbcCteysVcjeb0id4muB78uKhXt6/a9KHIwd+DvbgxNlUA8v
+   eJy1lNEKgCAMRUePCfaY/UFBPvf/f1ZCw7GcW2YXDknMe3WNAL7LXwQjnu3rwZtzlta9lDwngpSnZWOvarWO+dU8pewgPGmtg6do3tKYXRPOCcLnx/r9W3rOe8D9VsWH1lJKfdQ0Qp6jlnm19gjhc4vvZyXHQb4frqnvLlDLTtoK2fEGNSi+Fui+pFG4Z6//lcRBiIy/s3twAjOfD18=
   </data>
  </layer>
  <objectgroup id="3" name="Objets">
-  <object id="22" name="horizontalPlatform" x="610" y="2410" width="800" height="30">
+  <object id="22" name="horizontalPlatform" x="610" y="2400" width="800" height="30">
    <properties>
     <property name="moveLeftFirst" type="int" value="1"/>
     <property name="movementDuration" value="2"/>
     <property name="x_limit" value="1100"/>
    </properties>
   </object>
-  <object id="23" name="horizontalPlatform" x="1590" y="2410" width="800" height="30">
+  <object id="23" name="horizontalPlatform" x="1590" y="2400" width="800" height="30">
    <properties>
     <property name="movementDuration" value="2"/>
     <property name="x_limit" value="1600"/>
    </properties>
   </object>
   <object id="51" name="Start" x="2692" y="2033" width="313" height="366"/>
-  <object id="61" name="file" x="1576" y="2204">
+  <object id="61" name="file" x="1500" y="2054.67">
    <point/>
   </object>
   <object id="62" name="scientist" x="4879.09" y="1880.05" width="196" height="208"/>
   <object id="63" name="trapDoor" x="4200" y="2570" width="300" height="30"/>
   <object id="65" name="verticalPlatform" x="300" y="1200" width="300" height="1140">
    <properties>
-    <property name="moveUpFirst" value="0"/>
+    <property name="moveUpFirst" value="1"/>
     <property name="movementDuration" value="3.5"/>
-    <property name="y_limit" value="430"/>
    </properties>
   </object>
   <object id="68" name="train" type="train" x="4704.09" y="3365.43" width="180" height="180">
@@ -82,7 +81,7 @@
     <property name="movementDuration" value="4"/>
    </properties>
   </object>
-  <object id="100" name="horizontalPlatform" x="800" y="1210" width="1200" height="30">
+  <object id="100" name="OLDhorizontalPlatform" x="816" y="1026" width="1200" height="30">
    <properties>
     <property name="idleDuration" type="float" value="3"/>
     <property name="moveLeftFirst" type="int" value="1"/>
@@ -94,7 +93,7 @@
     <property name="moveX" value="-300"/>
    </properties>
   </object>
-  <object id="102" name="endLevelLift" x="3903.33" y="1128.67" width="315" height="366">
+  <object id="102" name="endLevelLift" x="3904" y="1134" width="315" height="366">
    <properties>
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
@@ -155,7 +154,7 @@
   <object id="114" x="3000" y="1500" width="2100" height="60"/>
   <object id="115" x="5100" y="1140" width="300" height="960"/>
   <object id="116" x="5400" y="1200" width="300" height="300"/>
-  <object id="117" x="5400" y="1500" width="1200" height="300"/>
+  <object id="117" x="5700" y="1500" width="900" height="300"/>
   <object id="118" x="6300" y="600" width="300" height="900"/>
   <object id="119" x="6000" y="900" width="300" height="300"/>
   <object id="120" x="6973" y="602" width="150" height="300"/>
@@ -172,7 +171,7 @@
   <object id="132" x="9000" y="1800" width="300" height="2100"/>
   <object id="133" x="8400" y="0" width="300" height="1800"/>
   <object id="134" x="7504.75" y="2880.25" width="58.75" height="120"/>
-  <object id="139" x="4500" y="2400" width="600" height="300"/>
+  <object id="139" x="4500" y="2400" width="300" height="300"/>
   <object id="140" x="3300" y="900" width="300" height="600"/>
   <object id="141" x="3600" y="1440" width="300" height="60"/>
   <object id="142" x="4200" y="3560" width="1800" height="40"/>
@@ -180,5 +179,15 @@
   <object id="146" x="6300" y="2980" width="600" height="920"/>
   <object id="147" x="5100" y="0" width="300" height="300"/>
   <object id="148" x="5400" y="0" width="3000" height="60"/>
+  <object id="152" x="1500" y="1200" width="300" height="60"/>
+  <object id="153" x="900" y="1200" width="300" height="60"/>
+ </objectgroup>
+ <objectgroup id="5" name="CollisionPolygons">
+  <object id="150" x="5400" y="2100">
+   <polygon points="0,0 0,-600 300,-600 300,-300 154.545,-263.636 57.5758,-181.818 21.2121,-109.091"/>
+  </object>
+  <object id="151" x="4800" y="2400">
+   <polygon points="0,0 0,300 103.03,312.121 200,369.697 263.636,460.606 300,600 363.636,600 358.667,-0.666667"/>
+  </object>
  </objectgroup>
 </map>

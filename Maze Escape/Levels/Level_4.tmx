@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="left-up" compressionlevel="0" width="15" height="11" tilewidth="300" tileheight="300" infinite="0" nextlayerid="5" nextobjectid="40">
+<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="left-up" compressionlevel="0" width="15" height="11" tilewidth="300" tileheight="300" infinite="0" nextlayerid="5" nextobjectid="40">
  <tileset firstgid="1" name="ElementsTiles-01-01" tilewidth="300" tileheight="300" tilecount="39" columns="13">
   <image source="Tiles_x3.png" width="3900" height="900"/>
  </tileset>
@@ -30,10 +30,10 @@
    </properties>
   </object>
   <object id="4" name="Caisse" type="Caisse" x="2520" y="2518" width="180" height="180"/>
-  <object id="7" name="platform" x="3288" y="1803" width="303" height="30">
+  <object id="7" name="platform" x="3296" y="1803" width="300" height="30">
    <properties>
     <property name="movementDuration" value="2"/>
-    <property name="x_limit" value="2900"/>
+    <property name="x_limit" value="2904"/>
    </properties>
   </object>
   <object id="8" name="train" type="train" x="804" y="702" width="180" height="180">
