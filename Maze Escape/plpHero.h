@@ -53,7 +53,6 @@
 -(void)takeDamage;
 -(void)takeItem;
 -(void)resetItem;
--(void)resetInfected;
 -(BOOL)hasItem;
 
 
