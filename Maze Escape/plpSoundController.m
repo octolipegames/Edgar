@@ -193,9 +193,8 @@
     liftReadySound = [SKAction playSoundFileNamed:@"Sounds/fx_bouton_porte.wav" waitForCompletion: NO];
     takeLiftSound = [SKAction playSoundFileNamed:@"Sounds/fx_arrivee_ascenseur.wav" waitForCompletion: NO];
     trainImpactSound = [SKAction playSoundFileNamed:@"Sounds/fx_chariot_tombe" waitForCompletion: NO];
-    takeFileSound = [SKAction playSoundFileNamed:@"Sounds/fx2_classeur.wav" waitForCompletion: NO];
     killScientistSound = [SKAction playSoundFileNamed:@"Sounds/fx2_saut_sur_scientifique.wav" waitForCompletion: NO];
-    anxietySound = [SKAction playSoundFileNamed:@"Sounds/fx3_ri_peur.wav" waitForCompletion: NO];
+    anxietySound = [SKAction playSoundFileNamed:@"Sounds/fx3_cri_peur.wav" waitForCompletion: NO];
     takeFileSound = [SKAction playSoundFileNamed:@"Sounds/fx3_classeur+voix.wav" waitForCompletion: NO];
     
     NSError* error = nil;
