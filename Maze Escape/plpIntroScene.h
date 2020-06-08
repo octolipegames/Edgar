@@ -26,6 +26,9 @@
 #import "plpMyScene.h"
 #import "plpSoundController.h"
 
+#define SCENE_SLIDES 4
+#define MAX_SLIDE 3
+
 @interface plpIntroScene : SKScene <SKPhysicsContactDelegate>
 {
     plpSoundController *soundController;
@@ -33,7 +36,9 @@
     SKLabelNode *subtitleNodeTop;
     SKLabelNode *subtitleNodeBottom;
     NSMutableArray *animationFrames;
-    int currentFrame;
+    NSMutableArray *animateActions;
+    
+    int currentSlide;
     NSTimer *launchGameTimer;
 }
 
