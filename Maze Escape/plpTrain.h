@@ -30,6 +30,7 @@
     BOOL isRunning;
     BOOL heroAbove;
     SKAudioNode *trainSound;
+    SKSpriteNode *platformSensor;
 }
 - (id)initAtPosition:(CGPoint)position withMainTexture:(NSString*)textureString andWheelTexture:(NSString*)wheelTextureString;
 - (SKSpriteNode*)getLeftWheel;

@@ -79,6 +79,18 @@
     trainSound.positional = true;
     [self addChild: trainSound];
     
+    /*
+    platformSensor = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green: 1                                                                                blue: 1 alpha: 0.3f] size: self.size]; // change alpha e.g. to 0.3 to debug
+    platformSensor.position = CGPointMake(self.size.width / 2, self.size.height);
+    platformSensor.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize: self.size];
+    platformSensor.physicsBody.categoryBitMask = PhysicsCategorySensors;
+    platformSensor.physicsBody.affectedByGravity = FALSE;
+    platformSensor.physicsBody.linearDamping = 0.0;
+    platformSensor.physicsBody.collisionBitMask = 0;
+    [platformSensor setName: @"platformSensor"];
+    [self addChild: platformSensor];
+    */
+    
     return self;
 }
 
