@@ -120,8 +120,10 @@ float contextVelocityX;
     // User interface
     UIView *containerView;
     UITextView *myTextView;
+    BOOL needsInfoBar;
     BOOL runningOniPad;
     float screenCenterX;
+    float screenRatio;
     SKLabelNode *fileCountLabel;
     
     // Game data
@@ -137,7 +139,6 @@ float contextVelocityX;
 
 -(void)loadAssets:(JSTileMap*) tileMap;
 -(void)addCollisionLayer:(JSTileMap*) tileMap;
--(void)resetGameData;
 -(void)EdgarDiesOf:(int)deathType;
 -(void)resetEdgar;
 -(void)getsPaused;

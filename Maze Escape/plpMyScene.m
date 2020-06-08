@@ -83,13 +83,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         self.camera = myCamera;
         [self addChild:myCamera];
         
-        // BUTTONS //
+        // PREFS AND SAVED VALUES
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         useSwipeGestures = [defaults boolForKey:@"useSwipeGestures"];
         enableDebug = [defaults boolForKey:@"enableDebug"];
         
-        // Retrieve saved values – todo: debug
-        lifeCount = 1; //[defaults integerForKey:@"lifeCount"];
+        // TODO: implement & debug
+        lifeCount = [defaults integerForKey:@"lifeCount"];
         fileCount = [defaults integerForKey:@"fileCount"];
         
         if (!lifeCount) {
@@ -101,43 +101,20 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             fileCount = 0;
         }
         
+        // HUD to display hints, life count and file count
         HUD = [SKNode node];
         HUD.name = @"HUD";
         HUD.zPosition = 28;
         [myCamera addChild:HUD];
         
-        
-        // Show life count
-        SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Vie"] size: CGSizeMake(43, 100)];
-        edgarLife.anchorPoint = CGPointMake(0, 1);
-        
-        [HUD addChild: edgarLife];
-        [edgarLife setPosition: CGPointMake(-320 * x3, self.size.height * 0.5)];
-        [edgarLife setName: @"life0"];
-        
-        for(int i = 1; i < lifeCount; i++){
-            SKSpriteNode *lifeCopy = [edgarLife copy];
-            [lifeCopy setPosition: CGPointMake(-320 * x3 + (i * 80), self.size.height * 0.5)];
-            [lifeCopy setName: [NSString stringWithFormat:@"life%d", i]];
-            [HUD addChild: lifeCopy];
-        }
-        
-        // Show file count
-        SKSpriteNode *file = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Collectionnable"] size: CGSizeMake(100, 100)];
-        [file setPosition: CGPointMake(-500, 540)];
-        [HUD addChild: file];
-        
-        fileCountLabel = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
-        fileCountLabel.fontSize = 30 * x3;
-        fileCountLabel.fontColor = [SKColor whiteColor];
-        fileCountLabel.position = CGPointMake(-390, 540); // decalage de 110
-        fileCountLabel.zPosition = 10;
-        [fileCountLabel setName: @"fileCountLabel"];
-        
-        [fileCountLabel setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeLeft];
-        [fileCountLabel setVerticalAlignmentMode:SKLabelVerticalAlignmentModeCenter];
-        //fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/20", (long) fileCount];
-        [HUD addChild: fileCountLabel];
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+        CGFloat screenHeight = screenRect.size.height;
+        screenRatio = screenHeight / screenWidth;
+
+        NSLog(@"Device: %f, %f – %f", screenWidth, screenHeight, screenRatio);
+        // We'll add life & file count later
+        needsInfoBar = TRUE;
 
         if(!useSwipeGestures){
             // TODO: remove this
@@ -253,6 +230,42 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     return self;
 }
 
+- (void)addInfoBar{
+    float verticalHeight = 250 + 500 * screenRatio;
+    
+    // Show life count
+    SKSpriteNode *edgarLife = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Vie"] size: CGSizeMake(43, 100)];
+    // edgarLife.anchorPoint = CGPointMake(0, 1);
+    
+    [HUD addChild: edgarLife];
+    [edgarLife setPosition: CGPointMake(-960, verticalHeight)];
+    [edgarLife setName: @"life0"];
+    
+    for(int i = 1; i < lifeCount; i++){
+        SKSpriteNode *lifeCopy = [edgarLife copy];
+                    
+        [lifeCopy setPosition: CGPointMake(-960 + (i * 80), verticalHeight)];
+        [lifeCopy setName: [NSString stringWithFormat:@"life%d", i]];
+        [HUD addChild: lifeCopy];
+    }
+    
+    // Show file count
+    SKSpriteNode *file = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Collectionnable"] size: CGSizeMake(100, 100)];
+    [file setPosition: CGPointMake(-400, verticalHeight)];
+    [HUD addChild: file];
+    
+    fileCountLabel = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+    fileCountLabel.fontSize = 30 * x3;
+    fileCountLabel.fontColor = [SKColor whiteColor];
+    fileCountLabel.position = CGPointMake(-290, verticalHeight); // decalage de 110
+    fileCountLabel.zPosition = 10;
+    [fileCountLabel setName: @"fileCountLabel"];
+    
+    [fileCountLabel setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeLeft];
+    [fileCountLabel setVerticalAlignmentMode:SKLabelVerticalAlignmentModeCenter];
+    [HUD addChild: fileCountLabel];
+}
+
 - (void)playAgain{
     NSLog(@"playAgain called");
     // We clean the UI
@@ -296,8 +309,22 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     Edgar->rectangleNode.physicsBody.collisionBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles;
     Edgar->rectangleNode.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryEnemy|PhysicsCategorySensors|PhysicsCategoryItems;
     
-    // Let's go! (tutorial = level 0, first level = 1)
-    [self resetGameData];
+    // Reset game data
+    cheatsEnabled = FALSE;
+    liftReady = FALSE;
+    [self saveInitialTime];
+    additionalSavedTime = 0;
+    
+    [Edgar removeLight];
+    [Edgar removeMasque];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:1 forKey:@"savedLevel"];
+    [defaults setInteger:3 forKey:@"lifeCount"];
+    [defaults setInteger:0 forKey:@"fileCount"];
+    [defaults setFloat:0 forKey:@"totalTime"];
+    [defaults synchronize];
+    
     [self resumeFromLevel:1];
 }
 
@@ -546,9 +573,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 - (JSTileMap*)loadLevel:(int)levelIndex
 {
-    NSLog(@"Frame Height: %f", self.frame.size.height);
-    NSLog(@"Scene Height: %f", self.size.height);
-    NSLog(@"View height and width: %f %f", self.view.bounds.size.height, self.view.bounds.size.width);
+    if(needsInfoBar){
+        [self addInfoBar];
+    }
     
     if(levelIndex <= 1) // dev: need to this to the right place
     {
@@ -594,7 +621,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     BOOL useCollisionGroup = FALSE;
     
     // Remove after debug
-    self.view.showsPhysics = YES;
+    // self.view.showsPhysics = YES;
     self.view.showsFPS = YES;
     self.view.showsNodeCount = YES;
 
@@ -623,7 +650,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     TMXObjectGroup *collisionPolygons = [tileMap groupNamed:@"CollisionPolygons"]; // Objets
     if(collisionPolygons){
         for (NSDictionary *collisionPolygon in [collisionPolygons objects]) {
-            NSLog(@"Polygon found");
             NSArray *coordinates = [collisionPolygon[@"polygonPoints"] componentsSeparatedByString:@" "];
             
             // NSLog(@"Coordinates: %@", coordinates);
@@ -914,6 +940,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         levelTotalFileCount = [fileGroup count];
         fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/%lu", (long) levelFileCount, (long)levelTotalFileCount];
     }
+    /*
+     Files: If we want to add a real-time effect -- but we'll edit the image instead
+     SKEffectNode *node = [SKEffectNode node];
+     [node setShouldEnableEffects:NO];
+     CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur" keysAndValues:@"inputRadius", @1.0f, nil];
+     [node setFilter:blur];
+     [self setRoot:node];
+     */
     
 
     
@@ -978,13 +1012,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             
             if([theVerticalPlatform[@"moveUpFirst"] intValue] == 1)
             {
-                verticalPlatformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([theVerticalPlatform[@"x"] floatValue], [theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue]-8)
-                                                                  withSize:CGSizeMake(296, 28)
-                                                              withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] andIdleDuration:idleDuration];
-            }else{
                 verticalPlatformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([theVerticalPlatform[@"x"] floatValue], [theVerticalPlatform[@"y"] floatValue])
                                                                   withSize:CGSizeMake(296, 28)
                                                               withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue] -28 andIdleDuration:idleDuration];
+            }else{
+                verticalPlatformNode = [[plpPlatform alloc] initAtPosition: CGPointMake([theVerticalPlatform[@"x"] floatValue], [theVerticalPlatform[@"y"] floatValue] + [theVerticalPlatform[@"height"] floatValue] - 28)
+                                                                  withSize:CGSizeMake(296, 28)
+                                                              withDuration:[theVerticalPlatform[@"movementDuration"] floatValue] upToX:[theVerticalPlatform[@"x"] floatValue] andY:[theVerticalPlatform[@"y"] floatValue] andIdleDuration:idleDuration];
             }
             
             if(verticalPlatformNode)
@@ -1074,15 +1108,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
     
     // Aliens / Extra-terrestres
-    
-    
-    // Aliens / Extra-terrestres
     NSArray *tabAlien;
     if((tabAlien=[group objectsNamed:@"alien"]))
     {
         for (NSDictionary *monAlien in tabAlien) {
             plpAlien *alien;
-            alien = [[plpAlien alloc] initAtPosition:[self convertPosition:monAlien] withSize:CGSizeMake(280, 180) withMovement:[monAlien[@"moveX"] floatValue]];
+            alien = [[plpAlien alloc] initAtPosition:[self convertPosition:monAlien] withSize:CGSizeMake(210, 135) withMovement:[monAlien[@"moveX"] floatValue]];
             if(alien)
             {
                 alien.physicsBody.categoryBitMask = PhysicsCategoryEnemy;
@@ -1264,7 +1295,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     [self saveInitialTime];
     [Edgar giveControl];
-    [self->soundController playTune:@"Sounds/Edgar_VF" loops:-1];
+    [self->soundController playTune:@"Sounds/main_music_loop" loops:-1];
     if((movingLeft || movingRight) && !isJumping){
         [self->soundController playFootstepSound];
     }
@@ -1274,15 +1305,20 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     levelTransitioning = TRUE;
     currentLevelIndex = (int)theLevel;
     
-    // if level <= 1: new game => reset game data (cheat enabled, time...)
-    if(currentLevelIndex <= 1)
-    {
-        [self resetGameData];
-        [Edgar removeLight];
-        [Edgar removeMasque];
-    }else{
-        [self saveInitialTime];
+    // For users who played older versions and stayed at the tutorial
+    if(currentLevelIndex == 0){
+        currentLevelIndex = 1;
     }
+
+    // if level <= 1: new game => reset game data (cheat enabled, time...)
+//    if(currentLevelIndex <= 1)
+//    {
+//        [self resetGameData];
+//        [Edgar removeLight];
+//        [Edgar removeMasque];
+//    }else{
+//        [self saveInitialTime];
+//    }
     
     [myFinishRectangle removeFromParent];
     myFinishRectangle = nil;
@@ -1295,24 +1331,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [soundController getStoredVolumes];
 }
 
-- (void) resetGameData
-{
-    cheatsEnabled = FALSE;
-    liftReady = FALSE;
-    [self saveInitialTime];
-    additionalSavedTime = 0;
-    NSLog(@"T: saved time set to 0");
-}
-
 // Called when the user restarts a level (upper right button)
 - (void)EdgarDiesOf:(int)deathType
 {
+    NSLog(@"Edgar Dies");
     if(isDying == TRUE){
         NSLog(@"Already dying");
         return;
     }else{
         isDying = TRUE;
     }
+    [Edgar removeControl];
     if(lifeCount < 0){
         NSLog(@"Already died -- can't restart");
         return;
@@ -1333,24 +1362,22 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if(deathType == DEATH_SPIKE){
         [Edgar.physicsBody applyImpulse: CGVectorMake(0, 100000)];
     }
+    NSLog(@"...");
     
     [Edgar runAction: [SKAction repeatAction: ouch count: 2] completion:^{
+        NSLog(@"death action complete");
         SKNode *lostLife = [self->HUD childNodeWithName: [NSString stringWithFormat:@"life%d", (int) self->lifeCount ]];
         [lostLife removeFromParent];
         
         if(self->lifeCount < 1){
-            [self->Edgar removeControl];
             self->levelTransitioning = TRUE;
             [self showGameOver];
         }else{
-            [self->Edgar removeControl];
             self->levelTransitioning = TRUE;
             [self->myFinishRectangle removeFromParent];
             self->myFinishRectangle = nil;
             [self doLevelTransition_sameLevel:YES];
-            // [self->Edgar giveControl]; -> when curtains open
         }
-        
     }];
 }
 
@@ -1531,7 +1558,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [self openCurtains];
     
     SKNode *touchIndicator = [HUD childNodeWithName:@"//touchIndicator"];
-    [touchIndicator runAction: [SKAction fadeOutWithDuration: 5] completion:^{
+    
+    float fadeOutDuration = 5;
+    if(currentLevelIndex == 1){
+        fadeOutDuration = 20;
+    }
+    [touchIndicator runAction: [SKAction fadeOutWithDuration: fadeOutDuration] completion:^{
         [touchIndicator removeAllChildren];
         [touchIndicator removeFromParent];
         //[self->HUD removeAllChildren];
@@ -1563,13 +1595,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKLabelNode *displayTime = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
     displayTime.fontSize = 30 * x3;
     displayTime.fontColor = [SKColor whiteColor];
-    displayTime.position = CGPointMake(screenCenterX, 10 * x3);
+    displayTime.position = CGPointMake(0, 10 * x3);
     displayTime.zPosition = 42;
     
     SKLabelNode *displayTime2 = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
     displayTime2.fontSize = 24 * x3;
     displayTime2.fontColor = [SKColor whiteColor];
-    displayTime2.position = CGPointMake(screenCenterX, -30 * x3);
+    displayTime2.position = CGPointMake(0, -30 * x3);
     displayTime2.zPosition = 42;
     
     NSLog(@"Screen center x: %f", screenCenterX);
@@ -1647,7 +1679,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             [self->myWorld runAction: openCurtainsAnimation];
         }];
         [self startLevel];
-        // [NSThread detachNewThreadSelector:@selector(startLevel) toTarget:self withObject:nil];
     }];
 
     
@@ -1706,7 +1737,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [self.physicsWorld addJoint:pinEdgar];
     
     NSLog(@"Edgar gets control back");
-    // [Edgar giveControl]; -> when curtains open
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger: currentLevelIndex forKey:@"savedLevel"];
@@ -2066,7 +2096,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 explainTrainNode.name = @"explainText";
                 explainTrainNode.fontSize = 30;
                 explainTrainNode.fontColor = [SKColor whiteColor];
-                explainTrainNode.position = CGPointMake(screenCenterX, 50);
+                explainTrainNode.position = CGPointMake(0, 50);
                 explainTrainNode.zPosition = 30;
                 explainTrainNode.text = @"You can jump on this minecart to make it move";
                 [myCamera addChild: explainTrainNode];
@@ -2088,7 +2118,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 explainUranium.name = @"explainText";
                 explainUranium.fontSize = 30;
                 explainUranium.fontColor = [SKColor whiteColor];
-                explainUranium.position = CGPointMake(screenCenterX, 50);
+                explainUranium.position = CGPointMake(0, 50);
                 explainUranium.zPosition = 30;
                 explainUranium.text = @"Take the uranium cell to activate the exit";
                 [myCamera addChild: explainUranium];
@@ -2104,7 +2134,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 [myCamera addChild: helpNode];
                 
                 float helpNodeXgap = (self.view.bounds.size.width/2)-60;
-                [helpNode setPosition:CGPointMake(screenCenterX+helpNodeXgap, 80.0f)];
+                [helpNode setPosition:CGPointMake(helpNodeXgap, 80.0f)];
                 
                 // previously: fixed helpNodeXgap, 220px
                 // NSLog(@"width=%f, estimation = %f", self.view.bounds.size.width, helpNodeXgap);
@@ -2125,7 +2155,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 helpNode.name = @"helpNode";
                 if(!helpNode.position.x)
                 {
-                    [helpNode setPosition:CGPointMake((screenCenterX+30)*x3, -100.0f * x3)];
+                    [helpNode setPosition:CGPointMake((30)*x3, -100.0f * x3)];
                     [myCamera addChild: helpNode];
                 }
             }
@@ -2188,7 +2218,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             /* SND: train runs */
             if( (Edgar.position.x + Edgar.frame.size.width > contactNode.position.x) && (Edgar.position.x < contactNode.position.x + contactNode.frame.size.width) ){
-                NSLog(@"adslfkj");
                 
                 plpTrain *theTrain = (plpTrain *)contactNode;
                 [theTrain setHeroAbove];
@@ -2209,19 +2238,26 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         if([contactNode isKindOfClass:[plpPlatform class]])
         {
-            NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 126, contactNode.position.y);
+            float deltaX = Edgar.position.x - contactNode.position.x;
+            
+            //  NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 126, contactNode.position.y);
+            
+            // NSLog(@"Edgar x : %f, plateforme: %f, delta: %f", Edgar.position.x, contactNode.position.x, deltaX);
             
             // Determine vertical position, check if the platform should stop
-        
+            
             if([(plpPlatform *)contactNode getIsVertical] == TRUE)
             {
                 // TODO: check this number
                 if (Edgar.position.y < contactNode.position.y + 28)
                 {
-                    [self EdgarDiesOf: DEATH_PLATFORM];
                     [(plpPlatform *)contactNode emergencyStop];
-                }else{
-                    NSLog(@"Platform contact but no death");
+                    
+                    // Edgar has its feet on the ground and is well under the platform
+                    if( (deltaX < 330) && (deltaX > -35) && (!isJumping) ){
+                        NSLog(@"†");
+                        [self EdgarDiesOf: DEATH_PLATFORM];
+                    }
                 }
             }
             else // If horizontal, also check if a horizontal stop is needed
@@ -2250,7 +2286,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 
                 [edgarLife setName: [NSString stringWithFormat:@"life%ld", (long)lifeCount]];
                 [HUD addChild: edgarLife];
-                [edgarLife runAction: [SKAction moveTo: CGPointMake(-320 * x3 + (lifeCount * 80), 540) duration: 1.0]];
+                [edgarLife runAction: [SKAction moveTo: CGPointMake(-320 * x3 + (lifeCount * 80), 250 + 500 * screenRatio) duration: 1.0]];
                 [edgarLife runAction: [SKAction scaleTo: 1.0 duration: 1.0]];
                 
                 lifeCount++;
@@ -2478,7 +2514,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 [cheatEnabledMessage setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
                 
                 cheatEnabledMessage.fontColor = [SKColor redColor];
-                cheatEnabledMessage.position = CGPointMake(screenCenterX, 0); // should be ~ 100 * x3 for an iPad air -> find a way to do it better
+                cheatEnabledMessage.position = CGPointMake(0, 0); // should be ~ 100 * x3 for an iPad air -> find a way to do it better
                 cheatEnabledMessage.zPosition = 30;
                 cheatEnabledMessage.text = @"Cheats active. Time penalty!";
                 cheatEnabledMessage.alpha = 0;
@@ -2550,14 +2586,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [Edgar facingEdgar];
         [self->soundController stopFootstepSound];
         
-        if([Edgar actionForKey: @"collectLife"] != nil){
-            NSLog(@"collectLife action exists");
-            [Edgar removeActionForKey:@"moveRightKey"];
-            [Edgar removeActionForKey:@"moveLeftKey"];
-            [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
-        }else{
-            [Edgar removeAllActions];
-        }
+        [Edgar removeActionForKey:@"moveRightKey"];
+        [Edgar removeActionForKey:@"moveLeftKey"];
+        [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
     }
     
     /*if(isEdgarPinned == TRUE){
@@ -2576,14 +2607,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if((movingRight!=TRUE) || moveUpRequested){ // ddd why "or moveUpRequested"?
             Edgar.xScale = 1.0;
             
-            if([Edgar actionForKey: @"collectLife"] != nil){
-                NSLog(@"collectLife action exists");
-                [Edgar removeActionForKey:@"moveRightKey"];
-                [Edgar removeActionForKey:@"moveLeftKey"];
-                [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
-            }else{
-                [Edgar removeAllActions];
-            }
+            [Edgar removeActionForKey:@"moveRightKey"];
+            [Edgar removeActionForKey:@"moveLeftKey"];
+            [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
             
             [Edgar walkingEdgar];
             [Edgar runAction:moveRightAction withKey:@"moveRightKey"];
@@ -2596,14 +2622,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         moveLeftRequested = false;
         if((movingLeft != TRUE) || moveUpRequested){
             Edgar.xScale = -1.0;
-            if([Edgar actionForKey: @"collectLife"] != nil){
-                NSLog(@"collectLife action exists");
-                [Edgar removeActionForKey:@"moveRightKey"];
-                [Edgar removeActionForKey:@"moveLeftKey"];
-                [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
-            }else{
-                [Edgar removeAllActions];
-            }
+            [Edgar removeActionForKey:@"moveRightKey"];
+            [Edgar removeActionForKey:@"moveLeftKey"];
+            [Edgar removeActionForKey:@"walkingInPlaceEdgar"];
             
             [Edgar walkingEdgar];
             [Edgar runAction: moveLeftAction withKey:@"moveLeftKey"];
