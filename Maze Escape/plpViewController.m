@@ -101,11 +101,18 @@
 
 
 
-- (IBAction)doTutorial:(id)sender {
+- (IBAction)newGame:(id)sender {
     UIButton *clicked = (UIButton *) sender;
     UIView *containerView = [clicked superview];
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [containerView removeFromSuperview];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:1 forKey:@"savedLevel"];
+    [defaults setInteger:3 forKey:@"lifeCount"];
+    [defaults setInteger:0 forKey:@"fileCount"];
+    [defaults setFloat:0 forKey:@"totalTime"];
+    [defaults synchronize];
     
     if(self.MenuBackground)
     {
@@ -137,12 +144,10 @@
     
     SKView * skView = (SKView *)self.view;
     SKScene *introScene = [plpIntroScene sceneWithSize:skView.bounds.size];
-    [skView presentScene: introScene];
     
-    /*
-    [self newGameWithTutorial: TRUE];
-    [(plpMyScene*)myScene computeSceneCenter];
-    */
+    // “The default value is SKSceneScaleModeFill.”
+    // To use another option: [introScene setScaleMode: SKSceneScaleModeAspectFill];
+    [skView presentScene: introScene];
 }
 
 - (IBAction)resumeFreezedGame:(id)sender {
@@ -169,9 +174,9 @@
     }else{
         [self loadSavedGame: clicked.tag];
     }
-    [(plpMyScene*)myScene computeSceneCenter];
 }
 
+/*
 - (void)newGameWithIntroduction: (BOOL) doIntroduction
 {
     self.pauseButton.hidden = NO;
@@ -196,6 +201,7 @@
     // We start the new game
     SKView * spriteView = (SKView *)self.view;
     [spriteView presentScene: myScene];
+    
 
     if(doIntroduction == FALSE)
     {
@@ -212,6 +218,7 @@
         }
     }
 }
+*/
 
 - (void)loadSavedGame: (NSInteger)startLevel
 {
@@ -233,7 +240,8 @@
     SKView * spriteView = (SKView *)self.view;
     [spriteView presentScene:myScene];
     
-    startLevel = 2;
+    // custom level for debug
+    // startLevel = 6;
     if(startLevel > 0)
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -318,7 +326,7 @@
     [[buttonNewGame layer] setCornerRadius:5.0f];
     [buttonNewGame setTitle: @"New Game" forState:UIControlStateNormal];
     [buttonNewGame addTarget: self
-                        action: @selector(doTutorial:)
+                        action: @selector(newGame:)
               forControlEvents: UIControlEventTouchUpInside];
     
     // Right: “Resume”
