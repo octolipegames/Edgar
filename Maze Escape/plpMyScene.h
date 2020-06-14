@@ -81,10 +81,6 @@ float contextVelocityX;
     // Prefs
     BOOL useSwipeGestures;
     BOOL enableDebug;
-    NSInteger lifeCount;
-    NSInteger levelFileCount;
-    NSInteger levelTotalFileCount;
-    NSInteger fileCount;
     
     // Audio
     plpSoundController *soundController;
@@ -129,9 +125,16 @@ float contextVelocityX;
     // Game data
     int globalCounter;
     int currentLevelIndex;
+    
+    NSInteger lifeCount;
+    NSInteger levelFileCount;
+    NSInteger levelTotalFileCount;
+    NSInteger fileCount;
+    
     double initialTime;
     double additionalSavedTime;
     double additionalLevelTime;
+    
     BOOL liftReady;
     BOOL isDying;
     BOOL cheatsEnabled;
