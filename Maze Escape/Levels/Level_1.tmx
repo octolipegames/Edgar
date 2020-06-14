@@ -25,7 +25,7 @@
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
   </object>
-  <object id="26" name="Start" x="1290" y="534" width="313" height="366"/>
+  <object id="26" name="Start" x="1090" y="534" width="313" height="366"/>
   <object id="27" name="verticalPlatform" x="4506" y="894" width="300" height="600">
    <properties>
     <property name="moveUpFirst" value="1"/>
