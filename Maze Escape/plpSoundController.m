@@ -45,14 +45,19 @@
     
     if(volumeSaved == YES){
         float savedMusicVolume = [defaults floatForKey:@"musicVolume"];
-        float savedFxVolume = [defaults floatForKey:@"fxVolume"];
+        
+        // Performance issues with volume-controlled sound effects
+        // float savedFxVolume = [defaults floatForKey:@"fxVolume"];
+        BOOL playFX = [defaults boolForKey:@"playFX"];
         
         self->musicVolume = savedMusicVolume;
         if(savedMusicVolume == 0){
             self.muteMusic = TRUE;
         }
-        self->fxVolume = savedFxVolume;
-        if(savedFxVolume == 0){
+        if(playFX == TRUE){
+            self->fxVolume = 1;
+        }else{
+            self->fxVolume = 0;
             self.muteSoundFX = TRUE;
         }
     } else {
@@ -112,6 +117,11 @@
         NSURL *url = [[NSBundle mainBundle] URLForResource:filename withExtension:@"mp3"];
         NSError *error = nil;
         
+        if(fadingOut){
+            NSLog(@"stop fade out");
+            [NSObject cancelPreviousPerformRequestsWithTarget:self];
+        }
+        
         self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
         self.audioPlayer.numberOfLoops = loops;
         self.audioPlayer.volume = self->musicVolume;
@@ -124,11 +134,13 @@
 
 - (void)doVolumeFade
 {
+    fadingOut = TRUE;
     if (self.audioPlayer.volume > 0.1) {
         self.audioPlayer.volume = self.audioPlayer.volume - 0.1;
         [self performSelector:@selector(doVolumeFade) withObject:nil afterDelay:0.1];
     } else {
         // Stop and get the sound ready for playing again
+        fadingOut = FALSE;
         [self.audioPlayer stop];
         self.audioPlayer.currentTime = 0;
         [self.audioPlayer prepareToPlay];

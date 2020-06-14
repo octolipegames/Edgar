@@ -30,10 +30,12 @@
     SKSpriteNode *mySoundController;
 }
 @property (weak, nonatomic) IBOutlet UISlider *musicVolumeSlider;
-@property (weak, nonatomic) IBOutlet UISlider *fxVolumeSlider;
+// @property (weak, nonatomic) IBOutlet UISlider *fxVolumeSlider;
+@property (weak, nonatomic) IBOutlet UISwitch *fxSwitch;
 
 - (IBAction)musicVolumeChanged:(id)sender;
-- (IBAction)fxVolumeChanged:(id)sender;
+//- (IBAction)fxVolumeChanged:(id)sender;
+- (IBAction)fxSwitchChanged:(id)sender;
 - (IBAction)applyChanges:(id)sender;
 
 @end

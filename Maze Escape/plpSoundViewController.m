@@ -35,10 +35,17 @@
     BOOL volumeSaved = [defaults boolForKey:@"volumeSaved"];
     if(volumeSaved == YES){
         float savedMusicVolume = [defaults floatForKey:@"musicVolume"];
-        float savedFxVolume = [defaults floatForKey:@"fxVolume"];
+        
+        // float savedFxVolume = [defaults floatForKey:@"fxVolume"];
+        BOOL playFX = [defaults boolForKey:@"playFX"];
+        // NSLog(@"Saved music volueme: %f, other thing: %d", savedMusicVolume, playFX);
         
         [self.musicVolumeSlider setValue: savedMusicVolume animated: NO];
-        [self.fxVolumeSlider setValue: savedFxVolume animated: NO];
+        // [self.fxVolumeSlider setValue: savedFxVolume animated: NO];
+        
+        if(playFX == NO){
+            [_fxSwitch setOn:NO animated:NO];
+        }
     } else {
         NSLog(@"(soundView) No saved volumes found in prefs");
     }
@@ -49,13 +56,16 @@
     self->valuesDidChange = TRUE;
 }
 
-- (IBAction)fxVolumeChanged:(id)sender {
+/*- (IBAction)fxVolumeChanged:(id)sender {
     // Here we could play a sound
     // UISlider *slider = (UISlider *)sender;
     // NSLog(@"SliderValue ... %f",(float)[slider value]);
     self->valuesDidChange = TRUE;
-}
+}*/
 
+- (IBAction)fxSwitchChanged:(id)sender {
+    self->valuesDidChange = TRUE;
+}
 - (IBAction)applyChanges:(id)sender {
     NSLog(@"Save volume changes...");
     NSLog(@"SliderValue ... %f", self.musicVolumeSlider.value);
@@ -64,7 +74,8 @@
         NSLog(@"Values did change so we update user prefs");
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setFloat:self.musicVolumeSlider.value forKey:@"musicVolume"];
-        [defaults setFloat:self.fxVolumeSlider.value forKey:@"fxVolume"];
+        // [defaults setFloat:self.fxVolumeSlider.value forKey:@"fxVolume"];
+        [defaults setBool: _fxSwitch.on forKey:@"playFX"];
         [defaults setBool:YES forKey:@"volumeSaved"];
         [defaults synchronize];
     }

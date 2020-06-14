@@ -17,6 +17,7 @@
     BOOL pushingCrate;
     float musicVolume;
     float fxVolume;
+    BOOL fadingOut;
     
     SKAction *leftFootstepSound;
     SKAction *rightFootstepSound;
