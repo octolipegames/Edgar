@@ -28,6 +28,7 @@
 		DA05001B2472FA4200F2DC3D /* elevateur-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0500192472FA4200F2DC3D /* elevateur-01.png */; };
 		DA05001C2472FA4200F2DC3D /* elevateur-02-horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = DA05001A2472FA4200F2DC3D /* elevateur-02-horizontal.png */; };
 		DA05001E2473001B00F2DC3D /* caisse.png in Resources */ = {isa = PBXBuildFile; fileRef = DA05001D2473001B00F2DC3D /* caisse.png */; };
+		DA09D4CD2490C8CD00B87E0A /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = DA60EAA31B7F38E100A3F927 /* Sounds */; };
 		DA10C1A51D5BF3F900579F1F /* UI_img in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A41D5BF3F900579F1F /* UI_img */; };
 		DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A61D5BFB6400579F1F /* edgar.atlas */; };
 		DA1A0F87245F32A40070CA08 /* Pile.png in Resources */ = {isa = PBXBuildFile; fileRef = DA1A0F86245F32A40070CA08 /* Pile.png */; };
@@ -46,7 +47,6 @@
 		DA5CF4E11B73EB84005A5C91 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5CF4DC1B73EB6E005A5C91 /* JSTileMap.m */; };
 		DA5CF4E21B73EB8C005A5C91 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5CF4DE1B73EB6E005A5C91 /* LFCGzipUtility.m */; };
 		DA5DA22324890D1200945031 /* Trappe.png in Resources */ = {isa = PBXBuildFile; fileRef = DA5DA22224890D1200945031 /* Trappe.png */; };
-		DA60EAA41B7F38E100A3F927 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = DA60EAA31B7F38E100A3F927 /* Sounds */; };
 		DA60FCB4223EBB6A005276C6 /* plpSoundController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60FCB3223EBB6A005276C6 /* plpSoundController.m */; };
 		DA60FCB6223EBB88005276C6 /* plpSoundController.h in Sources */ = {isa = PBXBuildFile; fileRef = DA60FCB5223EBB88005276C6 /* plpSoundController.h */; };
 		DA614A75245DB3D5006AD8CF /* Arbre_x3.png in Resources */ = {isa = PBXBuildFile; fileRef = DA614A74245DB3D5006AD8CF /* Arbre_x3.png */; };
@@ -503,6 +503,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA09D4CD2490C8CD00B87E0A /* Sounds in Resources */,
 				DA0500132472F18300F2DC3D /* ascenseurO-01.png in Resources */,
 				DAC45078241ECBF300BFBE9C /* scenes.atlas in Resources */,
 				DA29F9CB23EE9F2100CF4F22 /* Logo_Launch_Screen.png in Resources */,
@@ -539,7 +540,6 @@
 				DA614A80245DB64D006AD8CF /* ChariotBase.png in Resources */,
 				DAEF1183248D5D8100425495 /* Buisson_x3.png in Resources */,
 				DA05001E2473001B00F2DC3D /* caisse.png in Resources */,
-				DA60EAA41B7F38E100A3F927 /* Sounds in Resources */,
 				DAB511EA24792A8700F42A68 /* Scientifique_2.png in Resources */,
 				DA10C1A51D5BF3F900579F1F /* UI_img in Resources */,
 				DA614A81245DB64D006AD8CF /* ChariotRoue.png in Resources */,
@@ -755,12 +755,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = QMNSE76DMB;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
 				PRODUCT_NAME = "Edgar Explorer";
 				PROVISIONING_PROFILE = "";
@@ -779,12 +781,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = QMNSE76DMB;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
 				PRODUCT_NAME = "Edgar Explorer";
 				PROVISIONING_PROFILE = "";
