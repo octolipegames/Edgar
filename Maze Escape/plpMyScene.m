@@ -428,10 +428,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKSpriteNode *upperCurtain = (SKSpriteNode*)[myCamera childNodeWithName:@"upperCurtain"];
     [lowerCurtain setColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1]];
     [upperCurtain setColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1]];
+    [self->soundController playTune:@"Sounds/game_over" loops:0];
     
     if(upperCurtain && lowerCurtain){
-        [upperCurtain runAction: [SKAction moveToY:-20 duration: 1.2]];
-        [lowerCurtain runAction: [SKAction moveToY: 20 duration: 1.2] completion:^
+        [upperCurtain runAction: [SKAction moveToY:-20 duration: 2]];
+        [lowerCurtain runAction: [SKAction moveToY: 20 duration: 2] completion:^
         {
             NSLog(@"curtains closed");
             SKTexture *gameOverTexture = [SKTexture textureWithImageNamed:@"GameOver.png"];
@@ -575,6 +576,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 {
     if(needsInfoBar){
         [self addInfoBar];
+        needsInfoBar = FALSE;
     }
     
     if(levelIndex <= 1) // dev: need to this to the right place
@@ -826,44 +828,41 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 {
                     NSLog(@"Error while creating the tree.");
                 }
+                SKSpriteNode *bush = [SKSpriteNode spriteNodeWithImageNamed:@"Buisson_x3"];
+                [bush setPosition:CGPointMake( 200, 1010)];
+                [tileMap addChild:bush];
             }
         }
     }
-    else if(currentLevelIndex != -1)
+    NSArray *semaphoreArray;
+    if((semaphoreArray=[group objectsNamed:@"semaphore"]))
     {
-        // semaphore
-        NSLog(@"Level including semaphore");
-        
-        NSArray *semaphoreArray;
-        if((semaphoreArray=[group objectsNamed:@"semaphore"]))
-        {
-            for (NSDictionary *monSemaphore in semaphoreArray) {
-                plpItem *myItem;
-                myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monSemaphore] withTexture:@"Feu_vert.png" andRadius:22];
-                //                float waitBeforeStart = [monSemaphore[@"waitBeforeStart"] floatValue];
-                if(myItem)
-                {
-                    //                    myItem.physicsBody.categoryBitMask = PhysicsCategoryItems;
-                    [tileMap addChild:myItem];
-                    // action
-                    
-                    SKTexture *semaphoreGreen = [SKTexture textureWithImageNamed:@"Feu_vert.png"];
-                    SKTexture *semaphoreRed = [SKTexture textureWithImageNamed:@"Feu_rouge.png"];
-                    SKAction *setGreen = [SKAction setTexture:semaphoreGreen];
-                    SKAction *setRed = [SKAction setTexture:semaphoreRed];
-                    SKAction *waitShort = [SKAction waitForDuration:2];
-                    SKAction *waitLong = [SKAction waitForDuration:4];
-                    SKAction *changeTexture = [SKAction sequence:@[waitShort, setGreen, waitShort, setRed, waitLong]];
-                    
-                    [myItem runAction: setRed completion: ^{
-                        [myItem runAction:[SKAction repeatActionForever:changeTexture]];
-                    }];
-                    
-                }
-                else
-                {
-                    NSLog(@"Error while creating the semaphore.");
-                }
+        for (NSDictionary *monSemaphore in semaphoreArray) {
+            plpItem *myItem;
+            myItem = [[plpItem alloc] initAtPosition:[self convertPosition:monSemaphore] withTexture:@"Feu_vert.png" andRadius:22];
+            //                float waitBeforeStart = [monSemaphore[@"waitBeforeStart"] floatValue];
+            if(myItem)
+            {
+                //                    myItem.physicsBody.categoryBitMask = PhysicsCategoryItems;
+                [tileMap addChild:myItem];
+                // action
+                
+                SKTexture *semaphoreGreen = [SKTexture textureWithImageNamed:@"Feu_vert.png"];
+                SKTexture *semaphoreRed = [SKTexture textureWithImageNamed:@"Feu_rouge.png"];
+                SKAction *setGreen = [SKAction setTexture:semaphoreGreen];
+                SKAction *setRed = [SKAction setTexture:semaphoreRed];
+                SKAction *waitShort = [SKAction waitForDuration:2];
+                SKAction *waitLong = [SKAction waitForDuration:4];
+                SKAction *changeTexture = [SKAction sequence:@[waitShort, setGreen, waitShort, setRed, waitLong]];
+                
+                [myItem runAction: setRed completion: ^{
+                    [myItem runAction:[SKAction repeatActionForever:changeTexture]];
+                }];
+                
+            }
+            else
+            {
+                NSLog(@"Error while creating the semaphore.");
             }
         }
     }
@@ -1286,6 +1285,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
 -(void)resumeAfterPause
 {
+    // check if game over was playing
+    
     NSLog(@"resume after pause");
     [soundController updateVolumes];
     float fxVolume = [soundController getFxVolume];
@@ -1371,7 +1372,18 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         if(self->lifeCount < 1){
             self->levelTransitioning = TRUE;
+            
+            // (just in case user pauses and comes back -- we actually reset this when “play again” button is pressed)
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            // 0 -> flag for new game
+            [defaults setInteger:0 forKey:@"savedLevel"];
+            [defaults setInteger:3 forKey:@"lifeCount"];
+            [defaults setInteger:0 forKey:@"fileCount"];
+            [defaults setFloat:0 forKey:@"totalTime"];
+            [defaults synchronize];
+            
             [self showGameOver];
+            
         }else{
             self->levelTransitioning = TRUE;
             [self->myFinishRectangle removeFromParent];
@@ -1546,7 +1558,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         [upperCurtain runAction: openupperCurtain];
         [lowerCurtain runAction: openlowerCurtain completion:^{
             [self saveInitialTime];
-            [self->soundController playTune:@"Sounds/Edgar_VF" loops:-1];
+            [self->soundController playTune:@"Sounds/main_music_loop" loops:-1];
             [self->Edgar giveControl];
         }];
     }];
@@ -1595,14 +1607,22 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKLabelNode *displayTime = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
     displayTime.fontSize = 30 * x3;
     displayTime.fontColor = [SKColor whiteColor];
-    displayTime.position = CGPointMake(0, 10 * x3);
+    displayTime.position = CGPointMake(0, 30 * x3);
     displayTime.zPosition = 42;
     
     SKLabelNode *displayTime2 = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
     displayTime2.fontSize = 24 * x3;
     displayTime2.fontColor = [SKColor whiteColor];
-    displayTime2.position = CGPointMake(0, -30 * x3);
+    displayTime2.position = CGPointMake(0, -10 * x3);
     displayTime2.zPosition = 42;
+    
+    SKLabelNode *displayFiles = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+    displayFiles.fontSize = 24 * x3;
+    displayFiles.fontColor = [SKColor whiteColor];
+    displayFiles.position = CGPointMake(0, -50 * x3);
+    displayFiles.zPosition = 42;
+    
+    
     
     NSLog(@"Screen center x: %f", screenCenterX);
     
@@ -1618,23 +1638,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
     else
     {
-        if(currentLevelIndex > 1)
-        {
-            displayTime.text = [[NSString alloc]
-                                initWithFormat:@"Total time: %@", [self getTimeString: totalTime]];
+        displayTime.text = [[NSString alloc] initWithFormat:@"Total time: %@", [self getTimeString: totalTime]];
             
-            displayTime2.text = [[NSString alloc]
-                                 initWithFormat:@"This level: %@", [self getTimeString: levelTime]];
-        }
-        else
-        {
-            displayTime.text = [[NSString alloc]
-                                initWithFormat:@"You made this tutorial in %@", [self getTimeString:levelTime]];
-            
-            displayTime2.text = [[NSString alloc]
-                                 initWithFormat:@"Get ready for the game!"];
-        }
+        displayTime2.text = [[NSString alloc] initWithFormat:@"This level: %@", [self getTimeString: levelTime]];
     }
+    
+    displayFiles.text = [[NSString alloc] initWithFormat:@"%ld/%lu files collected", (long) levelFileCount, (long)levelTotalFileCount];
     
     
     
@@ -1672,10 +1681,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKAction *presentScore = [SKAction runBlock:^{
         [self->myCamera addChild:displayTime];
         [self->myCamera addChild:displayTime2];
+        [self->myCamera addChild:displayFiles];
         
-        SKAction *timeVanish = [SKAction sequence: @[[SKAction fadeAlphaTo:1 duration:.3], [SKAction waitForDuration:1.5],[SKAction fadeAlphaTo:0 duration:1], [SKAction removeFromParent]]];
-        [displayTime runAction:timeVanish];
-        [displayTime2 runAction:timeVanish completion:^{
+        SKAction *textFadeOut = [SKAction sequence: @[[SKAction fadeAlphaTo:1 duration:.3], [SKAction waitForDuration:1.5],[SKAction fadeAlphaTo:0 duration:1], [SKAction removeFromParent]]];
+        [displayTime runAction:textFadeOut];
+        [displayFiles runAction:textFadeOut];
+        [displayTime2 runAction:textFadeOut completion:^{
             [self->myWorld runAction: openCurtainsAnimation];
         }];
         [self startLevel];
