@@ -59,20 +59,20 @@
                                 </constraints>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">Find our source code and assets: github.com/polipgames/Edgar
-Explanations on Facebook: facebook.com/edgartheexplorer/
-Contact us at polipgames@gmail.com!
+                                        <mutableString key="content">Find our source code and assets: github.com/polipgames/Edgar
+Explanations on Facebook: facebook.com/octolipegames
+Contact us at octolipe@gmail.com!
 
-By Filipe Mathez and Paul Ronga
-Music and sound effects by Guillaume Carel
+Graphic design: Filipe Mathez
+Developer: Paul Ronga
+Sound design: Guillaume Carel
+Level design and marketing: Lauriane Sanchis
 Many thanks to Aymeric, David, DJ, Justine, Kathryn, Liv, Mathias and Steeve
 Special thanks to our girlfriends
 Very special thanks to our mums
 
 Source code: GNU Lesser General Public License 2.1 http://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html
-Images: CC-BY http://creativecommons.org/licenses/by/4.0/
-Music and sound FX: © Guillaume Carel
-</string>
+Images and music: CC-BY 4 http://creativecommons.org/licenses/by/4.0/</mutableString>
                                         <attributes>
                                             <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <font key="NSFont" size="16" name="GillSans"/>
@@ -183,7 +183,7 @@ Music and sound FX: © Guillaume Carel
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.90000000000000002" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH7-fe-1SY" userLabel="Music">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1.2" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH7-fe-1SY" userLabel="Music">
                                 <rect key="frame" x="62" y="91" width="772" height="31"/>
                                 <color key="tintColor" red="0.17070774781150025" green="0.11668630863064573" blue="0.22472918699235478" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -213,41 +213,39 @@ Music and sound FX: © Guillaume Carel
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Effects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMK-02-PwT">
-                                <rect key="frame" x="64" y="249" width="108" height="21"/>
+                                <rect key="frame" x="64" y="196.5" width="108" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jh0-gi-i4z" userLabel="Sound Effects">
-                                <rect key="frame" x="62" y="279" width="772" height="31"/>
-                                <color key="tintColor" red="0.21464487910270691" green="0.15303006768226624" blue="0.27721971273422241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iV6-Lu-SFp">
+                                <rect key="frame" x="783" y="191.5" width="51" height="31"/>
+                                <color key="onTintColor" red="0.99913519620000002" green="0.95351284739999997" blue="0.53352612259999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="fxVolumeChanged:" destination="yhh-pS-joL" eventType="valueChanged" id="A8k-VY-v5D"/>
+                                    <action selector="fxSwitchChanged:" destination="yhh-pS-joL" eventType="valueChanged" id="Gt9-TW-yBe"/>
                                 </connections>
-                            </slider>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.35013985633850098" green="0.25930362939834595" blue="0.44797712564468384" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="jh0-gi-i4z" firstAttribute="top" secondItem="RMK-02-PwT" secondAttribute="bottom" constant="9" id="1gU-JI-jz4"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gNS-oq-M3r" secondAttribute="trailing" constant="20" symbolic="YES" id="5lV-ac-arN"/>
-                            <constraint firstItem="jh0-gi-i4z" firstAttribute="leading" secondItem="RMK-02-PwT" secondAttribute="leading" id="6XI-Dj-dK8"/>
                             <constraint firstItem="RMK-02-PwT" firstAttribute="leading" secondItem="7xb-K7-9Sq" secondAttribute="leading" constant="64" id="79u-Hh-S6a"/>
-                            <constraint firstAttribute="trailing" secondItem="jh0-gi-i4z" secondAttribute="trailing" constant="64" id="CcF-fC-ojL"/>
                             <constraint firstItem="gNS-oq-M3r" firstAttribute="leading" secondItem="7xb-K7-9Sq" secondAttribute="leading" constant="64" id="ICl-is-GyJ"/>
                             <constraint firstAttribute="trailing" secondItem="UH7-fe-1SY" secondAttribute="trailing" constant="64" id="IJv-wS-8VN"/>
                             <constraint firstItem="UH7-fe-1SY" firstAttribute="leading" secondItem="7xb-K7-9Sq" secondAttribute="leading" constant="64" id="KSf-aV-kdW"/>
-                            <constraint firstItem="e1f-Hn-PTc" firstAttribute="top" secondItem="jh0-gi-i4z" secondAttribute="bottom" constant="30" id="N61-2H-INJ"/>
-                            <constraint firstItem="jh0-gi-i4z" firstAttribute="trailing" secondItem="UH7-fe-1SY" secondAttribute="trailing" id="NEF-U7-HqR"/>
                             <constraint firstItem="e1f-Hn-PTc" firstAttribute="centerX" secondItem="7xb-K7-9Sq" secondAttribute="centerX" id="aar-Hd-gg8"/>
+                            <constraint firstItem="iV6-Lu-SFp" firstAttribute="centerY" secondItem="RMK-02-PwT" secondAttribute="centerY" id="fh6-v4-i5B"/>
+                            <constraint firstItem="RMK-02-PwT" firstAttribute="centerY" secondItem="7xb-K7-9Sq" secondAttribute="centerY" id="loB-NA-t4i"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RMK-02-PwT" secondAttribute="trailing" constant="20" symbolic="YES" id="mYC-tX-lKj"/>
                             <constraint firstItem="y1u-hh-eeR" firstAttribute="top" secondItem="e1f-Hn-PTc" secondAttribute="bottom" constant="24" id="oXB-4c-a4b"/>
                             <constraint firstItem="gNS-oq-M3r" firstAttribute="top" secondItem="l4d-m4-v6b" secondAttribute="bottom" constant="62" id="uRV-pA-eZf"/>
+                            <constraint firstAttribute="trailing" secondItem="iV6-Lu-SFp" secondAttribute="trailing" constant="64" id="wFT-e3-nDV"/>
                             <constraint firstItem="UH7-fe-1SY" firstAttribute="top" secondItem="gNS-oq-M3r" secondAttribute="bottom" constant="8" id="wyI-3b-8Xk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M5y-9C-pbI"/>
                     <connections>
-                        <outlet property="fxVolumeSlider" destination="jh0-gi-i4z" id="0GW-XB-yfP"/>
+                        <outlet property="fxSwitch" destination="iV6-Lu-SFp" id="QxD-7F-rPg"/>
                         <outlet property="musicVolumeSlider" destination="UH7-fe-1SY" id="Hef-Ki-o6s"/>
                     </connections>
                 </viewController>
