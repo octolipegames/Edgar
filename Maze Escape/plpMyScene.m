@@ -70,6 +70,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         // self.size = CGSizeMake(1600, 800); // zoom for debug
         self.size = CGSizeMake(2400, 1200);
+        self.name = @"mainScene";
+        
         NSLog(@"Size: (%f, %f)", self.size.width, self.size.height);
         self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f * 3);
         
@@ -924,7 +926,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     if((fileGroup=[group objectsNamed:@"file"]))
     {
         for (NSDictionary *filePosition in fileGroup) {
-            plpItem *myFile = [[plpItem alloc] initAtPosition:[self convertPosition: filePosition] withTexture:@"Collectionnable.png" andRadius: 30];
+            plpItem *myFile = [[plpItem alloc] initAtPosition:[self convertPosition: filePosition] withTexture:@"File_no_glow.png" andRadius: 30];
             if(myFile)
             {
                 myFile.name = @"file";
@@ -1336,6 +1338,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 - (void)EdgarDiesOf:(int)deathType
 {
     NSLog(@"Edgar Dies");
+    
+    // Player looses its current files
+    fileCount -= levelFileCount;
+    
     if(isDying == TRUE){
         NSLog(@"Already dying");
         return;
@@ -1628,22 +1634,23 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(repeatingLevel == YES)
     {
-        if(currentLevelIndex == 0)
-        {
-            displayTime.text = [[NSString alloc] initWithFormat:@"Welcome back to the tutorial"];
-        }else{
-            displayTime.text = [[NSString alloc] initWithFormat:@"Welcome back to level %d", currentLevelIndex];
-        }
+        NSArray *quoteArray = @[@"Let’s do it again", @"It’s good to see you again", @"Quel plaisir de vous revoir"];
+        NSUInteger randomIndex = arc4random() % quoteArray.count;
+        displayTime.text = [[NSString alloc] initWithFormat:@"%@", quoteArray[randomIndex]]; // plutot une citation random?
         displayTime2.text = [[NSString alloc] initWithFormat:@"Your total time: %@", [self getTimeString: totalTime]];
+        
+        displayFiles.text = [[NSString alloc] initWithFormat:@"%ld files collected until now", (long) fileCount];
     }
     else
     {
         displayTime.text = [[NSString alloc] initWithFormat:@"Total time: %@", [self getTimeString: totalTime]];
             
         displayTime2.text = [[NSString alloc] initWithFormat:@"This level: %@", [self getTimeString: levelTime]];
+        
+        displayFiles.text = [[NSString alloc] initWithFormat:@"%ld/%lu files collected", (long) levelFileCount, (long)levelTotalFileCount];
     }
     
-    displayFiles.text = [[NSString alloc] initWithFormat:@"%ld/%lu files collected", (long) levelFileCount, (long)levelTotalFileCount];
+    
     
     
     
@@ -2558,20 +2565,20 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }else{
                 CGPoint endPosition = [touch locationInNode:self];
 
-                if(endPosition.y - 10 > touchStartPosition.y)
+                if(endPosition.y - 10 * x3 > touchStartPosition.y)
                 {
                     moveUpRequested = TRUE;
-                    if(endPosition.y - 130 > touchStartPosition.y)
+                    if(endPosition.y - 130 * x3 > touchStartPosition.y)
                     {
                         bigJumpRequested = TRUE;
                     }
                 }
                 
-                if(endPosition.x -30 > touchStartPosition.x)
+                if(endPosition.x -30 * x3 > touchStartPosition.x)
                 {
                     moveRightRequested = TRUE;
                 }
-                else if(endPosition.x + 30 < touchStartPosition.x)
+                else if(endPosition.x + 30 * x3 < touchStartPosition.x)
                 {
                     moveLeftRequested = TRUE;
                 }else if (!moveUpRequested){
