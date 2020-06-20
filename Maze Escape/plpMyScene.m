@@ -207,7 +207,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
         // This speed gets higher when Edgar does a long jump.
         // He could also walk faster or slower with new items.
-        EdgarVelocity = 140 * x3;
+        EdgarVelocity = DEFAULT_EDGAR_VELOCITY;
         
         
         moveLeftAction = [SKAction repeatActionForever:[SKAction sequence:@[walkLeft, wait]]];
@@ -956,17 +956,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         levelTotalFileCount = [fileGroup count];
         fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/%lu", (long) levelFileCount, (long)levelTotalFileCount];
     }
-    /*
-     Files: If we want to add a real-time effect -- but we'll edit the image instead
-     SKEffectNode *node = [SKEffectNode node];
-     [node setShouldEnableEffects:NO];
-     CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur" keysAndValues:@"inputRadius", @1.0f, nil];
-     [node setFilter:blur];
-     [self setRoot:node];
-     */
-    
 
-    
     // Train
     NSArray *trainObjectMarker;
     if((trainObjectMarker = [group objectsNamed:@"train"]))
@@ -974,9 +964,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         plpTrain *trainNode;
         
         for (NSDictionary *theTrain in trainObjectMarker) {
-//            trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"Level_objects_img/ChariotSocle.png" andWheelTexture:@"Level_objects_img/RoueChariot-03.png"];
             trainNode = [[plpTrain alloc] initAtPosition: [self convertPosition:theTrain] withMainTexture:@"ChariotParoi.png" andWheelTexture:@"ChariotRoue.png"];
-            
             
             if(trainNode)
             {
@@ -1602,15 +1590,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     SKNode *touchIndicator = [HUD childNodeWithName:@"//touchIndicator"];
     
-    float fadeOutDuration = 5;
-    if(currentLevelIndex == 1){
-        fadeOutDuration = 20;
+    if(currentLevelIndex != 1){
+        [touchIndicator runAction: [SKAction fadeOutWithDuration: 5.0] completion:^{
+            [touchIndicator removeAllChildren];
+            [touchIndicator removeFromParent];
+        }];
     }
-    [touchIndicator runAction: [SKAction fadeOutWithDuration: fadeOutDuration] completion:^{
-        [touchIndicator removeAllChildren];
-        [touchIndicator removeFromParent];
-        //[self->HUD removeAllChildren];
-    }];
 }
 
 
@@ -2075,7 +2060,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     [myLevel runAction:[SKAction sequence:@[createBeam, showBeam, moveEdgar, longWaitAction, vanish, removeBeam, longWaitAction, flyAwaySound, flyAway, longWaitAction, finalMessage]]];
                 }
             } // end if LAST_LEVEL_INDEX
-        }else if(currentLevelIndex==0) // Tutorial level
+        }else if(currentLevelIndex==1) // Tutorial level
         {
             SKSpriteNode *helpNode;
             
@@ -2091,106 +2076,49 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 if(useSwipeGestures){
                     helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeRight.png"];
                 }else{
-                    for (SKNode* theNode in [HUD children]) {
+                    SKNode *touchIndicator = [HUD childNodeWithName:@"//touchIndicator"];
+                    for (SKNode* theNode in [touchIndicator children]) {
                         [theNode setAlpha: 0.2];
                     }
                     
-                    SKNode *moveRight = [HUD childNodeWithName:@"right"];
+                    SKNode *moveRight = [HUD childNodeWithName:@"//touchIndicator/right"];
                     SKAction *fadeIn = [SKAction fadeAlphaTo: 1 duration: .5];
                     SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
                     [moveRight runAction: [SKAction repeatActionForever: [SKAction sequence:@[fadeIn, fadeOut]]]];
                 }
-            }else if([contactNode.name isEqualToString:@"jump"])
+            }else if([contactNode.name isEqualToString:@"run"])
             {
                 if(useSwipeGestures){
                     helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
                 }else{
-                    SKNode *moveRight = [HUD childNodeWithName:@"right"];
+                    SKNode *moveRight = [HUD childNodeWithName:@"//touchIndicator/right"];
                     [moveRight removeAllActions];
                     [moveRight setAlpha: 0.2];
-                    SKNode *middleRight = [HUD childNodeWithName:@"middleright"];
+                    
+                    SKNode *middleRight = [HUD childNodeWithName:@"//touchIndicator/middleright"];
                     SKAction *fadeIn = [SKAction fadeAlphaTo: 1 duration: .5];
                     SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
                     [middleRight runAction: [SKAction repeatActionForever: [SKAction sequence:@[fadeIn, fadeOut]]]];                }
-            }else if([contactNode.name isEqualToString:@"stop"])
+            }else if([contactNode.name isEqualToString:@"jump"])
             {
-                if(useSwipeGestures){
-                    helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/tap.png"];
-                    [helpNode runAction:[SKAction sequence:@[[SKAction waitForDuration:.5], [SKAction fadeAlphaTo:0 duration:1]]]];
-                }else{
-                    SKNode *middleRight = [HUD childNodeWithName:@"middleright"];
-                    [middleRight removeAllActions];
-                    [middleRight setAlpha: 0.2];
-                    SKNode *upRight = [HUD childNodeWithName:@"upright"];
-                    SKAction *fadeIn = [SKAction fadeAlphaTo: 1 duration: .5];
-                    SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
-                    [upRight runAction: [SKAction repeatActionForever: [SKAction sequence:@[fadeIn, fadeOut]]]];                }
-            }else if([contactNode.name isEqualToString:@"explainTrain"])
-            {
-                SKNode *upRight = [HUD childNodeWithName:@"upright"];
-                [upRight removeAllActions];
-                [upRight setAlpha: 0.2];
-                [HUD runAction: [SKAction fadeOutWithDuration: 5] completion:^{
-                    [self->HUD removeAllChildren];
-                }];
+                NSLog(@"jump sprite");
+                SKNode *middleRight = [HUD childNodeWithName:@"//touchIndicator/middleright"];
+                [middleRight removeAllActions];
+                [middleRight setAlpha: 0.2];
                 
-                [contactNode setName: NULL];
-                SKLabelNode *explainTrainNode = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
-                explainTrainNode.name = @"explainText";
-                explainTrainNode.fontSize = 30;
-                explainTrainNode.fontColor = [SKColor whiteColor];
-                explainTrainNode.position = CGPointMake(0, 50);
-                explainTrainNode.zPosition = 30;
-                explainTrainNode.text = @"You can jump on this minecart to make it move";
-                [myCamera addChild: explainTrainNode];
-                [explainTrainNode runAction:[SKAction sequence:@[[SKAction waitForDuration:2], [SKAction fadeAlphaTo:0 duration:1]]]];
-                //helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
-            }else if([contactNode.name isEqualToString:@"showUranium"])
+                SKNode *upRight = [HUD childNodeWithName:@"//touchIndicator/upright"];
+                SKAction *fadeIn = [SKAction fadeAlphaTo: 1 duration: .5];
+                SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
+                [upRight runAction: [SKAction repeatActionForever: [SKAction sequence:@[fadeIn, fadeOut]]]];
+            }else if([contactNode.name isEqualToString:@"showFile"])
             {
-                SKNode *lastTextNode = [myCamera childNodeWithName:@"explainText"];
-                if(lastTextNode){
-                    [lastTextNode removeFromParent]; // to avoid a text overlap
-                }
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/showUranium.png"];
-                [helpNode setPosition:[myLevel childNodeWithName:@"uranium"].position];
-                [helpNode setSize:CGSizeMake(100 * x3, 100 * x3)];
-                [helpNode runAction:[SKAction repeatActionForever:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]]]];
+                [contactNode removeFromParent];
+                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/showFile.png"];
+                [helpNode setPosition:[myLevel childNodeWithName:@"file"].position];
+                [helpNode setSize:CGSizeMake(250, 250)];
+                [helpNode runAction:[SKAction repeatAction:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]] count:2]];
                 [myLevel addChild: helpNode];
                 
-                SKLabelNode *explainUranium = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
-                explainUranium.name = @"explainText";
-                explainUranium.fontSize = 30;
-                explainUranium.fontColor = [SKColor whiteColor];
-                explainUranium.position = CGPointMake(0, 50);
-                explainUranium.zPosition = 30;
-                explainUranium.text = @"Take the uranium cell to activate the exit";
-                [myCamera addChild: explainUranium];
-                [explainUranium runAction:[SKAction sequence:@[[SKAction waitForDuration:2], [SKAction fadeAlphaTo:0 duration:1]]]];
-            }else if([contactNode.name isEqualToString:@"showMenu"])
-            {
-                SKNode *lastTextNode = [myCamera childNodeWithName:@"explainText"];
-                if(lastTextNode){
-                    [lastTextNode removeFromParent]; // to avoid a text overlap
-                }
-                
-                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/arrowMenuWithButtons.png"];
-                [myCamera addChild: helpNode];
-                
-                float helpNodeXgap = (self.view.bounds.size.width/2)-60;
-                [helpNode setPosition:CGPointMake(helpNodeXgap, 80.0f)];
-                
-                // previously: fixed helpNodeXgap, 220px
-                // NSLog(@"width=%f, estimation = %f", self.view.bounds.size.width, helpNodeXgap);
-                
-                SKLabelNode *showMenu = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
-                showMenu.fontSize = 30;
-                showMenu.fontColor = [SKColor whiteColor];
-                showMenu.zPosition = 30;
-                showMenu.text = @"Use the buttons to pause or restart a level";
-                
-                [helpNode addChild: showMenu];
-                [showMenu setPosition:CGPointMake(-helpNodeXgap, -80.0f)];
-                [helpNode runAction:[SKAction sequence:@[[SKAction waitForDuration:2], [SKAction fadeAlphaTo:0 duration:1]]]];
             }
             
             if(helpNode)
@@ -2265,15 +2193,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 plpTrain *theTrain = (plpTrain *)contactNode;
                 [theTrain setHeroAbove];
             
-                /*
-                // wrong behaviour
-                if(!trainPin){
-                    NSLog(@"Pin");
-                    trainPin = [SKPhysicsJointPin jointWithBodyA: Edgar.physicsBody bodyB: contactNode.physicsBody anchor: contactNode.position];
-                    [self.physicsWorld addJoint: trainPin];
-                    isEdgarPinned = TRUE;
-                }*/
-            
                 [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed: 100]; // previous max speed: 200 * x3
             }
             return;
@@ -2283,7 +2202,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         {
             float deltaX = Edgar.position.x - contactNode.position.x;
             
-            //  NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y - 126, contactNode.position.y);
+            // NSLog(@"Edgar : %f, plateforme: %f", Edgar.position.y, contactNode.position.y + 28);
             
             // NSLog(@"Edgar x : %f, plateforme: %f, delta: %f", Edgar.position.x, contactNode.position.x, deltaX);
             
@@ -2305,7 +2224,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
             else // If horizontal, also check if a horizontal stop is needed
             {
-                [(plpPlatform *)contactNode horizontalEmergencyStop:Edgar.position.x];
+                if (Edgar.position.y < contactNode.position.y + 28){
+                    [(plpPlatform *)contactNode horizontalEmergencyStop:Edgar.position.x];
+                }
             }
         }
     }
@@ -2415,7 +2336,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
     
     
-    if(currentLevelIndex==0) // Tutorial
+    if(currentLevelIndex==1) // Tutorial
     {
         if(contactNode.physicsBody.categoryBitMask == PhysicsCategorySensors)
         {
@@ -2423,19 +2344,24 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             {
                 SKNode* helpNode;
                 
-                if((helpNode = (SKSpriteNode*)[myCamera childNodeWithName:@"//helpNode"]))
-                {
-                    [helpNode removeFromParent];
-                    helpNode = nil;
-                    [contactNode removeFromParent]; // We remove the sensor / On enlève le senseur
-                }
-                else
-                {
-                    if((helpNode = (SKSpriteNode*)[myLevel childNodeWithName:@"//helpNode"]))
+                if(useSwipeGestures){
+                    if((helpNode = (SKSpriteNode*)[myCamera childNodeWithName:@"//helpNode"]))
                     {
                         [helpNode removeFromParent];
                         helpNode = nil;
                         [contactNode removeFromParent]; // We remove the sensor / On enlève le senseur
+                    }
+                }else{ // move on touch
+                    if([contactNode.name isEqualToString:@"run"])
+                    {
+                        SKNode *middleRight = [HUD childNodeWithName:@"//touchIndicator/middleright"];
+                        [middleRight removeAllActions];
+                        [middleRight setAlpha: 0.2];
+                    }else if([contactNode.name isEqualToString:@"jump"]){
+                        NSLog(@"remove jump");
+                             SKNode *upright = [HUD childNodeWithName:@"//touchIndicator/upright"];
+                             [upright removeAllActions];
+                             [upright setAlpha: 0.2];
                     }
                 }
             }
