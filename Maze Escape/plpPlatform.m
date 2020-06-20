@@ -325,6 +325,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 // When our main character could get stucked left/right by a platform
 - (void) horizontalEmergencyStop: (float) EdgarXPosition
 {
+    NSLog(@"Horizontal emergency stop");
     BOOL stopReallyNeeded = FALSE;
     int factor = 1;
     
@@ -347,26 +348,39 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(stopReallyNeeded)
     {
+        NSLog(@" stop needed!!");
         emergencyStopTriggered = TRUE; // to avoid simoultaneous calls
         
-        [self removeAllActions];
-        [self.physicsBody setVelocity: CGVectorMake(factor*motionSpeed, 0)]; // We invert the direction
+        [self->platformSound runAction: [SKAction sequence:@[ [SKAction stop], [SKAction play] ] ] ];
+
+        [self setSpeed: 0]; // We pause the animation
+        [self.physicsBody setVelocity:CGVectorMake(factor*motionSpeed, 0)]; // We invert the direction
         [platformSensor.physicsBody setVelocity: CGVectorMake(factor*motionSpeed, 0)];
         
-        SKAction *mvDuration = [SKAction waitForDuration: .3];
-        
-        SKAction *moveDuration = [SKAction waitForDuration:movementDuration];
-        SKAction *tempMove = [SKAction runBlock:^{
-            [self horizontalMoveWithDuration: self->movementDuration forward: FALSE];
+        SKAction *delay = [SKAction waitForDuration: .5];
+
+        [self.scene runAction: delay completion:^
+        {
+            [self.physicsBody setVelocity:CGVectorMake(0, 0)];
+            [self->platformSensor.physicsBody setVelocity: CGVectorMake(0, 0)];
+            [self->platformSound runAction: [SKAction stop] ];
+
+            [self.scene runAction: [SKAction waitForDuration: 2] completion:^
+            {
+                [self.physicsBody setVelocity:CGVectorMake(factor*-self->motionSpeed, 0)];
+                [self->platformSensor.physicsBody setVelocity: CGVectorMake(factor*-self->motionSpeed, 0)];
+                [self->platformSound runAction: [SKAction play] ];
+
+                [self.scene runAction: delay completion:^
+                {
+                    self->emergencyStopTriggered = FALSE;
+
+                    [self->platformSound runAction: [SKAction sequence:@[ [SKAction stop], [SKAction play] ] ] ];
+                    [self setSpeed: 1]; // animation runs again
+                }];
+
+            }];
         }];
-        
-        [self.scene runAction: mvDuration completion:^
-         {
-             self->emergencyStopTriggered = FALSE;
-             [self runAction: [SKAction sequence:@[tempMove, moveDuration]] completion:^{
-                 [self runAction:[SKAction repeatActionForever: self->standardSequence]];
-             }];
-         }];
     }
 }
 
