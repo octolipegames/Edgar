@@ -54,27 +54,28 @@
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nMO-WS-ykg">
                                 <rect key="frame" x="285.5" y="94" width="325" height="279"/>
                                 <color key="backgroundColor" red="0.27843137254901962" green="0.18823529411764706" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.99913519620000002" green="0.95351284739999997" blue="0.53352612259999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="nMO-WS-ykg" secondAttribute="height" multiplier="120:103" id="U9d-cl-htn"/>
                                 </constraints>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <mutableString key="content">Find our source code and assets: github.com/polipgames/Edgar
+                                        <mutableString key="content">Find our source code and assets: github.com/octolipegames/Edgar
 Explanations on Facebook: facebook.com/octolipegames
 Contact us at octolipe@gmail.com!
 
 Graphic design: Filipe Mathez
-Developer: Paul Ronga
+Development: Paul Ronga
 Sound design: Guillaume Carel
 Level design and marketing: Lauriane Sanchis
-Many thanks to Aymeric, David, DJ, Justine, Kathryn, Liv, Mathias and Steeve
+Many thanks to Aymeric, David, DJ, Hannah, Justine, Kathryn, Liv, Mathias, Steeve, The Venin
 Special thanks to our girlfriends
 Very special thanks to our mums
 
-Source code: GNU Lesser General Public License 2.1 http://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html
-Images and music: CC-BY 4 http://creativecommons.org/licenses/by/4.0/</mutableString>
+Source code: GNU Lesser General Public License 2.1 www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html
+Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                                         <attributes>
-                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="16" name="GillSans"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
