@@ -19,7 +19,7 @@
  </layer>
  <layer id="2" name="Solide" width="31" height="13">
   <data encoding="base64" compression="zlib">
-   eJy1lNEKgCAMRUePCfaY/UFBPvf/f1ZCw7GcW2YXDknMe3WNAL7LXwQjnu3rwZtzlta9lDwngpSnZWOvarWO+dU8pewgPGmtg6do3tKYXRPOCcLnx/r9W3rOe8D9VsWH1lJKfdQ0Qp6jlnm19gjhc4vvZyXHQb4frqnvLlDLTtoK2fEGNSi+Fui+pFG4Z6//lcRBiIy/s3twAjOfD18=
+   eJy1lNEKgCAMRUePCvaY/UFBPvf/f1ZCw7WcM7MLhyT0XrdGAN/lTnwljp3rwZt75ta9FD1HgpSnZWOvSnst8yt5StleeNK9Fp6ieXNjdkk4Jwifn9rv39Jz3gPutyg+dC8l10dNBtIctcxrbY8QPrf4flJyLKT6cE19N4FSdtSayQ4XqEHxrYGeizJCnb3+VxI7IcC91r+ze3AAFhcPMg==
   </data>
  </layer>
  <objectgroup id="3" name="Objets">
@@ -148,8 +148,8 @@
   <object id="96" x="4572.73" y="2100" width="827.273" height="300"/>
   <object id="97" x="3904" y="2400" width="300" height="1200"/>
   <object id="108" x="2398" y="898" width="600" height="60"/>
-  <object id="111" x="3372" y="2404" width="148" height="600"/>
-  <object id="112" x="3676" y="2412" width="152" height="580"/>
+  <object id="111" x="3372" y="2400" width="148" height="600"/>
+  <object id="112" x="3676" y="2400" width="152" height="600"/>
   <object id="113" x="4319" y="2219" width="60" height="60"/>
   <object id="114" x="3000" y="1500" width="2100" height="60"/>
   <object id="115" x="5100" y="1140" width="300" height="960"/>

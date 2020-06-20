@@ -110,7 +110,7 @@
   <object id="95" name="file" x="1676" y="3508">
    <point/>
   </object>
-  <object id="96" name="endLevelLift" x="3690.99" y="829.121" width="315" height="366">
+  <object id="96" name="endLevelLift" x="3690" y="834" width="315" height="366">
    <properties>
     <property name="nextLevel" value="_Level02_v1_100px"/>
    </properties>
