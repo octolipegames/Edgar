@@ -2089,7 +2089,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }else if([contactNode.name isEqualToString:@"run"])
             {
                 if(useSwipeGestures){
-                    helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
+//                    helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
                 }else{
                     SKNode *moveRight = [HUD childNodeWithName:@"//touchIndicator/right"];
                     [moveRight removeAllActions];
@@ -2193,7 +2193,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 plpTrain *theTrain = (plpTrain *)contactNode;
                 [theTrain setHeroAbove];
             
-                [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed: 100]; // previous max speed: 200 * x3
+                [(plpTrain *)contactNode accelerateAtRate:20 toMaxSpeed: 60];
             }
             return;
         }
@@ -2608,7 +2608,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         if(bigJumpRequested)
         {
             // Long touch: could be managed with applyForce
-            [Edgar.physicsBody applyImpulse: CGVectorMake(0, 400000)]; // auparavant 500 * x300 * x3 puis 4500 * x30 puis 4800 * x30
+            [Edgar.physicsBody applyImpulse: CGVectorMake(0, 420000)]; // auparavant 500 * x300 * x3 puis 4500 * x30 puis 4800 * x30
             bigJumpRequested = FALSE;
         }
         else
