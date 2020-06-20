@@ -38,11 +38,7 @@
     self = [super initWithTexture:facingEdgar];
     
     if (self) {
-        float _x3 = 3;
-
-        //self.size = CGSizeMake(59, 74); // ratio 1,25 / avant: 47, 73 = ratio 1,574
         self.size = CGSizeMake(226, 236);
-        // *3 = 180, 225
         
         NSMutableArray *walkFrames = [NSMutableArray array];
         SKTextureAtlas *EdgarAnimatedAtlas = [SKTextureAtlas atlasNamed:@"edgar"];
@@ -77,8 +73,8 @@
         self.name = @"Edgar";
         self.position = position;
         
-        SKPhysicsBody *topCircleBody = [SKPhysicsBody bodyWithCircleOfRadius: 21*_x3 center:CGPointMake(0, 16*_x3)]; // until March 18, 2016: center= (0, 18) // 0, 22
-        SKPhysicsBody *rectangleBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(28*_x3, 36*_x3) center:CGPointMake(0, -2*_x3)];
+        SKPhysicsBody *topCircleBody = [SKPhysicsBody bodyWithCircleOfRadius: 63 center:CGPointMake(0, 48)]; // until March 18, 2016: center= (0, 18) // 0, 22
+        SKPhysicsBody *rectangleBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(84, 160) center:CGPointMake(0, 0)];
 
         topCircleBody.categoryBitMask = 1;
         topCircleBody.friction = 0;
@@ -87,7 +83,7 @@
         rectangleBody.categoryBitMask = 1;
         rectangleNode = [SKSpriteNode node];
         rectangleNode.physicsBody = [SKPhysicsBody bodyWithBodies: @[topCircleBody, rectangleBody]];
-        rectangleNode.physicsBody.mass = 30 * 3;
+        rectangleNode.physicsBody.mass = 90;
         rectangleNode.physicsBody.friction = 0; // “roughness of the surface”
         rectangleNode.physicsBody.restitution = 0; // “bounciness”
         rectangleNode.physicsBody.linearDamping = 0; // “reduces linear velocity”
@@ -95,8 +91,8 @@
         
         
         // bottom circle
-        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:17*_x3 center:CGPointMake(0, -22*_x3)]; // -20
-        self.physicsBody.mass = 50 * 3;
+        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:51 center:CGPointMake(0, -66)]; // -20
+        self.physicsBody.mass = 150;
         self.physicsBody.friction = 0.6;
         self.physicsBody.friction = 0.1;
         
@@ -186,6 +182,7 @@
     SKSpriteNode *masque = [SKSpriteNode spriteNodeWithImageNamed:@"ShadowMask.png"];
     masque.name = @"masque";
     masque.size = CGSizeMake(3600, 2400); // avant x3: 1200, 800
+    [masque setZPosition: 22];
     [self addChild: masque];
     NSLog(@"Masque added");
 }

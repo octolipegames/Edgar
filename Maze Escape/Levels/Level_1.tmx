@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="6" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="61">
+<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="26" height="6" tilewidth="300" tileheight="300" infinite="0" nextlayerid="6" nextobjectid="66">
  <tileset firstgid="1" name="Lvl1_fond_smaller" tilewidth="300" tileheight="300" tilecount="40" columns="10">
   <image source="Lvl1_fond_smaller.png" width="3000" height="1200"/>
  </tileset>
@@ -38,6 +38,26 @@
   <object id="56" name="Caisse" type="Caisse" x="6223.33" y="1313.03" width="180" height="180"/>
   <object id="60" name="file" x="5248" y="806">
    <point/>
+  </object>
+  <object id="61" name="sensor" type="sensor" x="1039.39" y="412.121" width="536.364" height="506.061">
+   <properties>
+    <property name="nodename" value="walk"/>
+   </properties>
+  </object>
+  <object id="62" name="sensor" x="1771.21" y="404.545" width="2387.88" height="506.061">
+   <properties>
+    <property name="nodename" value="run"/>
+   </properties>
+  </object>
+  <object id="63" name="sensor" x="4695.45" y="504.545" width="263.637" height="1006.06">
+   <properties>
+    <property name="nodename" value="showFile"/>
+   </properties>
+  </object>
+  <object id="65" name="sensor" x="6427.27" y="1169.7" width="460.607" height="324.242">
+   <properties>
+    <property name="nodename" value="jump"/>
+   </properties>
   </object>
  </objectgroup>
  <objectgroup id="4" name="CollisionPolygons">
