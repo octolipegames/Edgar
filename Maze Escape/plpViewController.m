@@ -197,7 +197,7 @@
     SKView * spriteView = (SKView *)self.view;
     [spriteView presentScene:myScene];
     
-    // custom level for debug
+    // For debug: custom level
     // startLevel = 6;
     if(startLevel > 0)
     {

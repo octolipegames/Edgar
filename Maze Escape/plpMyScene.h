@@ -37,7 +37,7 @@
 #define SEMAPHORE_LEVEL_INDEX 5
 #define FIRST_DARK_LEVEL 3
 #define USE_ALTERNATE_CONTROLS 0
-#define DEFAULT_EDGAR_VELOCITY 450 // was 150
+#define DEFAULT_EDGAR_VELOCITY 500 // was 150
 #define HUD_VERTICAL_THIRD 1200/3
 #define HUD_VERTICAL_SPAN 1200/6
 #define HUD_HORIZONTAL_SPAN 2400/6
@@ -69,8 +69,6 @@ float contextVelocityX;
     float EdgarVelocity;
     CGPoint startPosition;
     BOOL isEdgarPinned;
-    SKPhysicsJointPin *trainPin;
-    SKPhysicsJointSliding *platformJoint;
     NSTimer *endContactTimer;
     
     // Character actions:
