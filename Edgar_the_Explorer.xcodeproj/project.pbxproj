@@ -33,10 +33,11 @@
 		DA10C1A71D5BFB6400579F1F /* edgar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DA10C1A61D5BFB6400579F1F /* edgar.atlas */; };
 		DA1A0F87245F32A40070CA08 /* Pile.png in Resources */ = {isa = PBXBuildFile; fileRef = DA1A0F86245F32A40070CA08 /* Pile.png */; };
 		DA1BE6F01B81256000DA2E47 /* plpAlien.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1BE6EF1B81256000DA2E47 /* plpAlien.m */; };
+		DA24EEED2498A542001A2597 /* File_no_glow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA24EEEB2498A542001A2597 /* File_no_glow.png */; };
+		DA24EEF12498A615001A2597 /* File_glow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA24EEF02498A615001A2597 /* File_glow.png */; };
 		DA259370241C0F960055695F /* plpIntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DA25936F241C0F960055695F /* plpIntroScene.m */; };
 		DA29F9C723EE9AD500CF4F22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA29F9C623EE9AD500CF4F22 /* LaunchScreen.storyboard */; };
 		DA29F9CB23EE9F2100CF4F22 /* Logo_Launch_Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */; };
-		DA390347248EB4DE0031CFA4 /* introScene.mov in Resources */ = {isa = PBXBuildFile; fileRef = DA390346248EB4DE0031CFA4 /* introScene.mov */; };
 		DA442BD624797D50004794D4 /* plpScientist.m in Sources */ = {isa = PBXBuildFile; fileRef = DA442BD524797D50004794D4 /* plpScientist.m */; };
 		DA519C5D232CE8BE00B4F594 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5B232CE8BD00B4F594 /* gear.png */; };
 		DA519C5E232CE8BE00B4F594 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = DA519C5C232CE8BD00B4F594 /* sound.png */; };
@@ -56,6 +57,7 @@
 		DA614A83245DB89E006AD8CF /* Vie.png in Resources */ = {isa = PBXBuildFile; fileRef = DA614A82245DB89E006AD8CF /* Vie.png */; };
 		DA614A85245DB9F3006AD8CF /* GameOver.png in Resources */ = {isa = PBXBuildFile; fileRef = DA614A84245DB9F3006AD8CF /* GameOver.png */; };
 		DA7485471B86FF5100920C84 /* plpPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7485461B86FF5100920C84 /* plpPlatform.m */; };
+		DA7A2BB72498D7FA00379628 /* introScene.mov in Resources */ = {isa = PBXBuildFile; fileRef = DA7A2BB62498D7FA00379628 /* introScene.mov */; };
 		DA9ADE431D5C05A800254A58 /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9ADE411D5C05A800254A58 /* menuButton.png */; };
 		DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9ADE421D5C05A800254A58 /* repeatButton.png */; };
 		DA9BC04E23072C1B00ACC878 /* SoundButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9BC04D23072C1B00ACC878 /* SoundButton.png */; };
@@ -133,10 +135,11 @@
 		DA1A0F86245F32A40070CA08 /* Pile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pile.png; sourceTree = "<group>"; };
 		DA1BE6EE1B81256000DA2E47 /* plpAlien.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpAlien.h; sourceTree = "<group>"; };
 		DA1BE6EF1B81256000DA2E47 /* plpAlien.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpAlien.m; sourceTree = "<group>"; };
+		DA24EEEB2498A542001A2597 /* File_no_glow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = File_no_glow.png; sourceTree = "<group>"; };
+		DA24EEF02498A615001A2597 /* File_glow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = File_glow.png; sourceTree = "<group>"; };
 		DA25936F241C0F960055695F /* plpIntroScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plpIntroScene.m; sourceTree = "<group>"; };
 		DA29F9C623EE9AD500CF4F22 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_Launch_Screen.png; sourceTree = "<group>"; };
-		DA390346248EB4DE0031CFA4 /* introScene.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = introScene.mov; path = ../../../../../../Desktop/introScene.mov; sourceTree = "<group>"; };
 		DA442BD424797D50004794D4 /* plpScientist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpScientist.h; sourceTree = "<group>"; };
 		DA442BD524797D50004794D4 /* plpScientist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpScientist.m; sourceTree = "<group>"; };
 		DA519C5B232CE8BD00B4F594 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = "External-media/gear.png"; sourceTree = SOURCE_ROOT; };
@@ -163,6 +166,7 @@
 		DA73B84D1D02328300ED027D /* Edgar_Explorer_UITests4.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Edgar_Explorer_UITests4.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA7485451B86FF5100920C84 /* plpPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpPlatform.h; sourceTree = "<group>"; };
 		DA7485461B86FF5100920C84 /* plpPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpPlatform.m; sourceTree = "<group>"; };
+		DA7A2BB62498D7FA00379628 /* introScene.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = introScene.mov; sourceTree = "<group>"; };
 		DA824556241AEA95007843AD /* scenes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = scenes.atlas; sourceTree = "<group>"; };
 		DA9ADE411D5C05A800254A58 /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		DA9ADE421D5C05A800254A58 /* repeatButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = repeatButton.png; sourceTree = "<group>"; };
@@ -358,6 +362,8 @@
 				DAB314002475C85D00E6C40D /* facingEdgar.png */,
 				DA0500152472F4C100F2DC3D /* Feu_rouge.png */,
 				DA0500162472F4C100F2DC3D /* Feu_vert.png */,
+				DA24EEF02498A615001A2597 /* File_glow.png */,
+				DA24EEEB2498A542001A2597 /* File_no_glow.png */,
 				DA614A84245DB9F3006AD8CF /* GameOver.png */,
 				DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */,
 				DA1A0F86245F32A40070CA08 /* Pile.png */,
@@ -378,7 +384,7 @@
 		DAB204DC2462070B0077DC4D /* Videos */ = {
 			isa = PBXGroup;
 			children = (
-				DA390346248EB4DE0031CFA4 /* introScene.mov */,
+				DA7A2BB62498D7FA00379628 /* introScene.mov */,
 			);
 			path = Videos;
 			sourceTree = "<group>";
@@ -521,13 +527,14 @@
 				DAF6AD76245EE1EA00D7D6D2 /* TropheeSnail_x3.png in Resources */,
 				DA29F9C723EE9AD500CF4F22 /* LaunchScreen.storyboard in Resources */,
 				DAB5E1421C21DD2800809756 /* edgarsaute.atlas in Resources */,
+				DA7A2BB72498D7FA00379628 /* introScene.mov in Resources */,
+				DA24EEED2498A542001A2597 /* File_no_glow.png in Resources */,
 				DAF6AD75245EE1EA00D7D6D2 /* TropheeExplorer_x3.png in Resources */,
 				DA0500142472F18300F2DC3D /* ascenseurF-01.png in Resources */,
 				DA9ADE441D5C05A800254A58 /* repeatButton.png in Resources */,
 				DA0500172472F4C100F2DC3D /* Feu_rouge.png in Resources */,
 				DAB511E924792A8700F42A68 /* Scientifique_1.png in Resources */,
 				DAF37DFF245F2A4900D55AF9 /* ShadowMask.png in Resources */,
-				DA390347248EB4DE0031CFA4 /* introScene.mov in Resources */,
 				DA03CBE3199F4C4700406720 /* Main.storyboard in Resources */,
 				DA614A7F245DB64D006AD8CF /* ChariotParoi.png in Resources */,
 				DAF6AD77245EE1EA00D7D6D2 /* TropheeElite_x3.png in Resources */,
@@ -536,6 +543,7 @@
 				DA9BC04E23072C1B00ACC878 /* SoundButton.png in Resources */,
 				DA614A85245DB9F3006AD8CF /* GameOver.png in Resources */,
 				DA614A75245DB3D5006AD8CF /* Arbre_x3.png in Resources */,
+				DA24EEF12498A615001A2597 /* File_glow.png in Resources */,
 				DAF6AD79245EE54300D7D6D2 /* Collectionnable.png in Resources */,
 				DA614A80245DB64D006AD8CF /* ChariotBase.png in Resources */,
 				DAEF1183248D5D8100425495 /* Buisson_x3.png in Resources */,
@@ -693,7 +701,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -740,7 +748,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -755,14 +763,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.0.0;
+				CURRENT_PROJECT_VERSION = 2.0.3;
 				DEVELOPMENT_TEAM = QMNSE76DMB;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
 				PRODUCT_NAME = "Edgar Explorer";
 				PROVISIONING_PROFILE = "";
@@ -781,14 +789,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.0.0;
+				CURRENT_PROJECT_VERSION = 2.0.3;
 				DEVELOPMENT_TEAM = QMNSE76DMB;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
 				PRODUCT_NAME = "Edgar Explorer";
 				PROVISIONING_PROFILE = "";
