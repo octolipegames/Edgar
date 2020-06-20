@@ -30,7 +30,7 @@
         NSLog(@"Init intro scene");
         
         self.size = CGSizeMake(2400, 1200);
-        
+        self.name = @"introScene";
         SKCameraNode *myCamera = [SKCameraNode node];
         
         self.camera = myCamera;
@@ -78,7 +78,7 @@
 }
 
 -(void)playScene1{
-    NSLog(@"array : %@", animationFrames[0]);
+//    NSLog(@"array : %@", animationFrames[0]);
     
     animationNode = [[SKSpriteNode alloc] initWithTexture: [SKTexture textureWithImageNamed:@"scene1_01.png"]];
     if (animationNode) {
@@ -107,18 +107,18 @@
         subtitleNodeTop = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
         subtitleNodeTop.fontSize = 76;
         subtitleNodeTop.fontColor = [SKColor whiteColor];
-        subtitleNodeTop.position = CGPointMake(0, 20);
+        subtitleNodeTop.position = CGPointMake(0, -380);
         subtitleNodeTop.zPosition = 42;
         subtitleNodeTop.text = @"Alien testing has been";
-        [labelBackground addChild: subtitleNodeTop];
+        [self addChild: subtitleNodeTop];
         
         subtitleNodeBottom = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
         subtitleNodeBottom.fontSize = 76;
         subtitleNodeBottom.fontColor = [SKColor whiteColor];
-        subtitleNodeBottom.position = CGPointMake(0, -70);
+        subtitleNodeBottom.position = CGPointMake(0, -470);
         subtitleNodeBottom.zPosition = 42;
         subtitleNodeBottom.text = @"forbidden for years.";
-        [labelBackground addChild: subtitleNodeBottom];
+        [self addChild: subtitleNodeBottom];
     }
 }
 
@@ -177,6 +177,7 @@
         [ [self childNodeWithName:@"subtitle-background"] removeFromParent];
         [animationNode removeFromParent];
         [subtitleNodeTop removeFromParent];
+        [subtitleNodeBottom removeFromParent];
         [self playScene2];
     } else {
         [launchGameTimer invalidate];
