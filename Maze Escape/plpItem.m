@@ -65,10 +65,8 @@
         self.position = position;
         
         if([textureString isEqualToString:@"File_no_glow.png"]){
-            NSLog(@" add glow");
             SKSpriteNode* bgNode = [[SKSpriteNode alloc] initWithTexture: [SKTexture textureWithImageNamed:@"File_glow.png"]];
             bgNode.position = CGPointMake(0, 0);
-//            bgNode.zPosition = ;
             [self addChild: bgNode];
             [bgNode runAction: [SKAction repeatActionForever:
                               [SKAction sequence:
