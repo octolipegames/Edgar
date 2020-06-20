@@ -227,6 +227,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         Edgar->rectangleNode.physicsBody.contactTestBitMask = PhysicsCategoryObjects|PhysicsCategoryTiles|PhysicsCategoryEnemy|PhysicsCategorySensors|PhysicsCategoryItems;
         
         listensToContactEvents = TRUE;
+        pauseEnabled = TRUE;
     }
     
     return self;
@@ -316,6 +317,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     liftReady = FALSE;
     [self saveInitialTime];
     additionalSavedTime = 0;
+    fileCount = 0;
+    levelFileCount = 0;
+    lifeCount = 3;
     
     [Edgar removeLight];
     [Edgar removeMasque];
@@ -327,6 +331,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [defaults setFloat:0 forKey:@"totalTime"];
     [defaults synchronize];
     
+    [HUD removeAllChildren];
+    needsInfoBar = TRUE;
+    
     [self resumeFromLevel:1];
 }
 
@@ -335,6 +342,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [containerView removeFromSuperview];
     [self playAgain];
+    pauseEnabled = TRUE;
 }
 
 - (IBAction)endGameNoSaveScore:(id)sender {
@@ -425,7 +433,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     return YES;
 }
 
+- (BOOL)isPauseEnabled {
+    return pauseEnabled;
+}
+
 - (void)showGameOver {
+    pauseEnabled = FALSE;
     SKSpriteNode *lowerCurtain = (SKSpriteNode*)[myCamera childNodeWithName:@"lowerCurtain"];
     SKSpriteNode *upperCurtain = (SKSpriteNode*)[myCamera childNodeWithName:@"upperCurtain"];
     [lowerCurtain setColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1]];
@@ -484,11 +497,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
 }
 
-- (void)displayPlayAgainButton{
-    
-}
+
 
 - (void)showTrophy {
+    pauseEnabled = FALSE;
     NSString *rankingString = @"Snail Edgar.";
     SKTexture *trophyTexture = [SKTexture textureWithImageNamed:@"TropheeSnail_x3.png"];
     
@@ -1283,6 +1295,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [self->soundController doVolumeFade];
     [self saveAdditionalTime]; // We save the elapsed time. When the player resumes, we set a new initial time.
     [self saveAdditionalLevelTime];
+    
+    // TODO for next release
+    if(containerView){
+        NSLog(@"Remove buttons and stuff");
+        [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [containerView removeFromSuperview];
+    }
+//    [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//    [containerView removeFromSuperview];
 }
 
 -(void)resumeAfterPause
@@ -1349,7 +1370,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         isDying = TRUE;
     }
     [Edgar removeControl];
-    if(lifeCount < 0){
+    if(lifeCount < -1){
         NSLog(@"Already died -- can't restart");
         return;
     }
@@ -1376,7 +1397,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         SKNode *lostLife = [self->HUD childNodeWithName: [NSString stringWithFormat:@"life%d", (int) self->lifeCount ]];
         [lostLife removeFromParent];
         
-        if(self->lifeCount < 1){
+        if(self->lifeCount < 0){
             self->levelTransitioning = TRUE;
             
             // (just in case user pauses and comes back -- we actually reset this when “play again” button is pressed)
@@ -1506,7 +1527,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 {
     float totalTime = [self getTotalTime];
     NSString *urlStr = [[NSString alloc]
-                        initWithFormat:@"http://paulronga.ch/edgar/score.php?user=%@&score=%.2f", userName, totalTime];
+                        initWithFormat:@"https://paulronga.ch/edgar-2/score.php?user=%@&time=%.2f&files=%ld", userName, totalTime, (long)fileCount];
+    NSLog(@"%@", urlStr);
     urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSURL *url = [NSURL URLWithString:urlStr];
     NSError *error = nil;
@@ -1634,7 +1656,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(repeatingLevel == YES)
     {
-        NSArray *quoteArray = @[@"Let’s do it again", @"It’s good to see you again", @"Quel plaisir de vous revoir"];
+        NSArray *quoteArray = @[@"Let’s do it again", @"Nice to see you again", @"Quel plaisir de vous revoir", @"“Only after disaster can we be resurrected”", @"“Everything in nature is resurrection” – Voltaire"];
         NSUInteger randomIndex = arc4random() % quoteArray.count;
         displayTime.text = [[NSString alloc] initWithFormat:@"%@", quoteArray[randomIndex]]; // plutot une citation random?
         displayTime2.text = [[NSString alloc] initWithFormat:@"Your total time: %@", [self getTimeString: totalTime]];
@@ -2500,10 +2522,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         [myFinishRectangle removeFromParent];
                         myFinishRectangle = nil;
                         currentLevelIndex++;
-                        self.view.showsPhysics = NO;
-                        self.view.showsFPS = NO;
-                        self.view.showsNodeCount = NO;
-                        
                         NSLog(@"Loading level %d", currentLevelIndex);
                         [self startLevel];
                     }
@@ -2515,10 +2533,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         levelTransitioning = TRUE;
                         [myFinishRectangle removeFromParent];
                         myFinishRectangle = nil;
-                        currentLevelIndex = 6;
-                        self.view.showsPhysics = NO;
-                        self.view.showsFPS = NO;
-                        
+                        currentLevelIndex = 8;
                         [self startLevel];
                     }
                 }

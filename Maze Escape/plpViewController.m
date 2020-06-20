@@ -99,55 +99,13 @@
     [self.MenuBackground addGestureRecognizer:newTap];
 }
 
-
-
 - (IBAction)newGame:(id)sender {
     UIButton *clicked = (UIButton *) sender;
     UIView *containerView = [clicked superview];
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [containerView removeFromSuperview];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:1 forKey:@"savedLevel"];
-    [defaults setInteger:3 forKey:@"lifeCount"];
-    [defaults setInteger:0 forKey:@"fileCount"];
-    [defaults setFloat:0 forKey:@"totalTime"];
-    [defaults synchronize];
-    
-    if(self.MenuBackground)
-    {
-        [self.MenuBackground removeFromSuperview];
-        self.MenuBackground = nil;
-    }
-
-    self.pauseButton.hidden = NO;
-    self.suicideButton.hidden = NO;
-    
-    if(gamePaused == TRUE){
-        NSLog(@"Game NOT paused!");
-        // If myScene not created (after introScene)
-        if(!myScene){
-            NSLog(@"AND MYSCENE NOT DOES EXIST WTF SHIT");
-            SKView * skView = (SKView *)self.view;
-
-            myScene = skView.scene;
-        }
-        [myScene removeAllChildren];
-        
-        // destroy old game
-        [myScene removeFromParent];
-        myScene = nil;
-        
-        // then
-        gamePaused = FALSE;
-    }
-    
-    SKView * skView = (SKView *)self.view;
-    SKScene *introScene = [plpIntroScene sceneWithSize:skView.bounds.size];
-    
-    // “The default value is SKSceneScaleModeFill.”
-    // To use another option: [introScene setScaleMode: SKSceneScaleModeAspectFill];
-    [skView presentScene: introScene];
+    [self presentNewGame];
 }
 
 - (IBAction)resumeFreezedGame:(id)sender {
@@ -176,49 +134,48 @@
     }
 }
 
-/*
-- (void)newGameWithIntroduction: (BOOL) doIntroduction
+- (void)presentNewGame
 {
-    self.pauseButton.hidden = NO;
-    self.suicideButton.hidden = NO;
-    
-    if(gamePaused == FALSE){
-        // TODO: voir les repercussions
-        // SKView * skView = (SKView *)self.view;
-        // myScene = [plpMyScene sceneWithSize:skView.bounds.size];
-        // myScene.scaleMode = SKSceneScaleModeAspectFill;
-        NSLog(@"game not paused");
-    }else {
-        NSLog(@"GAME PAUSED");
-    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:1 forKey:@"savedLevel"];
+    [defaults setInteger:3 forKey:@"lifeCount"];
+    [defaults setInteger:0 forKey:@"fileCount"];
+    [defaults setFloat:0 forKey:@"totalTime"];
+    [defaults synchronize];
     
     if(self.MenuBackground)
     {
         [self.MenuBackground removeFromSuperview];
         self.MenuBackground = nil;
     }
-    
-    // We start the new game
-    SKView * spriteView = (SKView *)self.view;
-    [spriteView presentScene: myScene];
-    
 
-    if(doIntroduction == FALSE)
-    {
-        [(plpMyScene*)myScene resumeFromLevel: 1];
+    self.pauseButton.hidden = NO;
+    self.suicideButton.hidden = NO;
+    
+    if(gamePaused == TRUE){
+        NSLog(@"Game NOT paused!");
+        // If myScene not created (after introScene)
+        if(!myScene){
+            SKView * skView = (SKView *)self.view;
+            myScene = skView.scene;
+        }
+        [myScene removeAllChildren];
+        
+        // destroy old game
+        [myScene removeFromParent];
+        myScene = nil;
+        
+        // then
+        gamePaused = FALSE;
     }
     
-    if(gamePaused == TRUE)
-    {
-        spriteView.paused = NO;
-        gamePaused = FALSE;
-        if(doIntroduction == TRUE)
-        {
-            [(plpMyScene*)myScene resumeFromLevel: 1];
-        }
-    }
+    SKView * skView = (SKView *)self.view;
+    SKScene *introScene = [plpIntroScene sceneWithSize:skView.bounds.size];
+    
+    // “The default value is SKSceneScaleModeFill.”
+    // To use another option: [introScene setScaleMode: SKSceneScaleModeAspectFill];
+    [skView presentScene: introScene];
 }
-*/
 
 - (void)loadSavedGame: (NSInteger)startLevel
 {
@@ -296,56 +253,64 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger savedLevel = [defaults integerForKey:@"savedLevel"];
     
-    UIView *containerView = [[UIView alloc] init];
-    containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
-    [containerView setFrame: CGRectMake(50, 100, self.view.bounds.size.width-100, self.view.bounds.size.height-200)];
-    
-    // Text: “You were at level 1...”
-    UITextView *myTextView = [[UITextView alloc] init];
-    myTextView.text = [NSString stringWithFormat:@"You were at level %li...", (long)savedLevel];
-    myTextView.textColor = [UIColor whiteColor];
-    myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
-    myTextView.editable = NO;
-    [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
-    [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
-    
-    float outsideMargin = 60;
-    float insideMargin = 30;
-    float buttonsVerticalPosition = containerView.bounds.size.height-50;
-    float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
-    float buttonNewGamePositionX = outsideMargin;
-    float buttonContinuePositionX = buttonWidth + outsideMargin + 2*insideMargin;
-    
-    // Left: “New Game”
-    UIButton *buttonNewGame  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    buttonNewGame.tag = 0;
-    buttonNewGame.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
-    [buttonNewGame setBackgroundColor: [UIColor whiteColor]];
-    [buttonNewGame setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
-    [[buttonNewGame layer] setMasksToBounds:YES];
-    [[buttonNewGame layer] setCornerRadius:5.0f];
-    [buttonNewGame setTitle: @"New Game" forState:UIControlStateNormal];
-    [buttonNewGame addTarget: self
-                        action: @selector(newGame:)
-              forControlEvents: UIControlEventTouchUpInside];
-    
-    // Right: “Resume”
-    UIButton *buttonContinue  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    buttonContinue.tag = savedLevel;
-    buttonContinue.frame      =   CGRectMake(buttonContinuePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
-    [buttonContinue setBackgroundColor: [UIColor whiteColor]];
-    [buttonContinue setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
-    [[buttonContinue layer] setMasksToBounds:YES];
-    [[buttonContinue layer] setCornerRadius:5.0f];
-    [buttonContinue setTitle: @"Resume" forState:UIControlStateNormal];
-    [buttonContinue addTarget: self
-                         action: @selector(continueButtonClicked:)
-               forControlEvents: UIControlEventTouchUpInside];
-    
-    [self.view addSubview: containerView];
-    [containerView addSubview:myTextView];
-    [containerView addSubview:buttonNewGame];
-    [containerView addSubview:buttonContinue];
+    if(savedLevel < 1){
+        // New Game without dialog
+        [self presentNewGame];
+    }else{
+            
+        UIView *containerView = [[UIView alloc] init];
+        containerView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+        [containerView setFrame: CGRectMake(50, 100, self.view.bounds.size.width-100, self.view.bounds.size.height-200)];
+        
+        // NB doesnt work if didnt play already
+        
+        // Text: “You were at level 1...”
+        UITextView *myTextView = [[UITextView alloc] init];
+        myTextView.text = [NSString stringWithFormat:@"You were at level %li...", (long)savedLevel];
+        myTextView.textColor = [UIColor whiteColor];
+        myTextView.backgroundColor = [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1];
+        myTextView.editable = NO;
+        [myTextView setFont:[UIFont fontWithName:@"GillSans" size:18]];
+        [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, containerView.bounds.size.height-70)];
+        
+        float outsideMargin = 60;
+        float insideMargin = 30;
+        float buttonsVerticalPosition = containerView.bounds.size.height-50;
+        float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
+        float buttonNewGamePositionX = outsideMargin;
+        float buttonContinuePositionX = buttonWidth + outsideMargin + 2*insideMargin;
+        
+        // Left: “New Game”
+        UIButton *buttonNewGame  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        buttonNewGame.tag = 0;
+        buttonNewGame.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+        [buttonNewGame setBackgroundColor: [UIColor whiteColor]];
+        [buttonNewGame setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+        [[buttonNewGame layer] setMasksToBounds:YES];
+        [[buttonNewGame layer] setCornerRadius:5.0f];
+        [buttonNewGame setTitle: @"New Game" forState:UIControlStateNormal];
+        [buttonNewGame addTarget: self
+                            action: @selector(newGame:)
+                  forControlEvents: UIControlEventTouchUpInside];
+        
+        // Right: “Resume”
+        UIButton *buttonContinue  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        buttonContinue.tag = savedLevel;
+        buttonContinue.frame      =   CGRectMake(buttonContinuePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
+        [buttonContinue setBackgroundColor: [UIColor whiteColor]];
+        [buttonContinue setTitleColor: [UIColor colorWithRed:.349f green:.259f blue:.447f alpha:1] forState:UIControlStateNormal];
+        [[buttonContinue layer] setMasksToBounds:YES];
+        [[buttonContinue layer] setCornerRadius:5.0f];
+        [buttonContinue setTitle: @"Resume" forState:UIControlStateNormal];
+        [buttonContinue addTarget: self
+                             action: @selector(continueButtonClicked:)
+                   forControlEvents: UIControlEventTouchUpInside];
+        
+        [self.view addSubview: containerView];
+        [containerView addSubview:myTextView];
+        [containerView addSubview:buttonNewGame];
+        [containerView addSubview:buttonContinue];
+    } // end if level > 0
 }
 
 /* Credits */
@@ -406,6 +371,9 @@
 - (IBAction)pauseButtonClicked:(id)sender {
     
     SKView *spriteView = (SKView *)self.view;
+    if([spriteView.scene.name isEqualToString:@"introScene"]){
+        return;
+    }
     
     // If myScene not created (after introScene)
     if(!myScene){
@@ -439,6 +407,15 @@
 }
 
 - (IBAction)suicideButtonClicked:(id)sender {
+    NSLog(@"Suicide button pressed");
+    if(!myScene){
+        SKView * skView = (SKView *)self.view;
+        if([skView.scene.name isEqualToString:@"introScene"]){
+            return;
+        }else{
+            myScene = skView.scene;
+        }
+    }
     [(plpMyScene*)myScene EdgarDiesOf:0];
 }
 

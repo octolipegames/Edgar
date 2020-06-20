@@ -112,6 +112,7 @@ float contextVelocityX;
     BOOL movingRight;
     BOOL listensToContactEvents;
     BOOL levelTransitioning;
+    BOOL pauseEnabled;
     
     // User interface
     UIView *containerView;
@@ -144,6 +145,7 @@ float contextVelocityX;
 -(void)addCollisionLayer:(JSTileMap*) tileMap;
 -(void)EdgarDiesOf:(int)deathType;
 -(void)resetEdgar;
+-(BOOL)isPauseEnabled;
 -(void)getsPaused;
 -(void)resumeAfterPause;
 -(void)resumeFromLevel:(NSInteger)theLevel;
@@ -154,6 +156,8 @@ float contextVelocityX;
 -(void)saveAdditionalTime;
 -(void)computeSceneCenter;
 -(void)setNearHero;
+
+
 
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 //@property(nonatomic, weak) SKNode *listener;
