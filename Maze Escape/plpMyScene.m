@@ -601,7 +601,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     JSTileMap *myTileMap;
     NSArray *levelFiles = [NSArray arrayWithObjects:
                            @"Levels/Level_0_tuto.tmx",
-                           // @"Levels/Level_NEW.tmx",
                            @"Levels/Level_1.tmx",
                            @"Levels/Level_2.tmx",
                            @"Levels/Level_3.tmx",
@@ -636,10 +635,10 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 {
     BOOL useCollisionGroup = FALSE;
     
-    // Remove after debug
+    // For debug
     // self.view.showsPhysics = YES;
-    self.view.showsFPS = YES;
-    self.view.showsNodeCount = YES;
+    // self.view.showsFPS = YES;
+    // self.view.showsNodeCount = YES;
 
     
     TMXObjectGroup *collisionRectangles = [tileMap groupNamed:@"CollisionRectangles"]; // Objets
@@ -652,6 +651,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             rectangleBody.dynamic = NO;
             rectangleBody.categoryBitMask = PhysicsCategoryTiles;
             rectangleBody.collisionBitMask = 0;
+            rectangleBody.friction = 0.5;
+            rectangleBody.restitution = 0;
 
             // node containing the body
             SKNode *collisionNode = [SKNode node];
@@ -681,6 +682,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             SKPhysicsBody *polygonBody = [SKPhysicsBody bodyWithPolygonFromPath: path];
             polygonBody.dynamic = NO;
             polygonBody.categoryBitMask = PhysicsCategoryTiles;
+            polygonBody.friction = 0.5;
+            polygonBody.restitution = 0;
             polygonBody.collisionBitMask = 0;
 
             // attach body to node
@@ -810,9 +813,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         SKSpriteNode *caisse = [SKSpriteNode spriteNodeWithTexture:textureCaisse size: CGSizeMake(width, height)];
         [caisse setZPosition: 20];
-        caisse.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(width-1.5, height-1.5)]; // minus 1.5 so the crate doesn't float over the floor
+        caisse.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(width-2, height-2)]; // minus 1.5 so the crate doesn't float over the floor
         caisse.physicsBody.mass = 200; // auparavant: 40
-        caisse.physicsBody.friction = 0.1;
+        caisse.physicsBody.friction = 0.2;
         caisse.position = [self convertPosition:optionCaisse];
         caisse.physicsBody.categoryBitMask = PhysicsCategoryObjects;
         caisse.physicsBody.collisionBitMask = PhysicsCategoryEdgar|PhysicsCategoryObjects|PhysicsCategoryTiles;
@@ -1370,7 +1373,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         isDying = TRUE;
     }
     [Edgar removeControl];
-    if(lifeCount < -1){
+    if(lifeCount < 0){
         NSLog(@"Already died -- can't restart");
         return;
     }
@@ -1397,7 +1400,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         SKNode *lostLife = [self->HUD childNodeWithName: [NSString stringWithFormat:@"life%d", (int) self->lifeCount ]];
         [lostLife removeFromParent];
         
-        if(self->lifeCount < 0){
+        if(self->lifeCount < 1){
             self->levelTransitioning = TRUE;
             
             // (just in case user pauses and comes back -- we actually reset this when “play again” button is pressed)
@@ -1474,22 +1477,22 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         
         if(xDistance < -100 * x3) // a gauche
         {
-            newCameraPosition.x = Edgar.position.x + 100 * x3;
+            newCameraPosition.x = roundf(Edgar.position.x + 100 * x3);
             [myCamera setPosition:CGPointMake(newCameraPosition.x, myCamera.position.y)];
         }
         else if(xDistance > 100 * x3) // a droite
         {
-            newCameraPosition.x = Edgar.position.x - 100 * x3;
+            newCameraPosition.x = roundf(Edgar.position.x - 100 * x3);
             [myCamera setPosition:CGPointMake(newCameraPosition.x, myCamera.position.y)];
         }
         if(yDistance < -100 * x3)
         {
-            newCameraPosition.y = Edgar.position.y + 100 * x3;
+            newCameraPosition.y = roundf(Edgar.position.y + 100 * x3);
             [myCamera setPosition:CGPointMake(myCamera.position.x, newCameraPosition.y)];
         }
         else if(yDistance > 100 * x3)
         {
-            newCameraPosition.y = Edgar.position.y - 100 * x3;
+            newCameraPosition.y = roundf(Edgar.position.y - 100 * x3);
             [myCamera setPosition:CGPointMake(myCamera.position.x, newCameraPosition.y)];
         }
         myCamera.position = CGPointMake(roundf(newCameraPosition.x), roundf(newCameraPosition.y));
