@@ -1483,7 +1483,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             newCameraPosition.y = roundf(Edgar.position.y - 100 * x3);
             [myCamera setPosition:CGPointMake(myCamera.position.x, newCameraPosition.y)];
         }
-        myCamera.position = CGPointMake(roundf(newCameraPosition.x), roundf(newCameraPosition.y));
+//        myCamera.position = CGPointMake(roundf(newCameraPosition.x), roundf(newCameraPosition.y));
     }
     /* Detect if Edgar will crash -- currently disabled
     if(![Edgar.physicsBody isResting]){
