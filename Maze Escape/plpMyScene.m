@@ -118,7 +118,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         // We'll add life & file count later
         needsInfoBar = TRUE;
 
-        if(!useSwipeGestures){
+        if(!useSwipeGestures && !TAKING_SCREENSHOTS){
             // TODO: remove this
            
             SKNode *touchIndicator = [SKNode node];
@@ -748,6 +748,14 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     NSArray *startPosObjects = [group objectsNamed:@"Start"];
     for (NSDictionary *startPos in startPosObjects) {
         startPosition = [self convertPosition:startPos];
+    }
+    
+    if(TAKING_SCREENSHOTS == TRUE){
+        NSLog(@"Setting screenshot position...");
+        NSArray *screenshotPosition = [group objectsNamed:@"screenshotPosition"];
+        for (NSDictionary *screenshotPos in screenshotPosition) {
+            debugPosition = [self convertPosition:screenshotPos];
+        }
     }
     
     if(currentLevelIndex>0) // Fin du niveau 1: on efface l'éventuel reste de flèche d'aide
@@ -1791,6 +1799,40 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
     }
     levelTransitioning = FALSE;
+    
+    if(TAKING_SCREENSHOTS == TRUE){
+        if(debugPosition.x > 0){
+            NSLog(@"Applying debug position");
+            
+            levelFileCount++;
+            fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/%lu", (long) levelFileCount, (long)levelTotalFileCount];
+            
+            [self runAction: [SKAction waitForDuration: 0.8] completion:^{
+                if(self->currentLevelIndex == 8){
+                    self->Edgar.xScale = 1.0;
+                }else{
+                    self->Edgar.xScale = -1.0;
+                }
+                if( (self->currentLevelIndex == 7) || (self->currentLevelIndex == 8) ){
+                    [self->Edgar walkingEdgar];
+                }else{
+                    [self->Edgar jumpingEdgar];
+                }
+                
+            }];
+            
+            [self runAction: [SKAction waitForDuration: 1] completion:^{
+                [self->Edgar setPosition: self->debugPosition];
+                [self->myCamera setPosition:CGPointMake(self->myCamera.position.x, self->Edgar.position.y - 100)];
+                
+                if(self->currentLevelIndex != 7){
+                    self.paused = true;
+                }
+            }];
+        }else{
+            NSLog(@"No debug position for this level");
+        }
+    }
 }
 
 - (void) didBeginContact:(SKPhysicsContact *)contact
@@ -2430,7 +2472,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             {
                 if(touch.tapCount == 4)
                 {
-                    if(!self.view.showsPhysics)
+                    if(!self.view.showsPhysics && !TAKING_SCREENSHOTS)
                     {
                         self.view.showsPhysics = YES;
                         self.view.showsFPS = YES;
@@ -2445,6 +2487,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 }
                 else if(touch.tapCount == 5) // Shortcut to the next level | Raccourci vers le niveau suivant
                 {
+                    if(TAKING_SCREENSHOTS){
+                        self.paused = FALSE;
+                    }
                     if(currentLevelIndex < LAST_LEVEL_INDEX && !levelTransitioning)
                     {
                         levelTransitioning = TRUE;
@@ -2471,19 +2516,21 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if(enableDebug && !cheatsEnabled && touch.tapCount == 5)
             {
                 cheatsEnabled = TRUE;
-                SKLabelNode *cheatEnabledMessage = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-                cheatEnabledMessage.fontSize = 100;
-                [cheatEnabledMessage setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
                 
-                cheatEnabledMessage.fontColor = [SKColor redColor];
-                cheatEnabledMessage.position = CGPointMake(0, 0); // should be ~ 100 * x3 for an iPad air -> find a way to do it better
-                cheatEnabledMessage.zPosition = 30;
-                cheatEnabledMessage.text = @"Cheats active. Time penalty!";
-                cheatEnabledMessage.alpha = 0;
-                [myCamera addChild: cheatEnabledMessage];
+                if(!TAKING_SCREENSHOTS){
+                    SKLabelNode *cheatEnabledMessage = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+                    cheatEnabledMessage.fontSize = 100;
+                    [cheatEnabledMessage setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
+                    
+                    cheatEnabledMessage.fontColor = [SKColor redColor];
+                    cheatEnabledMessage.position = CGPointMake(0, 0); // should be ~ 100 * x3 for an iPad air -> find a way to do it better
+                    cheatEnabledMessage.zPosition = 30;
+                    cheatEnabledMessage.text = @"Cheats active. Time penalty!";
+                    cheatEnabledMessage.alpha = 0;
+                    [myCamera addChild: cheatEnabledMessage];
 
-                [cheatEnabledMessage runAction:[SKAction sequence:@[[SKAction fadeAlphaTo: 1 duration: .5], [SKAction waitForDuration: 1], [SKAction fadeAlphaTo: 0 duration: .5], [SKAction removeFromParent]]]];
-
+                    [cheatEnabledMessage runAction:[SKAction sequence:@[[SKAction fadeAlphaTo: 1 duration: .5], [SKAction waitForDuration: 1], [SKAction fadeAlphaTo: 0 duration: .5], [SKAction removeFromParent]]]];
+                }
                 additionalSavedTime += 60000;
             }
         }

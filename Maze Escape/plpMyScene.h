@@ -49,6 +49,8 @@
 #define DEATH_ENEMY 2
 #define DEATH_PLATFORM 3
 
+#define TAKING_SCREENSHOTS TRUE
+
 float contextVelocityX;
 
 
@@ -68,6 +70,7 @@ float contextVelocityX;
     BOOL willLoseContextVelocity;
     float EdgarVelocity;
     CGPoint startPosition;
+    CGPoint debugPosition;
     BOOL isEdgarPinned;
     NSTimer *endContactTimer;
     
