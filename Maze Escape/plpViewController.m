@@ -32,6 +32,10 @@
 
 @implementation plpViewController
 
+-(BOOL)prefersHomeIndicatorAutoHidden{
+    return YES;
+}
+
 - (void)viewDidLoad
 {
     
@@ -43,6 +47,10 @@
                                              selector:@selector(pauseWhileInBackground)
                                                  name:@"pauseWhileInBackground"
                                                object:nil];
+    
+    if (@available(iOS 11.0, *)) {
+        [self setNeedsUpdateOfHomeIndicatorAutoHidden];
+    }
     
     [super viewDidLoad];
 }
