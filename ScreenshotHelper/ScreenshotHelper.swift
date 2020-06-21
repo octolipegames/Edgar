@@ -11,33 +11,13 @@ import XCTest
 class ScreenshotHelper: XCTestCase {
     
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        
-//        XCUIDevice.shared.orientation = UIDeviceOrientation.landscapeRight;
-        let device = XCUIDevice.shared
-        device.orientation = .landscapeRight
-        
         print("Setup…")
-        
-        
-        let app = XCUIApplication()
-        
-        app.launchArguments.append(contentsOf: ["-savedLevel", "6"])
-        
-        //setupSnapshot(app)
-        app.launch()
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        
-        // 2016 code
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        // XCUIApplication().launch()
-        
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        let app = XCUIApplication()
+        app.launchArguments.append(contentsOf: ["-savedLevel", "5"])
+        app.launchArguments.append(contentsOf: ["-enableDebug", "true"])
+        app.launchArguments.append(contentsOf: ["-useSwipeGestures", "true"])
+        app.launch()
     }
     
     override func tearDown() {
@@ -45,45 +25,71 @@ class ScreenshotHelper: XCTestCase {
     }
     
     func testTakeScreenshots() {
-        let device = XCUIDevice.shared
-        device.orientation = .landscapeRight
-        //XCUIDevice.shared.orientation = UIDeviceOrientation.landscapeRight;
         XCUIDevice.shared.orientation = .landscapeRight
-        
         print("Taking screenshots...")
+        
         // UI tests must launch the application that they test.
+        
         let app = XCUIApplication()
         setupSnapshot(app)
+        XCUIDevice.shared.orientation = .landscapeRight // option must be ticked in Simulator
+        sleep(1)
         
         app.buttons["Play"].tap()
-//        app.buttons["New Game"].tap()
-        //app.buttons["Resume"].tap()
         app.buttons["Resume"].tap()
-//        app.buttons["New Game"].tap()
+        
+        
+        sleep(1)
+        print("Level 5")
+        /* Level 5 */
+        snapshot("Level-5-scientific")
+        
+        let menuElement = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
 
-        snapshot("level")
+        /* Go to Level 6 */
+        menuElement.tap(withNumberOfTaps: 5, numberOfTouches: 1)
+        sleep(1)
+        menuElement.tap(withNumberOfTaps: 5, numberOfTouches: 1)
+        print("Level 6")
+        sleep(2)
+        snapshot("Level-6-platform")
         
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        /* Go to Level 7 */
+        menuElement.tap(withNumberOfTaps: 5, numberOfTouches: 1)
+        sleep(3)
+        print("Level 7")
+        // Move right
         
-        /*
-         app.buttons["Play"].tap()
-         app.buttons["New Game"].tap()
-         
-         let menuElement = app.otherElements.containingType(.Button, identifier:"Menu").element
-         
-         menuElement.tapWithNumberOfTaps(7, numberOfTouches: 1)
-         
-         menuElement.tapWithNumberOfTaps(5, numberOfTouches: 1)
-         
-         snapshot("game01")
-         */
+        menuElement.swipeRight()
+        sleep(1)
+        // if tap to move
+        // menuElement.coordinate(withNormalizedOffset: CGVector.zero).withOffset(CGVector(dx:300,dy:-60))/*@START_MENU_TOKEN@*/.press(forDuration: 1.3);/*[[".tap()",".press(forDuration: 1.3);"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        snapshot("Level-7-crate")
         
-        
-        
-        
-        
+        menuElement.tap(withNumberOfTaps: 5, numberOfTouches: 1)
+        sleep(3)
+        print("Level 8")
+        snapshot("Level-8-stairs")
     }
+    
+    /*
+    func testScreenshotLevel7() {
+        XCUIDevice.shared.orientation = .landscapeRight
+
+        print("Taking screenshots for level 7...")
+        let app = XCUIApplication()
+        app.launchArguments.append(contentsOf: ["-savedLevel", "7"])
+
+        setupSnapshot(app)
+
+        app.buttons["Play"].tap()
+        app.buttons["Resume"].tap()
+
+        sleep(1)
+
+        snapshot("Level-7-platform")
+    }
+    */
     
     func testLaunchPerformance() {
         /*print("Launch performance…")
