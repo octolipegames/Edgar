@@ -67,6 +67,16 @@
                ReferencedContainer = "container:Edgar_the_Explorer.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DA4E7550249EB8C30004A49A"
+               BuildableName = "ScreenshotHelper.xctest"
+               BlueprintName = "ScreenshotHelper"
+               ReferencedContainer = "container:Edgar_the_Explorer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
