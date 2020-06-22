@@ -60,7 +60,7 @@
                                 </constraints>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">Find our source code and assets: github.com/octolipegames/Edgar
+                                        <mutableString key="content">Find our source code and assets: github.com/octolipegames/Edgar
 Explanations on Facebook: facebook.com/octolipegames
 Contact us at octolipe@gmail.com!
 
@@ -68,12 +68,12 @@ Graphic design: Filipe Mathez
 Development: Paul Ronga
 Sound design: Guillaume Carel
 Level design and marketing: Lauriane Sanchis
-Many thanks to Aymeric, David, DJ, Hannah, Justine, Kathryn, Liv, Mathias, Steeve, The Venin
+Many thanks to Aymeric, David, DJ, Hannah, Hyperlaxe, Justine, Kathryn, Léa, Liv, Mathias, Maxime, Mickaël-Flaubert, Steeve, The Venin
 Special thanks to our girlfriends
 Very special thanks to our mums
 
 Source code: GNU Lesser General Public License 2.1 www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html
-Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</string>
+Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="16" name="GillSans"/>
