@@ -206,7 +206,7 @@
     [spriteView presentScene:myScene];
     
     // For debug: custom level
-    // startLevel = 6;
+    // startLevel = 7;
     if(startLevel > 0)
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
