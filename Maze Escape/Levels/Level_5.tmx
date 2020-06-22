@@ -19,7 +19,7 @@
  </layer>
  <layer id="2" name="Solide" width="33" height="10">
   <data encoding="base64" compression="zlib">
-   eAHNkksOwkAMQ6dbkAqbFo5Qltz/csRtH7LS8JFg0UgZ5+NxwpS+tdb/6Ne47+56Xq9iuJfQ+KdJ91urdjisl6dA+d2cmmM1TzXn3CKX8Q4ei8sbHCPmnjjs9wkHkcMyj3ngwtqe7CBe1niXb5WW+/yGVyhNme/FnFyfiXbAA8/WI6QnZIaj93PMt0BLqO8iExLPhfVAmxqa5BXCEbop1w76H57MI3wae7CL52Ow0OYCObPI6Wes+syCi5Zy73WR5zdED0SjQjh7wQfaIQ9/
+   eAHNkksOwjAMRMsWpMKGzxFgyf0vhx/KQ6Mo0EqwwJI7/ownVtJ5mqb5S7/UfHrqZX0Uyz2Xxi9N3TWacnOHbRu8FuL3cGuJaPSmrrxbI3gPpMZwPX9XsTNw1FnCI+SyJR79kVFnB3ZaoyHnnZb9T8isd0Ast6+Tp8kTD9lssT3QMxKz38e+RcryLhho/Cy0j9rW1DQfoRwwjZwd+A/34RW+zD3cJfNTsdR2wNyzzO33OOp7lly1yLO3qby/Q/VENUYo51/wASSjDok=
   </data>
  </layer>
  <objectgroup id="3" name="Objets">
@@ -80,7 +80,7 @@
   <object id="105" name="file" x="1688" y="1900">
    <point/>
   </object>
-  <object id="109" name="screenshotPosition" x="6884" y="1900">
+  <object id="109" name="screenshotPosition" x="6926" y="1830">
    <point/>
   </object>
  </objectgroup>
