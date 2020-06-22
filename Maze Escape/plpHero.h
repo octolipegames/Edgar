@@ -34,6 +34,7 @@
     NSTimer *stickTimer;
     BOOL boolHasControl;
     BOOL hasUranium;
+    BOOL hasMasque;
     int lives;
 }
 

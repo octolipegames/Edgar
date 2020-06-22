@@ -179,12 +179,15 @@
 
 -(void)addMasque
 {
-    SKSpriteNode *masque = [SKSpriteNode spriteNodeWithImageNamed:@"ShadowMask.png"];
-    masque.name = @"masque";
-    masque.size = CGSizeMake(3600, 2400); // avant x3: 1200, 800
-    [masque setZPosition: 22];
-    [self addChild: masque];
-    NSLog(@"Masque added");
+    if(!hasMasque){
+        SKSpriteNode *masque = [SKSpriteNode spriteNodeWithImageNamed:@"ShadowMask.png"];
+        masque.name = @"masque";
+        masque.size = CGSizeMake(3600, 2400); // avant x3: 1200, 800
+        [masque setZPosition: 22];
+        [self addChild: masque];
+        hasMasque = TRUE;
+        NSLog(@"Masque added");
+    }
 }
 -(void)removeMasque
 {
@@ -192,6 +195,7 @@
     if(masque){
         [masque removeFromParent];
     }
+    hasMasque = FALSE;
 }
 
 -(void)giveControl
