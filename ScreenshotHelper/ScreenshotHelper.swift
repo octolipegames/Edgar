@@ -60,6 +60,8 @@ class ScreenshotHelper: XCTestCase {
         print("Level 7")
         // Move right
         
+        menuElement.swipeLeft()
+        sleep(1)
         menuElement.swipeRight()
         sleep(1)
         // if tap to move

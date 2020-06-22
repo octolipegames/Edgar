@@ -2,12 +2,12 @@
 
 # A list of devices you want to take the screenshots from
 devices([
-  "iPhone 11",
-  "iPhone 11 Pro",
-  "iPhone 8 Plus",
-  "iPhone 8",
-  "iPad Pro (12.9-inch) (3rd generation)",
-  "iPad Pro (9.7-inch)",
+#  "iPhone 11",
+#  "iPhone 11 Pro Max",
+#  "iPhone 8 Plus",
+#  "iPhone 8",
+#  "iPad Pro (12.9-inch) (3rd generation)",
+  "iPad Pro (12.9-inch) (2nd generation)",
  ])
 
 # languages([
@@ -21,10 +21,10 @@ devices([
 # scheme("SchemeName")
 
 # Where should the resulting screenshots be stored?
-# output_directory("./screenshots")
+output_directory("./screenshots-new")
 
 # remove the '#' to clear all previously generated screenshots before creating new ones
-clear_previous_screenshots(true)
+# clear_previous_screenshots(true)
 
 # Remove the '#' to set the status bar to 9:41 AM, and show full battery and reception.
 # override_status_bar(true)
