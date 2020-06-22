@@ -119,8 +119,6 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         needsInfoBar = TRUE;
 
         if(!useSwipeGestures && !TAKING_SCREENSHOTS){
-            // TODO: remove this
-           
             SKNode *touchIndicator = [SKNode node];
             touchIndicator.name = @"touchIndicator";
             [HUD addChild: touchIndicator];
@@ -656,8 +654,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
             // node containing the body
             SKNode *collisionNode = [SKNode node];
+//            SKSpriteNode *collisionNode = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:CGSizeMake([collisionRectangle[@"width"] floatValue], [collisionRectangle[@"height"] floatValue])];
             [collisionNode setPosition: [self convertPosition: collisionRectangle]];
             collisionNode.physicsBody = rectangleBody;
+            
+            // Blend modes: https://developer.apple.com/documentation/spritekit/skblendmode?language=objc
+//            collisionNode.shadowCastBitMask = 1;
+//            collisionNode.shadowedBitMask = 0;
+//            collisionNode.blendMode = SKBlendModeReplace;
+//            collisionNode.zPosition = -40;
             [tileMap addChild: collisionNode];
         }
     }else{
@@ -690,17 +695,17 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             SKNode *collisionNode = [SKNode node];
             [collisionNode setPosition: [self convertPosition: collisionPolygon]];
             collisionNode.physicsBody = polygonBody;
+            //collisionNode.shadowCastBitMask = 1;
             [tileMap addChild: collisionNode];
         }
     }else{
         NSLog(@"No collision layer found in the tilemap.");
     }
-
     
-    /*
+    
      
     // When SpriteKit had less bugs
-    
+    /*
     TMXLayer* monLayer = [tileMap layerNamed:@"Solide"];
     
     for (int a = 0; a < tileMap.mapSize.width; a++)
@@ -714,10 +719,16 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             if (gid != 0 && !useCollisionGroup)
             {
                 SKSpriteNode* node = [monLayer tileAtCoord:pt];
+                node.shadowCastBitMask = 1;
+                if(node){
+                    NSLog(@"There is a node");
+                }else{
+                    NSLog(@"No node");
+                }
                 // [node setSize:CGSizeMake(100 * x3.0f, 100 * x3.0f)];
-                [node setSize:CGSizeMake(300 * x3.0f, 300 * x3.0f)];
-                // node.physicsBody = [SKPhysicsBody bodyWithTexture:node.texture size:node.frame.size];
-                node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(300 * x3, 300 * x3)];
+                // [node setSize:CGSizeMake(300 * x3.0f, 300 * x3.0f)];
+                node.physicsBody = [SKPhysicsBody bodyWithTexture:node.texture alphaThreshold: 0.5 size:node.frame.size];
+//                node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(300 * x3, 300 * x3)];
                 node.physicsBody.dynamic = NO;
                 node.physicsBody.categoryBitMask = PhysicsCategoryTiles;
                 node.physicsBody.friction = 0.5;
@@ -876,9 +887,21 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                 SKTexture *semaphoreRed = [SKTexture textureWithImageNamed:@"Feu_rouge.png"];
                 SKAction *setGreen = [SKAction setTexture:semaphoreGreen];
                 SKAction *setRed = [SKAction setTexture:semaphoreRed];
+                
+                // Plateforme niveau 5: duration 2 + idleDuration 2 => cycle de 8
+                // Semaphore: 2s + 4s + 2s = 8s
+                // Plateforme niveau 7: duration 4 + idleDuration 2 => cycle de 12
+                // Semaphore: 10s + 2s = 12s
                 SKAction *waitShort = [SKAction waitForDuration:2];
-                SKAction *waitLong = [SKAction waitForDuration:4];
-                SKAction *changeTexture = [SKAction sequence:@[waitShort, setGreen, waitShort, setRed, waitLong]];
+                SKAction *waitLong;
+                SKAction *changeTexture;
+                if(currentLevelIndex == 5){
+                    waitLong = [SKAction waitForDuration: 4];
+                    changeTexture = [SKAction sequence:@[waitShort, setGreen, waitShort, setRed, waitLong]];
+                }else{ // level 7
+                    waitLong = [SKAction waitForDuration: 10];
+                    changeTexture = [SKAction sequence:@[setGreen, waitShort, setRed, waitLong]];
+                }
                 
                 [myItem runAction: setRed completion: ^{
                     [myItem runAction:[SKAction repeatActionForever:changeTexture]];
@@ -1652,7 +1675,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     if(repeatingLevel == YES)
     {
-        NSArray *quoteArray = @[@"Let’s do it again", @"Nice to see you again", @"Quel plaisir de vous revoir", @"“Only after disaster can we be resurrected”", @"“Everything in nature is resurrection” – Voltaire"];
+        NSArray *quoteArray = @[@"Let’s do it again", @"Nice to see you again", @"Quel plaisir de vous revoir", @"“Only after disaster can we be resurrected”", @"“Everything in nature is resurrection”"];
         NSUInteger randomIndex = arc4random() % quoteArray.count;
         displayTime.text = [[NSString alloc] initWithFormat:@"%@", quoteArray[randomIndex]]; // plutot une citation random?
         displayTime2.text = [[NSString alloc] initWithFormat:@"Your total time: %@", [self getTimeString: totalTime]];
@@ -1783,14 +1806,24 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     
     NSLog(@"Level saved: %d", currentLevelIndex);
     
-    if(currentLevelIndex > 1 && currentLevelIndex < LAST_LEVEL_INDEX)
+    if(currentLevelIndex == 2){
+        SKNode *touchIndicator = [SKNode node];
+        for (SKNode* theNode in [touchIndicator children]) {
+            [theNode setAlpha: 1.0];
+        }
+        [touchIndicator runAction: [SKAction fadeOutWithDuration: 5.0] completion:^{
+            [touchIndicator removeAllChildren];
+            [touchIndicator removeFromParent];
+        }];
+    }
+    if(currentLevelIndex > 0 && currentLevelIndex < LAST_LEVEL_INDEX)
     {
         [Edgar addLight]; // shadow effect for levels 2-6
         
-        if(currentLevelIndex == FIRST_DARK_LEVEL)
+        if(currentLevelIndex > FIRST_DARK_LEVEL)
         {
             SKNode *lampe = [Edgar childNodeWithName:@"light"];
-            [Edgar addMasque];
+            // [Edgar addMasque];
             if(lampe)
             {
                 [(SKLightNode*) lampe setShadowColor: [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:0.88]];
@@ -1808,7 +1841,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             fileCountLabel.text = [ [NSString alloc] initWithFormat: @"%ld/%lu", (long) levelFileCount, (long)levelTotalFileCount];
             
             [self runAction: [SKAction waitForDuration: 0.8] completion:^{
-                if(self->currentLevelIndex == 8){
+                if( (self->currentLevelIndex == 1) || (self->currentLevelIndex == 6) ){
                     self->Edgar.xScale = 1.0;
                 }else{
                     self->Edgar.xScale = -1.0;
@@ -2128,7 +2161,8 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
                     [moveRight runAction: [SKAction repeatActionForever: [SKAction sequence:@[fadeIn, fadeOut]]]];
                 }
-            }else if([contactNode.name isEqualToString:@"run"])
+            }
+            else if([contactNode.name isEqualToString:@"run"])
             {
                 if(useSwipeGestures){
 //                    helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
@@ -2140,19 +2174,26 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     SKNode *middleRight = [HUD childNodeWithName:@"//touchIndicator/middleright"];
                     SKAction *fadeIn = [SKAction fadeAlphaTo: 1 duration: .5];
                     SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
-                    [middleRight runAction: [SKAction repeatActionForever: [SKAction sequence:@[fadeIn, fadeOut]]]];                }
-            }else if([contactNode.name isEqualToString:@"jump"])
+                    [middleRight runAction: [SKAction repeatAction: [SKAction sequence:@[fadeIn, fadeOut]] count: 5]];
+                }
+            }
+            else if([contactNode.name isEqualToString:@"jump"])
             {
-                NSLog(@"jump sprite");
-                SKNode *middleRight = [HUD childNodeWithName:@"//touchIndicator/middleright"];
-                [middleRight removeAllActions];
-                [middleRight setAlpha: 0.2];
-                
-                SKNode *upRight = [HUD childNodeWithName:@"//touchIndicator/upright"];
-                SKAction *fadeIn = [SKAction fadeAlphaTo: 1 duration: .5];
-                SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
-                [upRight runAction: [SKAction repeatActionForever: [SKAction sequence:@[fadeIn, fadeOut]]]];
-            }else if([contactNode.name isEqualToString:@"showFile"])
+                if(useSwipeGestures){
+                    helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
+                }else{
+                    NSLog(@"jump sprite");
+                    SKNode *middleRight = [HUD childNodeWithName:@"//touchIndicator/middleright"];
+                    [middleRight removeAllActions];
+                    [middleRight setAlpha: 0.2];
+                    
+                    SKNode *upRight = [HUD childNodeWithName:@"//touchIndicator/upright"];
+                    SKAction *fadeIn = [SKAction fadeAlphaTo: 1 duration: .5];
+                    SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
+                    [upRight runAction: [SKAction repeatAction: [SKAction sequence:@[fadeIn, fadeOut]] count: 5]];
+                }
+            }
+            else if([contactNode.name isEqualToString:@"showFile"])
             {
                 [contactNode removeFromParent];
                 helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/showFile.png"];
@@ -2399,11 +2440,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                         SKNode *middleRight = [HUD childNodeWithName:@"//touchIndicator/middleright"];
                         [middleRight removeAllActions];
                         [middleRight setAlpha: 0.2];
-                    }else if([contactNode.name isEqualToString:@"jump"]){
-                        NSLog(@"remove jump");
-                             SKNode *upright = [HUD childNodeWithName:@"//touchIndicator/upright"];
-                             [upright removeAllActions];
-                             [upright setAlpha: 0.2];
+                    }else if([contactNode.name isEqualToString:@"jump"])
+                    {
+                         SKNode *upright = [HUD childNodeWithName:@"//touchIndicator/upright"];
+                         [upright removeAllActions];
+                         [upright setAlpha: 0.2];
                     }
                 }
             }
