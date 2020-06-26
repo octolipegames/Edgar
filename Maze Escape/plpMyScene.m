@@ -1622,9 +1622,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKNode *touchIndicator = [HUD childNodeWithName:@"//touchIndicator"];
     
     if(currentLevelIndex != 1){
-        [touchIndicator runAction: [SKAction fadeOutWithDuration: 5.0] completion:^{
-            [touchIndicator removeAllChildren];
-            [touchIndicator removeFromParent];
+        // TODO: pref pane
+        //[touchIndicator runAction: [SKAction fadeOutWithDuration: 5.0] completion:^{
+        [touchIndicator runAction: [SKAction fadeAlphaTo: 0.5 duration: 3.0] completion:^{
+            /*[touchIndicator removeAllChildren];
+            [touchIndicator removeFromParent];*/
         }];
     }
 }
@@ -1651,11 +1653,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [spinner startAnimating];
     [self.view addSubview:spinner];
 
-    SKLabelNode *displayTime = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
-    displayTime.fontSize = 30 * x3;
-    displayTime.fontColor = [SKColor whiteColor];
-    displayTime.position = CGPointMake(0, 30 * x3);
-    displayTime.zPosition = 42;
+    SKLabelNode *displayLevel = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
+    displayLevel.fontSize = 30 * x3;
+    displayLevel.fontColor = [SKColor whiteColor];
+    displayLevel.position = CGPointMake(0, 90);
+    displayLevel.zPosition = 42;
     
     SKLabelNode *displayTime2 = [SKLabelNode labelNodeWithFontNamed:@"GillSans"];
     displayTime2.fontSize = 24 * x3;
@@ -1669,24 +1671,22 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     displayFiles.position = CGPointMake(0, -50 * x3);
     displayFiles.zPosition = 42;
     
-    
-    
     NSLog(@"Screen center x: %f", screenCenterX);
     
     if(repeatingLevel == YES)
     {
         NSArray *quoteArray = @[@"Let’s do it again", @"Nice to see you again", @"Quel plaisir de vous revoir", @"“Only after disaster can we be resurrected”", @"“Everything in nature is resurrection”"];
         NSUInteger randomIndex = arc4random() % quoteArray.count;
-        displayTime.text = [[NSString alloc] initWithFormat:@"%@", quoteArray[randomIndex]]; // plutot une citation random?
+        displayLevel.text = [[NSString alloc] initWithFormat:@"%@", quoteArray[randomIndex]]; // plutot une citation random?
         displayTime2.text = [[NSString alloc] initWithFormat:@"Your total time: %@", [self getTimeString: totalTime]];
         
         displayFiles.text = [[NSString alloc] initWithFormat:@"%ld files collected until now", (long) fileCount];
     }
     else
     {
-        displayTime.text = [[NSString alloc] initWithFormat:@"Total time: %@", [self getTimeString: totalTime]];
-            
-        displayTime2.text = [[NSString alloc] initWithFormat:@"This level: %@", [self getTimeString: levelTime]];
+        displayLevel.text = [[NSString alloc] initWithFormat:@"Level %d", currentLevelIndex];
+                    
+        displayTime2.text = [[NSString alloc] initWithFormat:@"%@", [self getTimeString: levelTime]];
         
         displayFiles.text = [[NSString alloc] initWithFormat:@"%ld/%lu files collected", (long) levelFileCount, (long)levelTotalFileCount];
     }
@@ -1727,12 +1727,13 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
 
     // 2. Second action: present score and start level (completion = action 3: open curtains)
     SKAction *presentScore = [SKAction runBlock:^{
-        [self->myCamera addChild:displayTime];
+        SKAction *textFadeOut = [SKAction sequence: @[[SKAction fadeAlphaTo:1 duration:.3], [SKAction waitForDuration:1.5],[SKAction fadeAlphaTo:0 duration:1], [SKAction removeFromParent]]];
+
+        [self->myCamera addChild:displayLevel];
         [self->myCamera addChild:displayTime2];
         [self->myCamera addChild:displayFiles];
         
-        SKAction *textFadeOut = [SKAction sequence: @[[SKAction fadeAlphaTo:1 duration:.3], [SKAction waitForDuration:1.5],[SKAction fadeAlphaTo:0 duration:1], [SKAction removeFromParent]]];
-        [displayTime runAction:textFadeOut];
+        [displayLevel runAction:textFadeOut];
         [displayFiles runAction:textFadeOut];
         [displayTime2 runAction:textFadeOut completion:^{
             [self->myWorld runAction: openCurtainsAnimation];
@@ -1811,9 +1812,11 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         for (SKNode* theNode in [touchIndicator children]) {
             [theNode setAlpha: 1.0];
         }
-        [touchIndicator runAction: [SKAction fadeOutWithDuration: 5.0] completion:^{
-            [touchIndicator removeAllChildren];
-            [touchIndicator removeFromParent];
+        
+        // TODO: switch in preference pane
+        [touchIndicator runAction: [SKAction fadeAlphaTo: 0.5 duration: 3.0] completion:^{
+            /*[touchIndicator removeAllChildren];
+            [touchIndicator removeFromParent];*/
         }];
     }
     if(currentLevelIndex > 0 && currentLevelIndex < LAST_LEVEL_INDEX)
