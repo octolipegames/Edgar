@@ -42,7 +42,7 @@
     /* Animation */
     SKView * skView = (SKView *)self.view;
     [self loadMenuBackgroundWithSize:skView.bounds.size];
-    
+    [self loadHighScores];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pauseWhileInBackground)
                                                  name:@"pauseWhileInBackground"
@@ -53,6 +53,16 @@
     }
     
     [super viewDidLoad];
+}
+
+- (void)loadHighScores
+{
+    NSError *error;
+    NSString *url_string = [NSString stringWithFormat: @"http://paulronga.ch/edgar-2/get_leaderboard_json.php"];
+    NSData *data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url_string]];
+    NSMutableArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSLog(@"json: %@", json);
+    
 }
 
 - (void)loadMenuBackgroundWithSize:(CGSize)size
