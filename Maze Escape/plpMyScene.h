@@ -23,6 +23,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <StoreKit/StoreKit.h>
+
 #import "JSTileMap.h"
 #import "plpHero.h"
 #import "plpAlien.h"

@@ -343,6 +343,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     pauseEnabled = TRUE;
 }
 
+- (void)DisplayReviewController {
+    if (@available(iOS 10.3, *)) {
+        [SKStoreReviewController requestReview];
+    }
+}
+
 - (IBAction)endGameNoSaveScore:(id)sender {
     [[containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self showTrophy];
@@ -503,23 +509,22 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     SKTexture *trophyTexture = [SKTexture textureWithImageNamed:@"TropheeSnail_x3.png"];
     
     float totalTime = [self getTotalTime];
-    if(totalTime < 600) // 10 minutes
+    if(totalTime < 600 && fileCount >= 40) // 10 minutes and all files
     {
-        rankingString = @"Congrats, you’re the boss.";
+        rankingString = @"You collected all files. Congrats, you’re the boss!";
         trophyTexture = [SKTexture textureWithImageNamed:@"TropheeElite_x3.png"];
     }else if(totalTime < 1200) // 20 minutes
     {
-        rankingString = @"Good job!";
+        rankingString = [NSString stringWithFormat:@"Good job! You collected %ld secret files in %@", (long)fileCount, [self getTimeString:totalTime]];
         trophyTexture = [SKTexture textureWithImageNamed:@"TropheeExplorer_x3.png"];
     }else{
         rankingString = @"Snail Edgar.";
     }
     
-    
     SKSpriteNode *trophy = [SKSpriteNode spriteNodeWithTexture:trophyTexture];
     trophy.name = @"trophy";
     
-    [containerView setFrame:CGRectMake(50*x3, 5*x3, self.view.bounds.size.width - (100 * x3), self.view.bounds.size.height/3)]; // upper half of the screen
+    [containerView setFrame:CGRectMake(100, 15, self.view.bounds.size.width - 200, self.view.bounds.size.height/2)]; // upper half of the screen
 
     if(!myTextView)
     {
@@ -538,7 +543,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     float buttonWidth = (containerView.bounds.size.width/2) - (outsideMargin + insideMargin);
     float buttonNewGamePositionX = containerView.bounds.size.width/2 - buttonWidth/2;
     
-    [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, 35)];
+    [myTextView setFrame: CGRectMake(20, 5, containerView.bounds.size.width-40, buttonsVerticalPosition-10)];
     
     UIButton *myButtonClose  =   [UIButton buttonWithType: UIButtonTypeRoundedRect];
     myButtonClose.frame      =   CGRectMake(buttonNewGamePositionX, buttonsVerticalPosition, buttonWidth, 30.0);
@@ -561,6 +566,12 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     [trophy setPosition: CGPointMake(10 - trophy.size.width/2, 40 - trophy.size.height/2)];
     [trophy setZPosition: 100 * x3];
     [myCamera addChild: trophy];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+      target:self
+      selector:@selector(DisplayReviewController)
+      userInfo:nil
+      repeats:NO];
 }
 
 - (IBAction)saveScore:(id)sender {
