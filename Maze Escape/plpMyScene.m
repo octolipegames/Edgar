@@ -228,6 +228,9 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
         pauseEnabled = TRUE;
     }
     
+    NSLog(@"try hide buttons");
+    [(plpViewController*) self.view hideButtons];
+    
     return self;
 }
 
@@ -1695,7 +1698,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     }
     else
     {
-        displayLevel.text = [[NSString alloc] initWithFormat:@"Level %d", currentLevelIndex];
+        displayLevel.text = [[NSString alloc] initWithFormat:@"Level %d: done!", currentLevelIndex-1];
                     
         displayTime2.text = [[NSString alloc] initWithFormat:@"%@", [self getTimeString: levelTime]];
         
@@ -2193,6 +2196,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
             }
             else if([contactNode.name isEqualToString:@"jump"])
             {
+                [contactNode removeFromParent];
                 if(useSwipeGestures){
                     helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/swipeJump.png"];
                 }else{
@@ -2206,6 +2210,15 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
                     SKAction *fadeOut = [SKAction fadeAlphaTo: 0.4 duration: .5];
                     [upRight runAction: [SKAction repeatAction: [SKAction sequence:@[fadeIn, fadeOut]] count: 5]];
                 }
+            }
+            else if([contactNode.name isEqualToString:@"showUranium"])
+            {
+                [contactNode removeFromParent];
+                helpNode = [SKSpriteNode spriteNodeWithImageNamed:@"UI_img/showFile.png"];
+                [helpNode setPosition:[myLevel childNodeWithName:@"uranium"].position];
+                [helpNode setSize:CGSizeMake(250, 250)];
+                [helpNode runAction:[SKAction repeatAction:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:1.5], [SKAction fadeAlphaTo:0 duration:.5]]] count:2]];
+                [myLevel addChild: helpNode];
             }
             else if([contactNode.name isEqualToString:@"showFile"])
             {
@@ -2267,9 +2280,7 @@ typedef NS_OPTIONS(uint32_t, MyPhysicsCategory) // We define 6 physics categorie
     {
         // son caisse
         if([contactNode.name isEqual: @"caisse"]){
-            NSLog(@"Vitesse caisse: %f", contactNode.physicsBody.velocity.dx);
-            
-            //NSLog(@"Vitesse caisse: %f", contactNode.physicsBody.);
+//            NSLog(@"Vitesse caisse: %f", contactNode.physicsBody.velocity.dx);
             
             // TODO Dans l’idéal: à lier au frottement de la caisse sur le sol
             // Si la caisse bouge assez vite...

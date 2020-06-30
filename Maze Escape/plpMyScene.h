@@ -25,6 +25,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <StoreKit/StoreKit.h>
 
+#import "plpViewController.h"
 #import "JSTileMap.h"
 #import "plpHero.h"
 #import "plpAlien.h"
