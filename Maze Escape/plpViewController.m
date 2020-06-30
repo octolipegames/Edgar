@@ -195,6 +195,10 @@
     [skView presentScene: introScene];
 }
 
+-(void)hideButtons{
+    NSLog(@"hide buttons");
+    self.pauseButton.hidden = TRUE;
+}
 - (void)loadSavedGame: (NSInteger)startLevel
 {
     self.pauseButton.hidden = NO;

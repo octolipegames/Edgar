@@ -32,6 +32,8 @@
     BOOL runningOniPad;
 }
 
+-(void)hideButtons;
+
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *prefsButton;
 @property (weak, nonatomic) IBOutlet UIButton *soundButton;
