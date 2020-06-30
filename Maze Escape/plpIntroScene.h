@@ -39,6 +39,7 @@
     NSMutableArray *animateActions;
     
     int currentSlide;
+    NSTimer *nextSlideTimer;
     NSTimer *launchGameTimer;
 }
 

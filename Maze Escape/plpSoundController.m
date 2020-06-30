@@ -167,7 +167,7 @@
         return;
     }
     
-    projectorSound = [SKAction playSoundFileNamed:@"Sounds/fx2_projecteur.wav" waitForCompletion: NO];
+    projectorSound = [SKAction playSoundFileNamed:@"Sounds/fx4_projecteur.wav" waitForCompletion: NO];
 
     /*
     // allows volume control but lower performance

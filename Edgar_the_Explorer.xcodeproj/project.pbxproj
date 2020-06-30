@@ -39,6 +39,7 @@
 		DA29F9C723EE9AD500CF4F22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA29F9C623EE9AD500CF4F22 /* LaunchScreen.storyboard */; };
 		DA29F9CB23EE9F2100CF4F22 /* Logo_Launch_Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */; };
 		DA442BD624797D50004794D4 /* plpScientist.m in Sources */ = {isa = PBXBuildFile; fileRef = DA442BD524797D50004794D4 /* plpScientist.m */; };
+		DA4C46DA24A73B9A006AFD9C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA4C46D924A73B9A006AFD9C /* StoreKit.framework */; };
 		DA4E7554249EB8C30004A49A /* ScreenshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4E7553249EB8C30004A49A /* ScreenshotHelper.swift */; };
 		DA4E755C249EB8E40004A49A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4E755B249EB8E40004A49A /* SnapshotHelper.swift */; };
 		DA5B4A1A1B81133F009507F9 /* plpHero.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5B4A191B81133F009507F9 /* plpHero.m */; };
@@ -151,6 +152,7 @@
 		DA29F9CA23EE9F2100CF4F22 /* Logo_Launch_Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_Launch_Screen.png; sourceTree = "<group>"; };
 		DA442BD424797D50004794D4 /* plpScientist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plpScientist.h; sourceTree = "<group>"; };
 		DA442BD524797D50004794D4 /* plpScientist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plpScientist.m; sourceTree = "<group>"; };
+		DA4C46D924A73B9A006AFD9C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DA4E7551249EB8C30004A49A /* ScreenshotHelper.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreenshotHelper.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA4E7553249EB8C30004A49A /* ScreenshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotHelper.swift; sourceTree = "<group>"; };
 		DA4E7555249EB8C30004A49A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA4C46DA24A73B9A006AFD9C /* StoreKit.framework in Frameworks */,
 				DA5CF4D11B73E907005A5C91 /* libz.dylib in Frameworks */,
 				DA03CBD0199F4C4700406720 /* CoreGraphics.framework in Frameworks */,
 				DA03CBCE199F4C4700406720 /* Foundation.framework in Frameworks */,
@@ -281,6 +284,7 @@
 		DA03CBCC199F4C4700406720 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA4C46D924A73B9A006AFD9C /* StoreKit.framework */,
 				DAB819AA247E4E8C00DD86F3 /* AVFoundation.framework */,
 				DAB819A8247E4E8500DD86F3 /* AudioToolbox.framework */,
 				DAB819A6247E4E7C00DD86F3 /* OpenAL.framework */,
@@ -841,14 +845,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.0.4;
+				CURRENT_PROJECT_VERSION = 2.1.1;
 				DEVELOPMENT_TEAM = QMNSE76DMB;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.0.4;
+				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
 				PRODUCT_NAME = "Edgar Explorer";
 				PROVISIONING_PROFILE = "";
@@ -867,14 +871,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 2.0.4;
+				CURRENT_PROJECT_VERSION = 2.1.1;
 				DEVELOPMENT_TEAM = QMNSE76DMB;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maze Escape/Edgar_the_Explorer-Prefix.pch";
 				INFOPLIST_FILE = "Maze Escape/Edgar_the_Explorer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.0.4;
+				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "Edgar-Explorer";
 				PRODUCT_NAME = "Edgar Explorer";
 				PROVISIONING_PROFILE = "";

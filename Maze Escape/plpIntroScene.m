@@ -146,6 +146,27 @@
     [spriteView presentScene: myScene];
 }
 
+-(void)nextSlide {
+    // Animate frames
+    if(currentSlide < MAX_SLIDE){
+        [animationNode removeAllActions];
+        [animationNode runAction: [SKAction repeatActionForever:[SKAction animateWithTextures: animationFrames[currentSlide] timePerFrame: 0.25f resize: NO restore: NO]]];
+    }
+    
+    // Update subtitles
+    NSArray *subtitleTextsTop = @[@"1",
+                           @"However, some scientists still keep aliens",
+                           @"Green Alien must make sure that Bionic Labs Inc",
+                           @"We need someone to infiltrate their laboratories"];
+    NSArray *subtitleTextsBottom = @[@"1",
+                           @"in cages in the name of science!",
+                           @"stops illegal alien testing.",
+                           @"and collect evidence. Any volonteers?"];
+            
+    [subtitleNodeTop setText: subtitleTextsTop[currentSlide]];
+    [subtitleNodeBottom setText: subtitleTextsBottom[currentSlide]];
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     currentSlide++;
     if(currentSlide < SCENE_SLIDES){
@@ -154,24 +175,20 @@
         if(currentSlide < 3){
             [soundController playProjectorSound];
         }
-        
-        NSArray *subtitleTextsTop = @[@"1",
-                               @"However, some scientists still keep aliens",
-                               @"Green Alien must make sure that Bionic Labs Inc",
-                               @"We need someone to infiltrate their laboratories"];
-        NSArray *subtitleTextsBottom = @[@"1",
-                               @"in cages in the name of science!",
-                               @"stops illegal alien testing.",
-                               @"and collect evidence. Any volonteers?"];
-        
-        if(currentSlide < MAX_SLIDE){
-            [animationNode removeAllActions];
-            [animationNode runAction: [SKAction repeatActionForever:[SKAction animateWithTextures: animationFrames[currentSlide] timePerFrame: 0.25f resize: NO restore: NO]]];
+        if(nextSlideTimer){
+            [nextSlideTimer invalidate];
+            NSLog(@"I just cancelled nextSlideTimer");
         }
-                
-        [subtitleNodeTop setText: subtitleTextsTop[currentSlide]];
-        [subtitleNodeBottom setText: subtitleTextsBottom[currentSlide]];
+        nextSlideTimer = [NSTimer scheduledTimerWithTimeInterval: 0.2
+            target: self
+            selector: @selector(nextSlide)
+            userInfo: nil
+            repeats: NO];
+        
     } else if(currentSlide == SCENE_SLIDES) {
+        if(nextSlideTimer){
+            [nextSlideTimer invalidate];
+        }
         // Clean and call playScene2 (video)
         [soundController doVolumeFade];
         [ [self childNodeWithName:@"subtitle-background"] removeFromParent];

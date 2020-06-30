@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="LVB-YS-i5n">
-    <device id="retina6_1" orientation="landscape" appearance="light"/>
+    <device id="retina5_5" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="aVg-JY-jeM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bdc-N1-crn" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ujh-gO-BHA">
@@ -24,7 +24,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yo3-0O-95n">
-                                <rect key="frame" x="822" y="0.0" width="30" height="30"/>
+                                <rect key="frame" x="706" y="0.0" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="EvW-0u-5jO"/>
                                     <constraint firstAttribute="width" constant="30" id="OZA-1m-vBb"/>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onC-Dn-GGJ">
-                                <rect key="frame" x="415.5" y="91" width="65" height="30"/>
+                                <rect key="frame" x="335.66666666666669" y="91" width="65" height="30"/>
                                 <color key="backgroundColor" red="0.25523348272943197" green="0.17362821954383129" blue="0.33683874591503271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="GL8-H7-j71"/>
@@ -52,7 +52,7 @@
                                 </connections>
                             </button>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nMO-WS-ykg">
-                                <rect key="frame" x="285.5" y="94" width="325" height="279"/>
+                                <rect key="frame" x="193.33333333333334" y="94" width="349.33333333333326" height="300"/>
                                 <color key="backgroundColor" red="0.27843137254901962" green="0.18823529411764706" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.99913519620000002" green="0.95351284739999997" blue="0.53352612259999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -60,7 +60,7 @@
                                 </constraints>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <mutableString key="content">Find our source code and assets: github.com/octolipegames/Edgar
+                                        <string key="content">Find our source code and assets: github.com/octolipegames/Edgar
 Explanations on Facebook: facebook.com/octolipegames
 Contact us at octolipe@gmail.com!
 
@@ -73,7 +73,7 @@ Special thanks to our girlfriends
 Very special thanks to our mums
 
 Source code: GNU Lesser General Public License 2.1 www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html
-Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
+Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</string>
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="16" name="GillSans"/>
@@ -85,7 +85,7 @@ Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq6-QR-X9y">
-                                <rect key="frame" x="784" y="0.0" width="30" height="30"/>
+                                <rect key="frame" x="668" y="0.0" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="EJT-k3-ocW"/>
                                     <constraint firstAttribute="width" constant="30" id="GHy-ea-Lqs"/>
@@ -100,7 +100,7 @@ Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBq-SW-Aka">
-                                <rect key="frame" x="410.5" y="8" width="75" height="75"/>
+                                <rect key="frame" x="330.66666666666669" y="8" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="2Qy-DI-oUw"/>
                                     <constraint firstAttribute="height" constant="75" id="m2d-Gb-4P7"/>
@@ -113,7 +113,7 @@ Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njq-8M-sCv" userLabel="Audio Button">
-                                <rect key="frame" x="528" y="25" width="40" height="40"/>
+                                <rect key="frame" x="448" y="25" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="XdC-cV-U5t"/>
                                     <constraint firstAttribute="width" constant="40" id="wTH-MN-fjH"/>
@@ -128,7 +128,7 @@ Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mmF-2h-SVO" userLabel="Prefs Button">
-                                <rect key="frame" x="328" y="25" width="40" height="40"/>
+                                <rect key="frame" x="248" y="25" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="2oH-9Z-Jda"/>
                                     <constraint firstAttribute="width" secondItem="mmF-2h-SVO" secondAttribute="height" multiplier="1:1" id="HqM-Rg-g4I"/>
@@ -138,6 +138,19 @@ Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                                     <segue destination="m2N-Sm-Fqq" kind="modal" animates="NO" id="ndd-vX-2cb"/>
                                 </connections>
                             </button>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENS-vN-wB4">
+                                <rect key="frame" x="64" y="174" width="204" height="199"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="1 Roger 2 Anastra 3 Mougul See more…">
+                                        <attributes>
+                                            <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="GillSans"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -181,11 +194,11 @@ Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                         <viewControllerLayoutGuide type="bottom" id="y1u-hh-eeR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7xb-K7-9Sq">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1.2" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH7-fe-1SY" userLabel="Music">
-                                <rect key="frame" x="62" y="91" width="772" height="31"/>
+                                <rect key="frame" x="62" y="91" width="612" height="31"/>
                                 <color key="tintColor" red="0.17070774781150025" green="0.11668630863064573" blue="0.22472918699235478" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="musicVolumeChanged:" destination="yhh-pS-joL" eventType="valueChanged" id="6f2-lh-YmD"/>
@@ -198,7 +211,7 @@ Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1f-Hn-PTc" userLabel="Close">
-                                <rect key="frame" x="383.5" y="339" width="129" height="30"/>
+                                <rect key="frame" x="303.66666666666669" y="360" width="129" height="30"/>
                                 <color key="backgroundColor" red="0.25523348270000001" green="0.17362821949999999" blue="0.33683874590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="129" id="0Sz-tL-ptE"/>
@@ -214,13 +227,13 @@ Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Effects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMK-02-PwT">
-                                <rect key="frame" x="64" y="196.5" width="108" height="21"/>
+                                <rect key="frame" x="64" y="196.66666666666666" width="108" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iV6-Lu-SFp">
-                                <rect key="frame" x="783" y="191.5" width="51" height="31"/>
+                                <rect key="frame" x="623" y="191.66666666666666" width="51" height="31"/>
                                 <color key="onTintColor" red="0.99913519620000002" green="0.95351284739999997" blue="0.53352612259999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="fxSwitchChanged:" destination="yhh-pS-joL" eventType="valueChanged" id="Gt9-TW-yBe"/>
@@ -263,11 +276,11 @@ Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                         <viewControllerLayoutGuide type="bottom" id="Tbi-UH-ofH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VEq-K7-bi3">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKC-83-Jt8" userLabel="Close">
-                                <rect key="frame" x="383.5" y="339" width="129" height="30"/>
+                                <rect key="frame" x="303.66666666666669" y="360" width="129" height="30"/>
                                 <color key="backgroundColor" red="0.25523348270000001" green="0.17362821949999999" blue="0.33683874590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="129" id="6nG-Zb-B4G"/>
@@ -295,11 +308,11 @@ Images and music: CC-BY 4.0 creativecommons.org/licenses/by/4.0/</mutableString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5wn-P6-Btc">
-                                <rect key="frame" x="810" y="92" width="51" height="31"/>
+                                <rect key="frame" x="650" y="92" width="51" height="31"/>
                                 <color key="onTintColor" red="0.99913519620000002" green="0.95351284739999997" blue="0.53352612259999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="77G-dm-xse">
-                                <rect key="frame" x="810" y="174" width="51" height="31"/>
+                                <rect key="frame" x="650" y="174" width="51" height="31"/>
                                 <color key="onTintColor" red="0.99913519620000002" green="0.95351284739999997" blue="0.53352612259999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
                         </subviews>
